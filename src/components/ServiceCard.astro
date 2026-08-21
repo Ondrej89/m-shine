@@ -1,0 +1,50 @@
+---
+import LearnMore from './LearnMore.astro';
+
+/*
+ * The service card: photo, a green icon chip hanging off the photo's bottom
+ * edge, then title, copy and a "Learn More" link.
+ *
+ * The chip is a pseudo-element on the card rather than a child of the figure —
+ * the design lets it overhang and the figure clips. `icon` selects which glyph
+ * the pseudo-element paints; `plain` suppresses the chip entirely rather than
+ * leaving an empty green square.
+ */
+export type ServiceIcon = 'house' | 'apartment' | 'move' | 'deep' | 'plain';
+
+interface Props {
+	title: string;
+	description: string;
+	image: string;
+	/** Describe the photo, not the service — the title already says that. */
+	imageAlt?: string;
+	icon?: ServiceIcon;
+	href?: string;
+	linkLabel?: string;
+	class?: string;
+}
+
+const {
+	title,
+	description,
+	image,
+	imageAlt = '',
+	icon = 'plain',
+	href,
+	linkLabel,
+	class: className,
+} = Astro.props;
+
+const classes = ['ms-card', `ms-card--${icon}`, className].filter(Boolean).join(' ');
+---
+
+<article class={classes}>
+	<figure class="ms-card__media">
+		<img src={image} alt={imageAlt} loading="lazy" decoding="async" />
+	</figure>
+	<div class="ms-card__body">
+		<h3>{title}</h3>
+		<p>{description}</p>
+		{href && linkLabel && <LearnMore href={href}>{linkLabel}</LearnMore>}
+	</div>
+</article>

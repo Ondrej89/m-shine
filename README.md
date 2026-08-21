@@ -45,18 +45,31 @@ src/
     ui.ts            t() / useTranslations(), with compile-time key checking
     de.json          German strings (source of truth for the key set)
     en.json  sk.json
+  data/site.ts       business facts that are the same in every language
   content-pages/     page bodies — written ONCE, rendered for all three languages
   pages/
     [...path].astro  the site's only route; expands routes x locales
   layouts/
     BaseLayout.astro <head>, canonical, hreflang, OpenGraph, font preloads
-  components/
+    PageLayout.astro BaseLayout + header + main + footer
+  components/        the design system — see /styleguide/
   styles/
     tokens.css       design tokens (from the WordPress theme.json / style.css)
     fonts.css        self-hosted @font-face
-    global.css       element defaults and shared primitives
+    base.css         element defaults and the container widths
+    components/      lifted component CSS, one file per group
+    global.css       the entry point — imports all of the above
 public/fonts/        4 self-hosted variable woff2 files — no Google CDN
+public/img/          logo, flourishes, photos
 ```
+
+## The styleguide
+
+Every component rendered on one page, in whichever language you switch to:
+
+- <http://localhost:4321/styleguide/> (also `/en/styleguide/`, `/sk/styleguide/`)
+
+It is an internal review tool — kept out of the sitemap, and deleted before launch.
 
 ### Adding a page
 

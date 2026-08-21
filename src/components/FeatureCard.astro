@@ -1,0 +1,24 @@
+---
+import Icon, { type IconName } from './Icon.astro';
+
+/*
+ * A "why choose us" feature: round blue icon chip, a 16px label and a line of
+ * copy. The label is visually the design's 16px bold text but semantically an
+ * h3, so the heading outline under the section's h2 stays gapless.
+ */
+interface Props {
+	icon: IconName;
+	title: string;
+	description: string;
+	class?: string;
+}
+
+const { icon, title, description, class: className } = Astro.props;
+const classes = ['ms-feat', className].filter(Boolean).join(' ');
+---
+
+<div class={classes}>
+	<span class="ms-feat__icon"><Icon name={icon} size={22} /></span>
+	<h3 class="ms-feat__title">{title}</h3>
+	<p>{description}</p>
+</div>

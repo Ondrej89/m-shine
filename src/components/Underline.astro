@@ -1,0 +1,30 @@
+---
+/*
+ * The hand-drawn green underline the design puts beside LEFT-aligned headings,
+ * where a centred lotus divider would not sit right. Traced from Home.dc.html:
+ * `<svg width="120" height="10" viewBox="0 0 120 10">`.
+ */
+interface Props {
+	class?: string;
+}
+
+const { class: className } = Astro.props;
+const classes = ['ms-underline', className].filter(Boolean).join(' ');
+---
+
+<svg
+	class={classes}
+	width="120"
+	height="10"
+	viewBox="0 0 120 10"
+	fill="none"
+	aria-hidden="true"
+	focusable="false"
+>
+	<path
+		d="M2 6C30 1 60 1 118 5"
+		stroke="#5DBB63"
+		stroke-width="2.5"
+		fill="none"
+		stroke-linecap="round"></path>
+</svg>

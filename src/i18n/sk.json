@@ -6,20 +6,29 @@
   "a11y": {
     "skipToContent": "Preskočiť na obsah",
     "languageLabel": "Jazyk",
-    "currentLanguage": "Aktuálny jazyk"
+    "currentLanguage": "Aktuálny jazyk",
+    "menu": "Menu",
+    "mainNav": "Hlavná navigácia"
   },
   "nav": {
     "home": "Domov",
+    "about": "O nás",
     "services": "Služby",
     "pricing": "Cenník",
-    "about": "O nás",
     "contact": "Kontakt",
     "quote": "Vyžiadať ponuku"
+  },
+  "header": {
+    "phoneNote": "Sme tu kedykoľvek"
   },
   "meta": {
     "home": {
       "title": "Upratovacia firma vo Viedni",
       "description": "Profesionálne upratovanie bytov, domov a po sťahovaní vo Viedni. Poistené, spoľahlivé a šetrné k životnému prostrediu. Vyžiadajte si bezplatnú cenovú ponuku."
+    },
+    "placeholder": {
+      "title": "Pripravujeme",
+      "description": "Táto stránka sa práve pripravuje."
     }
   },
   "home": {
@@ -29,7 +38,94 @@
     "ctaPrimary": "Bezplatná ponuka",
     "ctaSecondary": "Pozrieť služby"
   },
+  "services": {
+    "eyebrow": "Naše služby",
+    "title": "Pre každý domov to správne upratovanie",
+    "learnMore": "Zistiť viac",
+    "house": {
+      "title": "Upratovanie domov",
+      "description": "Dôkladné upratovanie celého domu – pravidelne alebo jednorazovo."
+    },
+    "apartment": {
+      "title": "Upratovanie bytov",
+      "description": "Spoľahlivé upratovanie bytov každej veľkosti po celej Viedni."
+    },
+    "move": {
+      "title": "Upratovanie po sťahovaní",
+      "description": "Byt pripravený na odovzdanie – aby sa depozit vrátil celý."
+    },
+    "housekeeping": {
+      "title": "Pravidelná starostlivosť",
+      "description": "Vaša stála upratovačka, ktorá udrží domov v kondícii."
+    },
+    "deep": {
+      "title": "Generálne upratovanie",
+      "description": "Do posledného kúta – vodný kameň, mastnota a všetko nahromadené."
+    }
+  },
+  "why": {
+    "eyebrow": "Prečo Magic Shine",
+    "title": "Čistota, na ktorú sa môžete spoľahnúť",
+    "insured": {
+      "title": "Poistení a preverení",
+      "description": "Každý člen tímu je preverený, zaškolený a plne poistený."
+    },
+    "eco": {
+      "title": "Ekologické prostriedky",
+      "description": "Účinné prostriedky bezpečné pre deti, zvieratá aj alergikov."
+    },
+    "punctual": {
+      "title": "Načas a flexibilne",
+      "description": "Prídeme, keď sa to hodí vám – aj večer a cez víkend."
+    },
+    "guarantee": {
+      "title": "Záruka spokojnosti",
+      "description": "Nie ste spokojní? Vrátime sa a napravíme to."
+    }
+  },
+  "reviews": {
+    "eyebrow": "Referencie",
+    "title": "Čo hovoria klienti z Viedne",
+    "ratingLabel": "5 z 5 hviezdičiek",
+    "one": {
+      "quote": "Po sťahovaní vyzeral starý byt lepšie ako v deň nasťahovania. Depozit sa vrátil celý.",
+      "name": "Andrea K.",
+      "role": "Leopoldstadt"
+    },
+    "two": {
+      "quote": "Už rok chodia každé dva týždne – vždy načas, vždy dôkladne. Nikdy nemusím nič pripomínať.",
+      "name": "Markus H.",
+      "role": "Währing"
+    },
+    "three": {
+      "quote": "Konečne tím, ktorý vyčistí aj miesta, na ktoré sa sama nikdy nedostanem. Odporúčam.",
+      "name": "Sofia B.",
+      "role": "Neubau"
+    }
+  },
+  "cta": {
+    "eyebrow": "Pripravení na čistý domov?",
+    "title": "Vyžiadajte si bezplatnú ponuku",
+    "lede": "Stačí krátko napísať, o čo ide – do 24 hodín dostanete pevnú cenu, nezáväzne.",
+    "action": "Vyžiadať ponuku"
+  },
   "footer": {
-    "rights": "Všetky práva vyhradené."
+    "blurb": "Prvotriedne upratovacie služby pre čistejší, zdravší a šťastnejší domov.",
+    "quickLinks": "Rýchle odkazy",
+    "ourServices": "Naše služby",
+    "newsletter": "Newsletter",
+    "newsletterBlurb": "Tipy a špeciálne ponuky priamo do vašej schránky.",
+    "emailLabel": "E-mailová adresa",
+    "emailPlaceholder": "Zadajte svoj e-mail",
+    "subscribe": "Odoberať",
+    "newsletterPending": "Newsletter zatiaľ nie je spustený – skúste to prosím neskôr.",
+    "rights": "Všetky práva vyhradené.",
+    "privacy": "Ochrana údajov",
+    "terms": "Obchodné podmienky",
+    "imprint": "Tiráž"
+  },
+  "placeholder": {
+    "title": "Táto stránka sa pripravuje",
+    "body": "Obsah tejto stránky pribudne v ďalšom kroku. Hlavička, päta a dizajnový systém sú už hotové – vidíte ich hore a dole."
   }
 }

@@ -36,7 +36,7 @@ const xDefault = new URL(localizedPath('de', route), site).href;
 ---
 
 <!doctype html>
-<html lang={meta.lang} dir={meta.dir}>
+<html class="no-js" lang={meta.lang} dir={meta.dir}>
 	<head>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -73,6 +73,17 @@ const xDefault = new URL(localizedPath('de', route), site).href;
 			crossorigin
 		/>
 		<link rel="preload" href="/fonts/mulish-latin.woff2" as="font" type="font/woff2" crossorigin />
+
+		{/*
+		 * `no-js` is stripped before first paint, so it is only ever present when
+		 * scripting is genuinely off. Two controls depend on it — the burger panel
+		 * and the language dropdown — and both fall back to simply staying open
+		 * rather than being unreachable. Inline and synchronous on purpose: a
+		 * deferred script would let the fallback styles flash first.
+		 */}
+		<script is:inline>
+			document.documentElement.classList.remove('no-js');
+		</script>
 
 		<slot name="head" />
 	</head>

@@ -1,0 +1,166 @@
+/* =========================================================================
+   Decorative botanical flourishes
+   -------------------------------------------------------------------------
+   In the WordPress theme each flourish was a `::before`/`::after` on whichever
+   section owned it, scattered across sections 4–16. Here they are one
+   component, so the shared declarations are hoisted into `.ms-flourish` and
+   each named variant keeps ONLY the artwork, size and offsets the design gives
+   it — the numbers below are the theme's, unchanged.
+
+   Every variant is `position: absolute`, so its host must be positioned. The
+   variants offset by `--ms-header-h` assume that host is the page `<main>`,
+   which begins below the header; the negative offset pulls the artwork back up
+   behind it, which is where the design anchors it.
+   ====================================================================== */
+
+.ms-flourish {
+	background-repeat: no-repeat;
+	background-size: contain;
+	pointer-events: none;
+	position: absolute;
+	user-select: none;
+	z-index: 0;
+}
+
+/* Anything sharing a stacking context with a flourish has to be lifted above
+   it, or the artwork paints over the copy. */
+.ms-flourish-host {
+	position: relative;
+}
+
+.ms-flourish-host > *:not(.ms-flourish) {
+	position: relative;
+	z-index: 1;
+}
+
+/* --- Variants ---------------------------------------------------------- */
+
+/* Botanical strip running down the top-left edge of the page. Homepage only —
+   the design draws it behind the Home hero and nowhere else. */
+.ms-flourish--home-strip {
+	background-image: url("/img/wm-floral-strip.svg");
+	background-position: top left;
+	height: 900px;
+	left: 0;
+	opacity: 0.85;
+	top: calc(var(--ms-header-h) * -1);
+	width: 300px;
+}
+
+/* Cluster bleeding off the top-right, behind the header. Services. */
+.ms-flourish--services-cluster {
+	background-image: url("/img/wm-services-cluster.svg");
+	background-position: top right;
+	height: 505px;
+	opacity: 0.85;
+	right: -35px;
+	top: calc(var(--ms-header-h) * -1);
+	width: 505px;
+}
+
+/* Flourish bleeding off the top-left, behind the header. Pricing. */
+.ms-flourish--left {
+	background-image: url("/img/wm-left-flourish.svg");
+	background-position: top left;
+	height: 570px;
+	left: calc(50% - 50vw - 30px);
+	opacity: 0.85;
+	top: calc(var(--ms-header-h) * -1 - 50px);
+	width: 570px;
+}
+
+/* Band sweeping under the About hero. It deliberately spills past the section's
+   bottom edge, so its host must NOT clip — the page-level `overflow-x: hidden`
+   keeps it from widening the document.
+
+   The design anchors this to the page gutter rather than the container, so it
+   escapes to full bleed first and then steps back in by one gutter. `100vw`
+   counts the scrollbar, leaving it a handful of pixels left of the design —
+   invisible on a faint botanical. */
+.ms-flourish--about-band {
+	background-image: url("/img/wm-about-band.svg");
+	background-position: bottom left;
+	bottom: -40px;
+	height: 300px;
+	left: calc(50% - 50vw + var(--wp--custom--gutter));
+	opacity: 0.85;
+	width: 700px;
+}
+
+/* Corner flourish behind the before/after comparison. */
+.ms-flourish--corner {
+	background-image: url("/img/wm-corner-flourish.svg");
+	background-position: top left;
+	height: 400px;
+	left: calc(var(--wp--custom--gutter) + 30px);
+	opacity: 0.85;
+	top: 30px;
+	width: 400px;
+}
+
+/* Lotus centred behind the CTA band — very faint, it reads as a texture. */
+.ms-flourish--lotus-center {
+	background-image: url("/img/wm-lotus-center.svg");
+	background-position: center;
+	height: 420px;
+	left: 50%;
+	opacity: 0.12;
+	top: calc(50% + 95px);
+	transform: translate(-50%, -50%);
+	width: 420px;
+}
+
+/* The same lotus, used large and top-left behind the Services hero. The design
+   means 90px from the *screen* edge, so escape to full bleed first and then
+   step in by 90 — a constrained host would otherwise push it 115px right. */
+.ms-flourish--lotus-hero {
+	background-image: url("/img/wm-lotus-center.svg");
+	background-position: top left;
+	height: 360px;
+	left: calc(50% - 50vw + 90px);
+	opacity: 0.8;
+	top: -30px;
+	width: 360px;
+}
+
+/* Vine down the top-left, behind the header. Contact. */
+.ms-flourish--contact-vine {
+	background-image: url("/img/wm-contact-vine.webp");
+	background-position: top left;
+	height: 640px;
+	left: calc(50% - 50vw - 30px);
+	opacity: 0.85;
+	top: calc(var(--ms-header-h) * -1);
+	width: 325px;
+}
+
+/* The larger vine sweeping out of the bottom-right of the Contact section. */
+.ms-flourish--vine-br {
+	background-image: url("/img/wm-vine-br.svg");
+	background-position: bottom right;
+	bottom: 60px;
+	height: 500px;
+	opacity: 0.85;
+	right: calc(50% - 50vw - 40px);
+	width: 805px;
+}
+
+
+/* --- No watermarks on a phone ------------------------------------------ */
+
+/* A deliberate deviation from the design, and the reason this component exists
+   as one class rather than nine pseudo-elements: the design keeps its
+   flourishes at every width, but on a phone they crowd the copy rather than sit
+   behind it. In the WordPress theme this rule had to name every owning
+   selector by hand and a new section's flourish could be forgotten. Here one
+   rule covers everything that is or ever will be a flourish.
+
+   The footer's two are pseudo-elements on `.ms-footer`, so they still need
+   naming. */
+@media (max-width: 720px) {
+	.ms-flourish,
+	.ms-footer::before,
+	.ms-footer::after {
+		display: none;
+	}
+}

@@ -1,16 +1,18 @@
 ---
 /*
- * Step-1 placeholder. Its only job is to prove the foundation works: one file,
- * three URLs, every visible string coming from a locale JSON file, correct
- * `lang`/hreflang in the head, and a switcher that moves between them.
- *
- * The real home page — hero, services grid, before/after slider, reviews —
- * is built in step 2 from the design reference.
+ * Still a placeholder — the real home page (hero, services grid, before/after
+ * slider, reviews) is built in step 3. What is real here is the chrome: the
+ * header, the footer, the page flourish and the design-system primitives, all
+ * driven from the locale files.
  */
-import LanguageSwitcher from '../components/LanguageSwitcher.astro';
-import BaseLayout from '../layouts/BaseLayout.astro';
-import { LOCALE_META, type Locale } from '../i18n/config';
+import Button from '../components/Button.astro';
+import Eyebrow from '../components/Eyebrow.astro';
+import Flourish from '../components/Flourish.astro';
+import Section from '../components/Section.astro';
+import Underline from '../components/Underline.astro';
+import PageLayout from '../layouts/PageLayout.astro';
 import { localizedPath, type RouteId } from '../i18n/routes';
+import type { Locale } from '../i18n/config';
 import { useTranslations } from '../i18n/ui';
 
 interface Props {
@@ -20,150 +22,50 @@ interface Props {
 
 const { locale, route } = Astro.props;
 const t = useTranslations(locale);
-const meta = LOCALE_META[locale];
 ---
 
-<BaseLayout
+<PageLayout
 	locale={locale}
 	route={route}
 	title={`${t('meta.home.title')} | ${t('site.name')}`}
 	description={t('meta.home.description')}
+	pageClass="ms-main--home"
 >
-	<header class="ms-header-wrap">
-		<div class="ms-header">
-			<a class="ms-brand" href={localizedPath(locale, 'home')}>
-				<span class="ms-brand__name">{t('site.name')}</span>
-				<span class="ms-brand__tagline">{t('site.tagline')}</span>
-			</a>
-			<LanguageSwitcher locale={locale} route={route} />
+	<Flourish name="home-strip" slot="flourish" />
+
+	<Section class="ms-hero">
+		<Eyebrow>{t('home.eyebrow')}</Eyebrow>
+		<h1>{t('home.title')}</h1>
+		<Underline />
+		<p class="ms-hero__lede">{t('home.lede')}</p>
+		<div class="ms-hero__actions">
+			<Button variant="primary" href={localizedPath(locale, 'quote')} icon="arrow-right">
+				{t('home.ctaPrimary')}
+			</Button>
+			<Button variant="ghost" href={localizedPath(locale, 'services')}>
+				{t('home.ctaSecondary')}
+			</Button>
 		</div>
-	</header>
-
-	<main id="main">
-		<section class="ms-container ms-hero">
-			<p class="ms-eyebrow">{t('home.eyebrow')}</p>
-			<h1>{t('home.title')}</h1>
-			<p class="ms-hero__lede">{t('home.lede')}</p>
-
-			<div class="ms-hero__actions">
-				<a class="ms-btn ms-btn--primary" href={localizedPath(locale, 'home')}>
-					{t('home.ctaPrimary')}
-				</a>
-				<a class="ms-btn ms-btn--ghost" href={localizedPath(locale, 'home')}>
-					{t('home.ctaSecondary')}
-				</a>
-			</div>
-
-			{/* Scaffolding readout — deleted in step 2, but until then it is the
-			    fastest way to confirm at a glance which locale you are on. */}
-			<dl class="ms-probe">
-				<div><dt>URL</dt><dd><code>{Astro.url.pathname}</code></dd></div>
-				<div><dt>Locale</dt><dd><code>{locale}</code></dd></div>
-				<div><dt>html lang</dt><dd><code>{meta.lang}</code></dd></div>
-				<div><dt>hreflang</dt><dd><code>{meta.hreflang.join(', ')}</code></dd></div>
-			</dl>
-		</section>
-	</main>
-
-	<footer class="ms-container ms-footer">
-		<p>&copy; {new Date().getFullYear()} {t('site.name')}. {t('footer.rights')}</p>
-	</footer>
-</BaseLayout>
+	</Section>
+</PageLayout>
 
 <style>
-	.ms-header-wrap {
-		padding-inline: 40px;
-		width: 100%;
-	}
-
-	.ms-header {
-		align-items: center;
-		display: flex;
-		gap: 24px;
-		justify-content: space-between;
-		margin: 0 auto;
-		max-width: var(--ms-container);
-		padding: 20px 0;
-	}
-
-	.ms-brand {
-		display: block;
-		text-decoration: none;
-	}
-
-	.ms-brand__name {
-		color: var(--ms-color-navy);
-		display: block;
-		font-family: var(--ms-font-heading);
-		font-size: 23px;
-		font-weight: 600;
-		letter-spacing: 0.2px;
-		line-height: 1;
-	}
-
-	.ms-brand__tagline {
-		color: var(--ms-color-ink-light);
-		display: block;
-		font-size: var(--ms-size-xs);
-		letter-spacing: 1.2px;
-		margin-top: 6px;
-		text-transform: uppercase;
-	}
-
-	.ms-hero {
-		padding-block: var(--ms-space-8);
-	}
-
 	.ms-hero h1 {
-		margin-block: 14px 20px;
-		max-width: 16ch;
+		margin-block: 14px 12px;
+		max-width: 18ch;
 	}
 
 	.ms-hero__lede {
 		color: var(--ms-color-ink-soft);
 		font-size: var(--ms-size-lg);
+		margin-top: 20px;
 		max-width: 52ch;
 	}
 
 	.ms-hero__actions {
 		display: flex;
 		flex-wrap: wrap;
-		gap: var(--ms-space-2);
+		gap: 16px;
 		margin-top: var(--ms-space-5);
-	}
-
-	.ms-probe {
-		background: rgba(255, 255, 255, 0.55);
-		border: 1px solid var(--ms-color-line-strong);
-		border-radius: var(--ms-radius-lg);
-		display: grid;
-		gap: var(--ms-space-2) var(--ms-space-5);
-		grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-		margin: var(--ms-space-8) 0 0;
-		padding: var(--ms-space-4);
-	}
-
-	.ms-probe dt {
-		color: var(--ms-color-ink-light);
-		font-size: var(--ms-size-xs);
-		font-weight: 700;
-		letter-spacing: 1.2px;
-		text-transform: uppercase;
-	}
-
-	.ms-probe dd {
-		color: var(--ms-color-navy);
-		margin: 4px 0 0;
-	}
-
-	.ms-probe code {
-		font-size: var(--ms-size-sm);
-	}
-
-	.ms-footer {
-		border-top: 1px solid var(--ms-color-line-strong);
-		color: var(--ms-color-ink-light);
-		font-size: var(--ms-size-sm);
-		padding-block: var(--ms-space-5);
 	}
 </style>

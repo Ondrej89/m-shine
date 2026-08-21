@@ -1,0 +1,63 @@
+---
+/*
+ * A photo with the design's signature two-axis mask fade — the image dissolves
+ * into the blue page along two edges at once.
+ *
+ * `fade` picks the direction: `right` for photos that sit to the RIGHT of their
+ * copy (fading on their left edge), `left` for the mirrored case, `deep` for
+ * the stronger version, `none` for a plain photo.
+ *
+ * Images are plain <img> rather than Astro's <Image>: these are already
+ * hand-optimised webp at the sizes the design uses, and the decorative ones are
+ * CSS backgrounds anyway. Swap to <Image> when real photography lands and
+ * needs multiple widths.
+ */
+interface Props {
+	src: string;
+	alt: string;
+	fade?: 'right' | 'left' | 'deep' | 'none';
+	width?: number;
+	height?: number;
+	/** CSS height for the frame, e.g. "400px" — the design fixes these. */
+	frameHeight?: string;
+	rounded?: boolean;
+	shadow?: boolean;
+	loading?: 'lazy' | 'eager';
+	class?: string;
+}
+
+const {
+	src,
+	alt,
+	fade = 'right',
+	width,
+	height,
+	frameHeight,
+	rounded = false,
+	shadow = false,
+	loading = 'lazy',
+	class: className,
+} = Astro.props;
+
+const fadeClass =
+	fade === 'right'
+		? 'ms-mask-fade'
+		: fade === 'left'
+			? 'ms-mask-fade ms-mask-fade--flip'
+			: fade === 'deep'
+				? 'ms-mask-fade ms-mask-fade--deep'
+				: null;
+
+const classes = [
+	'ms-photo',
+	fadeClass,
+	rounded && 'ms-photo--round',
+	shadow && 'ms-photo--shadow',
+	className,
+].filter(Boolean).join(' ');
+---
+
+<figure class={classes} style={frameHeight ? `height:${frameHeight}` : undefined}>
+	<img src={src} alt={alt} width={width} height={height} loading={loading} decoding="async" />
+	<slot />
+</figure>

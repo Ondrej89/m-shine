@@ -1,88 +1,112 @@
 ---
+import Flag from './Flag.astro';
+import Icon from './Icon.astro';
 import { LOCALE_META, LOCALES, type Locale } from '../i18n/config';
 import { localizedPath, type RouteId } from '../i18n/routes';
 import { useTranslations } from '../i18n/ui';
 
+/*
+ * The design's flag dropdown, rebuilt on links.
+ *
+ * The reference switcher is a set of <button>s that mutate client state. Ours
+ * cannot be: the three languages are three real URLs and a crawler has to be
+ * able to follow them, so every option is an <a> and the current one carries
+ * `aria-current` instead of an `.is-current` class. Visually identical — see
+ * the note at the top of the language-switcher block in header.css.
+ *
+ * It links to the SAME page in the other language, never to that language's
+ * home page, and it keeps working once slugs diverge (`/leistungen/` vs
+ * `/services/`) because `localizedPath` resolves per route id.
+ */
 interface Props {
 	locale: Locale;
 	route: RouteId;
+	class?: string;
 }
 
-const { locale, route } = Astro.props;
+const { locale, route, class: className } = Astro.props;
 const t = useTranslations(locale);
+const current = LOCALE_META[locale];
 
-/*
- * The switcher links to the *same page* in the other language, never to that
- * language's home page. It can do that because `localizedPath` resolves the
- * route id per locale, so once slugs diverge (`/leistungen/` vs `/services/`)
- * this keeps working with no change here.
- *
- * Plain links, no JavaScript: crawlable, and it works before hydration.
- * `hreflang` on each link tells a crawler what it is pointing at.
- */
 const options = LOCALES.map((code) => ({
 	...LOCALE_META[code],
 	href: localizedPath(code, route),
 	isCurrent: code === locale,
 }));
+
+const classes = ['ms-lang', className].filter(Boolean).join(' ');
 ---
 
-<nav class="ms-lang" aria-label={t('a11y.languageLabel')}>
-	<ul class="ms-lang__list">
+<div class={classes} data-ms-lang>
+	<button
+		class="ms-lang__toggle"
+		type="button"
+		aria-expanded="false"
+		aria-haspopup="true"
+		aria-label={t('a11y.languageLabel')}
+	>
+		<Flag locale={locale} />
+		<span>{current.short}</span>
+		<Icon name="chevron-down" size={11} stroke={2.4} class="ms-chevron" />
+	</button>
+
+	<ul class="ms-lang__menu" aria-label={t('a11y.languageLabel')}>
 		{
 			options.map((option) => (
 				<li>
 					<a
-						class="ms-lang__link"
+						class="ms-lang__item"
 						href={option.href}
 						hreflang={option.lang}
 						lang={option.lang}
 						aria-current={option.isCurrent ? 'true' : undefined}
+						aria-label={option.label}
 					>
-						<span aria-hidden="true">{option.short}</span>
-						<span class="screen-reader-text">{option.label}</span>
+						<Flag locale={option.code} />
+						{/* The visible label is hidden by CSS below 900px, where the menu
+						    becomes a row of flags — hence the aria-label above, so the
+						    link keeps an accessible name at every width. */}
+						<span class="ms-lang__label">{option.label}</span>
+						{option.isCurrent && <Icon name="check" size={15} stroke={2.6} class="ms-lang__check" />}
 					</a>
 				</li>
 			))
 		}
 	</ul>
-</nav>
+</div>
 
-<style>
-	.ms-lang__list {
-		align-items: center;
-		display: flex;
-		gap: 2px;
-		list-style: none;
-		margin: 0;
-		padding: 0;
-	}
+<script>
+	/*
+	 * Opens the dropdown. Deliberately tiny and inline-scoped: the switcher is
+	 * three links that already work without it — the script only collapses them
+	 * behind a toggle on wide screens. Below 900px the menu is always a visible
+	 * row and the toggle is hidden, so none of this runs meaningfully there.
+	 */
+	document.querySelectorAll<HTMLElement>('[data-ms-lang]').forEach((root) => {
+		const toggle = root.querySelector<HTMLButtonElement>('.ms-lang__toggle');
+		if (!toggle) return;
 
-	.ms-lang__link {
-		border-radius: var(--ms-radius-sm);
-		color: var(--ms-color-ink-light);
-		display: block;
-		font-family: var(--ms-font-body);
-		font-size: 13px;
-		font-weight: 700;
-		letter-spacing: 0.6px;
-		line-height: 1;
-		padding: 7px 9px;
-		transition:
-			background-color 0.15s,
-			color 0.15s;
-	}
+		const setOpen = (open: boolean) => {
+			root.classList.toggle('is-open', open);
+			toggle.setAttribute('aria-expanded', String(open));
+		};
 
-	.ms-lang__link:hover,
-	.ms-lang__link:focus-visible {
-		background-color: var(--ms-color-tint-blue-soft);
-		color: var(--ms-color-blue);
-	}
+		toggle.addEventListener('click', (event) => {
+			event.stopPropagation();
+			setOpen(!root.classList.contains('is-open'));
+		});
 
-	/* The active language stays a link to its own URL — that self-reference is
-	   what makes the set reciprocal for crawlers — but reads as selected. */
-	.ms-lang__link[aria-current='true'] {
-		background-color: var(--ms-color-navy);
-		color: var(--ms-color-base);
-	}
-</style>
+		// Clicking anywhere else, or pressing Escape, closes it. Escape also
+		// returns focus to the toggle so keyboard users are not dropped at the
+		// top of the document.
+		document.addEventListener('click', (event) => {
+			if (!root.contains(event.target as Node)) setOpen(false);
+		});
+
+		document.addEventListener('keydown', (event) => {
+			if (event.key !== 'Escape' || !root.classList.contains('is-open')) return;
+			setOpen(false);
+			toggle.focus();
+		});
+	});
+</script>

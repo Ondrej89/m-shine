@@ -1,0 +1,64 @@
+---
+/*
+ * A page section: optional full-bleed band, the container width, and the
+ * vertical rhythm.
+ *
+ * `width` is not cosmetic. The design uses five content widths and each is
+ * load-bearing — the reviews carousel is 60px narrower than the page grid on
+ * purpose, and getting it wrong made that section 34px taller than the design.
+ * Pick the one the page you are building uses; see base.css.
+ */
+interface Props {
+	/** Content width in px. 1240 = Home/About, 1200 = Pricing/Service detail,
+	 *  1180 = Contact, 1160 = Services and the header/footer chrome. */
+	width?: 1240 | 1200 | 1180 | 1160;
+	/** Vertical padding. `default` is the design's 76px section step. */
+	rhythm?: 'default' | 'tight' | 'none';
+	/** Clip overflow — needed when a flourish must not widen the page, and
+	 *  wrong when one is meant to spill past the edge (the About hero band). */
+	clip?: boolean;
+	/** Positions the section so `<Flourish>` children anchor to it. */
+	flourishes?: boolean;
+	as?: 'section' | 'div' | 'header' | 'footer';
+	id?: string;
+	class?: string;
+	/** Wrap in a full-bleed band, e.g. for a coloured or gradient stripe. */
+	band?: boolean;
+	[key: string]: unknown;
+}
+
+const {
+	width = 1240,
+	rhythm = 'default',
+	clip = false,
+	flourishes = false,
+	as: Tag = 'section',
+	id,
+	class: className,
+	band = false,
+	...rest
+} = Astro.props;
+
+const rhythmClass =
+	rhythm === 'default' ? 'ms-section--pad' : rhythm === 'tight' ? 'ms-section--pad-tight' : null;
+
+const outer = [
+	'ms-section',
+	rhythmClass,
+	clip && 'ms-section--clip',
+	flourishes && 'ms-flourish-host',
+	band && 'ms-band',
+	className,
+].filter(Boolean).join(' ');
+
+const inner = ['ms-container', width !== 1240 && `ms-container--${width}`]
+	.filter(Boolean)
+	.join(' ');
+---
+
+<Tag class={outer} id={id} {...rest}>
+	<slot name="flourish" />
+	<div class={inner}>
+		<slot />
+	</div>
+</Tag>

@@ -1,0 +1,139 @@
+---
+import Icon, { type IconName } from './Icon.astro';
+import { SERVICE_KEYS, SITE_DETAILS } from '../data/site';
+import type { Locale } from '../i18n/config';
+import { NAV_ROUTES, localizedPath } from '../i18n/routes';
+import { useTranslations } from '../i18n/ui';
+
+/*
+ * The site footer: brand and socials, two link columns, the newsletter, and
+ * the legal bar.
+ *
+ * Its two flourishes are pseudo-elements on `.ms-footer` rather than
+ * `<Flourish>` components, because that is how the theme draws them and they
+ * are anchored to the footer's own box — see footer.css.
+ *
+ * The four columns become two at 1000px with the brand and newsletter spanning
+ * the row, and stay two columns down to 375px. They never become one: the
+ * design keeps the link columns side by side on a phone.
+ */
+interface Props {
+	locale: Locale;
+}
+
+const { locale } = Astro.props;
+const t = useTranslations(locale);
+
+const year = new Date().getFullYear();
+const newsletterAction = SITE_DETAILS.newsletterAction;
+---
+
+<footer class="ms-footer">
+	<div class="ms-footer__inner">
+		<div class="ms-footer__grid">
+			<div class="ms-footer__brand">
+				<a class="ms-brand" href={localizedPath(locale, 'home')}>
+					<img
+						class="ms-brand__mark"
+						src="/img/logo-mark.webp"
+						alt=""
+						width="69"
+						height="34"
+						loading="lazy"
+						decoding="async"
+					/>
+					<span class="ms-brand__name">{t('site.name')}</span>
+				</a>
+				<p class="ms-footer__tagline">{t('footer.blurb')}</p>
+				<div class="ms-footer__socials">
+					{
+						SITE_DETAILS.socials.map((social) => (
+							<a class="ms-social" href={social.href} aria-label={social.name}>
+								<Icon name={social.icon as IconName} size={17} />
+							</a>
+						))
+					}
+				</div>
+			</div>
+
+			<nav aria-labelledby="ms-foot-links">
+				<h2 class="ms-footer__heading" id="ms-foot-links">{t('footer.quickLinks')}</h2>
+				<ul class="ms-footer__links">
+					{
+						NAV_ROUTES.map((id) => (
+							<li>
+								<a href={localizedPath(locale, id)}>{t(`nav.${id}` as 'nav.home')}</a>
+							</li>
+						))
+					}
+					<li><a href={localizedPath(locale, 'quote')}>{t('nav.quote')}</a></li>
+				</ul>
+			</nav>
+
+			<nav aria-labelledby="ms-foot-services">
+				<h2 class="ms-footer__heading" id="ms-foot-services">{t('footer.ourServices')}</h2>
+				<ul class="ms-footer__links">
+					{
+						SERVICE_KEYS.map((key) => (
+							<li>
+								<a href={localizedPath(locale, 'services')}>
+									{t(`services.${key}.title` as 'services.house.title')}
+								</a>
+							</li>
+						))
+					}
+				</ul>
+			</nav>
+
+			<div class="ms-footer__news">
+				<h2 class="ms-footer__heading">{t('footer.newsletter')}</h2>
+				<p>{t('footer.newsletterBlurb')}</p>
+				{/*
+				 * Rendered whether or not an endpoint exists yet. With none, the
+				 * script below stops the submit and says so — a form that silently
+				 * reloads the page and drops the address would be worse than one
+				 * that admits it is not connected.
+				 */}
+				<form
+					class="ms-newsletter"
+					action={newsletterAction ?? undefined}
+					method="post"
+					data-ms-newsletter={newsletterAction ? undefined : 'pending'}
+				>
+					<label class="screen-reader-text" for="ms-news-email">{t('footer.emailLabel')}</label>
+					<input
+						type="email"
+						id="ms-news-email"
+						name="email"
+						required
+						autocomplete="email"
+						placeholder={t('footer.emailPlaceholder')}
+					/>
+					<button type="submit" aria-label={t('footer.subscribe')}>
+						<Icon name="send" size={16} />
+					</button>
+				</form>
+				<span class="ms-newsletter__msg" role="status" data-ms-newsletter-msg></span>
+			</div>
+		</div>
+
+		<div class="ms-footer__bottom">
+			<span>&copy; {year} {t('site.name')}. {t('footer.rights')}</span>
+			<ul class="ms-footer__legal">
+				<li><a href="#">{t('footer.privacy')}</a></li>
+				<li><a href="#">{t('footer.terms')}</a></li>
+				<li><a href="#">{t('footer.imprint')}</a></li>
+			</ul>
+		</div>
+	</div>
+</footer>
+
+<script is:inline define:vars={{ pendingMsg: t('footer.newsletterPending') }}>
+	document.querySelectorAll('[data-ms-newsletter="pending"]').forEach((form) => {
+		form.addEventListener('submit', (event) => {
+			event.preventDefault();
+			const msg = form.parentElement?.querySelector('[data-ms-newsletter-msg]');
+			if (msg) msg.textContent = pendingMsg;
+		});
+	});
+</script>

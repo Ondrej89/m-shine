@@ -41,8 +41,38 @@ CSS against them.
 weight of both families (Playfair `wght` 400–900, Mulish `wght` 200–1000), latin +
 latin-ext. Never add a Google Fonts `<link>`. latin-ext is required — Slovak depends on it.
 
+**Component CSS is global, not scoped.** It lives in `src/styles/components/*.css` and is
+pulled in by `global.css`. That is deliberate: the lifted rules reach across component
+boundaries (`.ms-header__panel .ms-bookbtn`, `.ms-card::after`, the shared responsive
+steps), and scoping them would mean rewriting those relationships — the exact risk the
+`--wp--*` aliases exist to avoid. `.astro` files carry markup; only genuinely
+page-local scaffolding gets a scoped `<style>`.
+
+**Watch the container width.** The design uses five, and each is load-bearing — the reviews
+carousel is 1180px, not the page's 1240, and getting it wrong made that section 34px taller
+than the design. `<Section width={...}>` picks; the list is in `base.css`.
+
+**Don't let the CSS minifier lower media queries.** `vite.build.cssTarget` is pinned in
+`astro.config.mjs`. Without it the minifier rewrites `(max-width: 720px)` to
+`(width <= 720px)`, which parses as nothing on Safari below 16.4 — every breakpoint gone at
+once on an iOS 16.0–16.3 phone. If you change that setting, re-check the built CSS.
+
 ## Current state
 
-Step 1 (setup + i18n foundation) is done. `src/content-pages/Home.astro` is a placeholder
-that exists to prove the plumbing; its `.ms-probe` readout and inline styles are scaffolding
-and get deleted when the real home page is built.
+Steps 1 (setup + i18n) and 2 (component library) are done.
+
+- `src/components/` holds the design system. `src/content-pages/Styleguide.astro` renders
+  all of it at `/styleguide/` — an internal review tool. Delete it, its `ROUTES` entry and
+  its sitemap filter before launch.
+- `src/content-pages/Placeholder.astro` is a stub standing in for About, Services, Pricing,
+  Contact and Quote so every nav link resolves. Step 3 replaces them one at a time; when
+  the last one goes, delete the stub.
+- `src/content-pages/Home.astro` is still a placeholder — real chrome, placeholder body.
+
+## Before launch
+
+- Real origin in `astro.config.mjs` (`SITE`) — hreflang and canonicals are built from it.
+- Real business details in `src/data/site.ts` (phone, email, address, socials).
+- A newsletter endpoint in `SITE_DETAILS.newsletterAction`. Until it is set, the footer form
+  renders but refuses to submit and says so.
+- Remove the styleguide and the placeholder stub.

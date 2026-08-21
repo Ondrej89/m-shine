@@ -6,20 +6,29 @@
   "a11y": {
     "skipToContent": "Skip to content",
     "languageLabel": "Language",
-    "currentLanguage": "Current language"
+    "currentLanguage": "Current language",
+    "menu": "Menu",
+    "mainNav": "Main navigation"
   },
   "nav": {
     "home": "Home",
+    "about": "About Us",
     "services": "Services",
     "pricing": "Pricing",
-    "about": "About Us",
     "contact": "Contact",
     "quote": "Request a Quote"
+  },
+  "header": {
+    "phoneNote": "Call us anytime"
   },
   "meta": {
     "home": {
       "title": "Cleaning Company in Vienna",
       "description": "Professional apartment, house and move-out cleaning in Vienna. Insured, reliable and eco-friendly. Request your free quote today."
+    },
+    "placeholder": {
+      "title": "In progress",
+      "description": "This page is being built."
     }
   },
   "home": {
@@ -29,7 +38,94 @@
     "ctaPrimary": "Get a Free Quote",
     "ctaSecondary": "See Our Services"
   },
+  "services": {
+    "eyebrow": "Our Services",
+    "title": "The right clean for every home",
+    "learnMore": "Learn more",
+    "house": {
+      "title": "House Cleaning",
+      "description": "A thorough clean for your whole house — regularly or as a one-off."
+    },
+    "apartment": {
+      "title": "Apartment Cleaning",
+      "description": "Dependable cleaning for apartments of any size, across Vienna."
+    },
+    "move": {
+      "title": "Move In / Move Out",
+      "description": "Handover-ready, so your deposit comes back in full."
+    },
+    "housekeeping": {
+      "title": "Housekeeping",
+      "description": "Your regular cleaner, keeping your home in shape week after week."
+    },
+    "deep": {
+      "title": "Deep Cleaning",
+      "description": "Into every corner — limescale, grease and everything that has built up."
+    }
+  },
+  "why": {
+    "eyebrow": "Why Magic Shine",
+    "title": "A clean you can count on",
+    "insured": {
+      "title": "Insured & vetted",
+      "description": "Every team member is background-checked, trained and fully insured."
+    },
+    "eco": {
+      "title": "Eco-friendly products",
+      "description": "Effective cleaners that are safe around children, pets and allergies."
+    },
+    "punctual": {
+      "title": "On time, around you",
+      "description": "We come when it suits you — evenings and weekends included."
+    },
+    "guarantee": {
+      "title": "Satisfaction guarantee",
+      "description": "Not happy? We come back and put it right."
+    }
+  },
+  "reviews": {
+    "eyebrow": "Testimonials",
+    "title": "What Viennese clients say",
+    "ratingLabel": "5 out of 5 stars",
+    "one": {
+      "quote": "After the move the old flat looked better than the day I moved in. Got the full deposit back.",
+      "name": "Andrea K.",
+      "role": "Leopoldstadt"
+    },
+    "two": {
+      "quote": "Every two weeks for a year now — always on time, always thorough. I never have to ask twice.",
+      "name": "Markus H.",
+      "role": "Währing"
+    },
+    "three": {
+      "quote": "Finally a team that cleans the places you can never reach yourself. Highly recommended.",
+      "name": "Sofia B.",
+      "role": "Neubau"
+    }
+  },
+  "cta": {
+    "eyebrow": "Ready for a cleaner home?",
+    "title": "Request your free quote",
+    "lede": "Tell us briefly what you need and you will have a fixed price within 24 hours, with no obligation.",
+    "action": "Request a Quote"
+  },
   "footer": {
-    "rights": "All rights reserved."
+    "blurb": "Premium cleaning services for a cleaner, healthier and happier home.",
+    "quickLinks": "Quick Links",
+    "ourServices": "Our Services",
+    "newsletter": "Newsletter",
+    "newsletterBlurb": "Tips and special offers delivered to your inbox.",
+    "emailLabel": "Email address",
+    "emailPlaceholder": "Enter your email",
+    "subscribe": "Subscribe",
+    "newsletterPending": "The newsletter is not live yet — please check back soon.",
+    "rights": "All rights reserved.",
+    "privacy": "Privacy Policy",
+    "terms": "Terms & Conditions",
+    "imprint": "Imprint"
+  },
+  "placeholder": {
+    "title": "This page is being built",
+    "body": "The content for this page arrives in the next step. The header, footer and design system are already finished — you can see them above and below."
   }
 }

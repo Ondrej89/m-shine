@@ -14,13 +14,26 @@
 import type { Locale } from '../i18n/config';
 import { allRoutePaths, type RouteId } from '../i18n/routes';
 import Home from '../content-pages/Home.astro';
+import Placeholder from '../content-pages/Placeholder.astro';
+import Styleguide from '../content-pages/Styleguide.astro';
 
 export function getStaticPaths() {
 	return allRoutePaths();
 }
 
+/*
+ * `Placeholder` is a stub, not a page: it exists so every nav link and every
+ * language-switcher target resolves during review. Step 3 replaces these five
+ * with real components one at a time.
+ */
 const PAGES = {
 	home: Home,
+	styleguide: Styleguide,
+	about: Placeholder,
+	services: Placeholder,
+	pricing: Placeholder,
+	contact: Placeholder,
+	quote: Placeholder,
 } satisfies Record<RouteId, unknown>;
 
 interface Props {

@@ -1,0 +1,58 @@
+/* =========================================================================
+   Photos — the signature two-axis mask fade
+   Lifted verbatim from section 2 of the refined style.css.
+   ====================================================================== */
+
+/* Images dissolve into the blue page along two edges at once. `mask-composite`
+   intersects the two gradients, so the corner where they meet fades hardest —
+   that is the effect, and it is why this cannot be a single gradient. */
+.ms-mask-fade {
+	-webkit-mask-image: linear-gradient(to right, transparent 0%, #000 16%),
+		linear-gradient(to top, transparent 0%, #000 15%);
+	mask-image: linear-gradient(to right, transparent 0%, #000 16%),
+		linear-gradient(to top, transparent 0%, #000 15%);
+	-webkit-mask-composite: source-in;
+	mask-composite: intersect;
+}
+
+/* Mirror of the above, for photos that sit to the *left* of their copy and so
+   need to dissolve on their right edge instead. */
+.ms-mask-fade--flip {
+	-webkit-mask-image: linear-gradient(to left, transparent 0%, #000 16%),
+		linear-gradient(to top, transparent 0%, #000 15%);
+	mask-image: linear-gradient(to left, transparent 0%, #000 16%),
+		linear-gradient(to top, transparent 0%, #000 15%);
+	-webkit-mask-composite: source-in;
+	mask-composite: intersect;
+}
+
+.ms-mask-fade--deep {
+	-webkit-mask-image: linear-gradient(to right, transparent 0%, #000 18%),
+		linear-gradient(to top, transparent 0%, #000 13%);
+	mask-image: linear-gradient(to right, transparent 0%, #000 18%),
+		linear-gradient(to top, transparent 0%, #000 13%);
+	-webkit-mask-composite: source-in;
+	mask-composite: intersect;
+}
+
+/* --- Photo wrapper ------------------------------------------------------ */
+
+.ms-photo {
+	display: block;
+	margin: 0;
+}
+
+.ms-photo img {
+	display: block;
+	height: 100%;
+	object-fit: cover;
+	width: 100%;
+}
+
+.ms-photo--shadow img {
+	box-shadow: var(--wp--preset--shadow--media);
+}
+
+.ms-photo--round img {
+	border-radius: var(--wp--custom--radius--xl);
+}

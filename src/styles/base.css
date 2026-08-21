@@ -1,0 +1,202 @@
+/* =========================================================================
+   Magic Shine — element base
+   -------------------------------------------------------------------------
+   The element-level defaults the WordPress theme expressed through
+   `theme.json`'s `styles` block, plus the base rules from section 1 of its
+   style.css. Component CSS lives in `components/` and is pulled in by
+   `global.css`, which is the only stylesheet a page imports.
+   ====================================================================== */
+
+/* --- Reset -------------------------------------------------------------- */
+
+*,
+*::before,
+*::after {
+	box-sizing: border-box;
+}
+
+html,
+body {
+	max-width: 100%;
+	overflow-x: hidden;
+}
+
+html {
+	scroll-behavior: smooth;
+	-webkit-text-size-adjust: 100%;
+}
+
+/* `[hidden]` must actually hide. The UA sheet sets `display: none` on it, but
+   any author `display` beats that — so a flex or grid component stays fully
+   visible while `element.hidden` reports true. */
+[hidden] {
+	display: none !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+	html {
+		scroll-behavior: auto;
+	}
+
+	*,
+	*::before,
+	*::after {
+		animation-duration: 0.01ms !important;
+		animation-iteration-count: 1 !important;
+		transition-duration: 0.01ms !important;
+	}
+}
+
+body {
+	background-color: var(--ms-color-sky);
+	color: var(--ms-color-ink);
+	font-family: var(--ms-font-body);
+	font-size: var(--ms-size-md);
+	font-weight: 400;
+	line-height: var(--ms-leading-body);
+	margin: 0;
+	-webkit-font-smoothing: antialiased;
+	text-rendering: optimizeLegibility;
+}
+
+img,
+svg,
+video {
+	max-width: 100%;
+}
+
+img,
+svg {
+	height: auto;
+}
+
+/* --- Typography --------------------------------------------------------- */
+
+h1,
+h2,
+h3 {
+	color: var(--ms-color-navy);
+	font-family: var(--ms-font-heading);
+	font-weight: 600;
+	letter-spacing: var(--ms-tracking-heading);
+	line-height: var(--ms-leading-heading);
+	margin: 0;
+}
+
+h1 {
+	font-size: var(--ms-size-3xl);
+	line-height: var(--ms-leading-hero);
+}
+
+h2 {
+	font-size: var(--ms-size-2xl);
+}
+
+h3 {
+	font-size: var(--ms-size-xl);
+}
+
+/* h4–h6 switch to Mulish — they read as labels, not display type. */
+h4,
+h5,
+h6 {
+	color: var(--ms-color-navy);
+	font-family: var(--ms-font-body);
+	font-weight: 700;
+	line-height: 1.4;
+	margin: 0;
+}
+
+h4 {
+	font-size: 16px;
+}
+
+h5 {
+	font-size: var(--ms-size-md);
+}
+
+h6 {
+	font-size: var(--ms-size-sm);
+}
+
+p {
+	margin: 0;
+}
+
+a {
+	color: var(--ms-color-blue);
+	text-decoration: none;
+}
+
+a:hover {
+	color: var(--ms-color-navy);
+}
+
+:focus-visible {
+	outline: 2px solid var(--ms-color-blue);
+	outline-offset: 3px;
+}
+
+figcaption {
+	color: var(--ms-color-ink-light);
+	font-size: var(--ms-size-sm);
+}
+
+/* --- Accessibility ------------------------------------------------------ */
+
+.screen-reader-text {
+	border: 0;
+	clip-path: inset(50%);
+	height: 1px;
+	margin: -1px;
+	overflow: hidden;
+	padding: 0;
+	position: absolute;
+	white-space: nowrap;
+	width: 1px;
+}
+
+.screen-reader-text:focus {
+	background-color: var(--ms-color-base);
+	border-radius: var(--ms-radius-sm);
+	box-shadow: var(--ms-shadow-float);
+	clip-path: none;
+	color: var(--ms-color-navy);
+	font-size: 14px;
+	font-weight: 700;
+	height: auto;
+	left: 20px;
+	line-height: 1;
+	padding: 14px 22px;
+	text-decoration: none;
+	top: 20px;
+	width: auto;
+	z-index: 100000;
+}
+
+
+/* --- Layout container --------------------------------------------------- */
+
+/* The design uses FIVE content widths, not one, and they are load-bearing —
+   the reviews carousel comment in style.css shows what happens when one is off
+   by 60px. `--ms-container-wide` (1240) is Home and About; 1200 is Pricing and
+   Service Detail; 1180 is Contact; `--ms-container` (1160) is Services and the
+   header/footer chrome. `<Section width="...">` picks between them. */
+.ms-container {
+	margin-inline: auto;
+	max-width: var(--ms-container-wide);
+	padding-inline: var(--ms-gutter);
+	width: 100%;
+}
+
+.ms-container--1200 {
+	max-width: var(--ms-container-plan);
+}
+
+.ms-container--1180 {
+	max-width: var(--ms-container-contact);
+}
+
+.ms-container--1160 {
+	max-width: var(--ms-container);
+}

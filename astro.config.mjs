@@ -31,6 +31,9 @@ export default defineConfig({
 				defaultLocale: 'de',
 				locales: { de: 'de-AT', en: 'en', sk: 'sk' },
 			},
+			// The styleguide is an internal review tool, not a page of the site.
+			// It goes away before launch; until then, keep it out of the index.
+			filter: (page) => !page.includes('/styleguide/'),
 		}),
 	],
 
@@ -40,4 +43,21 @@ export default defineConfig({
 		format: 'directory',
 	},
 	trailingSlash: 'always',
+
+	vite: {
+		build: {
+			/*
+			 * Without this the CSS minifier decided every target supported the
+			 * media-query RANGE syntax and rewrote `(max-width: 720px)` to
+			 * `(width <= 720px)`. That parses as nothing on Safari below 16.4, so
+			 * an iOS 16.0–16.3 phone would have silently received the desktop
+			 * layout — every breakpoint in the design gone at once.
+			 *
+			 * Safari 15 is the floor because `mask-composite: intersect`, which
+			 * the signature photo fade depends on, needs 15.4 anyway (older
+			 * WebKit gets the `-webkit-mask-composite: source-in` line beside it).
+			 */
+			cssTarget: ['chrome100', 'edge100', 'firefox100', 'safari15'],
+		},
+	},
 });

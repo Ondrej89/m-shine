@@ -1,0 +1,30 @@
+---
+/*
+ * A decorative botanical watermark. Purely presentational — no alt text, no
+ * role, nothing for a screen reader to announce.
+ *
+ * Must sit inside a positioned host: pass `flourishes` to `<Section>`, or add
+ * `.ms-flourish-host` yourself. Hidden below 720px by one rule in
+ * flourishes.css; see the note there about why that deviates from the design.
+ */
+export type FlourishName =
+	| 'home-strip'
+	| 'services-cluster'
+	| 'left'
+	| 'about-band'
+	| 'corner'
+	| 'lotus-center'
+	| 'lotus-hero'
+	| 'contact-vine'
+	| 'vine-br';
+
+interface Props {
+	name: FlourishName;
+	class?: string;
+}
+
+const { name, class: className } = Astro.props;
+const classes = ['ms-flourish', `ms-flourish--${name}`, className].filter(Boolean).join(' ');
+---
+
+<div class={classes} aria-hidden="true"></div>

@@ -1,0 +1,261 @@
+/* =========================================================================
+   Site footer
+   Lifted from section 16 of the refined style.css, plus the footer rules from
+   its responsive section (the 1000px two-column switch, the 720px bottom-bar
+   stack, and the 480px column-gap tightening).
+   ====================================================================== */
+
+.ms-footer {
+	background: var(--wp--preset--color--navy-deep);
+	color: #c7d4e8;
+	font-family: var(--wp--preset--font-family--mulish);
+	overflow: hidden;
+	position: relative;
+}
+
+.ms-footer::before,
+.ms-footer::after {
+	background-repeat: no-repeat;
+	background-size: contain;
+	content: "";
+	pointer-events: none;
+	position: absolute;
+	z-index: 0;
+}
+
+.ms-footer::before {
+	background-image: url("/img/wm-footer-flourish.webp");
+	bottom: -190px;
+	height: 425px;
+	left: -40px;
+	opacity: 0.85;
+	width: 425px;
+}
+
+.ms-footer::after {
+	background-image: url("/img/wm-branch-tr.webp");
+	height: 300px;
+	opacity: 0.5;
+	right: 0;
+	top: 0;
+	width: 300px;
+}
+
+/* The footer is already edge to edge, so there is nothing to escape from. The
+   inner wrapper adds a single gutter and its max-width covers that one gutter
+   per side, putting the content on the same 1160px grid as the header. */
+.ms-footer__inner {
+	margin: 0 auto;
+	max-width: calc(var(--wp--custom--container) + 80px);
+	/* Fixed 40px inline, not the responsive gutter. The design's footer keeps a
+	   40px inset at every width — it has no media rule of any kind — so riding
+	   the gutter pulls the content to 22px and then 16px from the screen edge on
+	   mobile, widening the whole column and the newsletter field with it. The
+	   40px here and the 80px above are the same pair: content stays on 1160. */
+	padding: 64px 40px 30px;
+	position: relative;
+	z-index: 1;
+}
+
+.ms-footer a {
+	color: #aebfd8;
+	text-decoration: none;
+	transition: color 0.15s;
+}
+
+.ms-footer a:hover,
+.ms-footer a:focus {
+	color: var(--wp--preset--color--base);
+}
+
+.ms-footer__grid {
+	display: grid;
+	gap: 40px;
+	grid-template-columns: 1.5fr 1fr 1fr 1.3fr;
+}
+
+.ms-footer__brand .ms-brand {
+	margin-bottom: 18px;
+}
+
+.ms-footer__brand .ms-brand__name,
+.ms-footer h2 {
+	color: var(--wp--preset--color--base);
+}
+
+.ms-footer__brand .ms-brand__mark {
+	height: 34px;
+}
+
+.ms-footer__tagline {
+	color: var(--wp--preset--color--footer-text);
+	font-size: 14.5px;
+	line-height: 1.65;
+	margin: 0 0 22px;
+	max-width: 290px;
+}
+
+.ms-footer__socials {
+	display: flex;
+	gap: 12px;
+}
+
+.ms-social {
+	align-items: center;
+	background: rgba(255, 255, 255, 0.09);
+	border-radius: 50%;
+	color: #dbe6f7;
+	display: flex;
+	height: 38px;
+	justify-content: center;
+	transition: background 0.15s;
+	width: 38px;
+}
+
+.ms-social:hover,
+.ms-social:focus {
+	background: rgba(255, 255, 255, 0.2);
+}
+
+.ms-footer__heading {
+	color: var(--wp--preset--color--base);
+	font-family: var(--wp--preset--font-family--mulish);
+	font-size: 16px;
+	font-weight: 700;
+	letter-spacing: normal;
+	line-height: 1.3;
+	margin: 2px 0 18px;
+}
+
+.ms-footer__links {
+	display: flex;
+	flex-direction: column;
+	font-size: 14.5px;
+	gap: 11px;
+	line-height: 1.35;
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+
+.ms-footer__news p {
+	color: var(--wp--preset--color--footer-text);
+	font-size: 14.5px;
+	line-height: 1.6;
+	margin: 0 0 16px;
+}
+
+.ms-newsletter {
+	align-items: center;
+	background: rgba(255, 255, 255, 0.08);
+	border: 1px solid rgba(255, 255, 255, 0.16);
+	border-radius: 9px;
+	display: flex;
+	padding: 5px 5px 5px 15px;
+}
+
+.ms-newsletter input[type="email"] {
+	background: transparent;
+	border: none;
+	color: var(--wp--preset--color--base);
+	flex: 1;
+	font-family: var(--wp--preset--font-family--mulish);
+	font-size: 14px;
+	min-width: 0;
+	outline: none;
+	padding: 0;
+}
+
+.ms-newsletter input[type="email"]::placeholder {
+	color: rgba(255, 255, 255, 0.55);
+}
+
+.ms-newsletter button {
+	align-items: center;
+	background: var(--wp--preset--color--blue);
+	border: none;
+	border-radius: 7px;
+	color: var(--wp--preset--color--base);
+	cursor: pointer;
+	display: flex;
+	flex: none;
+	height: 36px;
+	justify-content: center;
+	width: 36px;
+}
+
+/* No `min-height` reserving a line for the status message. It was holding
+   12.5px open even when empty, which is 13px the design does not spend — its
+   equivalent span measures 0. */
+.ms-newsletter__msg {
+	color: #7fd6a2;
+	display: block;
+	font-size: 12.5px;
+	margin-top: 10px;
+}
+
+.ms-footer__bottom {
+	align-items: center;
+	border-top: 1px solid rgba(255, 255, 255, 0.12);
+	color: #93a6c4;
+	display: flex;
+	font-size: 13.5px;
+	justify-content: space-between;
+	/* The design runs this bar at `normal` (17px at 13.5px type), not the body's
+	   1.65. Inheriting 1.65 made every line 5px taller, which is invisible in the
+	   desktop row but compounds once the bar stacks on mobile. */
+	line-height: normal;
+	margin-top: 44px;
+	padding-top: 24px;
+}
+
+.ms-footer__legal {
+	display: flex;
+	gap: 26px;
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+
+
+/* --- Responsive -------------------------------------------------------- */
+
+/* Four columns stop fitting here: the two link columns compute to ~120px, so
+   service names wrap mid-phrase and the newsletter is squeezed. Drop to two
+   columns, with the brand and newsletter spanning the row. */
+@media (max-width: 1000px) {
+	.ms-footer__grid {
+		grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+	}
+
+	.ms-footer__brand,
+	.ms-footer__news {
+		grid-column: 1 / -1;
+	}
+
+	/* Keeps the email field from stretching the full width once it spans. */
+	.ms-newsletter {
+		max-width: 420px;
+	}
+}
+
+@media (max-width: 720px) {
+	/* The two-column footer and the spans it needs are already set at 1000px. */
+	.ms-footer__bottom {
+		flex-direction: column;
+		gap: 10px;
+		text-align: center;
+	}
+}
+
+@media (max-width: 480px) {
+	/* Phone widths keep the two link columns side by side, per the design: the
+	   brand spans the row above them and the newsletter spans the row below
+	   (both spans come from the 1000px block). Only the gap tightens — 40px
+	   would leave ~135px per column, so the longest service names wrap. */
+	.ms-footer__grid {
+		column-gap: 20px;
+		grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+		row-gap: 34px;
+	}
+}

@@ -76,8 +76,11 @@
 	--ms-space-8: 76px; /* section rhythm */
 
 	/* --- Layout ------------------------------------------------------- */
-	--ms-container: 1160px; /* header & footer chrome */
-	--ms-container-wide: 1240px; /* page sections / content size */
+	/* Five content widths, all load-bearing — see the note in base.css. */
+	--ms-container: 1160px; /* Services; header & footer chrome */
+	--ms-container-wide: 1240px; /* Home, About; theme.json contentSize */
+	--ms-container-plan: 1200px; /* Pricing, Service Detail */
+	--ms-container-contact: 1180px; /* Contact; also the reviews carousel */
 	--ms-gutter: 40px; /* stepped down in the queries below */
 	--ms-header-breakpoint: 900px;
 	--ms-header-h: 88px; /* 48px row inside 20px padding */

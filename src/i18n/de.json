@@ -6,20 +6,29 @@
   "a11y": {
     "skipToContent": "Zum Inhalt springen",
     "languageLabel": "Sprache",
-    "currentLanguage": "Aktuelle Sprache"
+    "currentLanguage": "Aktuelle Sprache",
+    "menu": "Menü",
+    "mainNav": "Hauptnavigation"
   },
   "nav": {
     "home": "Startseite",
+    "about": "Über uns",
     "services": "Leistungen",
     "pricing": "Preise",
-    "about": "Über uns",
     "contact": "Kontakt",
     "quote": "Angebot anfordern"
+  },
+  "header": {
+    "phoneNote": "Jederzeit erreichbar"
   },
   "meta": {
     "home": {
       "title": "Reinigungsfirma in Wien",
       "description": "Professionelle Wohnungs-, Haus- und Umzugsreinigung in Wien. Versichert, zuverlässig und mit umweltfreundlichen Mitteln. Jetzt kostenloses Angebot anfordern."
+    },
+    "placeholder": {
+      "title": "In Arbeit",
+      "description": "Diese Seite wird gerade gebaut."
     }
   },
   "home": {
@@ -29,7 +38,94 @@
     "ctaPrimary": "Kostenloses Angebot",
     "ctaSecondary": "Leistungen ansehen"
   },
+  "services": {
+    "eyebrow": "Unsere Leistungen",
+    "title": "Für jedes Zuhause die passende Reinigung",
+    "learnMore": "Mehr erfahren",
+    "house": {
+      "title": "Hausreinigung",
+      "description": "Gründliche Reinigung für Ihr ganzes Haus – regelmäßig oder einmalig."
+    },
+    "apartment": {
+      "title": "Wohnungsreinigung",
+      "description": "Zuverlässige Reinigung für Wohnungen jeder Größe in ganz Wien."
+    },
+    "move": {
+      "title": "Umzugsreinigung",
+      "description": "Übergabefertig geputzt – damit die Kaution auch zurückkommt."
+    },
+    "housekeeping": {
+      "title": "Haushaltsbetreuung",
+      "description": "Ihre feste Reinigungskraft, die Ihr Zuhause dauerhaft in Form hält."
+    },
+    "deep": {
+      "title": "Grundreinigung",
+      "description": "Bis in die letzte Ecke – Kalk, Fett und alles, was sich angesammelt hat."
+    }
+  },
+  "why": {
+    "eyebrow": "Warum Magic Shine",
+    "title": "Sauberkeit, auf die Sie sich verlassen können",
+    "insured": {
+      "title": "Versichert & geprüft",
+      "description": "Jedes Teammitglied ist überprüft, geschult und vollständig versichert."
+    },
+    "eco": {
+      "title": "Umweltfreundliche Mittel",
+      "description": "Wirksame Reiniger, die für Kinder, Haustiere und Allergiker unbedenklich sind."
+    },
+    "punctual": {
+      "title": "Pünktlich & flexibel",
+      "description": "Wir kommen, wenn es Ihnen passt – auch abends und am Wochenende."
+    },
+    "guarantee": {
+      "title": "Zufriedenheitsgarantie",
+      "description": "Nicht zufrieden? Wir kommen zurück und machen es richtig."
+    }
+  },
+  "reviews": {
+    "eyebrow": "Kundenstimmen",
+    "title": "Was Wienerinnen und Wiener sagen",
+    "ratingLabel": "5 von 5 Sternen",
+    "one": {
+      "quote": "Nach dem Umzug sah die alte Wohnung besser aus als beim Einzug. Die Kaution kam vollständig zurück.",
+      "name": "Andrea K.",
+      "role": "Leopoldstadt"
+    },
+    "two": {
+      "quote": "Seit einem Jahr alle zwei Wochen da, immer pünktlich, immer gründlich. Ich muss nie nachfragen.",
+      "name": "Markus H.",
+      "role": "Währing"
+    },
+    "three": {
+      "quote": "Endlich ein Team, das auch die Stellen putzt, an die man selbst nie kommt. Sehr empfehlenswert.",
+      "name": "Sofia B.",
+      "role": "Neubau"
+    }
+  },
+  "cta": {
+    "eyebrow": "Bereit für ein sauberes Zuhause?",
+    "title": "Fordern Sie Ihr kostenloses Angebot an",
+    "lede": "Sagen Sie uns kurz, worum es geht – Sie erhalten innerhalb von 24 Stunden einen Festpreis, unverbindlich.",
+    "action": "Angebot anfordern"
+  },
   "footer": {
-    "rights": "Alle Rechte vorbehalten."
+    "blurb": "Hochwertige Reinigungsdienste für ein saubereres, gesünderes und glücklicheres Zuhause.",
+    "quickLinks": "Schnellzugriff",
+    "ourServices": "Unsere Leistungen",
+    "newsletter": "Newsletter",
+    "newsletterBlurb": "Tipps und Aktionen direkt in Ihr Postfach.",
+    "emailLabel": "E-Mail-Adresse",
+    "emailPlaceholder": "Ihre E-Mail-Adresse",
+    "subscribe": "Abonnieren",
+    "newsletterPending": "Der Newsletter ist noch nicht aktiv – bitte schauen Sie später wieder vorbei.",
+    "rights": "Alle Rechte vorbehalten.",
+    "privacy": "Datenschutz",
+    "terms": "AGB",
+    "imprint": "Impressum"
+  },
+  "placeholder": {
+    "title": "Diese Seite entsteht gerade",
+    "body": "Der Inhalt dieser Seite wird im nächsten Schritt gebaut. Header, Footer und das Design-System sind bereits fertig – Sie sehen sie oben und unten."
   }
 }

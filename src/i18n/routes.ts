@@ -13,14 +13,19 @@ import { DEFAULT_LOCALE, LOCALES, type Locale } from './config';
  */
 export const ROUTES = {
 	home: { de: '', en: '', sk: '' },
+	about: { de: 'ueber-uns', en: 'about-us', sk: 'o-nas' },
+	services: { de: 'leistungen', en: 'services', sk: 'sluzby' },
+	pricing: { de: 'preise', en: 'pricing', sk: 'cennik' },
+	contact: { de: 'kontakt', en: 'contact', sk: 'kontakt' },
+	quote: { de: 'angebot-anfordern', en: 'request-a-quote', sk: 'vyziadat-ponuku' },
 
-	// Step 2+ will fill these in as their components land:
-	// services: { de: 'leistungen',  en: 'services', sk: 'sluzby' },
-	// pricing:  { de: 'preise',      en: 'pricing',  sk: 'cennik' },
-	// about:    { de: 'ueber-uns',   en: 'about-us', sk: 'o-nas'  },
-	// contact:  { de: 'kontakt',     en: 'contact',  sk: 'kontakt' },
-	// quote:    { de: 'angebot',     en: 'quote',    sk: 'ponuka' },
+	/** Not navigation — the component library, for review. Removed before launch. */
+	styleguide: { de: 'styleguide', en: 'styleguide', sk: 'styleguide' },
 } as const satisfies Record<string, Record<Locale, string>>;
+
+/** The pages that appear in the header and footer navigation, in order. */
+export const NAV_ROUTES = ['home', 'about', 'services', 'pricing', 'contact'] as const satisfies
+	readonly RouteId[];
 
 export type RouteId = keyof typeof ROUTES;
 

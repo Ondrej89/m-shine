@@ -1,0 +1,17 @@
+---
+/*
+ * The small green uppercase label that opens almost every section. `pill` is
+ * the variant used where the design sets it on a soft green chip rather than
+ * bare — the hero and the CTA band.
+ */
+interface Props {
+	pill?: boolean;
+	as?: 'p' | 'span';
+	class?: string;
+}
+
+const { pill = false, as: Tag = 'p', class: className } = Astro.props;
+const classes = ['ms-eyebrow', pill && 'ms-eyebrow-pill', className].filter(Boolean).join(' ');
+---
+
+<Tag class={classes}><slot /></Tag>

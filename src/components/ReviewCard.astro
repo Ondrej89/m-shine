@@ -1,0 +1,54 @@
+---
+import Icon from './Icon.astro';
+
+/*
+ * A customer review: star row, the quote, then an initials avatar with name
+ * and role.
+ *
+ * The rating is rendered as filled stars plus a visually-hidden sentence, so a
+ * screen reader hears "5 out of 5" rather than five unlabelled graphics. The
+ * avatar takes initials rather than a photo, as the design does.
+ */
+interface Props {
+	quote: string;
+	name: string;
+	role?: string;
+	initials: string;
+	rating?: number;
+	/** Accessible phrasing for the rating, translated by the caller. */
+	ratingLabel?: string;
+	avatar?: 'blue' | 'green';
+	class?: string;
+}
+
+const {
+	quote,
+	name,
+	role,
+	initials,
+	rating = 5,
+	ratingLabel,
+	avatar = 'blue',
+	class: className,
+} = Astro.props;
+
+const classes = ['ms-review', className].filter(Boolean).join(' ');
+const stars = Array.from({ length: Math.max(0, Math.min(5, Math.round(rating))) });
+---
+
+<li class={classes}>
+	<figure class="ms-review__card">
+		<div class="ms-review__stars">
+			{stars.map(() => <Icon name="star" size={14} />)}
+			{ratingLabel && <span class="screen-reader-text">{ratingLabel}</span>}
+		</div>
+		<blockquote class="ms-review__quote"><p>{quote}</p></blockquote>
+		<figcaption class="ms-review__person">
+			<span class={`ms-avatar ms-avatar--${avatar}`} aria-hidden="true">{initials}</span>
+			<span>
+				<span class="ms-review__name">{name}</span>
+				{role && <span class="ms-review__role">{role}</span>}
+			</span>
+		</figcaption>
+	</figure>
+</li>

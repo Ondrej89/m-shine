@@ -1,0 +1,82 @@
+---
+import type { Locale } from '../i18n/config';
+
+/*
+ * The three flags the switcher needs, traced from the design reference's own
+ * inline SVGs (`SiteHeader.dc.html`, the `flag()` method).
+ *
+ * German is flagged Austrian, not German — the market is Vienna, and the
+ * reference draws it that way too (its fourth language is labelled
+ * "Österreichisch" with the Austrian tricolour).
+ *
+ * Drawn at 60x40 with `preserveAspectRatio="none"` so the 20x14 frame in the
+ * header squashes them to the design's proportions rather than letterboxing.
+ * Decorative: the link beside each one already names the language.
+ */
+interface Props {
+	locale: Locale;
+	class?: string;
+}
+
+const { locale, class: className } = Astro.props;
+const classes = ['ms-flag', className].filter(Boolean).join(' ');
+---
+
+<span class="ms-flag-frame">
+	<svg
+		class={classes}
+		viewBox="0 0 60 40"
+		width="100%"
+		height="100%"
+		preserveAspectRatio="none"
+		aria-hidden="true"
+		focusable="false"
+	>
+		{
+			locale === 'de' && (
+				<Fragment>
+					<rect x="0" y="0" width="60" height="13.34" fill="#ef3340" />
+					<rect x="0" y="13.34" width="60" height="13.33" fill="#fff" />
+					<rect x="0" y="26.67" width="60" height="13.33" fill="#ef3340" />
+				</Fragment>
+			)
+		}
+		{
+			locale === 'sk' && (
+				<Fragment>
+					<rect x="0" y="0" width="60" height="13.34" fill="#fff" />
+					<rect x="0" y="13.34" width="60" height="13.33" fill="#0b4ea2" />
+					<rect x="0" y="26.67" width="60" height="13.33" fill="#ee1c25" />
+					<path
+						d="M13 9 H31 V21 Q31 28 22 33 Q13 28 13 21 Z"
+						fill="#ee1c25"
+						stroke="#fff"
+						stroke-width="1.6"
+					/>
+					<path
+						d="M15 26.8 Q17.5 23.2 20 26.8 Q22 23.4 24.5 26.8 Q27 23.6 27 27 L27 30 L15 30 Z"
+						fill="#0b4ea2"
+					/>
+					<rect x="21" y="11.5" width="2" height="14" fill="#fff" />
+					<rect x="18.4" y="14.4" width="7.2" height="1.8" fill="#fff" />
+					<rect x="17.4" y="18.4" width="9.2" height="1.8" fill="#fff" />
+				</Fragment>
+			)
+		}
+		{
+			locale === 'en' && (
+				<Fragment>
+					<rect x="0" y="0" width="60" height="40" fill="#012169" />
+					<line x1="0" y1="0" x2="60" y2="40" stroke="#fff" stroke-width="8" />
+					<line x1="60" y1="0" x2="0" y2="40" stroke="#fff" stroke-width="8" />
+					<line x1="0" y1="0" x2="60" y2="40" stroke="#c8102e" stroke-width="3" />
+					<line x1="60" y1="0" x2="0" y2="40" stroke="#c8102e" stroke-width="3" />
+					<rect x="25" y="0" width="10" height="40" fill="#fff" />
+					<rect x="0" y="15" width="60" height="10" fill="#fff" />
+					<rect x="27" y="0" width="6" height="40" fill="#c8102e" />
+					<rect x="0" y="17" width="60" height="6" fill="#c8102e" />
+				</Fragment>
+			)
+		}
+	</svg>
+</span>

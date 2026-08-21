@@ -1,0 +1,48 @@
+---
+import SiteFooter from '../components/SiteFooter.astro';
+import SiteHeader from '../components/SiteHeader.astro';
+import BaseLayout from './BaseLayout.astro';
+import type { Locale } from '../i18n/config';
+import type { RouteId } from '../i18n/routes';
+
+/*
+ * The layout every real page uses: document shell, header, main, footer.
+ *
+ * `<main>` is the flourish host for the page-level watermarks — the ones the
+ * theme hangs off `.ms-main--home::before` and friends. They are offset
+ * upwards by `--ms-header-h` so the artwork sits behind the header, which only
+ * works because `<main>` starts immediately below it.
+ */
+interface Props {
+	locale: Locale;
+	route: RouteId;
+	title: string;
+	description: string;
+	/** Adds `.ms-main--<page>` for anything that still needs a page hook. */
+	pageClass?: string;
+}
+
+const { locale, route, title, description, pageClass } = Astro.props;
+const mainClass = ['ms-main', 'ms-flourish-host', pageClass].filter(Boolean).join(' ');
+---
+
+<BaseLayout locale={locale} route={route} title={title} description={description}>
+	<slot name="head" slot="head" />
+
+	<SiteHeader locale={locale} route={route} />
+
+	<main class={mainClass} id="main">
+		<slot name="flourish" />
+		<slot />
+	</main>
+
+	<SiteFooter locale={locale} />
+</BaseLayout>
+
+{/*
+ * No styles of its own: `.ms-flourish-host` already positions `<main>` and
+ * lifts its section children above the artwork, and `body { overflow-x: hidden }`
+ * in base.css is what stops a flourish bleeding off the right edge from
+ * widening the document. Vertical overflow stays visible on purpose — the
+ * About hero band is meant to spill past its section.
+ */}

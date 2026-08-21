@@ -1,0 +1,648 @@
+---
+import Button from '../components/Button.astro';
+import Eyebrow from '../components/Eyebrow.astro';
+import FeatureCard from '../components/FeatureCard.astro';
+import Flourish from '../components/Flourish.astro';
+import Icon from '../components/Icon.astro';
+import LearnMore from '../components/LearnMore.astro';
+import Photo from '../components/Photo.astro';
+import ReviewCard from '../components/ReviewCard.astro';
+import Section from '../components/Section.astro';
+import SectionHead from '../components/SectionHead.astro';
+import ServiceCard from '../components/ServiceCard.astro';
+import Underline from '../components/Underline.astro';
+import PageLayout from '../layouts/PageLayout.astro';
+import { LOCALE_META, type Locale } from '../i18n/config';
+import type { RouteId } from '../i18n/routes';
+import { useTranslations } from '../i18n/ui';
+
+/*
+ * The component library, rendered.
+ *
+ * An internal review tool, not a page of the site — its own captions are
+ * hard-coded English on purpose, because translating throwaway scaffolding
+ * three ways would be waste. Everything the components *display*, though,
+ * comes from the locale files, so switching language up in the header proves
+ * the i18n path end to end at the same time.
+ *
+ * Delete this file and its ROUTES entry before launch.
+ */
+interface Props {
+	locale: Locale;
+	route: RouteId;
+}
+
+const { locale, route } = Astro.props;
+const t = useTranslations(locale);
+const meta = LOCALE_META[locale];
+
+const SERVICES = [
+	{ key: 'house', icon: 'house', image: '/img/photos/home-svc-house.webp' },
+	{ key: 'apartment', icon: 'apartment', image: '/img/photos/home-svc-apt.webp' },
+	{ key: 'move', icon: 'move', image: '/img/photos/home-svc-move.webp' },
+	{ key: 'deep', icon: 'deep', image: '/img/photos/home-svc-deep.webp' },
+] as const;
+
+const FEATURES = [
+	{ key: 'insured', icon: 'shield' },
+	{ key: 'eco', icon: 'leaf' },
+	{ key: 'punctual', icon: 'clock' },
+	{ key: 'guarantee', icon: 'sparkle' },
+] as const;
+
+const REVIEWS = [
+	{ key: 'one', initials: 'AK', avatar: 'blue' },
+	{ key: 'two', initials: 'MH', avatar: 'green' },
+	{ key: 'three', initials: 'SB', avatar: 'blue' },
+] as const;
+
+const COLOURS = [
+	['sky', 'page background'],
+	['navy', 'brand navy'],
+	['navy-deep', 'deep navy / footer'],
+	['blue', 'brand blue / links'],
+	['blue-bright', 'bright blue'],
+	['green', 'brand green'],
+	['green-dark', 'green hover'],
+	['gold', 'review stars'],
+	['ink', 'body text'],
+	['ink-soft', 'body soft'],
+	['ink-muted', 'body muted'],
+	['ink-light', 'body light'],
+	['slate', 'navigation'],
+	['line', 'hairline'],
+	['line-strong', 'hairline strong'],
+	['tint-blue', 'blue tint'],
+	['tint-blue-soft', 'blue tint soft'],
+	['tint-green', 'green tint'],
+	['base', 'white'],
+];
+
+const TYPE_SCALE = [
+	['3xl', 'Hero heading', 'clamp 32 → 58px'],
+	['2xl', 'Section heading', 'clamp 26 → 40px'],
+	['xl', 'Card title', '20px'],
+	['lg', 'Lede', '17.5px'],
+	['md', 'Body', '15px'],
+	['sm', 'Small', '13.5px'],
+	['xs', 'Eyebrow', '12px'],
+];
+
+const BUTTONS = ['primary', 'ghost', 'green', 'blue', 'light', 'outline'] as const;
+const SPACING = [1, 2, 3, 4, 5, 6, 7, 8];
+---
+
+<PageLayout
+	locale={locale}
+	route={route}
+	title={`Styleguide | ${t('site.name')}`}
+	description="Internal component library for the Magic Shine site."
+	pageClass="ms-main--styleguide"
+>
+	<Flourish name="home-strip" slot="flourish" />
+
+	<Section rhythm="tight">
+		<SectionHead eyebrow="Internal" title="Component library" />
+		<dl class="sg-probe">
+			<div><dt>URL</dt><dd><code>{Astro.url.pathname}</code></dd></div>
+			<div><dt>Locale</dt><dd><code>{locale}</code></dd></div>
+			<div><dt>html lang</dt><dd><code>{meta.lang}</code></dd></div>
+			<div><dt>hreflang</dt><dd><code>{meta.hreflang.join(', ')}</code></dd></div>
+		</dl>
+		<p class="sg-note">
+			Captions on this page are hard-coded English — it is scaffolding. Everything the
+			components render comes from the locale files, so switching language in the header
+			changes the content but not these labels.
+		</p>
+	</Section>
+
+	<!-- ── Colour ─────────────────────────────────────────────────────── -->
+	<Section rhythm="none" class="sg-block">
+		<h2 class="sg-h">Colour</h2>
+		<ul class="sg-swatches">
+			{
+				COLOURS.map(([slug, label]) => (
+					<li>
+						<span class="sg-swatch" style={`background:var(--ms-color-${slug})`} />
+						<code>--ms-color-{slug}</code>
+						<span class="sg-cap">{label}</span>
+					</li>
+				))
+			}
+		</ul>
+		<div class="sg-gradients">
+			<div style="background:var(--ms-gradient-cta-band)">--ms-gradient-cta-band</div>
+			<div style="background:var(--ms-gradient-cta-bright)">--ms-gradient-cta-bright</div>
+		</div>
+	</Section>
+
+	<!-- ── Type ───────────────────────────────────────────────────────── -->
+	<Section rhythm="none" class="sg-block">
+		<h2 class="sg-h">Type scale</h2>
+		<p class="sg-note">
+			The two display sizes are fluid between a 320px and a 1240px viewport — resize the
+			window and they move. That curve is what the design's hard overrides at 720px and
+			480px are calibrated against.
+		</p>
+		<ul class="sg-type">
+			{
+				TYPE_SCALE.map(([slug, name, note]) => (
+					<li>
+						<span class="sg-cap">
+							--ms-size-{slug} · {note}
+						</span>
+						<span
+							style={`font-size:var(--ms-size-${slug});${slug === '3xl' || slug === '2xl' || slug === 'xl' ? 'font-family:var(--ms-font-heading);color:var(--ms-color-navy);font-weight:600;line-height:1.15' : ''}`}
+						>
+							{name} — Magic Shine
+						</span>
+					</li>
+				))
+			}
+		</ul>
+	</Section>
+
+	<!-- ── Spacing & radius ───────────────────────────────────────────── -->
+	<Section rhythm="none" class="sg-block">
+		<h2 class="sg-h">Spacing & radius</h2>
+		<ul class="sg-spacing">
+			{
+				SPACING.map((n) => (
+					<li>
+						<span class="sg-bar" style={`width:var(--ms-space-${n})`} />
+						<code>--ms-space-{n}</code>
+					</li>
+				))
+			}
+		</ul>
+		<ul class="sg-radii">
+			{
+				['sm', 'md', 'lg', 'xl', 'pill'].map((r) => (
+					<li>
+						<span class="sg-radius" style={`border-radius:var(--ms-radius-${r})`} />
+						<code>--ms-radius-{r}</code>
+					</li>
+				))
+			}
+		</ul>
+	</Section>
+
+	<!-- ── Buttons ────────────────────────────────────────────────────── -->
+	<Section rhythm="none" class="sg-block">
+		<h2 class="sg-h">Buttons</h2>
+		<div class="sg-row sg-row--dark">
+			{BUTTONS.map((v) => <Button variant={v} href="#">{v}</Button>)}
+		</div>
+		<p class="sg-note">
+			<code>light</code> and <code>outline</code> are the reversed pair — they are meant for
+			the saturated CTA band, which is why they are shown on navy here.
+		</p>
+		<div class="sg-row">
+			<Button variant="primary" href="#" icon="arrow-right">{t('home.ctaPrimary')}</Button>
+			<Button variant="primary" href="#" icon="calendar">{t('nav.quote')}</Button>
+			<Button variant="ghost" href="#">{t('home.ctaSecondary')}</Button>
+			<LearnMore href="#">{t('services.learnMore')}</LearnMore>
+		</div>
+	</Section>
+
+	<!-- ── Heading pattern ────────────────────────────────────────────── -->
+	<Section rhythm="none" class="sg-block">
+		<h2 class="sg-h">Eyebrow · heading · divider</h2>
+		<div class="sg-panel">
+			<SectionHead eyebrow={t('services.eyebrow')} title={t('services.title')} />
+		</div>
+		<div class="sg-panel sg-panel--left">
+			<Eyebrow pill>{t('why.eyebrow')}</Eyebrow>
+			<h2>{t('why.title')}</h2>
+			<Underline />
+			<p class="sg-cap">Pill eyebrow and the hand-drawn underline, for left-aligned heads.</p>
+		</div>
+	</Section>
+
+	<!-- ── Cards ──────────────────────────────────────────────────────── -->
+	<Section rhythm="none" class="sg-block">
+		<h2 class="sg-h">Service cards</h2>
+		<p class="sg-note">4 → 2 columns at 1000px → 1 column at 720px.</p>
+		<div class="ms-services__grid">
+			{
+				SERVICES.map((s) => (
+					<ServiceCard
+						title={t(`services.${s.key}.title` as 'services.house.title')}
+						description={t(`services.${s.key}.description` as 'services.house.description')}
+						image={s.image}
+						icon={s.icon}
+						href="#"
+						linkLabel={t('services.learnMore')}
+					/>
+				))
+			}
+		</div>
+	</Section>
+
+	<Section rhythm="none" class="sg-block">
+		<h2 class="sg-h">Features</h2>
+		<p class="sg-note">
+			4 → 2 columns at 1000px, and then it <em>stays</em> 2×2 — the design never takes these
+			to a single column, and doing so made the section four screens tall on a phone.
+		</p>
+		<div class="ms-feat-row">
+			{
+				FEATURES.map((f) => (
+					<FeatureCard
+						icon={f.icon}
+						title={t(`why.${f.key}.title` as 'why.insured.title')}
+						description={t(`why.${f.key}.description` as 'why.insured.description')}
+					/>
+				))
+			}
+		</div>
+	</Section>
+
+	<Section rhythm="none" class="sg-block">
+		<h2 class="sg-h">Reviews</h2>
+		<p class="sg-note">
+			The carousel viewport is 1180px, not the page's 1240 — the design insets it, and the
+			width is load-bearing.
+		</p>
+		<div class="ms-reviews__viewport">
+			<ul class="ms-reviews__track">
+				{
+					REVIEWS.map((r) => (
+						<ReviewCard
+							quote={t(`reviews.${r.key}.quote` as 'reviews.one.quote')}
+							name={t(`reviews.${r.key}.name` as 'reviews.one.name')}
+							role={t(`reviews.${r.key}.role` as 'reviews.one.role')}
+							initials={r.initials}
+							avatar={r.avatar}
+							ratingLabel={t('reviews.ratingLabel')}
+						/>
+					))
+				}
+			</ul>
+		</div>
+	</Section>
+
+	<!-- ── Photos ─────────────────────────────────────────────────────── -->
+	<Section rhythm="none" class="sg-block">
+		<h2 class="sg-h">Photo mask-fade</h2>
+		<p class="sg-note">
+			Two gradients intersected with <code>mask-composite</code>, so the corner where they
+			meet fades hardest. That is the effect — a single gradient cannot do it.
+		</p>
+		<div class="sg-photos">
+			<div>
+				<Photo src="/img/photos/home-hero.webp" alt="" fade="right" frameHeight="220px" />
+				<span class="sg-cap">fade="right" — photo sits right of its copy</span>
+			</div>
+			<div>
+				<Photo src="/img/photos/about-story.webp" alt="" fade="left" frameHeight="220px" />
+				<span class="sg-cap">fade="left" — mirrored</span>
+			</div>
+			<div>
+				<Photo src="/img/photos/home-hero.webp" alt="" fade="none" frameHeight="220px" rounded />
+				<span class="sg-cap">fade="none" rounded</span>
+			</div>
+		</div>
+	</Section>
+
+	<!-- ── Icons ──────────────────────────────────────────────────────── -->
+	<Section rhythm="none" class="sg-block">
+		<h2 class="sg-h">Icons</h2>
+		<ul class="sg-icons">
+			{
+				(
+					[
+						'arrow-right',
+						'calendar',
+						'check',
+						'chevron-down',
+						'phone',
+						'mail',
+						'pin',
+						'clock',
+						'shield',
+						'sparkle',
+						'leaf',
+						'star',
+						'send',
+						'menu',
+						'facebook',
+						'instagram',
+						'google',
+					] as const
+				).map((n) => (
+					<li>
+						<Icon name={n} size={20} />
+						<code>{n}</code>
+					</li>
+				))
+			}
+		</ul>
+		<div class="sg-row">
+			<span class="ms-icon ms-icon--blue" style="width:38px;height:38px"
+				><Icon name="phone" size={17} /></span
+			>
+			<span class="ms-icon ms-icon--green" style="width:38px;height:38px"
+				><Icon name="check" size={17} /></span
+			>
+			<span class="sg-cap">.ms-icon chips</span>
+		</div>
+	</Section>
+
+	<!-- ── Section widths ─────────────────────────────────────────────── -->
+	<Section rhythm="none" class="sg-block">
+		<h2 class="sg-h">Container widths</h2>
+		<p class="sg-note">
+			Five, not one. Each is the width the design actually draws for that page, and the
+			reviews note above shows what happens when one is off.
+		</p>
+	</Section>
+	{
+		([1240, 1200, 1180, 1160] as const).map((w) => (
+			<Section width={w} rhythm="none" class="sg-width">
+				<div class="sg-width__bar">
+					{w}px
+					{w === 1240 && ' — Home, About (contentSize)'}
+					{w === 1200 && ' — Pricing, Service detail'}
+					{w === 1180 && ' — Contact, reviews carousel'}
+					{w === 1160 && ' — Services, header & footer chrome'}
+				</div>
+			</Section>
+		))
+	}
+
+	<!-- ── Band + flourish ────────────────────────────────────────────── -->
+	<Section band rhythm="none" class="sg-band" flourishes clip>
+		<Flourish name="lotus-center" slot="flourish" />
+		<div class="sg-band__inner">
+			<Eyebrow pill>{t('cta.eyebrow')}</Eyebrow>
+			<h2>{t('cta.title')}</h2>
+			<p>{t('cta.lede')}</p>
+			<Button variant="light" href="#" icon="arrow-right">{t('cta.action')}</Button>
+			<p class="sg-cap">
+				Full-bleed band with the lotus flourish behind it at 12% — hidden below 720px, like
+				every flourish.
+			</p>
+		</div>
+	</Section>
+
+	<Section rhythm="tight">
+		<h2 class="sg-h">Flourishes</h2>
+		<p class="sg-note">
+			Nine watermarks, each with the offsets the design gives it. They are absolutely
+			positioned, so they only show inside a positioned host — and all nine disappear below
+			720px from one rule. The page-level strip is live behind this page's top-left corner;
+			the footer's two are on the footer below.
+		</p>
+		<ul class="sg-list">
+			<li><code>home-strip</code> · Home, down the top-left edge</li>
+			<li><code>services-cluster</code> · Services, off the top-right</li>
+			<li><code>left</code> · Pricing, off the top-left</li>
+			<li><code>about-band</code> · About, sweeping under the hero</li>
+			<li><code>corner</code> · behind the before/after comparison</li>
+			<li><code>lotus-center</code> · centred behind the CTA band</li>
+			<li><code>lotus-hero</code> · large, top-left of the Services hero</li>
+			<li><code>contact-vine</code> · Contact, down the top-left</li>
+			<li><code>vine-br</code> · Contact, out of the bottom-right</li>
+		</ul>
+	</Section>
+</PageLayout>
+
+<style>
+	/* Scaffolding only — none of this ships. */
+	.sg-block {
+		padding-block: 34px;
+	}
+
+	.sg-h {
+		border-top: 1px solid var(--ms-color-line-strong);
+		font-family: var(--ms-font-body);
+		font-size: 13px;
+		font-weight: 800;
+		letter-spacing: 2px;
+		margin-bottom: 20px;
+		padding-top: 20px;
+		text-transform: uppercase;
+	}
+
+	.sg-note {
+		color: var(--ms-color-ink-soft);
+		font-size: 14px;
+		margin-bottom: 20px;
+		max-width: 68ch;
+	}
+
+	.sg-cap {
+		color: var(--ms-color-ink-light);
+		display: block;
+		font-size: 12.5px;
+		margin-top: 6px;
+	}
+
+	code {
+		font-size: 12.5px;
+	}
+
+	.sg-probe,
+	.sg-panel {
+		background: rgba(255, 255, 255, 0.55);
+		border: 1px solid var(--ms-color-line-strong);
+		border-radius: var(--ms-radius-lg);
+		padding: var(--ms-space-4);
+	}
+
+	.sg-probe {
+		display: grid;
+		gap: var(--ms-space-2) var(--ms-space-5);
+		grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+		margin: 0 0 var(--ms-space-4);
+	}
+
+	.sg-probe dt {
+		color: var(--ms-color-ink-light);
+		font-size: 11px;
+		font-weight: 700;
+		letter-spacing: 1.2px;
+		text-transform: uppercase;
+	}
+
+	.sg-probe dd {
+		color: var(--ms-color-navy);
+		margin: 4px 0 0;
+	}
+
+	.sg-swatches,
+	.sg-icons,
+	.sg-radii,
+	.sg-list {
+		list-style: none;
+		margin: 0;
+		padding: 0;
+	}
+
+	.sg-swatches {
+		display: grid;
+		gap: 14px;
+		grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+	}
+
+	.sg-swatch {
+		border: 1px solid rgba(18, 42, 82, 0.14);
+		border-radius: var(--ms-radius-sm);
+		display: block;
+		height: 44px;
+		margin-bottom: 6px;
+	}
+
+	.sg-gradients {
+		display: grid;
+		gap: 14px;
+		grid-template-columns: 1fr 1fr;
+		margin-top: 20px;
+	}
+
+	.sg-gradients div {
+		border-radius: var(--ms-radius-sm);
+		color: #fff;
+		font-size: 12.5px;
+		padding: 22px 16px;
+	}
+
+	.sg-type {
+		display: grid;
+		gap: 18px;
+		list-style: none;
+		margin: 0;
+		padding: 0;
+	}
+
+	.sg-spacing {
+		display: grid;
+		gap: 8px;
+		list-style: none;
+		margin: 0 0 24px;
+		padding: 0;
+	}
+
+	.sg-spacing li {
+		align-items: center;
+		display: flex;
+		gap: 12px;
+	}
+
+	.sg-bar {
+		background: var(--ms-color-blue);
+		border-radius: 2px;
+		display: block;
+		flex: none;
+		height: 14px;
+	}
+
+	.sg-radii {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 18px;
+	}
+
+	.sg-radius {
+		background: var(--ms-color-tint-blue);
+		border: 1px solid var(--ms-color-line-strong);
+		display: block;
+		height: 56px;
+		margin-bottom: 6px;
+		width: 80px;
+	}
+
+	.sg-row {
+		align-items: center;
+		display: flex;
+		flex-wrap: wrap;
+		gap: 14px;
+		margin-bottom: 8px;
+	}
+
+	.sg-row--dark {
+		background: var(--ms-color-navy-deep);
+		border-radius: var(--ms-radius-lg);
+		padding: 22px;
+	}
+
+	.sg-panel {
+		margin-bottom: 18px;
+	}
+
+	.sg-panel--left {
+		text-align: left;
+	}
+
+	.sg-photos {
+		display: grid;
+		gap: 22px;
+		grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+	}
+
+	.sg-icons {
+		display: grid;
+		gap: 14px;
+		grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+		margin-bottom: 20px;
+	}
+
+	.sg-icons li {
+		align-items: center;
+		background: rgba(255, 255, 255, 0.55);
+		border: 1px solid var(--ms-color-line);
+		border-radius: var(--ms-radius-sm);
+		color: var(--ms-color-navy);
+		display: flex;
+		gap: 9px;
+		padding: 10px 12px;
+	}
+
+	.sg-width {
+		padding-block: 4px;
+	}
+
+	.sg-width__bar {
+		background: var(--ms-color-tint-blue);
+		border: 1px dashed var(--ms-color-blue);
+		border-radius: var(--ms-radius-sm);
+		color: var(--ms-color-blue);
+		font-size: 12.5px;
+		font-weight: 700;
+		padding: 10px 14px;
+		text-align: center;
+	}
+
+	.sg-band {
+		background: var(--ms-gradient-cta-band);
+		margin-block: 40px;
+	}
+
+	/* No max-width or inline padding here — the <Section> already put a
+	   `.ms-container` around this, so repeating it would just nest two
+	   containers and the outer one would win anyway. */
+	.sg-band__inner {
+		color: #fff;
+		padding-block: 56px;
+		text-align: center;
+	}
+
+	.sg-band__inner h2 {
+		color: #fff;
+		margin-bottom: 12px;
+	}
+
+	.sg-band__inner p {
+		color: #c7d4e8;
+		margin: 0 auto 22px;
+		max-width: 56ch;
+	}
+
+	.sg-list {
+		color: var(--ms-color-ink-soft);
+		display: grid;
+		font-size: 14px;
+		gap: 8px;
+	}
+</style>

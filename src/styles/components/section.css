@@ -1,0 +1,110 @@
+/* =========================================================================
+   Section wrapper, section heading, eyebrow, divider
+   Lifted from section 2 of the refined style.css.
+   ====================================================================== */
+
+.ms-section {
+	position: relative;
+}
+
+/* The design's section rhythm is explicit padding, never collapsing margins —
+   which is exactly why the WordPress build had to zero core's block gaps. Here
+   there is nothing to zero, so the steps are just declared. */
+.ms-section--pad {
+	padding-block: 76px;
+}
+
+.ms-section--pad-tight {
+	padding-block: 70px 86px;
+}
+
+.ms-section--clip {
+	overflow: hidden;
+}
+
+.ms-section__head {
+	margin-bottom: 46px;
+	text-align: center;
+}
+
+.ms-section__head .ms-eyebrow {
+	margin-bottom: 12px;
+}
+
+.ms-section__head h2 {
+	margin: 0;
+}
+
+/* The lotus divider keeps its offset from the heading above it. */
+.ms-section__head .ms-divider {
+	margin-top: 14px;
+}
+
+/* Sections that carry a carousel or a tighter head — the before/after block
+   and the reviews block both pull their heading closer to the content. */
+.ms-section__head--close {
+	margin-bottom: 32px;
+}
+
+.ms-eyebrow {
+	color: var(--wp--preset--color--green);
+	display: block;
+	font-family: var(--wp--preset--font-family--mulish);
+	font-size: var(--wp--preset--font-size--x-small);
+	font-weight: 700;
+	letter-spacing: 1.8px;
+	line-height: 1.2;
+	margin: 0;
+	text-transform: uppercase;
+}
+
+.ms-eyebrow-pill {
+	background: rgba(111, 156, 86, 0.14);
+	border-radius: var(--wp--custom--radius--pill);
+	display: inline-block;
+	margin: 0 0 22px;
+	padding: 7px 15px;
+}
+
+/* Lotus divider under centred section headings. */
+.ms-divider {
+	display: block;
+	height: 14px;
+	margin: 14px auto 0;
+	width: 90px;
+}
+
+/* Hand-drawn underline used beside left-aligned headings. */
+.ms-underline {
+	display: block;
+	height: 10px;
+	margin: 0;
+	width: 120px;
+}
+
+/* Full-bleed band, then the content put back on the container grid.
+
+   The arithmetic here is the one place a lifted rule had to change. In the
+   WordPress theme the escape was core's job — bands carried `alignfull` and the
+   block layout stylesheet cancelled the root gutter for them — so its inner
+   wrapper had to add *two* gutters back (`gutter * 4` on the max-width,
+   `gutter * 2` on the padding). There is no root padding to cancel here, so the
+   band escapes itself and the inner wrapper re-adds exactly one gutter. Same
+   rendered pixels, different route.
+
+   Note this rides the *wide* container, not `--container`: the design puts page
+   sections on a 1240px content box and reserves 1160px for the header and
+   footer chrome, so a band lining up with the page must match contentSize.
+
+   `100vw` counts the scrollbar, which is why `body` keeps `overflow-x: hidden` —
+   the same trade-off the decorative flourishes make. */
+.ms-band {
+	margin-inline: calc(50% - 50vw);
+	width: 100vw;
+}
+
+.ms-band__inner {
+	margin: 0 auto;
+	max-width: calc(var(--wp--custom--container-wide) + var(--wp--custom--gutter) * 2);
+	padding-inline: var(--wp--custom--gutter);
+}

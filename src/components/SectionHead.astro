@@ -1,0 +1,39 @@
+---
+import Divider from './Divider.astro';
+import Eyebrow from './Eyebrow.astro';
+
+/*
+ * The centred eyebrow / heading / lotus-divider stack that opens most
+ * sections. `close` is the tighter bottom margin the before/after and reviews
+ * blocks use.
+ */
+interface Props {
+	eyebrow?: string;
+	title: string;
+	/** Heading level — h2 unless the section genuinely opens the page. */
+	as?: 'h1' | 'h2';
+	divider?: boolean;
+	close?: boolean;
+	class?: string;
+}
+
+const {
+	eyebrow,
+	title,
+	as: Tag = 'h2',
+	divider = true,
+	close = false,
+	class: className,
+} = Astro.props;
+
+const classes = ['ms-section__head', close && 'ms-section__head--close', className]
+	.filter(Boolean)
+	.join(' ');
+---
+
+<div class={classes}>
+	{eyebrow && <Eyebrow>{eyebrow}</Eyebrow>}
+	<Tag>{title}</Tag>
+	{divider && <Divider />}
+	<slot />
+</div>

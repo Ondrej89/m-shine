@@ -1,0 +1,153 @@
+/* =========================================================================
+   Buttons and inline links
+   Lifted from section 2 of the refined style.css. The WordPress selectors
+   (`.ms-btn .wp-block-button__link`) are dropped — there are no core blocks
+   here — but every declaration is unchanged.
+   ====================================================================== */
+
+.ms-btn {
+	align-items: center;
+	background: none;
+	border: 0;
+	border-radius: var(--wp--custom--radius--md);
+	cursor: pointer;
+	display: inline-flex;
+	font-family: var(--wp--preset--font-family--mulish);
+	font-size: 15.5px;
+	font-weight: 700;
+	gap: 10px;
+	line-height: 1;
+	padding: 16px 26px;
+	text-decoration: none;
+	transition:
+		background-color 0.15s,
+		border-color 0.15s,
+		color 0.15s;
+}
+
+.ms-btn--primary {
+	background-color: var(--wp--preset--color--navy);
+	color: var(--wp--preset--color--base);
+}
+
+.ms-btn--primary:hover,
+.ms-btn--primary:focus {
+	background-color: #0d2148;
+	color: var(--wp--preset--color--base);
+}
+
+.ms-btn--ghost {
+	background-color: var(--wp--preset--color--base);
+	border: 1.5px solid var(--wp--preset--color--line-strong);
+	color: var(--wp--preset--color--navy);
+}
+
+.ms-btn--ghost:hover,
+.ms-btn--ghost:focus {
+	border-color: var(--wp--preset--color--blue);
+	color: var(--wp--preset--color--blue);
+}
+
+.ms-btn--green {
+	background-color: var(--wp--preset--color--green);
+	color: var(--wp--preset--color--base);
+}
+
+.ms-btn--green:hover,
+.ms-btn--green:focus {
+	background-color: var(--wp--preset--color--green-dark);
+	color: var(--wp--preset--color--base);
+}
+
+/* Brand blue rather than the deep navy of `--primary`. The design uses it for
+   the primary action sitting on a photo, where navy would sink into the wash. */
+.ms-btn--blue {
+	background-color: var(--wp--preset--color--blue);
+	color: var(--wp--preset--color--base);
+}
+
+.ms-btn--blue:hover,
+.ms-btn--blue:focus {
+	background-color: var(--wp--preset--color--navy-deep);
+	color: var(--wp--preset--color--base);
+}
+
+/* Reversed pair, for use on the saturated blue CTA card. */
+.ms-btn--light {
+	background-color: var(--wp--preset--color--base);
+	color: var(--wp--preset--color--blue);
+}
+
+.ms-btn--light:hover,
+.ms-btn--light:focus {
+	background-color: var(--wp--preset--color--tint-blue-soft);
+	color: var(--wp--preset--color--navy);
+}
+
+.ms-btn--outline {
+	background-color: rgba(255, 255, 255, 0.14);
+	border: 1.5px solid rgba(255, 255, 255, 0.4);
+	color: var(--wp--preset--color--base);
+}
+
+.ms-btn--outline:hover,
+.ms-btn--outline:focus {
+	background-color: rgba(255, 255, 255, 0.24);
+	border-color: rgba(255, 255, 255, 0.7);
+	color: var(--wp--preset--color--base);
+}
+
+/* The header's booking button, now the quote CTA — smaller than the body
+   buttons, and the design keeps it that way. */
+.ms-bookbtn {
+	font-size: 14.5px;
+	padding: 14px 22px;
+}
+
+/* Inline "Learn More" link with a nudging arrow. The arrow is a mask on a
+   pseudo-element so the label stays plain text. */
+.ms-learn {
+	align-items: center;
+	display: inline-flex;
+	font-size: 14px;
+	font-weight: 700;
+	gap: 7px;
+	text-decoration: none;
+}
+
+.ms-learn::after {
+	background-color: currentColor;
+	content: "";
+	height: 15px;
+	-webkit-mask-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>');
+	mask-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>');
+	-webkit-mask-repeat: no-repeat;
+	mask-repeat: no-repeat;
+	-webkit-mask-size: contain;
+	mask-size: contain;
+	transition: transform 0.2s;
+	width: 15px;
+}
+
+.ms-learn:hover::after {
+	transform: translateX(4px);
+}
+
+/* Round icon chips used across the design. */
+.ms-icon {
+	align-items: center;
+	border-radius: 50%;
+	display: inline-flex;
+	flex: none;
+	justify-content: center;
+}
+
+.ms-icon--blue {
+	background: var(--wp--preset--color--tint-blue);
+	color: var(--wp--preset--color--blue);
+}
+
+.ms-icon--green {
+	background: var(--wp--preset--color--tint-green);
+	color: var(--wp--preset--color--green);
+}

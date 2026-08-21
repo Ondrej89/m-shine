@@ -1,0 +1,33 @@
+---
+/*
+ * The lotus divider that sits under centred section headings: two hairlines
+ * with a three-petal lotus between them. Traced from the design reference —
+ * `<svg width="90" height="14" viewBox="0 0 90 14">` in Home.dc.html.
+ *
+ * Decorative, so it is hidden from assistive technology.
+ */
+interface Props {
+	class?: string;
+}
+
+const { class: className } = Astro.props;
+const classes = ['ms-divider', className].filter(Boolean).join(' ');
+---
+
+<svg
+	class={classes}
+	width="90"
+	height="14"
+	viewBox="0 0 90 14"
+	fill="none"
+	aria-hidden="true"
+	focusable="false"
+>
+	<path d="M2 7h32" stroke="#c3d3e6" stroke-width="2" stroke-linecap="round"></path>
+	<path d="M56 7h32" stroke="#c3d3e6" stroke-width="2" stroke-linecap="round"></path>
+	<g transform="translate(45 7) scale(.28)" fill="#3f7fe0">
+		<path transform="rotate(-27) scale(.9)" d="M0 0C7 -14 5 -30 0 -40C-5 -30 -7 -14 0 0Z"></path>
+		<path d="M0 0C7 -14 5 -30 0 -40C-5 -30 -7 -14 0 0Z"></path>
+		<path transform="rotate(27) scale(.9)" d="M0 0C7 -14 5 -30 0 -40C-5 -30 -7 -14 0 0Z"></path>
+	</g>
+</svg>

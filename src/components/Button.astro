@@ -1,0 +1,41 @@
+---
+import Icon, { type IconName } from './Icon.astro';
+
+/*
+ * The design's button system. Renders an `<a>` when given `href` and a
+ * `<button>` otherwise — the reference uses both and they must look identical.
+ *
+ * Trailing icons in the theme were CSS masks on a pseudo-element, so the label
+ * stayed plain editable text in the block editor. That constraint is gone, so
+ * the icon is a real inline SVG here: same result, one less indirection, and it
+ * can be any icon rather than only the two the theme hard-coded.
+ */
+export type ButtonVariant = 'primary' | 'ghost' | 'green' | 'blue' | 'light' | 'outline';
+
+interface Props {
+	variant?: ButtonVariant;
+	href?: string;
+	/** Trailing icon, drawn after the label. */
+	icon?: IconName;
+	type?: 'button' | 'submit';
+	class?: string;
+	[key: string]: unknown;
+}
+
+const {
+	variant = 'primary',
+	href,
+	icon,
+	type = 'button',
+	class: className,
+	...rest
+} = Astro.props;
+
+const classes = ['ms-btn', `ms-btn--${variant}`, className].filter(Boolean).join(' ');
+const Tag = href ? 'a' : 'button';
+---
+
+<Tag class={classes} href={href} type={href ? undefined : type} {...rest}>
+	<slot />
+	{icon && <Icon name={icon} size={16} />}
+</Tag>

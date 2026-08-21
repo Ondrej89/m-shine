@@ -1,0 +1,431 @@
+/* =========================================================================
+   Site header
+   Lifted from section 3 of the refined style.css. The WordPress core-block
+   integration rules at the end of that section are dropped — there is no
+   `wp-block-navigation` here — but every design declaration is unchanged.
+   ====================================================================== */
+
+.ms-header-wrap {
+	font-family: var(--wp--preset--font-family--mulish);
+	/* Fixed 40px, NOT the responsive gutter. The design's header keeps a 40px
+	   inset at every width — only its page sections step down to 22px and 16px.
+	   Left on the gutter, the logo drifts to 22px and then 16px from the screen
+	   edge on mobile. */
+	padding-inline: 40px;
+	position: relative;
+	width: 100%;
+	z-index: 50;
+}
+
+.ms-header {
+	align-items: center;
+	display: flex;
+	gap: 24px;
+	justify-content: space-between;
+	margin: 0 auto;
+	max-width: var(--wp--custom--container);
+	padding: 20px 0;
+}
+
+.ms-header a {
+	color: var(--wp--preset--color--navy);
+	text-decoration: none;
+}
+
+.ms-brand {
+	align-items: center;
+	display: flex;
+	flex: none;
+	gap: 11px;
+}
+
+.ms-brand__mark {
+	display: block;
+	height: 38px;
+	width: auto;
+}
+
+.ms-brand__name {
+	color: var(--wp--preset--color--navy);
+	font-family: var(--wp--preset--font-family--playfair);
+	font-size: 23px;
+	font-weight: 600;
+	letter-spacing: 0.2px;
+	line-height: 1;
+}
+
+/* On desktop the panel is transparent to layout: nav and actions become direct
+   flex children of the header. On mobile it collapses into the slide-down menu,
+   so the links exist exactly once in the document. */
+.ms-header__panel {
+	display: contents;
+}
+
+.ms-header__nav ul {
+	align-items: center;
+	display: flex;
+	gap: 30px;
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+
+.ms-header__nav a {
+	color: var(--wp--preset--color--slate);
+	display: block;
+	font-size: 15px;
+	font-weight: 600;
+	line-height: 1;
+	padding: 6px 0;
+	position: relative;
+	transition: color 0.15s;
+	white-space: nowrap;
+}
+
+.ms-header__nav a:hover,
+.ms-header__nav a:focus {
+	color: var(--wp--preset--color--blue);
+}
+
+.ms-header__nav [aria-current="page"] {
+	color: var(--wp--preset--color--blue);
+}
+
+.ms-header__nav [aria-current="page"]::after {
+	background: var(--wp--preset--color--blue);
+	border-radius: 2px;
+	bottom: -6px;
+	content: "";
+	height: 2px;
+	left: 0;
+	position: absolute;
+	right: 0;
+}
+
+.ms-header__actions {
+	align-items: center;
+	display: flex;
+	flex: none;
+	gap: 18px;
+}
+
+.ms-phone {
+	align-items: center;
+	display: flex;
+	gap: 10px;
+}
+
+.ms-phone .ms-icon {
+	height: 38px;
+	width: 38px;
+}
+
+.ms-phone__number {
+	color: var(--wp--preset--color--navy);
+	display: block;
+	font-size: 15px;
+	font-weight: 700;
+	line-height: 1.2;
+}
+
+.ms-phone__note {
+	color: var(--wp--preset--color--ink-light);
+	display: block;
+	font-size: 12px;
+	line-height: 1.2;
+}
+
+/* Wins over the navy `.ms-header a` colour above. */
+.ms-header .ms-bookbtn,
+.ms-header .ms-bookbtn:hover,
+.ms-header .ms-bookbtn:focus {
+	color: var(--wp--preset--color--base);
+}
+
+
+/* --- Language switcher ------------------------------------------------ */
+
+/* The design's switcher is a button-driven dropdown holding client state. Ours
+   holds links instead — the three languages are three real URLs, and a crawler
+   has to be able to follow them — so `.ms-lang__item` is an `<a>` and the
+   current language is marked with `aria-current` rather than an `.is-current`
+   class. Every visual declaration below is the design's. */
+
+.ms-lang {
+	position: relative;
+}
+
+.ms-lang__toggle {
+	align-items: center;
+	background: #eef3f9;
+	border: 1px solid #dbe4ef;
+	border-radius: var(--wp--custom--radius--sm);
+	color: #122a52;
+	cursor: pointer;
+	display: flex;
+	font-family: var(--wp--preset--font-family--mulish);
+	font-size: 12px;
+	font-weight: 700;
+	gap: 5px;
+	padding: 6px 9px;
+	transition: background 0.15s;
+}
+
+.ms-lang__toggle:hover {
+	background: #e2ebf6;
+}
+
+.ms-lang__toggle .ms-chevron {
+	transition: transform 0.18s;
+}
+
+.ms-lang__toggle[aria-expanded="true"] .ms-chevron {
+	transform: rotate(180deg);
+}
+
+.ms-flag-frame {
+	border: 1px solid rgba(0, 0, 0, 0.14);
+	border-radius: 3px;
+	display: block;
+	flex: none;
+	height: 14px;
+	overflow: hidden;
+	width: 20px;
+}
+
+.ms-flag {
+	display: block;
+	height: 100%;
+	width: 100%;
+}
+
+.ms-lang__menu {
+	background: var(--wp--preset--color--base);
+	border: 1px solid #e2e9f1;
+	border-radius: 11px;
+	box-shadow: 0 14px 30px rgba(15, 42, 84, 0.14);
+	display: none;
+	list-style: none;
+	margin: 0;
+	min-width: 120px;
+	padding: 5px;
+	position: absolute;
+	right: 0;
+	top: calc(100% + 8px);
+	z-index: 60;
+}
+
+.ms-lang.is-open .ms-lang__menu {
+	display: block;
+}
+
+.ms-lang__item {
+	align-items: center;
+	border-radius: var(--wp--custom--radius--sm);
+	color: var(--wp--preset--color--slate);
+	display: flex;
+	font-size: 13px;
+	font-weight: 700;
+	gap: 9px;
+	padding: 8px 10px;
+	text-decoration: none;
+	transition: background 0.12s;
+	width: 100%;
+}
+
+.ms-lang__item:hover,
+.ms-lang__item:focus {
+	background: #f2f6fd;
+	color: var(--wp--preset--color--slate);
+}
+
+.ms-lang__item[aria-current="true"] {
+	background: #f2f6fd;
+}
+
+.ms-lang__check {
+	color: var(--wp--preset--color--green);
+	margin-left: auto;
+}
+
+
+/* --- Burger + mobile panel ------------------------------------------- */
+
+.ms-burger {
+	align-items: center;
+	background: var(--wp--preset--color--navy);
+	border: none;
+	border-radius: 9px;
+	color: var(--wp--preset--color--base);
+	cursor: pointer;
+	display: none;
+	height: 44px;
+	justify-content: center;
+	padding: 0;
+	width: 44px;
+}
+
+/* The design drops both header extras here, so from tablet down the bar is
+   logo + nav only. See `SiteHeader.dc.html`:
+   `@media(max-width:1100px){.msh-phone{display:none}.msh-bookbtn{display:none}}` */
+@media (max-width: 1100px) {
+	.ms-phone,
+	/* Qualified `a.` to beat `a.ms-btn { display: inline-flex }` (0,1,1) from the
+	   button system — a bare `.ms-bookbtn` (0,1,0) loses to it and the button
+	   stays on screen right through the iPad range while `.ms-phone`, which has
+	   no `a.`-qualified rule, hides correctly from the very same declaration.
+	   Deliberately NOT `.ms-header a.ms-bookbtn` (0,2,1): that would also outrank
+	   `.ms-header__panel .ms-bookbtn` (0,2,0) below and take the button out of
+	   the open burger menu, where the design keeps it. */
+	a.ms-bookbtn {
+		display: none;
+	}
+}
+
+@media (max-width: 900px) {
+	.ms-burger {
+		display: flex;
+	}
+
+	.ms-header {
+		position: relative;
+	}
+
+	.ms-header__panel {
+		background: var(--wp--preset--color--base);
+		display: block;
+		left: calc(var(--wp--custom--gutter) * -1);
+		max-height: 0;
+		overflow: hidden;
+		position: absolute;
+		right: calc(var(--wp--custom--gutter) * -1);
+		top: 100%;
+		transition: max-height 0.28s ease;
+		z-index: 60;
+	}
+
+	.ms-header-wrap.is-open .ms-header__panel {
+		max-height: 620px;
+	}
+
+	.ms-header__nav {
+		padding: 8px var(--wp--custom--gutter) 0;
+	}
+
+	.ms-header__nav ul {
+		display: block;
+	}
+
+	.ms-header__nav li {
+		border-bottom: 1px solid #eef3f8;
+	}
+
+	.ms-header__nav li:last-child {
+		border-bottom: none;
+	}
+
+	.ms-header__nav a {
+		color: var(--wp--preset--color--slate);
+		font-weight: 600;
+		padding: 13px 0;
+	}
+
+	.ms-header__nav [aria-current="page"]::after {
+		display: none;
+	}
+
+	.ms-header__actions {
+		align-items: stretch;
+		display: flex;
+		flex-direction: column;
+		gap: 16px;
+		padding: 16px var(--wp--custom--gutter) 20px;
+	}
+
+	.ms-header__panel .ms-bookbtn {
+		display: flex;
+		justify-content: center;
+		order: 2;
+		padding: 14px;
+	}
+
+	.ms-lang {
+		order: 1;
+	}
+
+	.ms-lang__toggle {
+		display: none;
+	}
+
+	/* Collapsed: the dropdown becomes a segmented row of flags, always visible.
+	   `display: flex` here also overrides the `.ms-lang__menu { display: none }`
+	   default, which is what makes the row survive without the toggle. */
+	.ms-lang__menu {
+		border: none;
+		box-shadow: none;
+		display: flex;
+		gap: 8px;
+		padding: 0;
+		position: static;
+	}
+
+	.ms-lang__menu li {
+		flex: 1;
+	}
+
+	.ms-lang__item {
+		background: transparent;
+		border: 1px solid #dbe4ef;
+		justify-content: center;
+		padding: 10px 0;
+	}
+
+	.ms-lang__item[aria-current="true"] {
+		border-color: var(--wp--preset--color--blue);
+	}
+
+	.ms-lang__label,
+	.ms-lang__check {
+		display: none;
+	}
+}
+
+/* --- Without JavaScript ------------------------------------------------ */
+
+/* Both collapsing behaviours — the burger panel and the language dropdown —
+   need a script to open them. `no-js` is set on <html> in BaseLayout and
+   removed by an inline script before first paint, so this only ever applies
+   when scripting is genuinely off. In that case both simply stay open: the
+   links are all in the document already, they just are not hidden behind a
+   control nothing can operate. */
+
+:root.no-js .ms-lang__toggle {
+	display: none;
+}
+
+:root.no-js .ms-lang__menu {
+	border: none;
+	box-shadow: none;
+	display: flex;
+	gap: 8px;
+	padding: 0;
+	position: static;
+}
+
+:root.no-js .ms-lang__item {
+	border: 1px solid #dbe4ef;
+	justify-content: center;
+}
+
+@media (max-width: 900px) {
+	:root.no-js .ms-header__panel {
+		left: auto;
+		max-height: none;
+		position: static;
+		right: auto;
+	}
+
+	:root.no-js .ms-burger {
+		display: none;
+	}
+}
