@@ -1,0 +1,35 @@
+{
+  "site": {
+    "name": "Magic Shine",
+    "tagline": "Reinigung nach Maß"
+  },
+  "a11y": {
+    "skipToContent": "Zum Inhalt springen",
+    "languageLabel": "Sprache",
+    "currentLanguage": "Aktuelle Sprache"
+  },
+  "nav": {
+    "home": "Startseite",
+    "services": "Leistungen",
+    "pricing": "Preise",
+    "about": "Über uns",
+    "contact": "Kontakt",
+    "quote": "Angebot anfordern"
+  },
+  "meta": {
+    "home": {
+      "title": "Reinigungsfirma in Wien",
+      "description": "Professionelle Wohnungs-, Haus- und Umzugsreinigung in Wien. Versichert, zuverlässig und mit umweltfreundlichen Mitteln. Jetzt kostenloses Angebot anfordern."
+    }
+  },
+  "home": {
+    "eyebrow": "Reinigungsservice in Wien",
+    "title": "Ein makellos sauberes Zuhause – ganz ohne Aufwand",
+    "lede": "Magic Shine ist Ihr Reinigungspartner in Wien. Geschulte Teams, geprüfte Qualität und ein Angebot, das genau zu Ihrem Zuhause passt.",
+    "ctaPrimary": "Kostenloses Angebot",
+    "ctaSecondary": "Leistungen ansehen"
+  },
+  "footer": {
+    "rights": "Alle Rechte vorbehalten."
+  }
+}

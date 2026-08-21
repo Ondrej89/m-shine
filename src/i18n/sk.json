@@ -1,0 +1,35 @@
+{
+  "site": {
+    "name": "Magic Shine",
+    "tagline": "Upratovanie na mieru"
+  },
+  "a11y": {
+    "skipToContent": "Preskočiť na obsah",
+    "languageLabel": "Jazyk",
+    "currentLanguage": "Aktuálny jazyk"
+  },
+  "nav": {
+    "home": "Domov",
+    "services": "Služby",
+    "pricing": "Cenník",
+    "about": "O nás",
+    "contact": "Kontakt",
+    "quote": "Vyžiadať ponuku"
+  },
+  "meta": {
+    "home": {
+      "title": "Upratovacia firma vo Viedni",
+      "description": "Profesionálne upratovanie bytov, domov a po sťahovaní vo Viedni. Poistené, spoľahlivé a šetrné k životnému prostrediu. Vyžiadajte si bezplatnú cenovú ponuku."
+    }
+  },
+  "home": {
+    "eyebrow": "Upratovacie služby vo Viedni",
+    "title": "Dokonale čistý domov bez námahy",
+    "lede": "Magic Shine je váš upratovací partner vo Viedni. Školené tímy, overená kvalita a ponuka na mieru vášmu domovu.",
+    "ctaPrimary": "Bezplatná ponuka",
+    "ctaSecondary": "Pozrieť služby"
+  },
+  "footer": {
+    "rights": "Všetky práva vyhradené."
+  }
+}

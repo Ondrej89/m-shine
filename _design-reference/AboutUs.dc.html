@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,500&family=Mulish:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<script src="image-slot.js"></script>
+<style>:root{--brand-green:#5DBB63;--brand-green-dark:#35843d}
+*{box-sizing:border-box}
+html,body{margin:0;background:#b6d0e2;overflow-x:hidden;max-width:100%}
+.pg{font-family:Mulish,sans-serif;color:#3f4d66}
+.pg a{color:#1c47a0;text-decoration:none}
+.pg a:hover{color:#122a52}
+.eyebrow{font-weight:700;font-size:12px;letter-spacing:1.8px;text-transform:uppercase;color:var(--brand-green)}
+.h2{font-family:'Playfair Display',serif;font-weight:600;color:#122a52;letter-spacing:.2px}
+.btn-primary:hover{background:#0d2148 !important}
+.mvv:hover{background:rgba(255,255,255,.05)}
+@media(max-width:820px){.rev3{grid-template-columns:1fr !important}}
+@media(max-width:960px){.about-hero,.story-grid{grid-template-columns:1fr !important}.mvv-band{grid-template-columns:1fr !important}}
+@media(max-width:720px){.pg section{padding-left:22px !important;padding-right:22px !important}.h2{font-size:30px !important}.about-hero h1{font-size:40px !important}}
+@media(max-width:480px){.pg section{padding-left:16px !important;padding-right:16px !important}.h2{font-size:26px !important}.about-hero h1{font-size:32px !important}.about-hero div[style*="grid-template-columns:1fr 1fr"]{grid-template-columns:1fr !important}}
+@media(max-width:600px){.wm{display:none !important}}
+</style>
+</helmet>
+<div class="pg">
+<dc-import name="SiteHeader" active="about" hint-size="100%,92px"></dc-import>
+
+<section style="position:relative;background:transparent;padding:40px 40px 70px">
+  <img src="wm-about-band.svg" alt="" aria-hidden="true" class="wm" style="position:absolute;left:40px;bottom:-40px;width:700px;height:auto;opacity:.85;pointer-events:none;user-select:none;z-index:0"/>
+  <div class="about-hero" style="position:relative;max-width:1240px;margin:0 auto;display:grid;grid-template-columns:1fr 1.05fr;gap:56px;align-items:center">
+    <div>
+      <span class="eyebrow">About Magic Shine</span>
+      <h1 class="h2" style="font-size:52px;margin:14px 0 20px">About Us</h1>
+      <p style="font-size:16.5px;line-height:1.7;color:#4f5d75;margin:0 0 26px;max-width:480px">We are a professional cleaning company dedicated to providing exceptional service with a personal touch. Our trained cleaners care for your home like their own — with reliability, honesty, and an eye for detail.</p>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px 26px;margin-bottom:32px">
+        <div style="display:flex;align-items:center;gap:11px"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#5DBB63" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><path d="M8 12l3 3 5-6"></path></svg><span style="font-size:14.5px;font-weight:600;color:#2a3a56">Experienced &amp; Trusted Cleaners</span></div>
+        <div style="display:flex;align-items:center;gap:11px"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#5DBB63" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><path d="M8 12l3 3 5-6"></path></svg><span style="font-size:14.5px;font-weight:600;color:#2a3a56">Eco-Friendly Cleaning Products</span></div>
+        <div style="display:flex;align-items:center;gap:11px"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#5DBB63" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><path d="M8 12l3 3 5-6"></path></svg><span style="font-size:14.5px;font-weight:600;color:#2a3a56">Satisfaction Guaranteed</span></div>
+        <div style="display:flex;align-items:center;gap:11px"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#5DBB63" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><path d="M8 12l3 3 5-6"></path></svg><span style="font-size:14.5px;font-weight:600;color:#2a3a56">Flexible &amp; Reliable Service</span></div>
+      </div>
+      <a class="btn-primary" href="Booking.dc.html" style="display:inline-flex;align-items:center;gap:10px;background:#122a52;color:#fff;font-weight:700;font-size:15px;padding:15px 26px;border-radius:10px">Book Your Cleaning<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a>
+    </div>
+    <div style="border-radius:20px;overflow:hidden;height:440px;box-shadow:0 24px 60px rgba(15,42,84,.16)"><image-slot id="about-team" src="slots/about-team.webp" shape="rect" placeholder="Cleaning team photo"></image-slot></div>
+  </div>
+</section>
+
+<section style="background:#0e2a54;padding:0;position:relative;z-index:1">
+  <div class="mvv-band" style="max-width:1240px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr 1fr">
+    <div class="mvv" style="padding:48px 44px;border-right:1px solid rgba(255,255,255,.1)">
+      <span style="width:54px;height:54px;border-radius:50%;border:1.5px solid rgba(255,255,255,.28);display:flex;align-items:center;justify-content:center;margin-bottom:20px"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#bcd2f0" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><circle cx="12" cy="12" r="6"></circle><circle cx="12" cy="12" r="2"></circle></svg></span>
+      <h3 style="font-family:'Playfair Display',serif;font-weight:600;font-size:22px;color:#fff;margin:0 0 12px">Our Mission</h3>
+      <p style="font-size:14.5px;line-height:1.7;color:#b8c6de;margin:0">To deliver outstanding cleaning services that improve lives and give our clients back their time.</p>
+    </div>
+    <div class="mvv" style="padding:48px 44px;border-right:1px solid rgba(255,255,255,.1)">
+      <span style="width:54px;height:54px;border-radius:50%;border:1.5px solid rgba(255,255,255,.28);display:flex;align-items:center;justify-content:center;margin-bottom:20px"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#bcd2f0" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg></span>
+      <h3 style="font-family:'Playfair Display',serif;font-weight:600;font-size:22px;color:#fff;margin:0 0 12px">Our Vision</h3>
+      <p style="font-size:14.5px;line-height:1.7;color:#b8c6de;margin:0">To become the most trusted cleaning service in our community, known for quality and care.</p>
+    </div>
+    <div class="mvv" style="padding:48px 44px">
+      <span style="width:54px;height:54px;border-radius:50%;border:1.5px solid rgba(255,255,255,.28);display:flex;align-items:center;justify-content:center;margin-bottom:20px"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#bcd2f0" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l2.9 6.26 6.6.55-5 4.32 1.5 6.45L12 16.9l-6 3.53 1.5-6.45-5-4.32 6.6-.55z"></path></svg></span>
+      <h3 style="font-family:'Playfair Display',serif;font-weight:600;font-size:22px;color:#fff;margin:0 0 12px">Our Values</h3>
+      <p style="font-size:14.5px;line-height:1.7;color:#b8c6de;margin:0">Integrity, reliability, quality, and genuine care in every detail of every job we do.</p>
+    </div>
+  </div>
+</section>
+
+<section style="background:transparent;padding:80px 40px">
+  <div class="story-grid" style="max-width:1240px;margin:0 auto;display:grid;grid-template-columns:1.05fr 1fr;gap:56px;align-items:center">
+    <div style="border-radius:20px;overflow:hidden;height:400px;box-shadow:0 20px 50px rgba(15,42,84,.14)"><image-slot id="about-story" src="slots/about-story.webp" shape="rect" placeholder="Founder / at-work photo"></image-slot></div>
+    <div>
+      <span class="eyebrow">Our Story</span>
+      <h2 class="h2" style="font-size:34px;margin:14px 0 18px;line-height:1.15">Built on Trust,<br>One Home at a Time</h2>
+      <p style="font-size:15.5px;line-height:1.75;color:#4f5d75;margin:0 0 18px">Magic Shine started with a simple belief: everyone deserves to come home to a space that feels calm and cared for. What began as a one-person passion for spotless homes has grown into a service families rely on week after week.</p>
+      <p style="font-size:15.5px;line-height:1.75;color:#4f5d75;margin:0 0 26px">We treat every home with respect, show up when we say we will, and never cut corners. That's the promise behind every clean.</p>
+      <div style="display:flex;gap:40px">
+        <div><b style="display:block;font-family:'Playfair Display',serif;font-size:34px;color:#122a52">10,000+</b><span style="font-size:13.5px;color:#6a7890">Homes Cleaned</span></div>
+        <div><b style="display:block;font-family:'Playfair Display',serif;font-size:34px;color:#122a52">4.9★</b><span style="font-size:13.5px;color:#6a7890">Average Rating</span></div>
+        <div><b style="display:block;font-family:'Playfair Display',serif;font-size:34px;color:#122a52">98%</b><span style="font-size:13.5px;color:#6a7890">Repeat Clients</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section style="background:#0e2a54;padding:64px 40px">
+  <div style="max-width:1240px;margin:0 auto">
+    <div style="text-align:center;margin-bottom:36px"><span style="font-weight:700;font-size:12px;letter-spacing:1.8px;text-transform:uppercase;color:var(--brand-green)">What Our Clients Say</span><h2 style="font-family:'Playfair Display',serif;font-weight:600;font-size:32px;color:#fff;margin:12px 0 0">Trusted by Families &amp; Homeowners</h2></div>
+    <div class="rev3" style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:22px">
+      <div style="background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:14px;padding:24px"><div style="color:var(--brand-green);letter-spacing:2px;margin-bottom:12px">★★★★★</div><p style="font-size:14px;line-height:1.65;color:#dbe6f5;margin:0 0 18px">"Magic Shine has been a game changer for our family. Our home has never been cleaner!"</p><div style="display:flex;align-items:center;gap:11px"><span style="width:40px;height:40px;border-radius:50%;overflow:hidden;flex:none"><image-slot id="about-rev1" shape="circle" placeholder=""></image-slot></span><span><b style="display:block;font-size:13.5px;color:#fff">Jessica M.</b><span style="font-size:12px;color:#9fb2d0">Homeowner</span></span></div></div>
+      <div style="background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:14px;padding:24px"><div style="color:var(--brand-green);letter-spacing:2px;margin-bottom:12px">★★★★★</div><p style="font-size:14px;line-height:1.65;color:#dbe6f5;margin:0 0 18px">"Professional, reliable, and detail-oriented. The team is amazing — highly recommend!"</p><div style="display:flex;align-items:center;gap:11px"><span style="width:40px;height:40px;border-radius:50%;overflow:hidden;flex:none"><image-slot id="about-rev2" shape="circle" placeholder=""></image-slot></span><span><b style="display:block;font-size:13.5px;color:#fff">David R.</b><span style="font-size:12px;color:#9fb2d0">Property Manager</span></span></div></div>
+      <div style="background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:14px;padding:24px"><div style="color:var(--brand-green);letter-spacing:2px;margin-bottom:12px">★★★★★</div><p style="font-size:14px;line-height:1.65;color:#dbe6f5;margin:0 0 18px">"Great service and such attention to detail. My home always feels brand new after."</p><div style="display:flex;align-items:center;gap:11px"><span style="width:40px;height:40px;border-radius:50%;overflow:hidden;flex:none"><image-slot id="about-rev3" shape="circle" placeholder=""></image-slot></span><span><b style="display:block;font-size:13.5px;color:#fff">Emily W.</b><span style="font-size:12px;color:#9fb2d0">Airbnb Host</span></span></div></div>
+    </div>
+  </div>
+</section>
+
+<section style="background:transparent;padding:56px 40px 80px">
+  <div style="max-width:1240px;margin:0 auto;background:linear-gradient(120deg,#1c47a0 0%,#2a5fc0 100%);border-radius:22px;padding:52px;text-align:center">
+    <h2 style="font-family:'Playfair Display',serif;font-weight:600;font-size:32px;color:#fff;margin:0 0 12px">Ready to Experience the Difference?</h2>
+    <p style="font-size:15.5px;color:#d5e2f5;margin:0 0 26px">Join thousands of happy homeowners who trust Magic Shine.</p>
+    <div style="display:flex;gap:14px;justify-content:center;flex-wrap:wrap">
+      <a href="Booking.dc.html" style="display:inline-flex;align-items:center;gap:9px;background:#fff;color:#1c47a0;font-weight:700;font-size:15px;padding:15px 28px;border-radius:10px">Book Now<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#1c47a0" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a>
+      <a href="Contact.dc.html" style="display:inline-flex;align-items:center;gap:9px;background:rgba(255,255,255,.14);color:#fff;font-weight:700;font-size:15px;padding:15px 28px;border-radius:10px;border:1.5px solid rgba(255,255,255,.4)">Get Instant Quote</a>
+    </div>
+  </div>
+</section>
+
+<dc-import name="SiteFooter" hint-size="100%,420px"></dc-import>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1240,&quot;height&quot;:900}}"></script>
+</body>
+</html>

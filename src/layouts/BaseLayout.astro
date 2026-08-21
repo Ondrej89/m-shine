@@ -1,0 +1,84 @@
+---
+import { LOCALE_META, type Locale } from '../i18n/config';
+import { alternates, localizedPath, type RouteId } from '../i18n/routes';
+import { useTranslations } from '../i18n/ui';
+import '../styles/global.css';
+
+interface Props {
+	locale: Locale;
+	/** Which page this is — drives canonical, hreflang and the switcher. */
+	route: RouteId;
+	title: string;
+	description: string;
+}
+
+const { locale, route, title, description } = Astro.props;
+const t = useTranslations(locale);
+const meta = LOCALE_META[locale];
+
+const site = Astro.site!;
+const canonical = new URL(localizedPath(locale, route), site).href;
+
+/*
+ * hreflang. Three rules matter and all three are easy to get wrong:
+ *   1. URLs must be absolute — a relative href is ignored outright.
+ *   2. The set must be reciprocal and must include a self-reference, so every
+ *      page in the cluster lists all of them, itself included.
+ *   3. `x-default` points at German. Vienna is the market, so an unmatched
+ *      searcher should land on the Austrian page, not the English one.
+ * German emits both `de-AT` (region-targeted, the one that matters here) and a
+ * bare `de` so German speakers outside Austria stay inside the cluster.
+ */
+const hreflangLinks = alternates(route).flatMap(({ locale: alt, path }) =>
+	LOCALE_META[alt].hreflang.map((tag) => ({ tag, href: new URL(path, site).href })),
+);
+const xDefault = new URL(localizedPath('de', route), site).href;
+---
+
+<!doctype html>
+<html lang={meta.lang} dir={meta.dir}>
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+
+		<title>{title}</title>
+		<meta name="description" content={description} />
+		<link rel="canonical" href={canonical} />
+
+		{hreflangLinks.map(({ tag, href }) => <link rel="alternate" hreflang={tag} href={href} />)}
+		<link rel="alternate" hreflang="x-default" href={xDefault} />
+
+		<meta property="og:type" content="website" />
+		<meta property="og:site_name" content={t('site.name')} />
+		<meta property="og:locale" content={meta.ogLocale} />
+		{
+			alternates(route)
+				.filter(({ locale: alt }) => alt !== locale)
+				.map(({ locale: alt }) => (
+					<meta property="og:locale:alternate" content={LOCALE_META[alt].ogLocale} />
+				))
+		}
+		<meta property="og:title" content={title} />
+		<meta property="og:description" content={description} />
+		<meta property="og:url" content={canonical} />
+
+		{/* The two faces above the fold. Preloading them removes the swap flash
+		    on the hero heading, which is the page's LCP element. */}
+		<link
+			rel="preload"
+			href="/fonts/playfair-display-latin.woff2"
+			as="font"
+			type="font/woff2"
+			crossorigin
+		/>
+		<link rel="preload" href="/fonts/mulish-latin.woff2" as="font" type="font/woff2" crossorigin />
+
+		<slot name="head" />
+	</head>
+
+	<body>
+		<a class="screen-reader-text" href="#main">{t('a11y.skipToContent')}</a>
+		<slot />
+	</body>
+</html>

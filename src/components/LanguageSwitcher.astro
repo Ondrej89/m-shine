@@ -1,0 +1,88 @@
+---
+import { LOCALE_META, LOCALES, type Locale } from '../i18n/config';
+import { localizedPath, type RouteId } from '../i18n/routes';
+import { useTranslations } from '../i18n/ui';
+
+interface Props {
+	locale: Locale;
+	route: RouteId;
+}
+
+const { locale, route } = Astro.props;
+const t = useTranslations(locale);
+
+/*
+ * The switcher links to the *same page* in the other language, never to that
+ * language's home page. It can do that because `localizedPath` resolves the
+ * route id per locale, so once slugs diverge (`/leistungen/` vs `/services/`)
+ * this keeps working with no change here.
+ *
+ * Plain links, no JavaScript: crawlable, and it works before hydration.
+ * `hreflang` on each link tells a crawler what it is pointing at.
+ */
+const options = LOCALES.map((code) => ({
+	...LOCALE_META[code],
+	href: localizedPath(code, route),
+	isCurrent: code === locale,
+}));
+---
+
+<nav class="ms-lang" aria-label={t('a11y.languageLabel')}>
+	<ul class="ms-lang__list">
+		{
+			options.map((option) => (
+				<li>
+					<a
+						class="ms-lang__link"
+						href={option.href}
+						hreflang={option.lang}
+						lang={option.lang}
+						aria-current={option.isCurrent ? 'true' : undefined}
+					>
+						<span aria-hidden="true">{option.short}</span>
+						<span class="screen-reader-text">{option.label}</span>
+					</a>
+				</li>
+			))
+		}
+	</ul>
+</nav>
+
+<style>
+	.ms-lang__list {
+		align-items: center;
+		display: flex;
+		gap: 2px;
+		list-style: none;
+		margin: 0;
+		padding: 0;
+	}
+
+	.ms-lang__link {
+		border-radius: var(--ms-radius-sm);
+		color: var(--ms-color-ink-light);
+		display: block;
+		font-family: var(--ms-font-body);
+		font-size: 13px;
+		font-weight: 700;
+		letter-spacing: 0.6px;
+		line-height: 1;
+		padding: 7px 9px;
+		transition:
+			background-color 0.15s,
+			color 0.15s;
+	}
+
+	.ms-lang__link:hover,
+	.ms-lang__link:focus-visible {
+		background-color: var(--ms-color-tint-blue-soft);
+		color: var(--ms-color-blue);
+	}
+
+	/* The active language stays a link to its own URL — that self-reference is
+	   what makes the set reciprocal for crawlers — but reads as selected. */
+	.ms-lang__link[aria-current='true'] {
+		background-color: var(--ms-color-navy);
+		color: var(--ms-color-base);
+	}
+</style>

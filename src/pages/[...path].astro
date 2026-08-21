@@ -1,0 +1,35 @@
+---
+/*
+ * The site's single route.
+ *
+ * Every page exists once, as a component in `src/content-pages/`, and is
+ * rendered here for all three languages. `allRoutePaths()` expands the route
+ * registry into one static path per (page x language) pair, so adding a page
+ * means adding an entry to `src/i18n/routes.ts` and a component to the map
+ * below — never writing the same page three times.
+ *
+ * German is the default locale and is not prefixed, so its `path` param is
+ * `undefined` and Astro emits `/`. English and Slovak get `/en/…` and `/sk/…`.
+ */
+import type { Locale } from '../i18n/config';
+import { allRoutePaths, type RouteId } from '../i18n/routes';
+import Home from '../content-pages/Home.astro';
+
+export function getStaticPaths() {
+	return allRoutePaths();
+}
+
+const PAGES = {
+	home: Home,
+} satisfies Record<RouteId, unknown>;
+
+interface Props {
+	locale: Locale;
+	route: RouteId;
+}
+
+const { locale, route } = Astro.props;
+const Page = PAGES[route] as (typeof PAGES)[RouteId];
+---
+
+<Page locale={locale} route={route} />

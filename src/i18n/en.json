@@ -1,0 +1,35 @@
+{
+  "site": {
+    "name": "Magic Shine",
+    "tagline": "Tailored Cleaning"
+  },
+  "a11y": {
+    "skipToContent": "Skip to content",
+    "languageLabel": "Language",
+    "currentLanguage": "Current language"
+  },
+  "nav": {
+    "home": "Home",
+    "services": "Services",
+    "pricing": "Pricing",
+    "about": "About Us",
+    "contact": "Contact",
+    "quote": "Request a Quote"
+  },
+  "meta": {
+    "home": {
+      "title": "Cleaning Company in Vienna",
+      "description": "Professional apartment, house and move-out cleaning in Vienna. Insured, reliable and eco-friendly. Request your free quote today."
+    }
+  },
+  "home": {
+    "eyebrow": "Cleaning Services in Vienna",
+    "title": "A spotless home, without lifting a finger",
+    "lede": "Magic Shine is your cleaning partner in Vienna. Trained teams, checked quality, and a quote tailored to your home.",
+    "ctaPrimary": "Get a Free Quote",
+    "ctaSecondary": "See Our Services"
+  },
+  "footer": {
+    "rights": "All rights reserved."
+  }
+}

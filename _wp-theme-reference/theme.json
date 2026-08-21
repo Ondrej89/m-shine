@@ -1,0 +1,780 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/theme.json",
+	"version": 3,
+	"settings": {
+		"appearanceTools": true,
+		"useRootPaddingAwareAlignments": true,
+		"layout": {
+			"contentSize": "1240px",
+			"wideSize": "1240px"
+		},
+		"color": {
+			"defaultPalette": false,
+			"defaultGradients": false,
+			"defaultDuotone": false,
+			"palette": [
+				{
+					"slug": "base",
+					"color": "#ffffff",
+					"name": "White"
+				},
+				{
+					"slug": "sky",
+					"color": "#b6d0e2",
+					"name": "Sky Blue (page background)"
+				},
+				{
+					"slug": "navy",
+					"color": "#122a52",
+					"name": "Brand Navy"
+				},
+				{
+					"slug": "navy-deep",
+					"color": "#0c2650",
+					"name": "Deep Navy"
+				},
+				{
+					"slug": "blue",
+					"color": "#1c47a0",
+					"name": "Brand Blue"
+				},
+				{
+					"slug": "blue-bright",
+					"color": "#3f7fe0",
+					"name": "Bright Blue"
+				},
+				{
+					"slug": "green",
+					"color": "#5dbb63",
+					"name": "Brand Green"
+				},
+				{
+					"slug": "green-dark",
+					"color": "#35843d",
+					"name": "Brand Green Dark"
+				},
+				{
+					"slug": "gold",
+					"color": "#f2b636",
+					"name": "Star Gold"
+				},
+				{
+					"slug": "ink",
+					"color": "#3f4d66",
+					"name": "Body Text"
+				},
+				{
+					"slug": "ink-soft",
+					"color": "#4f5d75",
+					"name": "Body Text Soft"
+				},
+				{
+					"slug": "ink-muted",
+					"color": "#5f6d84",
+					"name": "Body Text Muted"
+				},
+				{
+					"slug": "ink-light",
+					"color": "#6a7890",
+					"name": "Body Text Light"
+				},
+				{
+					"slug": "slate",
+					"color": "#2a3a56",
+					"name": "Slate (navigation)"
+				},
+				{
+					"slug": "line",
+					"color": "#e9eff6",
+					"name": "Hairline"
+				},
+				{
+					"slug": "line-strong",
+					"color": "#cdd9e8",
+					"name": "Hairline Strong"
+				},
+				{
+					"slug": "tint-blue",
+					"color": "#dbe7f7",
+					"name": "Blue Tint"
+				},
+				{
+					"slug": "tint-blue-soft",
+					"color": "#eaf1fb",
+					"name": "Blue Tint Soft"
+				},
+				{
+					"slug": "tint-green",
+					"color": "#e0efe0",
+					"name": "Green Tint"
+				},
+				{
+					"slug": "footer-text",
+					"color": "#a9bad4",
+					"name": "Footer Text"
+				}
+			],
+			"gradients": [
+				{
+					"slug": "cta-band",
+					"gradient": "linear-gradient(120deg, #0e2a54 0%, #163a72 100%)",
+					"name": "CTA Band"
+				},
+				{
+					"slug": "cta-bright",
+					"gradient": "linear-gradient(120deg, #1c47a0 0%, #2a5fc0 100%)",
+					"name": "CTA Band Bright"
+				}
+			]
+		},
+		"typography": {
+			"defaultFontSizes": false,
+			"fluid": true,
+			"writingMode": true,
+			"fontFamilies": [
+				{
+					"slug": "playfair",
+					"name": "Playfair Display",
+					"fontFamily": "\"Playfair Display\", Georgia, \"Times New Roman\", serif",
+					"fontFace": [
+						{
+							"fontFamily": "Playfair Display",
+							"fontStyle": "normal",
+							"fontWeight": "400",
+							"fontDisplay": "swap",
+							"unicodeRange": "U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116",
+							"src": [
+								"file:./assets/fonts/playfair-display-400-cyrillic.woff2"
+							]
+						},
+						{
+							"fontFamily": "Playfair Display",
+							"fontStyle": "normal",
+							"fontWeight": "400",
+							"fontDisplay": "swap",
+							"unicodeRange": "U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF",
+							"src": [
+								"file:./assets/fonts/playfair-display-400-latin-ext.woff2"
+							]
+						},
+						{
+							"fontFamily": "Playfair Display",
+							"fontStyle": "normal",
+							"fontWeight": "400",
+							"fontDisplay": "swap",
+							"unicodeRange": "U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD",
+							"src": [
+								"file:./assets/fonts/playfair-display-400-latin.woff2"
+							]
+						},
+						{
+							"fontFamily": "Playfair Display",
+							"fontStyle": "normal",
+							"fontWeight": "500",
+							"fontDisplay": "swap",
+							"unicodeRange": "U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116",
+							"src": [
+								"file:./assets/fonts/playfair-display-500-cyrillic.woff2"
+							]
+						},
+						{
+							"fontFamily": "Playfair Display",
+							"fontStyle": "normal",
+							"fontWeight": "500",
+							"fontDisplay": "swap",
+							"unicodeRange": "U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF",
+							"src": [
+								"file:./assets/fonts/playfair-display-500-latin-ext.woff2"
+							]
+						},
+						{
+							"fontFamily": "Playfair Display",
+							"fontStyle": "normal",
+							"fontWeight": "500",
+							"fontDisplay": "swap",
+							"unicodeRange": "U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD",
+							"src": [
+								"file:./assets/fonts/playfair-display-500-latin.woff2"
+							]
+						},
+						{
+							"fontFamily": "Playfair Display",
+							"fontStyle": "normal",
+							"fontWeight": "600",
+							"fontDisplay": "swap",
+							"unicodeRange": "U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116",
+							"src": [
+								"file:./assets/fonts/playfair-display-600-cyrillic.woff2"
+							]
+						},
+						{
+							"fontFamily": "Playfair Display",
+							"fontStyle": "normal",
+							"fontWeight": "600",
+							"fontDisplay": "swap",
+							"unicodeRange": "U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF",
+							"src": [
+								"file:./assets/fonts/playfair-display-600-latin-ext.woff2"
+							]
+						},
+						{
+							"fontFamily": "Playfair Display",
+							"fontStyle": "normal",
+							"fontWeight": "600",
+							"fontDisplay": "swap",
+							"unicodeRange": "U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD",
+							"src": [
+								"file:./assets/fonts/playfair-display-600-latin.woff2"
+							]
+						},
+						{
+							"fontFamily": "Playfair Display",
+							"fontStyle": "normal",
+							"fontWeight": "700",
+							"fontDisplay": "swap",
+							"unicodeRange": "U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116",
+							"src": [
+								"file:./assets/fonts/playfair-display-700-cyrillic.woff2"
+							]
+						},
+						{
+							"fontFamily": "Playfair Display",
+							"fontStyle": "normal",
+							"fontWeight": "700",
+							"fontDisplay": "swap",
+							"unicodeRange": "U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF",
+							"src": [
+								"file:./assets/fonts/playfair-display-700-latin-ext.woff2"
+							]
+						},
+						{
+							"fontFamily": "Playfair Display",
+							"fontStyle": "normal",
+							"fontWeight": "700",
+							"fontDisplay": "swap",
+							"unicodeRange": "U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD",
+							"src": [
+								"file:./assets/fonts/playfair-display-700-latin.woff2"
+							]
+						}
+					]
+				},
+				{
+					"slug": "mulish",
+					"name": "Mulish",
+					"fontFamily": "Mulish, -apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, Helvetica, Arial, sans-serif",
+					"fontFace": [
+						{
+							"fontFamily": "Mulish",
+							"fontStyle": "normal",
+							"fontWeight": "300",
+							"fontDisplay": "swap",
+							"unicodeRange": "U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116",
+							"src": [
+								"file:./assets/fonts/mulish-300-cyrillic.woff2"
+							]
+						},
+						{
+							"fontFamily": "Mulish",
+							"fontStyle": "normal",
+							"fontWeight": "300",
+							"fontDisplay": "swap",
+							"unicodeRange": "U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF",
+							"src": [
+								"file:./assets/fonts/mulish-300-latin-ext.woff2"
+							]
+						},
+						{
+							"fontFamily": "Mulish",
+							"fontStyle": "normal",
+							"fontWeight": "300",
+							"fontDisplay": "swap",
+							"unicodeRange": "U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD",
+							"src": [
+								"file:./assets/fonts/mulish-300-latin.woff2"
+							]
+						},
+						{
+							"fontFamily": "Mulish",
+							"fontStyle": "normal",
+							"fontWeight": "400",
+							"fontDisplay": "swap",
+							"unicodeRange": "U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116",
+							"src": [
+								"file:./assets/fonts/mulish-400-cyrillic.woff2"
+							]
+						},
+						{
+							"fontFamily": "Mulish",
+							"fontStyle": "normal",
+							"fontWeight": "400",
+							"fontDisplay": "swap",
+							"unicodeRange": "U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF",
+							"src": [
+								"file:./assets/fonts/mulish-400-latin-ext.woff2"
+							]
+						},
+						{
+							"fontFamily": "Mulish",
+							"fontStyle": "normal",
+							"fontWeight": "400",
+							"fontDisplay": "swap",
+							"unicodeRange": "U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD",
+							"src": [
+								"file:./assets/fonts/mulish-400-latin.woff2"
+							]
+						},
+						{
+							"fontFamily": "Mulish",
+							"fontStyle": "normal",
+							"fontWeight": "500",
+							"fontDisplay": "swap",
+							"unicodeRange": "U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116",
+							"src": [
+								"file:./assets/fonts/mulish-500-cyrillic.woff2"
+							]
+						},
+						{
+							"fontFamily": "Mulish",
+							"fontStyle": "normal",
+							"fontWeight": "500",
+							"fontDisplay": "swap",
+							"unicodeRange": "U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF",
+							"src": [
+								"file:./assets/fonts/mulish-500-latin-ext.woff2"
+							]
+						},
+						{
+							"fontFamily": "Mulish",
+							"fontStyle": "normal",
+							"fontWeight": "500",
+							"fontDisplay": "swap",
+							"unicodeRange": "U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD",
+							"src": [
+								"file:./assets/fonts/mulish-500-latin.woff2"
+							]
+						},
+						{
+							"fontFamily": "Mulish",
+							"fontStyle": "normal",
+							"fontWeight": "600",
+							"fontDisplay": "swap",
+							"unicodeRange": "U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116",
+							"src": [
+								"file:./assets/fonts/mulish-600-cyrillic.woff2"
+							]
+						},
+						{
+							"fontFamily": "Mulish",
+							"fontStyle": "normal",
+							"fontWeight": "600",
+							"fontDisplay": "swap",
+							"unicodeRange": "U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF",
+							"src": [
+								"file:./assets/fonts/mulish-600-latin-ext.woff2"
+							]
+						},
+						{
+							"fontFamily": "Mulish",
+							"fontStyle": "normal",
+							"fontWeight": "600",
+							"fontDisplay": "swap",
+							"unicodeRange": "U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD",
+							"src": [
+								"file:./assets/fonts/mulish-600-latin.woff2"
+							]
+						},
+						{
+							"fontFamily": "Mulish",
+							"fontStyle": "normal",
+							"fontWeight": "700",
+							"fontDisplay": "swap",
+							"unicodeRange": "U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116",
+							"src": [
+								"file:./assets/fonts/mulish-700-cyrillic.woff2"
+							]
+						},
+						{
+							"fontFamily": "Mulish",
+							"fontStyle": "normal",
+							"fontWeight": "700",
+							"fontDisplay": "swap",
+							"unicodeRange": "U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF",
+							"src": [
+								"file:./assets/fonts/mulish-700-latin-ext.woff2"
+							]
+						},
+						{
+							"fontFamily": "Mulish",
+							"fontStyle": "normal",
+							"fontWeight": "700",
+							"fontDisplay": "swap",
+							"unicodeRange": "U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD",
+							"src": [
+								"file:./assets/fonts/mulish-700-latin.woff2"
+							]
+						},
+						{
+							"fontFamily": "Mulish",
+							"fontStyle": "normal",
+							"fontWeight": "800",
+							"fontDisplay": "swap",
+							"unicodeRange": "U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116",
+							"src": [
+								"file:./assets/fonts/mulish-800-cyrillic.woff2"
+							]
+						},
+						{
+							"fontFamily": "Mulish",
+							"fontStyle": "normal",
+							"fontWeight": "800",
+							"fontDisplay": "swap",
+							"unicodeRange": "U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF",
+							"src": [
+								"file:./assets/fonts/mulish-800-latin-ext.woff2"
+							]
+						},
+						{
+							"fontFamily": "Mulish",
+							"fontStyle": "normal",
+							"fontWeight": "800",
+							"fontDisplay": "swap",
+							"unicodeRange": "U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD",
+							"src": [
+								"file:./assets/fonts/mulish-800-latin.woff2"
+							]
+						}
+					]
+				}
+			],
+			"fontSizes": [
+				{
+					"slug": "x-small",
+					"size": "12px",
+					"name": "X-Small (eyebrow)"
+				},
+				{
+					"slug": "small",
+					"size": "13.5px",
+					"name": "Small"
+				},
+				{
+					"slug": "medium",
+					"size": "15px",
+					"name": "Medium"
+				},
+				{
+					"slug": "large",
+					"size": "17.5px",
+					"name": "Large"
+				},
+				{
+					"slug": "x-large",
+					"size": "20px",
+					"name": "X-Large (card title)"
+				},
+				{
+					"slug": "xx-large",
+					"size": "40px",
+					"name": "Section Heading",
+					"fluid": {
+						"min": "26px",
+						"max": "40px"
+					}
+				},
+				{
+					"slug": "huge",
+					"size": "58px",
+					"name": "Hero Heading",
+					"fluid": {
+						"min": "32px",
+						"max": "58px"
+					}
+				}
+			]
+		},
+		"spacing": {
+			"defaultSpacingSizes": false,
+			"units": [
+				"px",
+				"em",
+				"rem",
+				"vh",
+				"vw",
+				"%"
+			],
+			"spacingSizes": [
+				{
+					"slug": "10",
+					"size": "8px",
+					"name": "1 — XS"
+				},
+				{
+					"slug": "20",
+					"size": "12px",
+					"name": "2 — S"
+				},
+				{
+					"slug": "30",
+					"size": "16px",
+					"name": "3 — M"
+				},
+				{
+					"slug": "40",
+					"size": "22px",
+					"name": "4 — L"
+				},
+				{
+					"slug": "50",
+					"size": "30px",
+					"name": "5 — XL"
+				},
+				{
+					"slug": "60",
+					"size": "40px",
+					"name": "6 — 2XL"
+				},
+				{
+					"slug": "70",
+					"size": "56px",
+					"name": "7 — 3XL"
+				},
+				{
+					"slug": "80",
+					"size": "76px",
+					"name": "8 — Section"
+				}
+			]
+		},
+		"border": {
+			"color": true,
+			"radius": true,
+			"style": true,
+			"width": true
+		},
+		"shadow": {
+			"defaultPresets": false,
+			"presets": [
+				{
+					"slug": "card",
+					"name": "Card",
+					"shadow": "0 6px 14px rgba(15, 42, 84, 0.12)"
+				},
+				{
+					"slug": "card-hover",
+					"name": "Card Hover",
+					"shadow": "0 18px 40px rgba(15, 42, 84, 0.13)"
+				},
+				{
+					"slug": "float",
+					"name": "Floating Panel",
+					"shadow": "0 20px 44px rgba(15, 42, 84, 0.18)"
+				},
+				{
+					"slug": "media",
+					"name": "Media",
+					"shadow": "0 18px 44px rgba(15, 42, 84, 0.14)"
+				}
+			]
+		},
+		"custom": {
+			"radius": {
+				"sm": "8px",
+				"md": "10px",
+				"lg": "16px",
+				"xl": "22px",
+				"pill": "999px"
+			},
+			"container": "1160px",
+			"containerWide": "1240px",
+			"gutter": "40px",
+			"header": {
+				"breakpoint": "900px"
+			}
+		},
+		"blocks": {
+			"core/navigation": {
+				"typography": {
+					"customFontSize": true
+				}
+			}
+		}
+	},
+	"styles": {
+		"color": {
+			"background": "var(--wp--preset--color--sky)",
+			"text": "var(--wp--preset--color--ink)"
+		},
+		"typography": {
+			"fontFamily": "var(--wp--preset--font-family--mulish)",
+			"fontSize": "var(--wp--preset--font-size--medium)",
+			"fontWeight": "400",
+			"lineHeight": "1.65"
+		},
+		"spacing": {
+			"padding": {
+				"top": "0",
+				"bottom": "0",
+				"left": "var(--wp--custom--gutter)",
+				"right": "var(--wp--custom--gutter)"
+			},
+			"blockGap": "var(--wp--preset--spacing--40)"
+		},
+		"elements": {
+			"link": {
+				"color": {
+					"text": "var(--wp--preset--color--blue)"
+				},
+				"typography": {
+					"textDecoration": "none"
+				},
+				":hover": {
+					"color": {
+						"text": "var(--wp--preset--color--navy)"
+					},
+					"typography": {
+						"textDecoration": "none"
+					}
+				},
+				":focus-visible": {
+					"outline": {
+						"color": "var(--wp--preset--color--blue)",
+						"style": "solid",
+						"width": "2px",
+						"offset": "3px"
+					}
+				}
+			},
+			"heading": {
+				"color": {
+					"text": "var(--wp--preset--color--navy)"
+				},
+				"typography": {
+					"fontFamily": "var(--wp--preset--font-family--playfair)",
+					"fontWeight": "600",
+					"lineHeight": "1.15",
+					"letterSpacing": "0.2px"
+				}
+			},
+			"h1": {
+				"typography": {
+					"fontSize": "var(--wp--preset--font-size--huge)",
+					"lineHeight": "1.08"
+				}
+			},
+			"h2": {
+				"typography": {
+					"fontSize": "var(--wp--preset--font-size--xx-large)"
+				}
+			},
+			"h3": {
+				"typography": {
+					"fontSize": "var(--wp--preset--font-size--x-large)"
+				}
+			},
+			"h4": {
+				"typography": {
+					"fontFamily": "var(--wp--preset--font-family--mulish)",
+					"fontSize": "16px",
+					"fontWeight": "700",
+					"lineHeight": "1.4"
+				}
+			},
+			"h5": {
+				"typography": {
+					"fontFamily": "var(--wp--preset--font-family--mulish)",
+					"fontSize": "var(--wp--preset--font-size--medium)",
+					"fontWeight": "700"
+				}
+			},
+			"h6": {
+				"typography": {
+					"fontFamily": "var(--wp--preset--font-family--mulish)",
+					"fontSize": "var(--wp--preset--font-size--small)",
+					"fontWeight": "700"
+				}
+			},
+			"button": {
+				"color": {
+					"background": "var(--wp--preset--color--navy)",
+					"text": "var(--wp--preset--color--base)"
+				},
+				"typography": {
+					"fontFamily": "var(--wp--preset--font-family--mulish)",
+					"fontSize": "15.5px",
+					"fontWeight": "700",
+					"lineHeight": "1"
+				},
+				"spacing": {
+					"padding": {
+						"top": "16px",
+						"bottom": "16px",
+						"left": "26px",
+						"right": "26px"
+					}
+				},
+				"border": {
+					"radius": "var(--wp--custom--radius--md)"
+				},
+				":hover": {
+					"color": {
+						"background": "#0d2148",
+						"text": "var(--wp--preset--color--base)"
+					}
+				},
+				":focus-visible": {
+					"outline": {
+						"color": "var(--wp--preset--color--blue)",
+						"style": "solid",
+						"width": "2px",
+						"offset": "3px"
+					}
+				}
+			},
+			"caption": {
+				"color": {
+					"text": "var(--wp--preset--color--ink-light)"
+				},
+				"typography": {
+					"fontSize": "var(--wp--preset--font-size--small)"
+				}
+			}
+		},
+		"blocks": {
+			"core/site-title": {
+				"typography": {
+					"fontFamily": "var(--wp--preset--font-family--playfair)",
+					"fontSize": "23px",
+					"fontWeight": "600",
+					"lineHeight": "1"
+				},
+				"color": {
+					"text": "var(--wp--preset--color--navy)"
+				}
+			},
+			"core/image": {
+				"border": {
+					"radius": "0"
+				}
+			},
+			"core/separator": {
+				"color": {
+					"text": "var(--wp--preset--color--line-strong)"
+				}
+			}
+		}
+	},
+	"templateParts": [
+		{
+			"name": "header",
+			"title": "Header",
+			"area": "header"
+		},
+		{
+			"name": "footer",
+			"title": "Footer",
+			"area": "footer"
+		}
+	],
+	"customTemplates": []
+}

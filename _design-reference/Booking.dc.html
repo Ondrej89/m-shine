@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,500&family=Mulish:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<script src="image-slot.js"></script>
+<style>:root{--brand-green:#5DBB63;--brand-green-dark:#35843d}
+*{box-sizing:border-box}
+html,body{margin:0;background:#b6d0e2;overflow-x:hidden;max-width:100%}
+.pg{font-family:Mulish,sans-serif;color:#3f4d66}
+.pg a{color:#1c47a0;text-decoration:none}
+.pg a:hover{color:#122a52}
+.eyebrow{font-weight:700;font-size:12px;letter-spacing:1.8px;text-transform:uppercase;color:var(--brand-green)}
+.h2{font-family:'Playfair Display',serif;font-weight:600;color:#122a52;letter-spacing:.2px}
+.bk-in{border:1px solid #dbe4ef;border-radius:9px;padding:12px 14px;font-family:Mulish;font-size:14px;outline:none;width:100%;color:#2a3a56}
+.bk-in:focus{border-color:#1c47a0}
+.opt{cursor:pointer;transition:border-color .15s,background .15s}
+.chip{cursor:pointer;transition:all .15s}
+.btn-primary:hover{background:#0d2148 !important}
+@media(max-width:960px){.bk-grid{grid-template-columns:1fr !important}.bk-side{order:-1}.stepper{gap:0 !important}}
+@media(max-width:600px){.pg section{padding-left:18px !important;padding-right:18px !important}.h2{font-size:28px !important}.step-lbl{display:none}.detail-grid{grid-template-columns:1fr !important}}
+@media(max-width:480px){.pg section{padding-left:14px !important;padding-right:14px !important}.h2{font-size:24px !important}.opt{flex-wrap:wrap !important}}
+@media(max-width:600px){.wm{display:none !important}}
+</style>
+</helmet>
+<div class="pg" style="position:relative">
+<img src="wm-corner-flourish.svg" alt="" aria-hidden="true" class="wm" style="position:absolute;left:-80px;top:0;width:540px;height:auto;opacity:.85;pointer-events:none;user-select:none;z-index:0"/>
+<img src="wm-branch-tr.png" alt="" aria-hidden="true" class="wm" style="position:absolute;right:0;top:50px;width:630px;height:auto;opacity:.85;pointer-events:none;user-select:none;z-index:0"/>
+<dc-import name="SiteHeader" active="booking" hint-size="100%,92px"></dc-import>
+
+<section style="position:relative;overflow:hidden;background:transparent;padding:44px 40px 30px;text-align:center">
+  <span class="eyebrow" style="position:relative">Book Your Cleaning</span>
+  <h1 class="h2" style="font-size:40px;margin:14px 0 10px;line-height:1.14">Fast, Easy, Secure<br>in Just a Few Steps</h1>
+</section>
+
+<section style="background:transparent;padding:0 40px 34px">
+  <div class="stepper" style="max-width:820px;margin:0 auto;display:flex;align-items:center;justify-content:space-between">
+    <div style="display:flex;flex-direction:column;align-items:center;gap:9px;flex:none;z-index:2"><span style="width:44px;height:44px;border-radius:50%;background:{{ n1bg }};color:{{ n1fg }};display:flex;align-items:center;justify-content:center;font-weight:700;font-size:16px;border:2px solid {{ n1bg }}">{{ n1txt }}</span><span class="step-lbl" style="font-size:13px;font-weight:700;color:{{ l1 }}">Service</span></div>
+    <div style="flex:1;height:2px;background:{{ c1 }};margin:0 6px;margin-bottom:26px"></div>
+    <div style="display:flex;flex-direction:column;align-items:center;gap:9px;flex:none;z-index:2"><span style="width:44px;height:44px;border-radius:50%;background:{{ n2bg }};color:{{ n2fg }};display:flex;align-items:center;justify-content:center;font-weight:700;font-size:16px;border:2px solid {{ n2bg }}">{{ n2txt }}</span><span class="step-lbl" style="font-size:13px;font-weight:700;color:{{ l2 }}">Details</span></div>
+    <div style="flex:1;height:2px;background:{{ c2 }};margin:0 6px;margin-bottom:26px"></div>
+    <div style="display:flex;flex-direction:column;align-items:center;gap:9px;flex:none;z-index:2"><span style="width:44px;height:44px;border-radius:50%;background:{{ n3bg }};color:{{ n3fg }};display:flex;align-items:center;justify-content:center;font-weight:700;font-size:16px;border:2px solid {{ n3bg }}">{{ n3txt }}</span><span class="step-lbl" style="font-size:13px;font-weight:700;color:{{ l3 }}">Date &amp; Time</span></div>
+    <div style="flex:1;height:2px;background:{{ c3 }};margin:0 6px;margin-bottom:26px"></div>
+    <div style="display:flex;flex-direction:column;align-items:center;gap:9px;flex:none;z-index:2"><span style="width:44px;height:44px;border-radius:50%;background:{{ n4bg }};color:{{ n4fg }};display:flex;align-items:center;justify-content:center;font-weight:700;font-size:16px;border:2px solid {{ n4bg }}">{{ n4txt }}</span><span class="step-lbl" style="font-size:13px;font-weight:700;color:{{ l4 }}">Payment</span></div>
+  </div>
+</section>
+
+<section style="background:transparent;padding:6px 40px 80px">
+  <div class="bk-grid" style="max-width:1100px;margin:0 auto;display:grid;grid-template-columns:1.5fr 1fr;gap:28px;align-items:start">
+    <div style="background:#fff;border:1px solid #e2e9f1;border-radius:18px;padding:34px 36px;min-height:440px">
+
+      <sc-if value="{{ step1 }}" hint-placeholder-val="{{ true }}">
+      <div>
+        <h2 class="h2" style="font-size:23px;margin:0 0 4px">Select Your Service</h2>
+        <p style="font-size:14px;color:#6a7890;margin:0 0 22px">Choose the cleaning that fits your home.</p>
+        <div style="display:flex;flex-direction:column;gap:12px">
+          <div class="opt" onClick="{{ svH }}" style="display:flex;align-items:center;gap:15px;border:2px solid {{ svHb }};background:{{ svHbg }};border-radius:12px;padding:16px 18px"><span style="width:44px;height:44px;border-radius:11px;background:#e0efe0;display:flex;align-items:center;justify-content:center;flex:none"><svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="#5DBB63" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><path d="M9 22V12h6v10"></path></svg></span><span style="flex:1"><b style="display:block;font-size:15.5px;color:#122a52">House Cleaning</b><span style="font-size:13px;color:#8391a8">Fresh, thorough clean for your whole home</span></span><b style="font-family:'Playfair Display',serif;font-size:18px;color:#122a52">from $120</b></div>
+          <div class="opt" onClick="{{ svA }}" style="display:flex;align-items:center;gap:15px;border:2px solid {{ svAb }};background:{{ svAbg }};border-radius:12px;padding:16px 18px"><span style="width:44px;height:44px;border-radius:11px;background:#e0efe0;display:flex;align-items:center;justify-content:center;flex:none"><svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="#5DBB63" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18M5 21V7l7-4 7 4v14"></path><path d="M9 9h.01M15 9h.01M9 13h.01M15 13h.01"></path></svg></span><span style="flex:1"><b style="display:block;font-size:15.5px;color:#122a52">Apartment Cleaning</b><span style="font-size:13px;color:#8391a8">Perfect for apartments and condos</span></span><b style="font-family:'Playfair Display',serif;font-size:18px;color:#122a52">from $110</b></div>
+          <div class="opt" onClick="{{ svM }}" style="display:flex;align-items:center;gap:15px;border:2px solid {{ svMb }};background:{{ svMbg }};border-radius:12px;padding:16px 18px"><span style="width:44px;height:44px;border-radius:11px;background:#e0efe0;display:flex;align-items:center;justify-content:center;flex:none"><svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="#5DBB63" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M21 8l-9-5-9 5 9 5 9-5z"></path><path d="M3 8v8l9 5 9-5V8"></path></svg></span><span style="flex:1"><b style="display:block;font-size:15.5px;color:#122a52">Move In / Move Out</b><span style="font-size:13px;color:#8391a8">Spotless, top-to-bottom moving clean</span></span><b style="font-family:'Playfair Display',serif;font-size:18px;color:#122a52">from $150</b></div>
+        </div>
+      </div>
+      </sc-if>
+
+      <sc-if value="{{ step2 }}" hint-placeholder-val="{{ false }}">
+      <div>
+        <h2 class="h2" style="font-size:23px;margin:0 0 4px">Property Details</h2>
+        <p style="font-size:14px;color:#6a7890;margin:0 0 22px">Tell us about your space so we come prepared.</p>
+        <div class="detail-grid" style="display:grid;grid-template-columns:1fr 1fr;gap:14px">
+          <label style="grid-column:1/-1;font-size:13px;font-weight:600;color:#2a3a56">Street Address<input class="bk-in" style="margin-top:6px" placeholder="123 Main Street"/></label>
+          <label style="font-size:13px;font-weight:600;color:#2a3a56">Square Footage<input class="bk-in" style="margin-top:6px" placeholder="e.g. 1200"/></label>
+          <label style="font-size:13px;font-weight:600;color:#2a3a56">Bedrooms<select class="bk-in" style="margin-top:6px"><option>Studio</option><option>1</option><option>2</option><option>3</option><option>4+</option></select></label>
+          <label style="font-size:13px;font-weight:600;color:#2a3a56">Bathrooms<select class="bk-in" style="margin-top:6px"><option>1</option><option>2</option><option>3</option><option>4+</option></select></label>
+          <label style="font-size:13px;font-weight:600;color:#2a3a56">Pets in home?<select class="bk-in" style="margin-top:6px"><option>No</option><option>Yes — dog</option><option>Yes — cat</option><option>Yes — other</option></select></label>
+          <label style="grid-column:1/-1;font-size:13px;font-weight:600;color:#2a3a56">Parking / Access Instructions<input class="bk-in" style="margin-top:6px" placeholder="Gate code, key location, buzzer…"/></label>
+          <label style="grid-column:1/-1;font-size:13px;font-weight:600;color:#2a3a56">Special Requests<textarea class="bk-in" rows="3" style="margin-top:6px;resize:vertical" placeholder="Focus areas, product preferences, anything we should know"></textarea></label>
+        </div>
+      </div>
+      </sc-if>
+
+      <sc-if value="{{ step3 }}" hint-placeholder-val="{{ false }}">
+      <div>
+        <h2 class="h2" style="font-size:23px;margin:0 0 4px">Date &amp; Time</h2>
+        <p style="font-size:14px;color:#6a7890;margin:0 0 20px">Pick how often, then choose a slot.</p>
+        <span style="font-size:13px;font-weight:700;color:#2a3a56;display:block;margin-bottom:10px">Frequency</span>
+        <div style="display:flex;gap:10px;flex-wrap:wrap;margin-bottom:24px">
+          <span class="chip" onClick="{{ frOne }}" style="padding:10px 18px;border-radius:22px;font-size:13.5px;font-weight:600;border:1.5px solid {{ frOneB }};background:{{ frOneBg }};color:{{ frOneC }}">One-Time</span>
+          <span class="chip" onClick="{{ frW }}" style="padding:10px 18px;border-radius:22px;font-size:13.5px;font-weight:600;border:1.5px solid {{ frWB }};background:{{ frWBg }};color:{{ frWC }}">Weekly</span>
+          <span class="chip" onClick="{{ frB }}" style="padding:10px 18px;border-radius:22px;font-size:13.5px;font-weight:600;border:1.5px solid {{ frBB }};background:{{ frBBg }};color:{{ frBC }}">Bi-weekly</span>
+          <span class="chip" onClick="{{ frM }}" style="padding:10px 18px;border-radius:22px;font-size:13.5px;font-weight:600;border:1.5px solid {{ frMB }};background:{{ frMBg }};color:{{ frMC }}">Monthly</span>
+        </div>
+        <span style="font-size:13px;font-weight:700;color:#2a3a56;display:block;margin-bottom:10px">Select a date</span>
+        <div style="display:grid;grid-template-columns:repeat(6,1fr);gap:9px;margin-bottom:24px">
+          <sc-for list="{{ dates }}" as="d" hint-placeholder-count="6"><span class="chip" onClick="{{ d.pick }}" style="text-align:center;padding:12px 0;border-radius:11px;border:1.5px solid {{ d.b }};background:{{ d.bg }}"><span style="display:block;font-size:11px;color:{{ d.sub }};font-weight:600">{{ d.dow }}</span><span style="display:block;font-size:18px;font-weight:700;color:{{ d.c }}">{{ d.day }}</span></span></sc-for>
+        </div>
+        <span style="font-size:13px;font-weight:700;color:#2a3a56;display:block;margin-bottom:10px">Select a time</span>
+        <div style="display:flex;gap:10px;flex-wrap:wrap">
+          <sc-for list="{{ times }}" as="t" hint-placeholder-count="5"><span class="chip" onClick="{{ t.pick }}" style="padding:10px 18px;border-radius:10px;font-size:13.5px;font-weight:600;border:1.5px solid {{ t.b }};background:{{ t.bg }};color:{{ t.c }}">{{ t.label }}</span></sc-for>
+        </div>
+      </div>
+      </sc-if>
+
+      <sc-if value="{{ step4 }}" hint-placeholder-val="{{ false }}">
+      <div>
+        <h2 class="h2" style="font-size:23px;margin:0 0 4px">Payment</h2>
+        <p style="font-size:14px;color:#6a7890;margin:0 0 20px">Choose how you'd like to pay.</p>
+        <div style="display:flex;flex-direction:column;gap:12px;margin-bottom:22px">
+          <div class="opt" onClick="{{ payCard }}" style="display:flex;align-items:center;gap:14px;border:2px solid {{ payCardB }};background:{{ payCardBg }};border-radius:12px;padding:16px 18px"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#1c47a0" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="5" width="20" height="14" rx="2"></rect><path d="M2 10h20"></path></svg><span style="flex:1"><b style="display:block;font-size:15px;color:#122a52">Pay online by card</b><span style="font-size:12.5px;color:#8391a8">Secure card payment — instant confirmation</span></span></div>
+          <div class="opt" onClick="{{ paySepa }}" style="display:flex;align-items:center;gap:14px;border:2px solid {{ paySepaB }};background:{{ paySepaBg }};border-radius:12px;padding:16px 18px"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#1c47a0" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 10h18M3 6h18v12H3z"></path><path d="M7 15h4"></path></svg><span style="flex:1"><b style="display:block;font-size:15px;color:#122a52">SEPA Direct Debit</b><span style="font-size:12.5px;color:#8391a8">Lower fees — ideal for recurring plans</span></span></div>
+          <div class="opt" onClick="{{ paySite }}" style="display:flex;align-items:center;gap:14px;border:2px solid {{ paySiteB }};background:{{ paySiteBg }};border-radius:12px;padding:16px 18px"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#1c47a0" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 1v22M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg><span style="flex:1"><b style="display:block;font-size:15px;color:#122a52">Pay on-site</b><span style="font-size:12.5px;color:#8391a8">Pay in person after your cleaning</span></span></div>
+        </div>
+        <sc-if value="{{ showCard }}" hint-placeholder-val="{{ true }}">
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;background:#f7fafd;border:1px solid #e9eff6;border-radius:12px;padding:18px">
+          <input class="bk-in" style="grid-column:1/-1" placeholder="Card number"/>
+          <input class="bk-in" placeholder="MM / YY"/>
+          <input class="bk-in" placeholder="CVC"/>
+        </div>
+        </sc-if>
+      </div>
+      </sc-if>
+
+      <sc-if value="{{ done }}" hint-placeholder-val="{{ false }}">
+      <div style="text-align:center;padding:30px 0">
+        <span style="width:76px;height:76px;border-radius:50%;background:#e0efe0;display:inline-flex;align-items:center;justify-content:center;margin-bottom:20px"><svg width="38" height="38" viewBox="0 0 24 24" fill="none" stroke="#35843d" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"></path></svg></span>
+        <h2 class="h2" style="font-size:28px;margin:0 0 10px">Booking Confirmed!</h2>
+        <p style="font-size:15px;color:#5f6d84;margin:0 auto 8px;max-width:400px">Thank you! Your cleaning is booked. You'll receive a WhatsApp and email confirmation shortly.</p>
+        <p style="font-size:13.5px;color:#8391a8;margin:0 0 24px">Reference: <b style="color:#1c47a0">#MS-{{ ref }}</b></p>
+        <a href="Home.dc.html" style="display:inline-flex;align-items:center;gap:9px;background:#122a52;color:#fff;font-weight:700;font-size:14.5px;padding:14px 26px;border-radius:10px">Back to Home</a>
+      </div>
+      </sc-if>
+
+      <sc-if value="{{ showNav }}" hint-placeholder-val="{{ true }}">
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-top:30px;padding-top:24px;border-top:1px solid #eef3f8">
+        <button onClick="{{ back }}" style="visibility:{{ backVis }};display:inline-flex;align-items:center;gap:8px;background:none;border:1.5px solid #cdd9e8;color:#122a52;font-weight:700;font-size:14px;padding:12px 22px;border-radius:9px;cursor:pointer;font-family:Mulish"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#122a52" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M11 18l-6-6 6-6"></path></svg>Back</button>
+        <button class="btn-primary" onClick="{{ next }}" style="display:inline-flex;align-items:center;gap:9px;background:#122a52;border:none;color:#fff;font-weight:700;font-size:14.5px;padding:13px 26px;border-radius:9px;cursor:pointer;font-family:Mulish">{{ nextLabel }}<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></button>
+      </div>
+      </sc-if>
+    </div>
+
+    <div class="bk-side" style="display:flex;flex-direction:column;gap:20px;position:sticky;top:20px">
+      <div style="position:relative;border-radius:18px;overflow:hidden;height:200px"><image-slot id="bk-img" src="slots/bk-img.webp" shape="rect" placeholder="Clean bright room"></image-slot><span style="position:absolute;left:16px;bottom:16px;background:#fff;border-radius:10px;padding:10px 14px;display:flex;align-items:center;gap:9px;box-shadow:0 8px 20px rgba(15,42,84,.18)"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#1c47a0" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path><path d="M9 12l2 2 4-4"></path></svg><span style="font-size:12.5px;font-weight:700;color:#122a52;line-height:1.25">100% Satisfaction<br>Guaranteed</span></span></div>
+      <div style="background:#fff;border:1px solid #e2e9f1;border-radius:16px;padding:24px">
+        <h4 style="font-family:'Playfair Display',serif;font-weight:600;font-size:18px;color:#122a52;margin:0 0 16px">Your Booking</h4>
+        <div style="display:flex;flex-direction:column;gap:13px;font-size:14px">
+          <div style="display:flex;justify-content:space-between;gap:12px"><span style="color:#8391a8">Service</span><b style="color:#2a3a56;text-align:right">{{ sumService }}</b></div>
+          <div style="display:flex;justify-content:space-between;gap:12px"><span style="color:#8391a8">Frequency</span><b style="color:#2a3a56;text-align:right">{{ sumFreq }}</b></div>
+          <div style="display:flex;justify-content:space-between;gap:12px"><span style="color:#8391a8">Date</span><b style="color:#2a3a56;text-align:right">{{ sumDate }}</b></div>
+          <div style="display:flex;justify-content:space-between;gap:12px"><span style="color:#8391a8">Time</span><b style="color:#2a3a56;text-align:right">{{ sumTime }}</b></div>
+        </div>
+        <div style="border-top:1px solid #eef3f8;margin:16px 0;padding-top:16px;display:flex;justify-content:space-between;align-items:baseline"><span style="font-size:14px;color:#8391a8">Estimated total</span><b style="font-family:'Playfair Display',serif;font-size:26px;color:#122a52">{{ sumTotal }}</b></div>
+        <p style="font-size:12px;color:#9aa7bd;margin:0;line-height:1.5">Final price confirmed after we review your home details. No charge until you approve.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<dc-import name="SiteFooter" hint-size="100%,420px"></dc-import>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1240,&quot;height&quot;:900}}">
+class Component extends DCLogic {
+  state = { step: 1, service: null, price: 0, freq: 'One-Time', dateIdx: -1, timeIdx: -1, pay: 'card', done: false, ref: Math.floor(1000 + Math.random() * 9000) };
+  dateList() {
+    const dows = ['Mon','Tue','Wed','Thu','Fri','Sat'];
+    const base = 14;
+    return dows.map((dow, i) => ({ dow, day: base + i }));
+  }
+  timeList() { return ['8:00 AM','10:00 AM','12:00 PM','2:00 PM','4:00 PM']; }
+  fmtDate() {
+    if (this.state.dateIdx < 0) return '—';
+    const d = this.dateList()[this.state.dateIdx];
+    return d.dow + ' ' + d.day;
+  }
+  renderVals() {
+    const st = this.state.step;
+    const v = {};
+    // stepper node styling
+    for (let i = 1; i <= 4; i++) {
+      const done = st > i, cur = st === i;
+      v['n' + i + 'bg'] = done ? '#35843d' : cur ? '#1c47a0' : '#d4deeb';
+      v['n' + i + 'fg'] = (done || cur) ? '#fff' : '#8391a8';
+      v['n' + i + 'txt'] = done ? '\u2713' : String(i);
+      v['l' + i] = cur ? '#1c47a0' : '#8391a8';
+    }
+    v.c1 = st > 1 ? '#35843d' : '#d4deeb';
+    v.c2 = st > 2 ? '#35843d' : '#d4deeb';
+    v.c3 = st > 3 ? '#35843d' : '#d4deeb';
+    // step visibility
+    v.step1 = !this.state.done && st === 1;
+    v.step2 = !this.state.done && st === 2;
+    v.step3 = !this.state.done && st === 3;
+    v.step4 = !this.state.done && st === 4;
+    v.done = this.state.done;
+    v.showNav = !this.state.done;
+    v.ref = this.state.ref;
+    // service selection
+    const svc = this.state.service;
+    const setSvc = (name, price) => () => this.setState({ service: name, price });
+    const svStyle = (name) => {
+      const on = svc === name;
+      return { b: on ? '#1c47a0' : '#e2e9f1', bg: on ? '#f2f6fd' : '#fff' };
+    };
+    const mapSvc = [['H','House Cleaning',120,'svH'],['A','Apartment Cleaning',110,'svA'],['M','Move In / Move Out',150,'svM']];
+    mapSvc.forEach(([k, name, price, fn]) => {
+      const s = svStyle(name);
+      v[fn] = setSvc(name, price);
+      v['sv' + k + 'b'] = s.b;
+      v['sv' + k + 'bg'] = s.bg;
+    });
+    // frequency
+    const setFreq = f => () => this.setState({ freq: f });
+    const frMap = [['One','One-Time','frOne'],['W','Weekly','frW'],['B','Bi-weekly','frB'],['M','Monthly','frM']];
+    frMap.forEach(([k, f, fn]) => {
+      const on = this.state.freq === f;
+      v[fn] = setFreq(f);
+      v['fr' + k + 'B'] = on ? '#1c47a0' : '#d4deeb';
+      v['fr' + k + 'Bg'] = on ? '#1c47a0' : '#fff';
+      v['fr' + k + 'C'] = on ? '#fff' : '#5f6d84';
+    });
+    // dates
+    v.dates = this.dateList().map((d, i) => {
+      const on = this.state.dateIdx === i;
+      return { dow: d.dow, day: String(d.day), pick: () => this.setState({ dateIdx: i }),
+        b: on ? '#1c47a0' : '#e2e9f1', bg: on ? '#f2f6fd' : '#fff', c: on ? '#1c47a0' : '#2a3a56', sub: on ? '#1c47a0' : '#8391a8' };
+    });
+    // times
+    v.times = this.timeList().map((t, i) => {
+      const on = this.state.timeIdx === i;
+      return { label: t, pick: () => this.setState({ timeIdx: i }),
+        b: on ? '#1c47a0' : '#d4deeb', bg: on ? '#1c47a0' : '#fff', c: on ? '#fff' : '#5f6d84' };
+    });
+    // payment
+    const payStyle = p => ({ b: this.state.pay === p ? '#1c47a0' : '#e2e9f1', bg: this.state.pay === p ? '#f2f6fd' : '#fff' });
+    ['card','sepa','site'].forEach(p => {
+      const key = 'pay' + p.charAt(0).toUpperCase() + p.slice(1);
+      const s = payStyle(p);
+      v[key] = () => this.setState({ pay: p });
+      v[key + 'B'] = s.b; v[key + 'Bg'] = s.bg;
+    });
+    v.showCard = this.state.pay === 'card';
+    // summary
+    v.sumService = svc || 'Not selected';
+    v.sumFreq = this.state.freq;
+    v.sumDate = this.fmtDate();
+    v.sumTime = this.state.timeIdx < 0 ? '—' : this.timeList()[this.state.timeIdx];
+    v.sumTotal = this.state.price ? ('$' + this.state.price + (this.state.service === 'Housekeeping' ? '/hr' : '')) : '$0';
+    // nav
+    v.backVis = st === 1 ? 'hidden' : 'visible';
+    v.nextLabel = st === 4 ? 'Confirm Booking' : 'Continue';
+    v.back = () => this.setState(s => ({ step: Math.max(1, s.step - 1) }));
+    v.next = () => {
+      if (st === 1 && !this.state.service) return;
+      if (st === 4) { this.setState({ done: true }); return; }
+      this.setState(s => ({ step: Math.min(4, s.step + 1) }));
+    };
+    return v;
+  }
+}
+</script>
+</body>
+</html>

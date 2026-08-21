@@ -1,0 +1,177 @@
+/* =========================================================================
+   Magic Shine — design tokens
+   -------------------------------------------------------------------------
+   Transcribed from the refined WordPress theme, which is the authoritative
+   source: colours, type sizes, spacing steps, radii and shadows come from
+   `_wp-theme-reference/theme.json`; the responsive gutter steps and the fluid
+   heading curve come from `_wp-theme-reference/style.css`.
+
+   Author new CSS against the `--ms-*` names. The `--wp--*` aliases at the
+   bottom of this file exist for one reason only: so refined rules can be
+   lifted out of the WordPress style.css verbatim, without a rename pass that
+   would risk silently changing a value. They are not a second API.
+   ====================================================================== */
+
+:root {
+	/* --- Colour ------------------------------------------------------- */
+	--ms-color-base: #ffffff;
+	--ms-color-sky: #b6d0e2; /* page background */
+	--ms-color-navy: #122a52; /* brand navy */
+	--ms-color-navy-deep: #0c2650;
+	--ms-color-navy-hover: #0d2148; /* button :hover, style.css */
+	--ms-color-blue: #1c47a0;
+	--ms-color-blue-bright: #3f7fe0;
+	--ms-color-green: #5dbb63;
+	--ms-color-green-dark: #35843d;
+	--ms-color-gold: #f2b636; /* review stars */
+
+	--ms-color-ink: #3f4d66; /* body text */
+	--ms-color-ink-soft: #4f5d75;
+	--ms-color-ink-muted: #5f6d84;
+	--ms-color-ink-light: #6a7890;
+	--ms-color-slate: #2a3a56; /* navigation */
+
+	--ms-color-line: #e9eff6;
+	--ms-color-line-strong: #cdd9e8;
+	--ms-color-tint-blue: #dbe7f7;
+	--ms-color-tint-blue-soft: #eaf1fb;
+	--ms-color-tint-green: #e0efe0;
+	--ms-color-footer-text: #a9bad4;
+
+	--ms-gradient-cta-band: linear-gradient(120deg, #0e2a54 0%, #163a72 100%);
+	--ms-gradient-cta-bright: linear-gradient(120deg, #1c47a0 0%, #2a5fc0 100%);
+
+	/* --- Type --------------------------------------------------------- */
+	--ms-font-heading: 'Playfair Display', Georgia, 'Times New Roman', serif;
+	--ms-font-body: Mulish, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial,
+		sans-serif;
+
+	--ms-size-xs: 12px; /* eyebrow */
+	--ms-size-sm: 13.5px;
+	--ms-size-md: 15px; /* body default */
+	--ms-size-lg: 17.5px;
+	--ms-size-xl: 20px; /* card title */
+
+	/* Fluid display sizes. The WordPress theme lets its fluid presets run from a
+	   320px viewport up to the 1240px content size; these clamps reproduce that
+	   same line, which is what makes the design's hard overrides at 720px and
+	   480px land where they do. Section heading 26 -> 40, hero 32 -> 58. */
+	--ms-size-2xl: clamp(26px, 21.13px + 1.5217vw, 40px); /* section heading */
+	--ms-size-3xl: clamp(32px, 22.96px + 2.8261vw, 58px); /* hero heading */
+
+	--ms-leading-body: 1.65;
+	--ms-leading-heading: 1.15;
+	--ms-leading-hero: 1.08;
+	--ms-tracking-heading: 0.2px;
+	--ms-tracking-eyebrow: 1.8px;
+
+	/* --- Spacing scale ------------------------------------------------ */
+	--ms-space-1: 8px;
+	--ms-space-2: 12px;
+	--ms-space-3: 16px;
+	--ms-space-4: 22px;
+	--ms-space-5: 30px;
+	--ms-space-6: 40px;
+	--ms-space-7: 56px;
+	--ms-space-8: 76px; /* section rhythm */
+
+	/* --- Layout ------------------------------------------------------- */
+	--ms-container: 1160px; /* header & footer chrome */
+	--ms-container-wide: 1240px; /* page sections / content size */
+	--ms-gutter: 40px; /* stepped down in the queries below */
+	--ms-header-breakpoint: 900px;
+	--ms-header-h: 88px; /* 48px row inside 20px padding */
+
+	/* --- Radius ------------------------------------------------------- */
+	--ms-radius-sm: 8px;
+	--ms-radius-md: 10px;
+	--ms-radius-lg: 16px;
+	--ms-radius-xl: 22px;
+	--ms-radius-pill: 999px;
+
+	/* --- Shadow ------------------------------------------------------- */
+	--ms-shadow-card: 0 6px 14px rgba(15, 42, 84, 0.12);
+	--ms-shadow-card-hover: 0 18px 40px rgba(15, 42, 84, 0.13);
+	--ms-shadow-float: 0 20px 44px rgba(15, 42, 84, 0.18);
+	--ms-shadow-media: 0 18px 44px rgba(15, 42, 84, 0.14);
+}
+
+/* Responsive gutters. Two steps, not three: the refined theme holds 40px all
+   the way down to 720px and then goes straight to 22px. An intermediate 28px
+   step at 1000px was removed there because it left every page 12px tighter per
+   side than the design across the whole tablet range — do not reintroduce it. */
+@media (max-width: 720px) {
+	:root {
+		--ms-gutter: 22px;
+	}
+}
+
+@media (max-width: 480px) {
+	:root {
+		--ms-gutter: 16px;
+	}
+}
+
+/* -------------------------------------------------------------------------
+   WordPress-name aliases — see the file header. Present so that CSS copied
+   out of the refined style.css keeps working unchanged during the port.
+   ---------------------------------------------------------------------- */
+:root {
+	--wp--preset--color--base: var(--ms-color-base);
+	--wp--preset--color--sky: var(--ms-color-sky);
+	--wp--preset--color--navy: var(--ms-color-navy);
+	--wp--preset--color--navy-deep: var(--ms-color-navy-deep);
+	--wp--preset--color--blue: var(--ms-color-blue);
+	--wp--preset--color--blue-bright: var(--ms-color-blue-bright);
+	--wp--preset--color--green: var(--ms-color-green);
+	--wp--preset--color--green-dark: var(--ms-color-green-dark);
+	--wp--preset--color--gold: var(--ms-color-gold);
+	--wp--preset--color--ink: var(--ms-color-ink);
+	--wp--preset--color--ink-soft: var(--ms-color-ink-soft);
+	--wp--preset--color--ink-muted: var(--ms-color-ink-muted);
+	--wp--preset--color--ink-light: var(--ms-color-ink-light);
+	--wp--preset--color--slate: var(--ms-color-slate);
+	--wp--preset--color--line: var(--ms-color-line);
+	--wp--preset--color--line-strong: var(--ms-color-line-strong);
+	--wp--preset--color--tint-blue: var(--ms-color-tint-blue);
+	--wp--preset--color--tint-blue-soft: var(--ms-color-tint-blue-soft);
+	--wp--preset--color--tint-green: var(--ms-color-tint-green);
+	--wp--preset--color--footer-text: var(--ms-color-footer-text);
+
+	--wp--preset--gradient--cta-band: var(--ms-gradient-cta-band);
+	--wp--preset--gradient--cta-bright: var(--ms-gradient-cta-bright);
+
+	--wp--preset--font-family--playfair: var(--ms-font-heading);
+	--wp--preset--font-family--mulish: var(--ms-font-body);
+
+	--wp--preset--font-size--x-small: var(--ms-size-xs);
+	--wp--preset--font-size--small: var(--ms-size-sm);
+	--wp--preset--font-size--medium: var(--ms-size-md);
+	--wp--preset--font-size--large: var(--ms-size-lg);
+	--wp--preset--font-size--x-large: var(--ms-size-xl);
+	--wp--preset--font-size--xx-large: var(--ms-size-2xl);
+	--wp--preset--font-size--huge: var(--ms-size-3xl);
+
+	--wp--preset--spacing--10: var(--ms-space-1);
+	--wp--preset--spacing--20: var(--ms-space-2);
+	--wp--preset--spacing--30: var(--ms-space-3);
+	--wp--preset--spacing--40: var(--ms-space-4);
+	--wp--preset--spacing--50: var(--ms-space-5);
+	--wp--preset--spacing--60: var(--ms-space-6);
+	--wp--preset--spacing--70: var(--ms-space-7);
+	--wp--preset--spacing--80: var(--ms-space-8);
+
+	--wp--preset--shadow--card: var(--ms-shadow-card);
+	--wp--preset--shadow--card-hover: var(--ms-shadow-card-hover);
+	--wp--preset--shadow--float: var(--ms-shadow-float);
+	--wp--preset--shadow--media: var(--ms-shadow-media);
+
+	--wp--custom--radius--sm: var(--ms-radius-sm);
+	--wp--custom--radius--md: var(--ms-radius-md);
+	--wp--custom--radius--lg: var(--ms-radius-lg);
+	--wp--custom--radius--xl: var(--ms-radius-xl);
+	--wp--custom--radius--pill: var(--ms-radius-pill);
+	--wp--custom--container: var(--ms-container);
+	--wp--custom--container-wide: var(--ms-container-wide);
+	--wp--custom--gutter: var(--ms-gutter);
+}
