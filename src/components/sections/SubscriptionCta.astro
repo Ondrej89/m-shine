@@ -7,6 +7,7 @@ import Section from '../Section.astro';
 import type { Locale } from '../../i18n/config';
 import { localizedPath } from '../../i18n/routes';
 import { useTranslations } from '../../i18n/ui';
+import { withBase } from '../../lib/paths';
 
 /*
  * The recurring-plan CTA band: a gradient card with copy, three plan
@@ -61,7 +62,7 @@ const FEATURES = [
 
 		<figure class="ms-cta__figure">
 			<img
-				src="/img/photos/home-towels.webp"
+				src={withBase('/img/photos/home-towels.webp')}
 				alt={t('plans.photoAlt')}
 				width="285"
 				height="225"

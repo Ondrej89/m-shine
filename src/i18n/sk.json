@@ -56,13 +56,17 @@
       "title": "Upratovanie kancelárií a firiem vo Viedni",
       "description": "Upratovanie kancelárií, ambulancií, hotelov, reštaurácií a objektov vo Viedni. Individuálna kalkulácia, písomná ponuka do 24–48 hodín."
     },
+    "pricing": {
+      "title": "Ceny a priebeh",
+      "description": "Čo stojí upratovanie domov, bytov, po sťahovaní a generálne upratovanie vo Viedni: východiskové ceny, čo určuje konečnú cenu a ako v troch krokoch získate záväznú ponuku."
+    },
+    "quote": {
+      "title": "Vyžiadať ponuku",
+      "description": "Vyžiadajte si nezáväznú ponuku upratovania pre váš domov alebo firmu vo Viedni. Stačí pár údajov – odpovedáme spravidla do 24 hodín."
+    },
     "about": {
       "title": "O nás – váš upratovací tím vo Viedni",
       "description": "Magic Shine je upratovacia firma vo Viedni: školený a preverený personál, ekologické prostriedky a jedna kontaktná osoba. Spoznajte nás."
-    },
-    "placeholder": {
-      "title": "Pripravujeme",
-      "description": "Táto stránka sa práve pripravuje."
     }
   },
   "home": {
@@ -477,6 +481,134 @@
       }
     }
   },
+  "pricing": {
+    "heroEyebrow": "Ceny a priebeh",
+    "heroTitle": "Ceny a priebeh",
+    "heroLede": "Nepracujeme s pevnými balíkmi – žiadne dva domovy nie sú rovnaké. Tu vidíte, kde ceny začínajú, čo určuje konečnú sumu a ako v troch krokoch získate záväznú ponuku.",
+    "startEyebrow": "Východiskové ceny",
+    "startTitle": "Kde ceny začínajú",
+    "startLede": "Orientačné sumy pre domácnosti, za jednu návštevu. Koľko zaplatíte v skutočnosti, závisí od faktorov nižšie – preto cenu povieme až vtedy, keď vieme, o čo ide.",
+    "startLink": "Zobraziť službu",
+    "factorsEyebrow": "Čo určuje cenu",
+    "factorsTitle": "Štyri faktory, nič viac",
+    "factorsLede": "Aby ste vedeli, ako ponuka vzniká, a nemuseli hádať.",
+    "saveTitle": "Pravidelné upratovanie stojí menej",
+    "saveText": "Pri týždennom alebo dvojtýždňovom upratovaní zaplatíte za jednu návštevu citeľne menej než pri jednorazovom: nazbiera sa toho menej a každá návšteva trvá kratšie. Koľko to bude vo vašom prípade, uvedieme v ponuke.",
+    "saveCta": "Vyžiadať ponuku",
+    "stepsEyebrow": "Priebeh",
+    "stepsTitle": "Tri kroky k ponuke",
+    "b2bTitle": "Pýtate sa za firmu?",
+    "b2bText": "Kancelárie, ambulancie, hotely, reštaurácie a správcov budov kalkulujeme individuálne – podľa plochy, frekvencie a prístupnosti, zvyčajne po obhliadke.",
+    "b2bCta": "Prejsť na firmy",
+    "ctaTitle": "Povedzte nám, o čo ide",
+    "ctaText": "Stačí pár údajov a dostanete ponuku, ktorej sa držíme.",
+    "ctaAction": "Vyžiadať ponuku",
+    "ctaSecondary": "Kontaktujte nás",
+    "factors": {
+      "one": {
+        "title": "Veľkosť",
+        "body": "Metre štvorcové, počet miestností a koľko je kúpeľní. Toto je jediný najväčší faktor."
+      },
+      "two": {
+        "title": "Typ upratovania",
+        "body": "Bežné udržiavacie upratovanie je iná práca než generálne upratovanie alebo odovzdanie po sťahovaní."
+      },
+      "three": {
+        "title": "Frekvencia",
+        "body": "Jednorazovo, týždenne alebo raz za dva týždne. Čím pravidelnejšie, tým menej práce na jednu návštevu."
+      },
+      "four": {
+        "title": "Stav",
+        "body": "Koľko sa toho nazbieralo. Po rekonštrukcii alebo dlhšej prestávke trvá prvá návšteva dlhšie."
+      }
+    },
+    "steps": {
+      "one": {
+        "title": "Pošlite žiadosť",
+        "body": "Stručne opíšte, o čo ide: objekt, veľkosť, želaný rytmus. Stačí pár viet."
+      },
+      "two": {
+        "title": "Pozrieme sa na to",
+        "body": "Prejdeme si vaše údaje a ozveme sa, ak niečo chýba. Pri firemných priestoroch prídeme na obhliadku."
+      },
+      "three": {
+        "title": "Záväzná ponuka",
+        "body": "Dostanete písomnú ponuku s cenou, rozsahom a návrhom termínu – spravidla do 24 hodín."
+      }
+    }
+  },
+  "quote": {
+    "heroEyebrow": "Vyžiadať ponuku",
+    "heroTitle": "Vaša ponuka v štyroch krokoch",
+    "heroLede": "Povedzte nám, o čo ide. Dostanete nezáväznú ponuku – spravidla do 24 hodín.",
+    "step1": "Typ klienta",
+    "step2": "Priestor",
+    "step3": "Rytmus",
+    "step4": "Kontakt",
+    "s1Title": "Pre koho je upratovanie?",
+    "s1Private": "Súkromne",
+    "s1PrivateNote": "Byt, dom alebo sťahovanie",
+    "s1Business": "Firma",
+    "s1BusinessNote": "Kancelária, ambulancia, hotel, reštaurácia, objekt",
+    "s2Title": "Povedzte nám o priestore",
+    "s2PrivateHint": "Údaje o vašom domove.",
+    "s2BusinessHint": "Údaje o vašich priestoroch.",
+    "fSize": "Plocha v m²",
+    "fRooms": "Izby",
+    "fBedrooms": "z toho spálne",
+    "fBaths": "Kúpeľne",
+    "fPets": "Zvieratá v domácnosti",
+    "fPetsNo": "Nie",
+    "fPetsYes": "Áno",
+    "fCleaningType": "Typ upratovania",
+    "fTypeRegular": "Udržiavacie upratovanie",
+    "fTypeDeep": "Generálne upratovanie",
+    "fTypeMove": "Po sťahovaní",
+    "fAccess": "Prístup",
+    "fAccessPlaceholder": "Ako sa dostaneme dnu? Kľúč, kód, niekto na mieste …",
+    "fPremises": "Typ prevádzky",
+    "fPremisesOffice": "Kancelária",
+    "fPremisesClinic": "Ambulancia / prax",
+    "fPremisesHotel": "Hotel / apartmány",
+    "fPremisesRestaurant": "Reštaurácia",
+    "fPremisesProperty": "Správa budov / objekt",
+    "fFloors": "Miestnosti / poschodia",
+    "fPerWeek": "Upratovaní za týždeň",
+    "fHours": "Preferovaný čas",
+    "fHoursPlaceholder": "napr. po 18:00, pred otvorením, cez víkend",
+    "fSpecial": "Osobitné požiadavky",
+    "fSpecialPlaceholder": "Hygienický plán, dokumentácia, bezpečnostné pravidlá …",
+    "s3Title": "Ako často a odkedy?",
+    "fFrequency": "Rytmus",
+    "fFreqOnce": "Jednorazovo",
+    "fFreqWeekly": "Týždenne",
+    "fFreqBiweekly": "Raz za dva týždne",
+    "fFreqMonthly": "Mesačne",
+    "fStart": "Želaný začiatok",
+    "fFlexible": "Aká je vaša flexibilita?",
+    "fFlexiblePlaceholder": "napr. od polovice mesiaca, len doobeda …",
+    "s4Title": "Ako vás zastihneme?",
+    "fName": "Meno",
+    "fCompany": "Firma",
+    "fEmail": "E-mailová adresa",
+    "fPhone": "Telefón",
+    "fMessage": "Vaša správa",
+    "fMessagePlaceholder": "Čokoľvek ďalšie, čo by sme mali vedieť.",
+    "fPreferred": "Preferovaný kontakt",
+    "fPrefEmail": "E-mail",
+    "fPrefPhone": "Telefón",
+    "optional": "nepovinné",
+    "submit": "Odoslať žiadosť",
+    "submitNote": "Nezáväzne a zdarma. Odpovedáme spravidla do 24 hodín.",
+    "sideTitle": "Ako to bude ďalej",
+    "sideOne": "Prečítame si vašu žiadosť a ozveme sa, ak niečo chýba.",
+    "sideTwo": "Pri firmách dohodneme krátku obhliadku.",
+    "sideThree": "Dostanete písomnú ponuku s cenou a návrhom termínu.",
+    "sideContact": "Radšej sa porozprávate priamo?",
+    "successTitle": "Ďakujeme – vaše údaje sú kompletné.",
+    "successBody": "Upozornenie: formulár zatiaľ nie je prepojený s našou schránkou, vaša žiadosť teda ešte nebola odoslaná. Pošlite nám prosím údaje nateraz priamo e-mailom alebo zavolajte – ozveme sa čo najskôr.",
+    "successAgain": "Upraviť údaje"
+  },
   "why": {
     "eyebrow": "PREČO MY",
     "title": "Prečo Magic Shine?",
@@ -617,9 +749,5 @@
     "privacy": "Ochrana údajov",
     "terms": "Obchodné podmienky",
     "imprint": "Tiráž"
-  },
-  "placeholder": {
-    "title": "Táto stránka sa pripravuje",
-    "body": "Obsah tejto stránky pribudne v ďalšom kroku. Hlavička, päta a dizajnový systém sú už hotové – vidíte ich hore a dole."
   }
 }

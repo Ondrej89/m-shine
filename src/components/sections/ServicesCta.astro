@@ -5,6 +5,7 @@ import Section from '../Section.astro';
 import type { Locale } from '../../i18n/config';
 import { localizedPath } from '../../i18n/routes';
 import { useTranslations } from '../../i18n/ui';
+import { withBase } from '../../lib/paths';
 
 /*
  * The closing CTA: copy over a photo, darkened left-to-right by a gradient so
@@ -28,7 +29,7 @@ const t = useTranslations(locale);
 	<div class="ms-svc-cta">
 		<figure class="ms-svc-cta__media">
 			<img
-				src="/img/photos/srv-cta.webp"
+				src={withBase('/img/photos/srv-cta.webp')}
 				alt={t('services.cta.photoAlt')}
 				width="1200"
 				height="675"

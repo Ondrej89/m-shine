@@ -1,0 +1,468 @@
+---
+import Eyebrow from '../Eyebrow.astro';
+import Icon from '../Icon.astro';
+import Section from '../Section.astro';
+import { SITE_DETAILS } from '../../data/site';
+import type { Locale } from '../../i18n/config';
+import { useTranslations } from '../../i18n/ui';
+
+/*
+ * The quote request form — the booking wizard's four steps, refitted.
+ *
+ * Structure and behaviour are explained at the top of quote.css. The short
+ * version: one form, four numbered cards, and the only thing that changes as
+ * you fill it in is which half of step two shows, which is CSS.
+ *
+ * Like the contact form and the newsletter, it has no endpoint yet
+ * (`SITE_DETAILS.quoteAction` is `null`). The browser's own validation runs
+ * first, then the script at the foot swaps the form for the success panel.
+ * That panel says plainly that nothing has been transmitted yet and points at
+ * the phone and the mailbox — a form that has not been wired up must not tell
+ * someone their request is on its way. When the form service lands, set
+ * `quoteAction`, drop `successBody` for the real confirmation line, and the
+ * `data-` hook disappears on its own.
+ *
+ * One thing to do at that point and not before: a panel hidden by CSS still
+ * posts its fields, so a business enquiry would arrive carrying empty
+ * `privateSize`, `pets` and the rest. Disabling the hidden half needs
+ * JavaScript — `disabled` cannot be set from a stylesheet — and doing it now
+ * would mean shipping script for no benefit while nothing is being sent.
+ */
+interface Props {
+	locale: Locale;
+}
+
+const { locale } = Astro.props;
+const t = useTranslations(locale);
+
+const STEPS = ['step1', 'step2', 'step3', 'step4'] as const;
+
+const CLEANING_TYPES = [
+	{ value: 'regular', key: 'fTypeRegular' },
+	{ value: 'deep', key: 'fTypeDeep' },
+	{ value: 'move', key: 'fTypeMove' },
+] as const;
+
+const PREMISES = [
+	{ value: 'office', key: 'fPremisesOffice' },
+	{ value: 'clinic', key: 'fPremisesClinic' },
+	{ value: 'hotel', key: 'fPremisesHotel' },
+	{ value: 'restaurant', key: 'fPremisesRestaurant' },
+	{ value: 'property', key: 'fPremisesProperty' },
+] as const;
+
+const FREQUENCIES = [
+	{ value: 'once', key: 'fFreqOnce' },
+	{ value: 'weekly', key: 'fFreqWeekly' },
+	{ value: 'biweekly', key: 'fFreqBiweekly' },
+	{ value: 'monthly', key: 'fFreqMonthly' },
+] as const;
+
+const quoteAction = SITE_DETAILS.quoteAction;
+---
+
+<Section class="ms-quote" width={1200} rhythm="none">
+	<Eyebrow>{t('quote.heroEyebrow')}</Eyebrow>
+	<h1 class="ms-quote__title">{t('quote.heroTitle')}</h1>
+	<p class="ms-quote__lede">{t('quote.heroLede')}</p>
+
+	{/* A map of the form rather than a control — every step is on the page. */}
+	<ol class="ms-stepper">
+		{
+			STEPS.map((step) => (
+				<li class="ms-stepper__item">
+					<span class="ms-stepper__label">{t(`quote.${step}` as 'quote.step1')}</span>
+				</li>
+			))
+		}
+	</ol>
+</Section>
+
+<Section class="ms-quote-body" width={1200} rhythm="none">
+	<div class="ms-quote__grid">
+		<div>
+			<form
+				class="ms-quote__form"
+				action={quoteAction ?? undefined}
+				method="post"
+				data-ms-quote={quoteAction ? undefined : 'pending'}
+			>
+				{/* ---- Step 1: who is asking ---- */}
+				<fieldset class="ms-qstep">
+					<legend class="ms-qstep__head">
+						<span class="ms-qstep__num">1</span>
+						<span class="ms-qstep__title">{t('quote.s1Title')}</span>
+					</legend>
+
+					<ul class="ms-qopts">
+						<li class="ms-qopt">
+							<input
+								class="ms-qopt__input"
+								type="radio"
+								name="customerKind"
+								id="ms-q-kind-private"
+								value="private"
+								checked
+							/>
+							<label class="ms-qopt__card" for="ms-q-kind-private">
+								<span class="ms-qopt__icon"><Icon name="house" size={20} /></span>
+								<span>
+									<span class="ms-qopt__name">{t('quote.s1Private')}</span>
+									<span class="ms-qopt__note">{t('quote.s1PrivateNote')}</span>
+								</span>
+							</label>
+						</li>
+
+						<li class="ms-qopt">
+							<input
+								class="ms-qopt__input"
+								type="radio"
+								name="customerKind"
+								id="ms-q-kind-business"
+								value="business"
+							/>
+							<label class="ms-qopt__card" for="ms-q-kind-business">
+								<span class="ms-qopt__icon"><Icon name="office" size={20} /></span>
+								<span>
+									<span class="ms-qopt__name">{t('quote.s1Business')}</span>
+									<span class="ms-qopt__note">{t('quote.s1BusinessNote')}</span>
+								</span>
+							</label>
+						</li>
+					</ul>
+				</fieldset>
+
+				{/* ---- Step 2: the property, private ---- */}
+				<fieldset class="ms-qstep" data-when="private">
+					<legend class="ms-qstep__head">
+						<span class="ms-qstep__num">2</span>
+						<span class="ms-qstep__title">{t('quote.s2Title')}</span>
+					</legend>
+					<p class="ms-qstep__hint">{t('quote.s2PrivateHint')}</p>
+
+					<div class="ms-qrow ms-qrow--three">
+						<label class="ms-qfield">
+							<span class="ms-qfield__label">{t('quote.fSize')}</span>
+							<input class="ms-qinput" type="number" name="privateSize" min="1" inputmode="numeric" />
+						</label>
+						<label class="ms-qfield">
+							<span class="ms-qfield__label">{t('quote.fRooms')}</span>
+							<input class="ms-qinput" type="number" name="privateRooms" min="1" inputmode="numeric" />
+						</label>
+						<label class="ms-qfield">
+							<span class="ms-qfield__label">{t('quote.fBaths')}</span>
+							<input class="ms-qinput" type="number" name="privateBaths" min="0" inputmode="numeric" />
+						</label>
+					</div>
+
+					<label class="ms-qfield">
+						<span class="ms-qfield__label">{t('quote.fBedrooms')}</span>
+						<input class="ms-qinput" type="number" name="privateBedrooms" min="0" inputmode="numeric" />
+					</label>
+
+					<div class="ms-qfield">
+						<span class="ms-qfield__label">{t('quote.fCleaningType')}</span>
+						<ul class="ms-qchips">
+							{
+								CLEANING_TYPES.map((type, index) => (
+									<li>
+										<input
+											class="ms-qchip__input"
+											type="radio"
+											name="cleaningType"
+											id={`ms-q-type-${type.value}`}
+											value={type.value}
+											checked={index === 0}
+										/>
+										<label class="ms-qchip__label" for={`ms-q-type-${type.value}`}>
+											{t(`quote.${type.key}` as 'quote.fTypeRegular')}
+										</label>
+									</li>
+								))
+							}
+						</ul>
+					</div>
+
+					<div class="ms-qfield">
+						<span class="ms-qfield__label">{t('quote.fPets')}</span>
+						<ul class="ms-qchips">
+							{
+								[
+									{ value: 'no', key: 'fPetsNo' },
+									{ value: 'yes', key: 'fPetsYes' },
+								].map((pet, index) => (
+									<li>
+										<input
+											class="ms-qchip__input"
+											type="radio"
+											name="pets"
+											id={`ms-q-pets-${pet.value}`}
+											value={pet.value}
+											checked={index === 0}
+										/>
+										<label class="ms-qchip__label" for={`ms-q-pets-${pet.value}`}>
+											{t(`quote.${pet.key}` as 'quote.fPetsNo')}
+										</label>
+									</li>
+								))
+							}
+						</ul>
+					</div>
+
+					<label class="ms-qfield">
+						<span class="ms-qfield__label">
+							{t('quote.fAccess')} <span class="ms-qfield__optional">({t('quote.optional')})</span>
+						</span>
+						<textarea
+							class="ms-qinput"
+							name="access"
+							rows="2"
+							placeholder={t('quote.fAccessPlaceholder')}></textarea>
+					</label>
+				</fieldset>
+
+				{/* ---- Step 2: the premises, business ---- */}
+				<fieldset class="ms-qstep" data-when="business">
+					<legend class="ms-qstep__head">
+						<span class="ms-qstep__num">2</span>
+						<span class="ms-qstep__title">{t('quote.s2Title')}</span>
+					</legend>
+					<p class="ms-qstep__hint">{t('quote.s2BusinessHint')}</p>
+
+					<label class="ms-qfield">
+						<span class="ms-qfield__label">{t('quote.fPremises')}</span>
+						<select class="ms-qinput" name="premisesType">
+							{
+								PREMISES.map((premises) => (
+									<option value={premises.value}>
+										{t(`quote.${premises.key}` as 'quote.fPremisesOffice')}
+									</option>
+								))
+							}
+						</select>
+					</label>
+
+					<div class="ms-qrow ms-qrow--three">
+						<label class="ms-qfield">
+							<span class="ms-qfield__label">{t('quote.fSize')}</span>
+							<input class="ms-qinput" type="number" name="businessSize" min="1" inputmode="numeric" />
+						</label>
+						<label class="ms-qfield">
+							<span class="ms-qfield__label">{t('quote.fFloors')}</span>
+							<input class="ms-qinput" type="text" name="businessFloors" />
+						</label>
+						<label class="ms-qfield">
+							<span class="ms-qfield__label">{t('quote.fPerWeek')}</span>
+							<input class="ms-qinput" type="number" name="perWeek" min="1" max="14" inputmode="numeric" />
+						</label>
+					</div>
+
+					<label class="ms-qfield">
+						<span class="ms-qfield__label">{t('quote.fHours')}</span>
+						<input
+							class="ms-qinput"
+							type="text"
+							name="preferredHours"
+							placeholder={t('quote.fHoursPlaceholder')}
+						/>
+					</label>
+
+					<label class="ms-qfield">
+						<span class="ms-qfield__label">
+							{t('quote.fSpecial')} <span class="ms-qfield__optional">({t('quote.optional')})</span>
+						</span>
+						<textarea
+							class="ms-qinput"
+							name="specialRequirements"
+							rows="2"
+							placeholder={t('quote.fSpecialPlaceholder')}></textarea>
+					</label>
+				</fieldset>
+
+				{/* ---- Step 3: how often, from when ---- */}
+				<fieldset class="ms-qstep">
+					<legend class="ms-qstep__head">
+						<span class="ms-qstep__num">3</span>
+						<span class="ms-qstep__title">{t('quote.s3Title')}</span>
+					</legend>
+
+					<div class="ms-qfield">
+						<span class="ms-qfield__label">{t('quote.fFrequency')}</span>
+						<ul class="ms-qchips">
+							{
+								FREQUENCIES.map((frequency, index) => (
+									<li>
+										<input
+											class="ms-qchip__input"
+											type="radio"
+											name="frequency"
+											id={`ms-q-freq-${frequency.value}`}
+											value={frequency.value}
+											checked={index === 0}
+										/>
+										<label class="ms-qchip__label" for={`ms-q-freq-${frequency.value}`}>
+											{t(`quote.${frequency.key}` as 'quote.fFreqOnce')}
+										</label>
+									</li>
+								))
+							}
+						</ul>
+					</div>
+
+					<div class="ms-qrow">
+						<label class="ms-qfield">
+							<span class="ms-qfield__label">{t('quote.fStart')}</span>
+							<input class="ms-qinput" type="date" name="startDate" />
+						</label>
+						<label class="ms-qfield">
+							<span class="ms-qfield__label">
+								{t('quote.fFlexible')}{' '}
+								<span class="ms-qfield__optional">({t('quote.optional')})</span>
+							</span>
+							<input
+								class="ms-qinput"
+								type="text"
+								name="flexibility"
+								placeholder={t('quote.fFlexiblePlaceholder')}
+							/>
+						</label>
+					</div>
+				</fieldset>
+
+				{/* ---- Step 4: contact ---- */}
+				<fieldset class="ms-qstep">
+					<legend class="ms-qstep__head">
+						<span class="ms-qstep__num">4</span>
+						<span class="ms-qstep__title">{t('quote.s4Title')}</span>
+					</legend>
+
+					<div class="ms-qrow">
+						<label class="ms-qfield">
+							<span class="ms-qfield__label">{t('quote.fName')}</span>
+							<input class="ms-qinput" type="text" name="name" autocomplete="name" required />
+						</label>
+						{/* Only asked of businesses, so it rides the same conditional. */}
+						<label class="ms-qfield" data-when="business">
+							<span class="ms-qfield__label">{t('quote.fCompany')}</span>
+							<input class="ms-qinput" type="text" name="company" autocomplete="organization" />
+						</label>
+					</div>
+
+					<div class="ms-qrow">
+						<label class="ms-qfield">
+							<span class="ms-qfield__label">{t('quote.fEmail')}</span>
+							<input class="ms-qinput" type="email" name="email" autocomplete="email" required />
+						</label>
+						<label class="ms-qfield">
+							<span class="ms-qfield__label">
+								{t('quote.fPhone')} <span class="ms-qfield__optional">({t('quote.optional')})</span>
+							</span>
+							<input class="ms-qinput" type="tel" name="phone" autocomplete="tel" />
+						</label>
+					</div>
+
+					<div class="ms-qfield">
+						<span class="ms-qfield__label">{t('quote.fPreferred')}</span>
+						<ul class="ms-qchips">
+							{
+								[
+									{ value: 'email', key: 'fPrefEmail' },
+									{ value: 'phone', key: 'fPrefPhone' },
+								].map((method, index) => (
+									<li>
+										<input
+											class="ms-qchip__input"
+											type="radio"
+											name="preferredContact"
+											id={`ms-q-pref-${method.value}`}
+											value={method.value}
+											checked={index === 0}
+										/>
+										<label class="ms-qchip__label" for={`ms-q-pref-${method.value}`}>
+											{t(`quote.${method.key}` as 'quote.fPrefEmail')}
+										</label>
+									</li>
+								))
+							}
+						</ul>
+					</div>
+
+					<label class="ms-qfield">
+						<span class="ms-qfield__label">
+							{t('quote.fMessage')} <span class="ms-qfield__optional">({t('quote.optional')})</span>
+						</span>
+						<textarea
+							class="ms-qinput"
+							name="message"
+							rows="3"
+							placeholder={t('quote.fMessagePlaceholder')}></textarea>
+					</label>
+				</fieldset>
+
+				<button class="ms-quote__submit" type="submit">
+					{t('quote.submit')}
+					<Icon name="send" size={16} />
+				</button>
+				<p class="ms-quote__submit-note">{t('quote.submitNote')}</p>
+			</form>
+
+			{/* Shown in place of the form once it validates. */}
+			<div class="ms-quote__success" hidden data-ms-quote-success>
+				<span class="ms-quote__success-icon">
+					<Icon name="check" size={26} stroke={2.4} />
+				</span>
+				<h2 class="ms-quote__success-title">{t('quote.successTitle')}</h2>
+				<p class="ms-quote__success-body">{t('quote.successBody')}</p>
+
+				<p class="ms-qside__contact">
+					<a class="ms-qside__link" href={`mailto:${SITE_DETAILS.email}`}>{SITE_DETAILS.email}</a>
+					<a class="ms-qside__link" href={`tel:${SITE_DETAILS.phoneHref}`}>{SITE_DETAILS.phone}</a>
+				</p>
+
+				<button class="ms-qchip__label" type="button" data-ms-quote-again>
+					{t('quote.successAgain')}
+				</button>
+			</div>
+		</div>
+
+		<aside class="ms-quote__side">
+			<div class="ms-qside">
+				<h2 class="ms-qside__title">{t('quote.sideTitle')}</h2>
+				<ol class="ms-qside__list">
+					<li class="ms-qside__item">{t('quote.sideOne')}</li>
+					<li class="ms-qside__item">{t('quote.sideTwo')}</li>
+					<li class="ms-qside__item">{t('quote.sideThree')}</li>
+				</ol>
+
+				<div class="ms-qside__contact">
+					<p>{t('quote.sideContact')}</p>
+					<a class="ms-qside__link" href={`tel:${SITE_DETAILS.phoneHref}`}>{SITE_DETAILS.phone}</a>
+					<a class="ms-qside__link" href={`mailto:${SITE_DETAILS.email}`}>{SITE_DETAILS.email}</a>
+				</div>
+			</div>
+		</aside>
+	</div>
+</Section>
+
+<script is:inline>
+	document.querySelectorAll('[data-ms-quote="pending"]').forEach((form) => {
+		const success = document.querySelector('[data-ms-quote-success]');
+		if (!success) return;
+
+		form.addEventListener('submit', (event) => {
+			// Native validation has already passed by the time submit fires.
+			event.preventDefault();
+			form.hidden = true;
+			success.hidden = false;
+			success.setAttribute('tabindex', '-1');
+			success.focus();
+			success.scrollIntoView({ block: 'center' });
+		});
+
+		success.querySelector('[data-ms-quote-again]')?.addEventListener('click', () => {
+			success.hidden = true;
+			form.hidden = false;
+			form.scrollIntoView({ block: 'start' });
+		});
+	});
+</script>

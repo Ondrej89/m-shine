@@ -3,6 +3,7 @@ import { LOCALE_META, type Locale } from '../i18n/config';
 import { alternates, localizedPath, type RouteId } from '../i18n/routes';
 import { useTranslations } from '../i18n/ui';
 import '../styles/global.css';
+import { withBase } from '../lib/paths';
 
 interface Props {
 	locale: Locale;
@@ -40,7 +41,7 @@ const xDefault = new URL(localizedPath('de', route), site).href;
 	<head>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
-		<link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+		<link rel="icon" href={withBase('/favicon.svg')} type="image/svg+xml" />
 
 		<title>{title}</title>
 		<meta name="description" content={description} />
@@ -67,12 +68,12 @@ const xDefault = new URL(localizedPath('de', route), site).href;
 		    on the hero heading, which is the page's LCP element. */}
 		<link
 			rel="preload"
-			href="/fonts/playfair-display-latin.woff2"
+			href={withBase('/fonts/playfair-display-latin.woff2')}
 			as="font"
 			type="font/woff2"
 			crossorigin
 		/>
-		<link rel="preload" href="/fonts/mulish-latin.woff2" as="font" type="font/woff2" crossorigin />
+		<link rel="preload" href={withBase('/fonts/mulish-latin.woff2')} as="font" type="font/woff2" crossorigin />
 
 		{/*
 		 * `no-js` is stripped before first paint, so it is only ever present when

@@ -56,13 +56,17 @@
       "title": "Büroreinigung & Gewerbereinigung in Wien",
       "description": "Büroreinigung, Ordinationsreinigung, Hotelreinigung, Gastronomie und Objektbetreuung in Wien. Individuell kalkuliert, schriftliches Angebot in 24–48 Stunden."
     },
+    "pricing": {
+      "title": "Preise & Ablauf",
+      "description": "Was Haus-, Wohnungs-, Umzugs- und Grundreinigung in Wien kosten: Startpreise, was den Endpreis bestimmt und wie Sie in drei Schritten zu einem verbindlichen Angebot kommen."
+    },
+    "quote": {
+      "title": "Angebot anfordern",
+      "description": "Fordern Sie ein unverbindliches Reinigungsangebot für Ihr Zuhause oder Ihren Betrieb in Wien an. Wenige Angaben genügen – Antwort in der Regel innerhalb von 24 Stunden."
+    },
     "about": {
       "title": "Über uns – Ihr Reinigungsteam in Wien",
       "description": "Magic Shine ist ein Reinigungsunternehmen in Wien: geschultes, überprüftes Personal, umweltfreundliche Mittel und eine persönliche Ansprechperson. Lernen Sie uns kennen."
-    },
-    "placeholder": {
-      "title": "In Arbeit",
-      "description": "Diese Seite wird gerade gebaut."
     }
   },
   "home": {
@@ -477,6 +481,134 @@
       }
     }
   },
+  "pricing": {
+    "heroEyebrow": "Preise & Ablauf",
+    "heroTitle": "Preise & Ablauf",
+    "heroLede": "Feste Pauschalen gibt es bei uns nicht – kein Zuhause gleicht dem anderen. Hier sehen Sie, wo die Preise beginnen, was den Endpreis bestimmt und wie Sie in drei Schritten zu einem verbindlichen Angebot kommen.",
+    "startEyebrow": "Startpreise",
+    "startTitle": "Wo die Preise beginnen",
+    "startLede": "Richtwerte für Privathaushalte, pro Termin. Der tatsächliche Preis hängt von den Faktoren weiter unten ab – deshalb sagen wir ihn Ihnen erst, wenn wir wissen, worum es geht.",
+    "startLink": "Leistung ansehen",
+    "factorsEyebrow": "Was den Preis bestimmt",
+    "factorsTitle": "Vier Faktoren, mehr nicht",
+    "factorsLede": "Damit Sie nachvollziehen können, wie ein Angebot zustande kommt – und nicht raten müssen.",
+    "saveTitle": "Regelmäßig reinigen lassen kostet weniger",
+    "saveText": "Wer wöchentlich oder alle zwei Wochen reinigen lässt, zahlt pro Termin spürbar weniger als bei einer einmaligen Reinigung: Es bleibt weniger liegen, und jeder Termin geht schneller. Wie viel es in Ihrem Fall ausmacht, steht in Ihrem Angebot.",
+    "saveCta": "Angebot anfordern",
+    "stepsEyebrow": "Ablauf",
+    "stepsTitle": "In drei Schritten zum Angebot",
+    "b2bTitle": "Sie fragen für einen Betrieb an?",
+    "b2bText": "Büros, Ordinationen, Hotels, Gastronomie und Hausverwaltungen kalkulieren wir individuell – nach Fläche, Frequenz und Zugänglichkeit, meist nach einer Besichtigung.",
+    "b2bCta": "Zu den Geschäftskunden",
+    "ctaTitle": "Sagen Sie uns, worum es geht",
+    "ctaText": "Ein paar Angaben genügen, und Sie bekommen ein Angebot, an das wir uns halten.",
+    "ctaAction": "Angebot anfordern",
+    "ctaSecondary": "Kontakt aufnehmen",
+    "factors": {
+      "one": {
+        "title": "Größe",
+        "body": "Quadratmeter, Anzahl der Räume und wie viele Bäder dazugehören. Das ist der größte einzelne Faktor."
+      },
+      "two": {
+        "title": "Art der Reinigung",
+        "body": "Eine laufende Unterhaltsreinigung ist etwas anderes als eine Grundreinigung oder eine Übergabe nach dem Auszug."
+      },
+      "three": {
+        "title": "Häufigkeit",
+        "body": "Einmalig, wöchentlich oder alle zwei Wochen. Je regelmäßiger, desto weniger Aufwand pro Termin."
+      },
+      "four": {
+        "title": "Zustand",
+        "body": "Wie viel liegen geblieben ist. Nach einer Renovierung oder einer langen Pause dauert der erste Termin länger."
+      }
+    },
+    "steps": {
+      "one": {
+        "title": "Anfrage senden",
+        "body": "Sie schildern kurz, worum es geht: Objekt, Größe, gewünschter Rhythmus. Ein paar Sätze genügen."
+      },
+      "two": {
+        "title": "Wir sehen es uns an",
+        "body": "Wir prüfen Ihre Angaben und fragen nach, wenn etwas fehlt. Bei Gewerbeobjekten kommen wir für eine Besichtigung vorbei."
+      },
+      "three": {
+        "title": "Verbindliches Angebot",
+        "body": "Sie erhalten ein schriftliches Angebot mit Preis, Umfang und Terminvorschlag – in der Regel innerhalb von 24 Stunden."
+      }
+    }
+  },
+  "quote": {
+    "heroEyebrow": "Angebot anfordern",
+    "heroTitle": "Ihr Angebot in vier Schritten",
+    "heroLede": "Sagen Sie uns, worum es geht. Sie bekommen ein unverbindliches Angebot – in der Regel innerhalb von 24 Stunden.",
+    "step1": "Kundenart",
+    "step2": "Objekt",
+    "step3": "Rhythmus",
+    "step4": "Kontakt",
+    "s1Title": "Für wen ist die Reinigung?",
+    "s1Private": "Privat",
+    "s1PrivateNote": "Wohnung, Haus oder Umzug",
+    "s1Business": "Betrieb",
+    "s1BusinessNote": "Büro, Ordination, Hotel, Gastronomie, Objekt",
+    "s2Title": "Erzählen Sie uns vom Objekt",
+    "s2PrivateHint": "Angaben zu Ihrem Zuhause.",
+    "s2BusinessHint": "Angaben zu Ihren Geschäftsräumen.",
+    "fSize": "Fläche in m²",
+    "fRooms": "Zimmer",
+    "fBedrooms": "davon Schlafzimmer",
+    "fBaths": "Badezimmer",
+    "fPets": "Haustiere im Haushalt",
+    "fPetsNo": "Nein",
+    "fPetsYes": "Ja",
+    "fCleaningType": "Art der Reinigung",
+    "fTypeRegular": "Unterhaltsreinigung",
+    "fTypeDeep": "Grundreinigung",
+    "fTypeMove": "Umzugsreinigung",
+    "fAccess": "Zugang",
+    "fAccessPlaceholder": "Wie kommen wir hinein? Schlüssel, Code, jemand vor Ort …",
+    "fPremises": "Art des Betriebs",
+    "fPremisesOffice": "Büro",
+    "fPremisesClinic": "Ordination / Praxis",
+    "fPremisesHotel": "Hotel / Apartments",
+    "fPremisesRestaurant": "Gastronomie",
+    "fPremisesProperty": "Hausverwaltung / Objekt",
+    "fFloors": "Räume / Etagen",
+    "fPerWeek": "Reinigungen pro Woche",
+    "fHours": "Bevorzugte Zeiten",
+    "fHoursPlaceholder": "z. B. nach 18 Uhr, vor der Öffnung, am Wochenende",
+    "fSpecial": "Besondere Anforderungen",
+    "fSpecialPlaceholder": "Hygieneplan, Dokumentation, Sicherheitsvorgaben …",
+    "s3Title": "Wie oft und ab wann?",
+    "fFrequency": "Rhythmus",
+    "fFreqOnce": "Einmalig",
+    "fFreqWeekly": "Wöchentlich",
+    "fFreqBiweekly": "Alle zwei Wochen",
+    "fFreqMonthly": "Monatlich",
+    "fStart": "Gewünschter Beginn",
+    "fFlexible": "Wie flexibel sind Sie?",
+    "fFlexiblePlaceholder": "z. B. ab Mitte des Monats, Termin nur vormittags …",
+    "s4Title": "Wie erreichen wir Sie?",
+    "fName": "Name",
+    "fCompany": "Firma",
+    "fEmail": "E-Mail-Adresse",
+    "fPhone": "Telefon",
+    "fMessage": "Ihre Nachricht",
+    "fMessagePlaceholder": "Alles, was wir sonst noch wissen sollten.",
+    "fPreferred": "Bevorzugter Kontaktweg",
+    "fPrefEmail": "E-Mail",
+    "fPrefPhone": "Telefon",
+    "optional": "optional",
+    "submit": "Anfrage senden",
+    "submitNote": "Unverbindlich und kostenlos. Wir melden uns in der Regel innerhalb von 24 Stunden.",
+    "sideTitle": "Wie es weitergeht",
+    "sideOne": "Wir lesen Ihre Anfrage und fragen nach, wenn etwas fehlt.",
+    "sideTwo": "Bei Betrieben vereinbaren wir eine kurze Besichtigung.",
+    "sideThree": "Sie erhalten ein schriftliches Angebot mit Preis und Terminvorschlag.",
+    "sideContact": "Lieber direkt sprechen?",
+    "successTitle": "Danke – Ihre Angaben sind vollständig.",
+    "successBody": "Hinweis: Das Formular ist noch nicht mit unserem Postfach verbunden, Ihre Anfrage wurde also noch nicht übermittelt. Bitte schicken Sie uns die Angaben vorerst direkt per E-Mail oder rufen Sie an – wir melden uns dann zeitnah.",
+    "successAgain": "Angaben ändern"
+  },
   "why": {
     "eyebrow": "WARUM WIR",
     "title": "Warum Magic Shine?",
@@ -617,9 +749,5 @@
     "privacy": "Datenschutz",
     "terms": "AGB",
     "imprint": "Impressum"
-  },
-  "placeholder": {
-    "title": "Diese Seite entsteht gerade",
-    "body": "Der Inhalt dieser Seite wird im nächsten Schritt gebaut. Header, Footer und das Design-System sind bereits fertig – Sie sehen sie oben und unten."
   }
 }

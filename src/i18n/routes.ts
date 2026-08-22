@@ -1,3 +1,4 @@
+import { withBase } from '../lib/paths';
 import { DEFAULT_LOCALE, LOCALES, type Locale } from './config';
 
 /**
@@ -54,7 +55,7 @@ export const ROUTES = {
 	commercial: { de: 'geschaeftskunden', en: 'commercial', sk: 'firmy' },
 	pricing: { de: 'preise', en: 'pricing', sk: 'cennik' },
 	contact: { de: 'kontakt', en: 'contact', sk: 'kontakt' },
-	quote: { de: 'angebot-anfordern', en: 'request-a-quote', sk: 'vyziadat-ponuku' },
+	quote: { de: 'angebot', en: 'quote', sk: 'ponuka' },
 
 	/** Not navigation — the component library, for review. Removed before launch. */
 	styleguide: { de: 'styleguide', en: 'styleguide', sk: 'styleguide' },
@@ -84,7 +85,7 @@ export const ROUTE_IDS = Object.keys(ROUTES) as RouteId[];
 export function localizedPath(locale: Locale, route: RouteId): string {
 	const slug = ROUTES[route][locale];
 	const prefix = locale === DEFAULT_LOCALE ? '' : `/${locale}`;
-	return slug ? `${prefix}/${slug}/` : `${prefix}/`;
+	return withBase(slug ? `${prefix}/${slug}/` : `${prefix}/`);
 }
 
 /** The same URL, fully qualified — required for hreflang and canonical tags. */
@@ -105,7 +106,11 @@ export function alternates(route: RouteId) {
 export function allRoutePaths() {
 	return ROUTE_IDS.flatMap((route) =>
 		LOCALES.map((locale) => {
-			const path = localizedPath(locale, route).replace(/^\/|\/$/g, '');
+			/* Deliberately not `localizedPath`: that one prefixes the base for
+			   links, and Astro applies the base to generated routes itself. */
+			const slug = ROUTES[route][locale];
+			const prefix = locale === DEFAULT_LOCALE ? '' : `/${locale}`;
+			const path = (slug ? `${prefix}/${slug}/` : `${prefix}/`).replace(/^\/|\/$/g, '');
 			return {
 				params: { path: path === '' ? undefined : path },
 				props: { locale, route },

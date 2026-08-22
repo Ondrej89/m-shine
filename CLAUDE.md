@@ -129,9 +129,10 @@ first; English and Slovak then fit comfortably.
 
 ## Current state
 
-**Done:** project setup, i18n foundation, the component library, and the Home, About,
-Services (residential), Service Detail, Contact and Commercial pages. Every page of the
-original site is ported, and the catalogue is split into a private and a business half.
+**Done: every page.** Home, About, Services (residential), Service Detail, Contact,
+Commercial, Pricing and Quote, plus the i18n foundation, the component library and a
+GitHub Pages preview deployment. The catalogue is split into a private and a business
+half, pricing is reframed as prices + process, and the booking wizard is a quote request.
 
 - **i18n** — de-AT default at `/`, English at `/en/`, Slovak at `/sk/`, with per-language
   slugs (`/leistungen/`, `/en/services/`, `/sk/sluzby/`) from the registry in
@@ -161,6 +162,14 @@ original site is ported, and the catalogue is split into a private and a busines
 - **Contact** — `src/content-pages/Contact.astro`, one section (`ContactSection`) on the
   **1180px** grid, with `src/styles/components/contact.css`. FAQs left, contact facts and
   the message form right.
+- **Pricing** — `src/content-pages/Pricing.astro`, "Preise & Ablauf" on the **1200px**
+  grid: starting prices, the four factors, the recurring-cleaning save bar, three steps, a
+  business note and the closing CTA. Sections `PricingStart`, `PricingFactors`,
+  `PricingProcess`, `PricingCta`, with `src/styles/components/pricing.css`.
+- **Quote** — `src/content-pages/Quote.astro`, the booking wizard refitted: the same
+  four-step visual flow, but one form with four numbered cards rather than a stateful
+  wizard. `/angebot/`, `/en/quote/`, `/sk/ponuka/`. Section `QuoteForm`, with
+  `src/styles/components/quote.css`.
 - **`src/data/services.ts`** — the service catalogue, and the reason none of the above
   repeat themselves. Home's cards, the Services rows, and the detail template (its own
   page *and* its "other services" row) all read this one list. Adding a service is an
@@ -296,29 +305,68 @@ Commercial page notes worth not undoing:
   slack at full width and 33px at 1001px. Client approved keeping the full-length labels
   over keeping the phone. See the long note in header.css.
 
+Pricing page notes worth not undoing:
+
+- **No plan tiers.** The design sells three fixed plans with a radio selector; the business
+  does not work that way, so the page explains where prices start, what moves them and how
+  a firm quote is reached. The theme's `.ms-plan-*` block is deliberately not ported. Its
+  hero and its save bar are — the save bar was already about recurring cleaning.
+- **The prices are the service detail pages' own strings** (`services.<key>.price` with the
+  shared label and unit), so the two pages cannot drift and the client edits one figure in
+  one place. They are still the unconfirmed euro placeholders.
+- **The frequency discount carries no percentage.** None has been agreed; the concept is
+  the promise and the number belongs in the client's own quote.
+- The step numbers are a CSS counter on the list, so the markup holds no digits and
+  reordering renumbers them.
+
+Quote page notes worth not undoing:
+
+- **One form, not a wizard.** The design showed one step at a time and held the step in
+  component state. A quote request is short enough to read in one pass, a single form
+  cannot lose what you typed two steps ago, and this works with no JavaScript at all.
+- **Step two switches with CSS**, not script: `:has()` on the private/business radio. Safari
+  needs 15.4, which is already the floor for `mask-composite`. Without support both halves
+  show — a longer form, not a broken one.
+- **The success panel is honest.** It appears on submit as the client asked, and says
+  plainly that the form is not connected yet and nothing was transmitted, with the phone
+  and mailbox beside it. When the endpoint lands, swap `quote.successBody` for a real
+  confirmation — and disable the hidden half's fields first, or a business enquiry arrives
+  carrying empty private fields. See the note in QuoteForm.astro.
+- **Every "Angebot anfordern" on the site ends here** — 31 of them on the German pages
+  alone, all through `localizedPath(locale, 'quote')`, so the slug change from
+  `/angebot-anfordern/` to `/angebot/` was one line in the registry.
+
+Deployment:
+
+- **GitHub Pages preview** via `.github/workflows/pages.yml` — see README.md for the
+  one-time repository setting and how the base path is derived.
+- **`withBase()` in `src/lib/paths.ts` is not optional.** Astro rewrites its own assets and
+  Vite rewrites `url()` in CSS, but a `/img/...` or `/fonts/...` written as a string in
+  markup is left alone and 404s under the Pages subpath. Links go through `localizedPath`,
+  which already calls it.
+
 **Scaffolding to delete before launch:** `Styleguide.astro` with its `ROUTES` entry and the
-sitemap filter in `astro.config.mjs`; `Placeholder.astro` once the last real page replaces
-it.
+sitemap filter in `astro.config.mjs`. `Placeholder.astro` is already gone — the quote page
+was the last route it stood in for.
 
 ## Next
 
-Every page of the original site is ported and the catalogue is split in two.
-`Placeholder.astro` now stands in for Pricing and Quote only, and everything left to build
-is new content:
+Every page is built. What is left is not page work:
 
-1. **"Preise & Ablauf"** — the reframed pricing page.
-2. The **quote request form**, replacing the booking wizard. The Contact form is the
-   pattern to follow, and both want the same service — see the pre-launch list.
-
-Then translation review and deploy.
+1. **Wire the forms.** Contact and Quote both wait on one form/email service;
+   `SITE_DETAILS.contactAction` and `quoteAction` are the two slots, and the newsletter is
+   a third. See the pre-launch list.
+2. **Native review of the German and Slovak copy**, and the client's decisions on the
+   pre-launch list below.
+3. **Delete the styleguide**, set the real origin, and deploy.
 
 ## Pre-launch list
 
 - **Service prices are the design's USD figures relabelled in euro** — 120/110/150/180 —
   and shown as "ab 120 €" rather than a firm number, per the client. They are still
-  unconfirmed amounts and belong with the "Preise & Ablauf" decision. They live in
-  `services.<key>.price`, one string each. The Services *rows* still show no price at all;
-  decide whether they should match the detail pages.
+  unconfirmed amounts and now appear in **two** places — the service detail heroes and the
+  Pricing page — both reading the same `services.<key>.price`, one string each. The
+  Services *rows* still show no price at all; decide whether they should match.
 - **"Haustiersicher" / "pet-safe"** is on every detail page's facts card, from the design.
   It is a product-safety claim the client has not substantiated — the same class as the
   insured/bonded line that was removed. Confirm or drop it.

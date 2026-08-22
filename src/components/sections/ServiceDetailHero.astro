@@ -7,6 +7,7 @@ import type { Service } from '../../data/services';
 import type { Locale } from '../../i18n/config';
 import { localizedPath } from '../../i18n/routes';
 import { useTranslations } from '../../i18n/ui';
+import { withBase } from '../../lib/paths';
 
 /*
  * The detail hero: name, lede, the "from" price and the guarantee, two
@@ -71,7 +72,7 @@ const key = service.key;
 			{/* The page's LCP element on every one of the four services. */}
 			<img
 				class="ms-mask-fade"
-				src={service.heroImage}
+				src={withBase(service.heroImage)}
 				alt={t(`services.${key}.heroPhotoAlt` as 'services.house.heroPhotoAlt')}
 				width="1068"
 				height="712"

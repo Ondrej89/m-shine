@@ -56,13 +56,17 @@
       "title": "Office & Commercial Cleaning in Vienna",
       "description": "Office, medical practice, hotel, restaurant and property cleaning in Vienna. Individually calculated, written quote within 24–48 hours."
     },
+    "pricing": {
+      "title": "Pricing & Process",
+      "description": "What house, apartment, move-out and deep cleaning cost in Vienna: starting prices, what sets the final price and how you get a firm quote in three steps."
+    },
+    "quote": {
+      "title": "Request a Quote",
+      "description": "Request a no-obligation cleaning quote for your home or business in Vienna. A few details are enough — we normally reply within 24 hours."
+    },
     "about": {
       "title": "About Us – Your Cleaning Team in Vienna",
       "description": "Magic Shine is a Vienna cleaning company: trained, background-checked staff, eco-friendly products and one personal contact. Get to know us."
-    },
-    "placeholder": {
-      "title": "In progress",
-      "description": "This page is being built."
     }
   },
   "home": {
@@ -477,6 +481,134 @@
       }
     }
   },
+  "pricing": {
+    "heroEyebrow": "Pricing & Process",
+    "heroTitle": "Pricing & Process",
+    "heroLede": "We do not work with fixed packages — no two homes are the same. Here is where prices start, what sets the final figure and how you get a firm quote in three steps.",
+    "startEyebrow": "Starting Prices",
+    "startTitle": "Where Prices Start",
+    "startLede": "Guide figures for private homes, per visit. What you actually pay depends on the factors below — which is why we quote once we know what is involved.",
+    "startLink": "View service",
+    "factorsEyebrow": "What Sets the Price",
+    "factorsTitle": "Four Factors, No More",
+    "factorsLede": "So you can follow how a quote is put together instead of guessing at it.",
+    "saveTitle": "Regular Cleaning Costs Less",
+    "saveText": "Booking weekly or fortnightly costs noticeably less per visit than a one-off clean: less builds up, and each visit takes less time. How much it comes to in your case is set out in your quote.",
+    "saveCta": "Request a Quote",
+    "stepsEyebrow": "The Process",
+    "stepsTitle": "Three Steps to a Quote",
+    "b2bTitle": "Enquiring for a business?",
+    "b2bText": "Offices, medical practices, hotels, restaurants and property managers are calculated individually — by floor area, frequency and access, usually after a site visit.",
+    "b2bCta": "Go to Commercial",
+    "ctaTitle": "Tell Us What You Need",
+    "ctaText": "A few details are enough, and you get a quote we hold ourselves to.",
+    "ctaAction": "Request a Quote",
+    "ctaSecondary": "Get in Touch",
+    "factors": {
+      "one": {
+        "title": "Size",
+        "body": "Square metres, number of rooms and how many bathrooms are involved. This is the single biggest factor."
+      },
+      "two": {
+        "title": "Type of clean",
+        "body": "Routine upkeep is a different job from a deep clean or a handover after moving out."
+      },
+      "three": {
+        "title": "Frequency",
+        "body": "One-off, weekly or fortnightly. The more regular the visits, the less work each one takes."
+      },
+      "four": {
+        "title": "Condition",
+        "body": "How much has built up. After building work or a long gap, the first visit takes longer."
+      }
+    },
+    "steps": {
+      "one": {
+        "title": "Send your request",
+        "body": "Tell us briefly what is involved: the property, its size, the rhythm you have in mind. A few sentences are enough."
+      },
+      "two": {
+        "title": "We look into it",
+        "body": "We go through your details and come back if anything is missing. For business premises we visit the site."
+      },
+      "three": {
+        "title": "A firm quote",
+        "body": "You get a written quote with the price, the scope and a proposed date — normally within 24 hours."
+      }
+    }
+  },
+  "quote": {
+    "heroEyebrow": "Request a Quote",
+    "heroTitle": "Your Quote in Four Steps",
+    "heroLede": "Tell us what you need. You get a no-obligation quote — normally within 24 hours.",
+    "step1": "Customer",
+    "step2": "Property",
+    "step3": "Schedule",
+    "step4": "Contact",
+    "s1Title": "Who is the cleaning for?",
+    "s1Private": "Private",
+    "s1PrivateNote": "Apartment, house or a move",
+    "s1Business": "Business",
+    "s1BusinessNote": "Office, practice, hotel, restaurant, property",
+    "s2Title": "Tell us about the property",
+    "s2PrivateHint": "Details about your home.",
+    "s2BusinessHint": "Details about your premises.",
+    "fSize": "Floor area in m²",
+    "fRooms": "Rooms",
+    "fBedrooms": "of which bedrooms",
+    "fBaths": "Bathrooms",
+    "fPets": "Pets in the household",
+    "fPetsNo": "No",
+    "fPetsYes": "Yes",
+    "fCleaningType": "Type of clean",
+    "fTypeRegular": "Regular cleaning",
+    "fTypeDeep": "Deep clean",
+    "fTypeMove": "Move in / move out",
+    "fAccess": "Access",
+    "fAccessPlaceholder": "How do we get in? Key, code, someone on site …",
+    "fPremises": "Type of premises",
+    "fPremisesOffice": "Office",
+    "fPremisesClinic": "Medical / dental practice",
+    "fPremisesHotel": "Hotel / apartments",
+    "fPremisesRestaurant": "Restaurant",
+    "fPremisesProperty": "Property management",
+    "fFloors": "Rooms / floors",
+    "fPerWeek": "Cleans per week",
+    "fHours": "Preferred hours",
+    "fHoursPlaceholder": "e.g. after 6pm, before opening, weekends",
+    "fSpecial": "Special requirements",
+    "fSpecialPlaceholder": "Hygiene plan, documentation, security rules …",
+    "s3Title": "How often, and from when?",
+    "fFrequency": "Frequency",
+    "fFreqOnce": "One-time",
+    "fFreqWeekly": "Weekly",
+    "fFreqBiweekly": "Every two weeks",
+    "fFreqMonthly": "Monthly",
+    "fStart": "Preferred start date",
+    "fFlexible": "How flexible are you?",
+    "fFlexiblePlaceholder": "e.g. from mid-month, mornings only …",
+    "s4Title": "How do we reach you?",
+    "fName": "Name",
+    "fCompany": "Company",
+    "fEmail": "Email address",
+    "fPhone": "Phone",
+    "fMessage": "Your message",
+    "fMessagePlaceholder": "Anything else we should know.",
+    "fPreferred": "Preferred contact method",
+    "fPrefEmail": "Email",
+    "fPrefPhone": "Phone",
+    "optional": "optional",
+    "submit": "Send request",
+    "submitNote": "Free and without obligation. We normally reply within 24 hours.",
+    "sideTitle": "What happens next",
+    "sideOne": "We read your request and come back if anything is missing.",
+    "sideTwo": "For businesses we arrange a short site visit.",
+    "sideThree": "You get a written quote with a price and a proposed date.",
+    "sideContact": "Rather talk to us directly?",
+    "successTitle": "Thank you — your details are complete.",
+    "successBody": "Please note: the form is not connected to our inbox yet, so your request has not been sent. For now, please email or call us with these details and we will come back to you shortly.",
+    "successAgain": "Change my details"
+  },
   "why": {
     "eyebrow": "WHY CHOOSE US",
     "title": "Why Magic Shine?",
@@ -617,9 +749,5 @@
     "privacy": "Privacy Policy",
     "terms": "Terms & Conditions",
     "imprint": "Imprint"
-  },
-  "placeholder": {
-    "title": "This page is being built",
-    "body": "The content for this page arrives in the next step. The header, footer and design system are already finished — you can see them above and below."
   }
 }

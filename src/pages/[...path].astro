@@ -17,7 +17,8 @@ import About from '../content-pages/About.astro';
 import Commercial from '../content-pages/Commercial.astro';
 import Contact from '../content-pages/Contact.astro';
 import Home from '../content-pages/Home.astro';
-import Placeholder from '../content-pages/Placeholder.astro';
+import Pricing from '../content-pages/Pricing.astro';
+import Quote from '../content-pages/Quote.astro';
 import ServiceDetail from '../content-pages/ServiceDetail.astro';
 import Services from '../content-pages/Services.astro';
 import Styleguide from '../content-pages/Styleguide.astro';
@@ -27,12 +28,11 @@ export function getStaticPaths() {
 }
 
 /*
- * `Placeholder` is a stub, not a page: it exists so every nav link and every
- * language-switcher target resolves during review. It is replaced one page at
- * a time; two are left.
+ * Every route now has a real page — `Placeholder.astro` is gone with the last
+ * one it stood in for.
  *
- * The four service routes share one component: `ServiceDetail` reads the
- * route back into a catalogue entry, so the template is written once.
+ * The four service routes share one component: `ServiceDetail` reads the route
+ * back into a catalogue entry, so the template is written once.
  */
 const PAGES = {
 	home: Home,
@@ -44,9 +44,9 @@ const PAGES = {
 	serviceApartment: ServiceDetail,
 	serviceMove: ServiceDetail,
 	serviceDeep: ServiceDetail,
-	pricing: Placeholder,
+	pricing: Pricing,
 	contact: Contact,
-	quote: Placeholder,
+	quote: Quote,
 } satisfies Record<RouteId, unknown>;
 
 interface Props {

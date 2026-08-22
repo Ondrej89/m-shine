@@ -26,6 +26,8 @@
 @import './components/service-detail.css';
 @import './components/contact.css';
 @import './components/commercial.css';
+@import './components/pricing.css';
+@import './components/quote.css';
 @import './components/flourishes.css';
 @import './components/header.css';
 @import './components/footer.css';

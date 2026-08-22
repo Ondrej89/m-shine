@@ -1,0 +1,73 @@
+# Builds the site and publishes it to GitHub Pages so the client can preview it
+# live. Nothing here is the production deployment — see the note on the origin
+# below.
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    # `main` is the intended branch; `master` is what the repository currently
+    # uses. Both are listed so the first push deploys either way — drop the one
+    # you do not keep.
+    branches: [main, master]
+  # Lets you re-publish from the Actions tab without pushing.
+  workflow_dispatch:
+
+# The permissions the Pages deployment needs, and no others.
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# One deployment at a time. `cancel-in-progress: false` so a run that is already
+# publishing is allowed to finish rather than leaving the site half-swapped.
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          # Matches the `engines.node` floor in package.json.
+          node-version: 22
+          cache: npm
+
+      - run: npm ci
+
+      # Works out where this repository is published: `origin` is
+      # https://<user>.github.io and `base_path` is /<repo> for a project site,
+      # or / for a user site. Passing them to the build means the workflow never
+      # has to hard-code the repository name.
+      - uses: actions/configure-pages@v5
+        id: pages
+
+      # `npm run build` runs `astro check` first, so a missing translation key
+      # fails the deployment rather than shipping a hole in the page.
+      #
+      # These two variables are read in astro.config.mjs. They override the
+      # production origin for this build only: canonical URLs and hreflang come
+      # out pointing at the Pages preview, which is correct for a preview and
+      # must NOT be what production ships.
+      - name: Build
+        run: npm run build
+        env:
+          PAGES_SITE: ${{ steps.pages.outputs.origin }}
+          PAGES_BASE: ${{ steps.pages.outputs.base_path }}
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: dist
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4

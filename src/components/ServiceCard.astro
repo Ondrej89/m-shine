@@ -1,5 +1,6 @@
 ---
 import LearnMore from './LearnMore.astro';
+import { withBase } from '../lib/paths';
 
 /*
  * The service card: photo, a green icon chip hanging off the photo's bottom
@@ -40,7 +41,7 @@ const classes = ['ms-card', `ms-card--${icon}`, className].filter(Boolean).join(
 
 <article class={classes}>
 	<figure class="ms-card__media">
-		<img src={image} alt={imageAlt} loading="lazy" decoding="async" />
+		<img src={withBase(image)} alt={imageAlt} loading="lazy" decoding="async" />
 	</figure>
 	<div class="ms-card__body">
 		<h3>{title}</h3>

@@ -8,8 +8,24 @@ import sitemap from '@astrojs/sitemap';
 // alternate cluster. Change it in ONE place: here.
 const SITE = 'https://www.magicshine.at';
 
+/*
+ * The GitHub Pages preview builds the same site under a repository subpath —
+ * `https://<user>.github.io/<repo>/` — so both the origin and the prefix have
+ * to change for that one build. The workflow sets these two variables from the
+ * repository it is running in; unset, they fall through to production values
+ * and nothing about a local build or a root deployment changes.
+ *
+ * Astro rewrites the assets it emits and, through Vite, `url()` references to
+ * `public/` inside CSS. It does NOT rewrite absolute paths written as strings
+ * in markup — links, <img src>, font preloads, the favicon. Those go through
+ * `withBase()` in src/lib/paths.ts.
+ */
+const PAGES_SITE = process.env.PAGES_SITE;
+const PAGES_BASE = process.env.PAGES_BASE;
+
 export default defineConfig({
-	site: SITE,
+	site: PAGES_SITE || SITE,
+	base: PAGES_BASE || '/',
 
 	i18n: {
 		// German is the primary market (Vienna), so it is the default locale and

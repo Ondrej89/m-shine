@@ -87,6 +87,38 @@ The WordPress theme is the **refined** source — it carries many rounds of corr
 container widths, heading sizes per breakpoint, gutter steps, the photo mask-fade and the
 mobile footer — so it wins over the design files wherever the two disagree.
 
+## Deployment
+
+### GitHub Pages preview
+
+`.github/workflows/pages.yml` builds the site and publishes it to GitHub Pages on every
+push to `main` (or `master`), and on demand from the Actions tab. Turn it on once, in
+**Settings → Pages → Build and deployment → Source: GitHub Actions**; the first push after
+that publishes to `https://<user>.github.io/<repo>/`.
+
+The workflow does not hard-code the repository name. `actions/configure-pages` reports the
+origin and the subpath, and they are passed to the build as `PAGES_SITE` and `PAGES_BASE`,
+which `astro.config.mjs` reads. Nothing else changes between the two builds.
+
+To reproduce a Pages build locally:
+
+```bash
+PAGES_SITE=https://example.github.io PAGES_BASE=/repo-name/ npm run build
+```
+
+Note that the preview build's canonical URLs and hreflang point at the Pages URL. That is
+right for a preview and wrong for production — the production build (no env vars) uses
+`SITE`.
+
+**Paths under a subpath.** Astro rewrites the assets it emits, and Vite rewrites `url()`
+references to `public/` inside CSS. Neither rewrites an absolute path written as a string
+in markup, so links, `<img src>`, font preloads and the favicon go through `withBase()` in
+`src/lib/paths.ts`. If you add one of those, use it — otherwise it will 404 on Pages while
+working perfectly on localhost.
+
+`public/.nojekyll` stops GitHub from running Jekyll, which would otherwise ignore the
+`_astro/` directory because of its leading underscore.
+
 ## Before launch
 
 - Set the real origin in `astro.config.mjs` (`SITE`). hreflang and canonical URLs are

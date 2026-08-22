@@ -1,0 +1,32 @@
+---
+import QuoteForm from '../components/sections/QuoteForm.astro';
+import PageLayout from '../layouts/PageLayout.astro';
+import type { Locale } from '../i18n/config';
+import type { RouteId } from '../i18n/routes';
+import { useTranslations } from '../i18n/ui';
+
+/*
+ * The quote request page — what the booking wizard became.
+ *
+ * Every "Angebot anfordern" on the site ends here, so it is the one page that
+ * has to work under any circumstance: no JavaScript, no endpoint, any of the
+ * three languages. See the notes in QuoteForm.astro and quote.css.
+ */
+interface Props {
+	locale: Locale;
+	route: RouteId;
+}
+
+const { locale, route } = Astro.props;
+const t = useTranslations(locale);
+---
+
+<PageLayout
+	locale={locale}
+	route={route}
+	title={`${t('meta.quote.title')} | ${t('site.name')}`}
+	description={t('meta.quote.description')}
+	pageClass="ms-main--quote"
+>
+	<QuoteForm locale={locale} />
+</PageLayout>

@@ -1,0 +1,247 @@
+/* =========================================================================
+   Pricing page — "Preise & Ablauf"
+   Hero and save bar lifted from section 12 of the refined style.css.
+
+   The theme's `.ms-plan-*` block is deliberately absent: the design sells
+   three fixed tiers with a radio-button selector, and this page does not sell
+   tiers at all. What survives is the hero, the save bar (which was already
+   about recurring cleaning) and the 1200px grid the theme assigns this page.
+
+   Everything else reuses the library: the starting-price cards are the service
+   detail page's "other services" cards with a price line, the four factors are
+   `<FeatureCard>`, and the closing band is `.ms-sd-cta*`.
+   ====================================================================== */
+
+/* --- Hero -------------------------------------------------------------- */
+
+.ms-pricing-hero {
+	padding-block: 46px 42px;
+	text-align: center;
+}
+
+/* `normal` on both, as everywhere else the design sets display type. At the
+   theme's leading the h1 lost 11px and the lede gained 7. */
+.ms-pricing-hero__title {
+	font-size: 44px;
+	line-height: normal;
+	margin: 14px 0 12px;
+}
+
+.ms-pricing-hero__lede {
+	color: var(--wp--preset--color--ink-soft);
+	font-size: 17px;
+	line-height: 1.6;
+	margin: 0 auto;
+	max-width: 760px;
+}
+
+/* --- Starting prices --------------------------------------------------- */
+
+.ms-price-start {
+	padding-block: 20px 40px;
+}
+
+/* The service-detail "other services" grid, unchanged: `auto-fit` with a
+   220px floor, which holds four cards across and folds them itself. */
+.ms-price-card {
+	gap: 12px;
+}
+
+.ms-price-card .ms-sd-price {
+	margin: 0;
+}
+
+/* Pushes the link to the card's foot so four cards of different name lengths
+   still line their links up. */
+.ms-price-card .ms-sd-other__link {
+	margin-top: auto;
+}
+
+.ms-price-note {
+	color: var(--wp--preset--color--ink-muted);
+	font-size: 13.5px;
+	line-height: 1.6;
+	margin: 22px auto 0;
+	max-width: 760px;
+	text-align: center;
+}
+
+/* --- What sets the price ----------------------------------------------- */
+
+.ms-price-factors {
+	padding-block: 40px;
+}
+
+/* Four across, not `.ms-feat-row`'s three: there are four factors and 3 + 1
+   reads as a mistake. Same 30px gutter, so the two rows sit on one rhythm. */
+.ms-price-factors .ms-feat-row {
+	grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.ms-price-lede {
+	color: var(--wp--preset--color--ink-muted);
+	font-size: 15.5px;
+	line-height: 1.65;
+	margin: 0 auto 40px;
+	max-width: 720px;
+	text-align: center;
+}
+
+/* --- Save bar ---------------------------------------------------------- */
+
+.ms-price-save {
+	padding-block: 16px 40px;
+}
+
+.ms-save-bar {
+	align-items: center;
+	background: var(--wp--preset--color--base);
+	border: 1px solid #e2e9f1;
+	border-radius: 16px;
+	display: flex;
+	gap: 24px;
+	justify-content: space-between;
+	padding: 26px 34px;
+}
+
+.ms-save-bar__copy {
+	min-width: 0;
+}
+
+.ms-save-bar__title {
+	font-family: var(--wp--preset--font-family--playfair);
+	font-size: 20px;
+	font-weight: 600;
+	line-height: 1.3;
+	margin: 0 0 5px;
+}
+
+.ms-save-bar__text {
+	color: var(--wp--preset--color--ink-muted);
+	font-size: 14px;
+	line-height: 1.6;
+	margin: 0;
+}
+
+.ms-save-bar .ms-btn {
+	flex: none;
+}
+
+/* --- The three steps --------------------------------------------------- */
+
+.ms-price-steps {
+	padding-block: 40px;
+}
+
+.ms-steps {
+	counter-reset: ms-step;
+	display: grid;
+	gap: 24px;
+	grid-template-columns: repeat(3, minmax(0, 1fr));
+	list-style: none;
+	margin: 0;
+	padding-left: 0;
+}
+
+.ms-step {
+	background: var(--wp--preset--color--base);
+	border: 1px solid var(--wp--preset--color--line);
+	border-radius: 16px;
+	counter-increment: ms-step;
+	min-width: 0;
+	padding: 28px 26px;
+}
+
+/* The number is the whole point of a stepper, so it is drawn rather than
+   implied — a counter, so the markup carries no hard-coded digits and the
+   order comes from the list itself. */
+.ms-step::before {
+	align-items: center;
+	background: var(--wp--preset--color--navy);
+	border-radius: 50%;
+	color: var(--wp--preset--color--base);
+	content: counter(ms-step);
+	display: flex;
+	font-family: var(--wp--preset--font-family--playfair);
+	font-size: 17px;
+	font-weight: 600;
+	height: 40px;
+	justify-content: center;
+	margin-bottom: 16px;
+	width: 40px;
+}
+
+.ms-step__title {
+	color: var(--wp--preset--color--navy);
+	font-family: var(--wp--preset--font-family--mulish);
+	font-size: 16px;
+	font-weight: 700;
+	letter-spacing: normal;
+	line-height: 1.4;
+	margin: 0 0 8px;
+}
+
+.ms-step__body {
+	color: var(--wp--preset--color--ink-muted);
+	font-size: 14px;
+	line-height: 1.65;
+	margin: 0;
+}
+
+/* --- The business note ------------------------------------------------- */
+
+/* The same bordered strip as the save bar, tinted so it reads as an aside
+   rather than a second offer. */
+.ms-price-b2b {
+	padding-block: 0 40px;
+}
+
+.ms-price-b2b .ms-save-bar {
+	background: #eef4fb;
+}
+
+/* --- Responsive -------------------------------------------------------- */
+
+@media (max-width: 1000px) {
+	/* 4 -> 2. Three across would leave one factor alone on the second row. */
+	.ms-price-factors .ms-feat-row {
+		grid-template-columns: repeat(2, minmax(0, 1fr));
+	}
+}
+
+@media (max-width: 860px) {
+	.ms-steps {
+		grid-template-columns: 1fr;
+	}
+
+	/* Stacked, the bar's action goes under its copy and both align left. */
+	.ms-save-bar {
+		align-items: flex-start;
+		flex-direction: column;
+		gap: 18px;
+	}
+}
+
+@media (max-width: 720px) {
+	.ms-pricing-hero__title {
+		font-size: 30px;
+	}
+}
+
+@media (max-width: 600px) {
+	/* One column, for the same reason the commercial factors take it: these
+	   carry a sentence each, and two tracks at 375 leave ~150px of column. */
+	.ms-price-factors .ms-feat-row {
+		grid-template-columns: 1fr;
+	}
+
+	.ms-save-bar {
+		padding: 22px;
+	}
+}
+
+@media (max-width: 480px) {
+	.ms-pricing-hero__title {
+		font-size: 26px;
+	}
+}

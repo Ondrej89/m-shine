@@ -3,6 +3,7 @@ import Eyebrow from '../Eyebrow.astro';
 import Section from '../Section.astro';
 import type { Locale } from '../../i18n/config';
 import { useTranslations } from '../../i18n/ui';
+import { withBase } from '../../lib/paths';
 
 /*
  * "Our Story" — photo left, copy right, closing on the three figures.
@@ -30,7 +31,7 @@ const FIGURES = ['homes', 'rating', 'repeat'] as const;
 	<div class="ms-about-story__grid">
 		<figure class="ms-about-story__figure">
 			<img
-				src="/img/photos/about-story.webp"
+				src={withBase('/img/photos/about-story.webp')}
 				alt={t('about.story.photoAlt')}
 				width="1200"
 				height="675"

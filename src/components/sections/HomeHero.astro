@@ -6,6 +6,7 @@ import Section from '../Section.astro';
 import type { Locale } from '../../i18n/config';
 import { localizedPath } from '../../i18n/routes';
 import { useTranslations } from '../../i18n/ui';
+import { withBase } from '../../lib/paths';
 
 /*
  * The home hero: copy and trust row on the left, photo with a floating stats
@@ -86,7 +87,7 @@ const STATS = [
 				 * `eager` and `fetchpriority`, while everything below stays lazy.
 				 */}
 				<img
-					src="/img/photos/home-hero.webp"
+					src={withBase('/img/photos/home-hero.webp')}
 					alt={t('home.hero.photoAlt')}
 					width="750"
 					height="500"

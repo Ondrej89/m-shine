@@ -1,0 +1,83 @@
+---
+import Button from '../Button.astro';
+import Eyebrow from '../Eyebrow.astro';
+import Flourish from '../Flourish.astro';
+import Icon, { type IconName } from '../Icon.astro';
+import Section from '../Section.astro';
+import SectionHead from '../SectionHead.astro';
+import { SERVICES } from '../../data/services';
+import type { Locale } from '../../i18n/config';
+import { localizedPath } from '../../i18n/routes';
+import { useTranslations } from '../../i18n/ui';
+
+/*
+ * The hero and the starting prices.
+ *
+ * The prices are the same strings the service detail pages show —
+ * `services.<key>.price` with the shared label and unit — so the two pages
+ * cannot drift, and the client changes a figure in one place.
+ *
+ * The cards are the detail page's "other services" cards with a price line
+ * added: same `auto-fit` grid, same hover, and the whole card is the link to
+ * the service.
+ */
+interface Props {
+	locale: Locale;
+}
+
+const { locale } = Astro.props;
+const t = useTranslations(locale);
+---
+
+<Section class="ms-pricing-hero" width={1200} rhythm="none" flourishes>
+	<Flourish name="left" slot="flourish" />
+
+	<Eyebrow>{t('pricing.heroEyebrow')}</Eyebrow>
+	<h1 class="ms-pricing-hero__title">{t('pricing.heroTitle')}</h1>
+	<p class="ms-pricing-hero__lede">{t('pricing.heroLede')}</p>
+
+	<div class="ms-b2b-actions">
+		<Button variant="primary" href={localizedPath(locale, 'quote')} icon="arrow-right">
+			{t('pricing.ctaAction')}
+		</Button>
+	</div>
+</Section>
+
+<Section class="ms-price-start" width={1200} rhythm="none">
+	<SectionHead
+		eyebrow={t('pricing.startEyebrow')}
+		title={t('pricing.startTitle')}
+		divider={false}
+	/>
+
+	<ul class="ms-sd-others">
+		{
+			SERVICES.map((service) => (
+				<li>
+					<a class="ms-sd-other ms-price-card" href={localizedPath(locale, service.route)}>
+						<span class="ms-sd-other__icon">
+							<Icon name={service.icon as IconName} size={21} stroke={1.9} />
+						</span>
+
+						<b class="ms-sd-other__name">
+							{t(`services.${service.key}.title` as 'services.house.title')}
+						</b>
+
+						<p class="ms-sd-price">
+							{t('services.detailPage.priceLabel')}
+							<b>{t(`services.${service.key}.price` as 'services.house.price')}</b>
+							<span class="ms-sd-price__unit">{t('services.detailPage.priceUnit')}</span>
+						</p>
+
+						<span class="ms-sd-other__link">
+							{t('pricing.startLink')}
+							<Icon name="arrow-right" size={14} />
+						</span>
+					</a>
+				</li>
+			))
+		}
+	</ul>
+
+	<p class="ms-price-note">{t('pricing.startLede')}</p>
+</Section>

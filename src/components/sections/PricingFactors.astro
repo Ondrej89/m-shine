@@ -1,0 +1,67 @@
+---
+import Button from '../Button.astro';
+import FeatureCard from '../FeatureCard.astro';
+import Section from '../Section.astro';
+import SectionHead from '../SectionHead.astro';
+import type { IconName } from '../Icon.astro';
+import type { Locale } from '../../i18n/config';
+import { localizedPath } from '../../i18n/routes';
+import { useTranslations } from '../../i18n/ui';
+
+/*
+ * What sets the final price, then the recurring-cleaning message.
+ *
+ * The four factors are `<FeatureCard>`, four across rather than the row's
+ * usual three. The save bar is the theme's, and it was already about recurring
+ * plans — it just carries no percentage, because none has been agreed. The
+ * concept is the promise here; the number belongs in the client's own quote.
+ */
+interface Props {
+	locale: Locale;
+}
+
+const { locale } = Astro.props;
+const t = useTranslations(locale);
+
+const FACTORS = [
+	{ key: 'one', icon: 'house' },
+	{ key: 'two', icon: 'sparkle' },
+	{ key: 'three', icon: 'repeat' },
+	{ key: 'four', icon: 'clipboard-check' },
+] as const;
+---
+
+<Section class="ms-price-factors" width={1200} rhythm="none">
+	<SectionHead
+		eyebrow={t('pricing.factorsEyebrow')}
+		title={t('pricing.factorsTitle')}
+		divider={false}
+	/>
+
+	<p class="ms-price-lede">{t('pricing.factorsLede')}</p>
+
+	<div class="ms-feat-row">
+		{
+			FACTORS.map((factor) => (
+				<FeatureCard
+					icon={factor.icon as IconName}
+					title={t(`pricing.factors.${factor.key}.title` as 'pricing.factors.one.title')}
+					description={t(`pricing.factors.${factor.key}.body` as 'pricing.factors.one.body')}
+				/>
+			))
+		}
+	</div>
+</Section>
+
+<Section class="ms-price-save" width={1200} rhythm="none">
+	<div class="ms-save-bar">
+		<div class="ms-save-bar__copy">
+			<h2 class="ms-save-bar__title">{t('pricing.saveTitle')}</h2>
+			<p class="ms-save-bar__text">{t('pricing.saveText')}</p>
+		</div>
+
+		<Button variant="primary" href={localizedPath(locale, 'quote')} icon="arrow-right">
+			{t('pricing.saveCta')}
+		</Button>
+	</div>
+</Section>

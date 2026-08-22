@@ -4,6 +4,7 @@ import { SERVICE_KEYS, SITE_DETAILS } from '../data/site';
 import type { Locale } from '../i18n/config';
 import { NAV_ROUTES, localizedPath } from '../i18n/routes';
 import { useTranslations } from '../i18n/ui';
+import { withBase } from '../lib/paths';
 
 /*
  * The site footer: brand and socials, two link columns, the newsletter, and
@@ -35,7 +36,7 @@ const newsletterAction = SITE_DETAILS.newsletterAction;
 				<a class="ms-brand" href={localizedPath(locale, 'home')}>
 					<img
 						class="ms-brand__mark"
-						src="/img/logo-mark.webp"
+						src={withBase('/img/logo-mark.webp')}
 						alt=""
 						width="69"
 						height="34"

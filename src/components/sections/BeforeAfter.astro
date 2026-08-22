@@ -5,6 +5,7 @@ import Section from '../Section.astro';
 import SectionHead from '../SectionHead.astro';
 import type { Locale } from '../../i18n/config';
 import { useTranslations } from '../../i18n/ui';
+import { withBase } from '../../lib/paths';
 
 /*
  * The before/after comparison slider.
@@ -40,7 +41,7 @@ const t = useTranslations(locale);
 	<div class="ms-ba" data-ms-ba>
 		<figure class="ms-ba__after">
 			<img
-				src="/img/photos/home-after.webp"
+				src={withBase('/img/photos/home-after.webp')}
 				alt={t('beforeAfter.afterAlt')}
 				width="1240"
 				height="460"
@@ -51,7 +52,7 @@ const t = useTranslations(locale);
 
 		<figure class="ms-ba__before">
 			<img
-				src="/img/photos/home-before.webp"
+				src={withBase('/img/photos/home-before.webp')}
 				alt={t('beforeAfter.beforeAlt')}
 				width="1240"
 				height="460"

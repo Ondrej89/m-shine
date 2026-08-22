@@ -1,0 +1,62 @@
+---
+import Button from '../Button.astro';
+import Section from '../Section.astro';
+import SectionHead from '../SectionHead.astro';
+import type { Locale } from '../../i18n/config';
+import { localizedPath } from '../../i18n/routes';
+import { useTranslations } from '../../i18n/ui';
+
+/*
+ * The three steps, then the note pointing business enquiries at their own
+ * page.
+ *
+ * The step numbers come from a CSS counter on the list, so the markup carries
+ * no hard-coded digits and reordering the steps renumbers them. Step two says
+ * what happens for business premises — a site visit — which is also what the
+ * note below repeats for anyone who skipped it.
+ */
+interface Props {
+	locale: Locale;
+}
+
+const { locale } = Astro.props;
+const t = useTranslations(locale);
+
+const STEPS = ['one', 'two', 'three'] as const;
+---
+
+<Section class="ms-price-steps" width={1200} rhythm="none">
+	<SectionHead
+		eyebrow={t('pricing.stepsEyebrow')}
+		title={t('pricing.stepsTitle')}
+		divider={false}
+	/>
+
+	<ol class="ms-steps">
+		{
+			STEPS.map((step) => (
+				<li class="ms-step">
+					<h3 class="ms-step__title">
+						{t(`pricing.steps.${step}.title` as 'pricing.steps.one.title')}
+					</h3>
+					<p class="ms-step__body">
+						{t(`pricing.steps.${step}.body` as 'pricing.steps.one.body')}
+					</p>
+				</li>
+			))
+		}
+	</ol>
+</Section>
+
+<Section class="ms-price-b2b" width={1200} rhythm="none">
+	<div class="ms-save-bar">
+		<div class="ms-save-bar__copy">
+			<h2 class="ms-save-bar__title">{t('pricing.b2bTitle')}</h2>
+			<p class="ms-save-bar__text">{t('pricing.b2bText')}</p>
+		</div>
+
+		<Button variant="ghost" href={localizedPath(locale, 'commercial')} icon="arrow-right">
+			{t('pricing.b2bCta')}
+		</Button>
+	</div>
+</Section>

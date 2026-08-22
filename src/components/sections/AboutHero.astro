@@ -7,6 +7,7 @@ import Section from '../Section.astro';
 import type { Locale } from '../../i18n/config';
 import { localizedPath } from '../../i18n/routes';
 import { useTranslations } from '../../i18n/ui';
+import { withBase } from '../../lib/paths';
 
 /*
  * The About hero: copy, a 2x2 tick list and one action on the left, the team
@@ -61,7 +62,7 @@ const POINTS = ['experienced', 'eco', 'guarantee', 'flexible'] as const;
 			{/* The page's LCP element, so it loads eagerly while everything below
 			    this section stays lazy. */}
 			<img
-				src="/img/photos/about-team.webp"
+				src={withBase('/img/photos/about-team.webp')}
 				alt={t('about.hero.photoAlt')}
 				width="1200"
 				height="675"

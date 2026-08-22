@@ -1,0 +1,40 @@
+---
+import PricingCta from '../components/sections/PricingCta.astro';
+import PricingFactors from '../components/sections/PricingFactors.astro';
+import PricingProcess from '../components/sections/PricingProcess.astro';
+import PricingStart from '../components/sections/PricingStart.astro';
+import PageLayout from '../layouts/PageLayout.astro';
+import type { Locale } from '../i18n/config';
+import type { RouteId } from '../i18n/routes';
+import { useTranslations } from '../i18n/ui';
+
+/*
+ * "Preise & Ablauf" — prices and process, not tiers.
+ *
+ * The design sells three fixed plans with a selector; the business does not
+ * work that way any more, so this page explains where prices start, what moves
+ * them, and how a firm quote is reached. No plan grid, and none coming.
+ *
+ * On the 1200px grid, which is the width the theme assigns this page.
+ */
+interface Props {
+	locale: Locale;
+	route: RouteId;
+}
+
+const { locale, route } = Astro.props;
+const t = useTranslations(locale);
+---
+
+<PageLayout
+	locale={locale}
+	route={route}
+	title={`${t('meta.pricing.title')} | ${t('site.name')}`}
+	description={t('meta.pricing.description')}
+	pageClass="ms-main--pricing"
+>
+	<PricingStart locale={locale} />
+	<PricingFactors locale={locale} />
+	<PricingProcess locale={locale} />
+	<PricingCta locale={locale} />
+</PageLayout>

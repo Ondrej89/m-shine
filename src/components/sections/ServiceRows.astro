@@ -6,6 +6,7 @@ import { SERVICES } from '../../data/services';
 import type { Locale } from '../../i18n/config';
 import { localizedPath } from '../../i18n/routes';
 import { useTranslations } from '../../i18n/ui';
+import { withBase } from '../../lib/paths';
 
 /*
  * The four residential services, as alternating photo/copy rows.
@@ -45,7 +46,7 @@ const FEATURES = ['one', 'two', 'three', 'four'] as const;
 							<figure class="ms-svc-row__media">
 								<img
 									class={`ms-mask-fade${reversed ? '' : ' ms-mask-fade--flip'}`}
-									src={service.rowImage}
+									src={withBase(service.rowImage)}
 									alt={t(`services.${service.key}.rowPhotoAlt` as 'services.house.rowPhotoAlt')}
 									width="1068"
 									height="712"

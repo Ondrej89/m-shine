@@ -1,0 +1,36 @@
+---
+import Button from '../Button.astro';
+import Section from '../Section.astro';
+import type { Locale } from '../../i18n/config';
+import { localizedPath } from '../../i18n/routes';
+import { useTranslations } from '../../i18n/ui';
+
+/*
+ * The closing band — the same object as the service-detail and commercial
+ * ones, so it uses the same classes rather than a third near-copy.
+ */
+interface Props {
+	locale: Locale;
+}
+
+const { locale } = Astro.props;
+const t = useTranslations(locale);
+---
+
+<Section class="ms-sd-cta-section" width={1200} rhythm="none">
+	<div class="ms-sd-cta">
+		<div class="ms-sd-cta__copy">
+			<h2 class="ms-sd-cta__title">{t('pricing.ctaTitle')}</h2>
+			<p class="ms-sd-cta__text">{t('pricing.ctaText')}</p>
+		</div>
+
+		<div class="ms-b2b-actions ms-b2b-actions--flush">
+			<Button variant="green" href={localizedPath(locale, 'quote')} icon="arrow-right">
+				{t('pricing.ctaAction')}
+			</Button>
+			<Button variant="outline" href={localizedPath(locale, 'contact')}>
+				{t('pricing.ctaSecondary')}
+			</Button>
+		</div>
+	</div>
+</Section>

@@ -37,6 +37,12 @@ export const SITE_DETAILS = {
 	 * the message away.
 	 */
 	contactAction: null as string | null,
+	/**
+	 * Where the quote request form posts. `null` until the same form/email
+	 * service is chosen — the form renders and validates either way, and shows a
+	 * success panel that says plainly that nothing has been transmitted yet.
+	 */
+	quoteAction: null as string | null,
 } as const;
 
 /** The five services the footer links to, as route + translation key pairs. */

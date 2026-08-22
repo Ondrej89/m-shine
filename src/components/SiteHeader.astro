@@ -5,6 +5,7 @@ import { SITE_DETAILS } from '../data/site';
 import type { Locale } from '../i18n/config';
 import { NAV_ROUTES, localizedPath, type RouteId } from '../i18n/routes';
 import { useTranslations } from '../i18n/ui';
+import { withBase } from '../lib/paths';
 
 /*
  * The site header: brand, navigation, phone, quote CTA and the language
@@ -43,7 +44,7 @@ const navItems = NAV_ROUTES.map((id) => ({
 		<a class="ms-brand" href={localizedPath(locale, 'home')}>
 			<img
 				class="ms-brand__mark"
-				src="/img/logo-mark.webp"
+				src={withBase('/img/logo-mark.webp')}
 				alt=""
 				width="77"
 				height="38"
