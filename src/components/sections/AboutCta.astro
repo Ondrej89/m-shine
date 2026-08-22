@@ -1,0 +1,38 @@
+---
+import Button from '../Button.astro';
+import Section from '../Section.astro';
+import type { Locale } from '../../i18n/config';
+import { localizedPath } from '../../i18n/routes';
+import { useTranslations } from '../../i18n/ui';
+
+/*
+ * The closing CTA: a bright gradient card, centred, two actions.
+ *
+ * The design's pair was "Book Now" and "Get Instant Quote", both of which are
+ * the same thing now that the booking engine is gone. They become the quote
+ * request and the contact page — the two ways the business actually takes
+ * work.
+ */
+interface Props {
+	locale: Locale;
+}
+
+const { locale } = Astro.props;
+const t = useTranslations(locale);
+---
+
+<Section class="ms-about-cta-section" rhythm="none">
+	<div class="ms-about-cta">
+		<h2 class="ms-about-cta__title">{t('about.cta.title')}</h2>
+		<p class="ms-about-cta__lede">{t('about.cta.lede')}</p>
+
+		<div class="ms-about-cta__actions">
+			<Button variant="light" href={localizedPath(locale, 'quote')} icon="arrow-right">
+				{t('about.cta.primary')}
+			</Button>
+			<Button variant="outline" href={localizedPath(locale, 'contact')}>
+				{t('about.cta.secondary')}
+			</Button>
+		</div>
+	</div>
+</Section>

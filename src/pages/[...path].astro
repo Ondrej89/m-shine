@@ -13,6 +13,7 @@
  */
 import type { Locale } from '../i18n/config';
 import { allRoutePaths, type RouteId } from '../i18n/routes';
+import About from '../content-pages/About.astro';
 import Home from '../content-pages/Home.astro';
 import Placeholder from '../content-pages/Placeholder.astro';
 import Styleguide from '../content-pages/Styleguide.astro';
@@ -23,13 +24,13 @@ export function getStaticPaths() {
 
 /*
  * `Placeholder` is a stub, not a page: it exists so every nav link and every
- * language-switcher target resolves during review. Step 3 replaces these five
- * with real components one at a time.
+ * language-switcher target resolves during review. It is replaced one page at
+ * a time; four are left.
  */
 const PAGES = {
 	home: Home,
 	styleguide: Styleguide,
-	about: Placeholder,
+	about: About,
 	services: Placeholder,
 	pricing: Placeholder,
 	contact: Placeholder,

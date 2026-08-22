@@ -26,6 +26,10 @@
       "title": "Upratovacia firma vo Viedni",
       "description": "Profesionálne upratovanie domov, bytov, po sťahovaní a generálne upratovanie vo Viedni. Poistené a preverené tímy, ekologické prostriedky. Vyžiadajte si bezplatnú ponuku."
     },
+    "about": {
+      "title": "O nás – váš upratovací tím vo Viedni",
+      "description": "Magic Shine je upratovacia firma vo Viedni: školený a preverený personál, ekologické prostriedky a jedna kontaktná osoba. Spoznajte nás."
+    },
     "placeholder": {
       "title": "Pripravujeme",
       "description": "Táto stránka sa práve pripravuje."
@@ -63,6 +67,46 @@
         "value": "100 %",
         "label": "spokojnosť"
       }
+    }
+  },
+  "about": {
+    "hero": {
+      "eyebrow": "O Magic Shine",
+      "title": "O nás",
+      "lede": "Sme profesionálna upratovacia firma s osobným prístupom. Náš školený personál sa stará o váš domov ako o vlastný – spoľahlivo, čestne a s dôrazom na detail.",
+      "cta": "Bezplatná ponuka",
+      "photoAlt": "Pracovníčka Magic Shine vo svetlej, upratanej miestnosti"
+    },
+    "points": {
+      "experienced": "Skúsený a dôveryhodný personál",
+      "eco": "Ekologické čistiace prostriedky",
+      "guarantee": "Záruka spokojnosti",
+      "flexible": "Flexibilita a spoľahlivosť"
+    },
+    "mission": {
+      "title": "Naša misia",
+      "copy": "Upratovanie, ktoré uľahčuje každodenný život a vracia vám váš čas."
+    },
+    "vision": {
+      "title": "Naša vízia",
+      "copy": "Stať sa upratovacou službou, ktorej Viedeň dôveruje – známou kvalitou a starostlivosťou."
+    },
+    "values": {
+      "title": "Naše hodnoty",
+      "copy": "Čestnosť, spoľahlivosť, kvalita a skutočná starostlivosť v každom detaile."
+    },
+    "story": {
+      "eyebrow": "Náš príbeh",
+      "title": "Dôvera, jeden domov za druhým",
+      "bodyOne": "Magic Shine vznikol z jednoduchého presvedčenia: každý si zaslúži vracať sa domov do priestoru, ktorý pôsobí pokojne a udržiavane. Z nadšenia jednej osoby pre bezchybne čisté domácnosti vyrástla služba, na ktorú sa domácnosti spoliehajú týždeň čo týždeň.",
+      "bodyTwo": "Ku každému domovu pristupujeme s rešpektom, prídeme vtedy, keď to sľúbime, a nikdy nerobíme veci na polovicu. To je sľub za každým upratovaním.",
+      "photoAlt": "Rodina so psom oddychuje v čerstvo upratanej obývačke"
+    },
+    "cta": {
+      "title": "Pripravení pocítiť rozdiel?",
+      "lede": "Pridajte sa k domácnostiam, ktoré dôverujú Magic Shine.",
+      "primary": "Bezplatná ponuka",
+      "secondary": "Kontaktujte nás"
     }
   },
   "services": {

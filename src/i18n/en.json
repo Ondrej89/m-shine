@@ -26,6 +26,10 @@
       "title": "Cleaning Company in Vienna",
       "description": "Professional house, apartment, move-out and deep cleaning in Vienna. Insured, background-checked teams and eco-friendly products. Request your free quote today."
     },
+    "about": {
+      "title": "About Us – Your Cleaning Team in Vienna",
+      "description": "Magic Shine is a Vienna cleaning company: trained, background-checked staff, eco-friendly products and one personal contact. Get to know us."
+    },
     "placeholder": {
       "title": "In progress",
       "description": "This page is being built."
@@ -63,6 +67,46 @@
         "value": "100%",
         "label": "Satisfaction"
       }
+    }
+  },
+  "about": {
+    "hero": {
+      "eyebrow": "About Magic Shine",
+      "title": "About Us",
+      "lede": "We are a professional cleaning company dedicated to exceptional service with a personal touch. Our trained cleaners care for your home like their own — with reliability, honesty and an eye for detail.",
+      "cta": "Get a Free Quote",
+      "photoAlt": "A Magic Shine team member in a bright, tidy room"
+    },
+    "points": {
+      "experienced": "Experienced & Trusted Cleaners",
+      "eco": "Eco-Friendly Cleaning Products",
+      "guarantee": "Satisfaction Guaranteed",
+      "flexible": "Flexible & Reliable Service"
+    },
+    "mission": {
+      "title": "Our Mission",
+      "copy": "Cleaning that makes daily life easier and gives our clients their time back."
+    },
+    "vision": {
+      "title": "Our Vision",
+      "copy": "To become the cleaning service Vienna trusts — known for quality and care."
+    },
+    "values": {
+      "title": "Our Values",
+      "copy": "Integrity, reliability, quality and genuine care in every detail of every job."
+    },
+    "story": {
+      "eyebrow": "Our Story",
+      "title": "Built on Trust, One Home at a Time",
+      "bodyOne": "Magic Shine started with a simple belief: everyone deserves to come home to a space that feels calm and cared for. What began as one person's passion for spotless homes has grown into a service households rely on week after week.",
+      "bodyTwo": "We treat every home with respect, show up when we say we will, and never cut corners. That is the promise behind every clean.",
+      "photoAlt": "A family and their dog relaxing in a freshly cleaned living room"
+    },
+    "cta": {
+      "title": "Ready to Experience the Difference?",
+      "lede": "Join the households who trust Magic Shine.",
+      "primary": "Get a Free Quote",
+      "secondary": "Contact Us"
     }
   },
   "services": {

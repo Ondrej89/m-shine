@@ -1,0 +1,69 @@
+---
+import Section from '../Section.astro';
+import SectionHead from '../SectionHead.astro';
+import type { Locale } from '../../i18n/config';
+import { useTranslations } from '../../i18n/ui';
+
+/*
+ * The reviews band: three cards, static, on full-bleed navy.
+ *
+ * Not the home page's carousel and not `<ReviewCard>` — the design draws a
+ * different object here (glass cards on navy, green stars, no controls) and
+ * the theme gives it its own class block. It reuses the first three of the six
+ * reviews, so the strings are shared: one place to edit when the client
+ * supplies real ones.
+ *
+ * The stars are text glyphs, as the theme has them — `letter-spacing` is what
+ * spaces the row, and it has nothing to act on with SVGs. A screen reader gets
+ * the sentence instead of five unlabelled characters.
+ */
+interface Props {
+	locale: Locale;
+}
+
+const { locale } = Astro.props;
+const t = useTranslations(locale);
+
+const REVIEWS = [
+	{ key: 'one', initials: 'JM', avatar: 'blue' },
+	{ key: 'two', initials: 'DR', avatar: 'green' },
+	{ key: 'three', initials: 'EW', avatar: 'blue' },
+] as const;
+---
+
+<Section class="ms-about-reviews" rhythm="none" band>
+	<SectionHead eyebrow={t('reviews.eyebrow')} title={t('reviews.title')} divider={false} />
+
+	<ul class="ms-about-reviews__grid">
+		{
+			REVIEWS.map((review) => (
+				<li>
+					<figure class="ms-about-review">
+						<div class="ms-about-review__stars">
+							<span aria-hidden="true">★★★★★</span>
+							<span class="screen-reader-text">{t('reviews.ratingLabel')}</span>
+						</div>
+
+						<blockquote class="ms-about-review__quote">
+							<p>{t(`reviews.${review.key}.quote` as 'reviews.one.quote')}</p>
+						</blockquote>
+
+						<figcaption class="ms-about-review__person">
+							<span class={`ms-avatar ms-avatar--${review.avatar}`} aria-hidden="true">
+								{review.initials}
+							</span>
+							<span>
+								<span class="ms-about-review__name">
+									{t(`reviews.${review.key}.name` as 'reviews.one.name')}
+								</span>
+								<span class="ms-about-review__role">
+									{t(`reviews.${review.key}.role` as 'reviews.one.role')}
+								</span>
+							</span>
+						</figcaption>
+					</figure>
+				</li>
+			))
+		}
+	</ul>
+</Section>

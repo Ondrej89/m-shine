@@ -26,6 +26,10 @@
       "title": "Reinigungsfirma in Wien",
       "description": "Professionelle Haus-, Wohnungs-, Umzugs- und Grundreinigung in Wien. Versicherte, überprüfte Teams und umweltfreundliche Mittel. Jetzt kostenloses Angebot anfordern."
     },
+    "about": {
+      "title": "Über uns – Ihr Reinigungsteam in Wien",
+      "description": "Magic Shine ist ein Reinigungsunternehmen in Wien: geschultes, überprüftes Personal, umweltfreundliche Mittel und eine persönliche Ansprechperson. Lernen Sie uns kennen."
+    },
     "placeholder": {
       "title": "In Arbeit",
       "description": "Diese Seite wird gerade gebaut."
@@ -63,6 +67,46 @@
         "value": "100 %",
         "label": "Zufriedenheit"
       }
+    }
+  },
+  "about": {
+    "hero": {
+      "eyebrow": "Über Magic Shine",
+      "title": "Über uns",
+      "lede": "Wir sind ein professionelles Reinigungsunternehmen mit persönlicher Handschrift. Unser geschultes Personal kümmert sich um Ihr Zuhause wie um das eigene – zuverlässig, ehrlich und mit Blick fürs Detail.",
+      "cta": "Kostenloses Angebot",
+      "photoAlt": "Eine Mitarbeiterin von Magic Shine in einem hellen, aufgeräumten Raum"
+    },
+    "points": {
+      "experienced": "Erfahrenes, vertrauenswürdiges Personal",
+      "eco": "Umweltfreundliche Reinigungsmittel",
+      "guarantee": "Zufriedenheitsgarantie",
+      "flexible": "Flexibel und verlässlich"
+    },
+    "mission": {
+      "title": "Unsere Mission",
+      "copy": "Reinigungsleistungen, die den Alltag erleichtern und Ihnen Ihre Zeit zurückgeben."
+    },
+    "vision": {
+      "title": "Unsere Vision",
+      "copy": "Der Reinigungsdienst, dem Wien vertraut – bekannt für Qualität und Sorgfalt."
+    },
+    "values": {
+      "title": "Unsere Werte",
+      "copy": "Integrität, Verlässlichkeit, Qualität und echte Sorgfalt in jedem Detail."
+    },
+    "story": {
+      "eyebrow": "Unsere Geschichte",
+      "title": "Vertrauen, ein Zuhause nach dem anderen",
+      "bodyOne": "Magic Shine begann mit einer einfachen Überzeugung: Jede und jeder soll in ein Zuhause kommen, das ruhig und gepflegt wirkt. Aus der Leidenschaft einer Einzelnen für makellose Räume ist ein Service geworden, auf den sich Haushalte Woche für Woche verlassen.",
+      "bodyTwo": "Wir behandeln jedes Zuhause mit Respekt, kommen, wann wir es zusagen, und machen keine halben Sachen. Das ist das Versprechen hinter jeder Reinigung.",
+      "photoAlt": "Eine Familie mit Hund entspannt in ihrem frisch gereinigten Wohnzimmer"
+    },
+    "cta": {
+      "title": "Bereit für den Unterschied?",
+      "lede": "Schließen Sie sich den Haushalten an, die auf Magic Shine vertrauen.",
+      "primary": "Kostenloses Angebot",
+      "secondary": "Kontakt aufnehmen"
     }
   },
   "services": {

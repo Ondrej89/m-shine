@@ -1,0 +1,74 @@
+---
+import Button from '../Button.astro';
+import Eyebrow from '../Eyebrow.astro';
+import Flourish from '../Flourish.astro';
+import Icon from '../Icon.astro';
+import Section from '../Section.astro';
+import type { Locale } from '../../i18n/config';
+import { localizedPath } from '../../i18n/routes';
+import { useTranslations } from '../../i18n/ui';
+
+/*
+ * The About hero: copy, a 2x2 tick list and one action on the left, the team
+ * photo on the right, with the botanical band sweeping out from under it.
+ *
+ * The section must not clip — the band is drawn to spill past its bottom edge,
+ * and `overflow-x: hidden` on the page is what keeps it from widening the
+ * document.
+ *
+ * The design's action is "Book Your Cleaning". There is no booking engine any
+ * more, so it points at the quote request, which is where that intent now
+ * goes.
+ */
+interface Props {
+	locale: Locale;
+}
+
+const { locale } = Astro.props;
+const t = useTranslations(locale);
+
+const POINTS = ['experienced', 'eco', 'guarantee', 'flexible'] as const;
+---
+
+<Section class="ms-about-hero" rhythm="none" flourishes>
+	<Flourish name="about-band" slot="flourish" />
+
+	<div class="ms-about-hero__grid">
+		<div>
+			<Eyebrow>{t('about.hero.eyebrow')}</Eyebrow>
+
+			<h1 class="ms-about-hero__title">{t('about.hero.title')}</h1>
+
+			<p class="ms-about-hero__lede">{t('about.hero.lede')}</p>
+
+			<ul class="ms-about-hero__points">
+				{
+					POINTS.map((point) => (
+						<li class="ms-about-hero__point">
+							<Icon name="check-circle" size={20} stroke={2.2} />
+							<span>{t(`about.points.${point}` as 'about.points.eco')}</span>
+						</li>
+					))
+				}
+			</ul>
+
+			<Button variant="primary" href={localizedPath(locale, 'quote')} icon="arrow-right">
+				{t('about.hero.cta')}
+			</Button>
+		</div>
+
+		<figure class="ms-about-hero__figure">
+			{/* The page's LCP element, so it loads eagerly while everything below
+			    this section stays lazy. */}
+			<img
+				src="/img/photos/about-team.webp"
+				alt={t('about.hero.photoAlt')}
+				width="1200"
+				height="675"
+				loading="eager"
+				fetchpriority="high"
+				decoding="async"
+			/>
+		</figure>
+	</div>
+</Section>

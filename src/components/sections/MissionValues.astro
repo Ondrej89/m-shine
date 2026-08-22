@@ -1,0 +1,47 @@
+---
+import Icon, { type IconName } from '../Icon.astro';
+import Section from '../Section.astro';
+import type { Locale } from '../../i18n/config';
+import { useTranslations } from '../../i18n/ui';
+
+/*
+ * Mission, vision and values — three columns on a full-bleed navy band,
+ * divided by hairlines.
+ *
+ * The band carries no padding of its own: the design puts the whole rhythm
+ * into the items (48px 44px), and the hairlines have to run the full height of
+ * the band for the division to read.
+ */
+interface Props {
+	locale: Locale;
+}
+
+const { locale } = Astro.props;
+const t = useTranslations(locale);
+
+const PRINCIPLES = [
+	{ key: 'mission', icon: 'target' },
+	{ key: 'vision', icon: 'eye' },
+	/* The design draws the star as an outline here, not the filled glyph the
+	   rating rows use — beside two stroked icons a solid star reads far heavier. */
+	{ key: 'values', icon: 'star' },
+] as const;
+---
+
+<Section class="ms-mvv" rhythm="none" band>
+	<ul class="ms-mvv__grid">
+		{
+			PRINCIPLES.map((principle) => (
+				<li class="ms-mvv__item">
+					<span class="ms-mvv__icon">
+						<Icon name={principle.icon as IconName} size={24} stroke={1.7} filled={false} />
+					</span>
+					<h2 class="ms-mvv__title">
+						{t(`about.${principle.key}.title` as 'about.mission.title')}
+					</h2>
+					<p class="ms-mvv__copy">{t(`about.${principle.key}.copy` as 'about.mission.copy')}</p>
+				</li>
+			))
+		}
+	</ul>
+</Section>

@@ -82,29 +82,25 @@
 	width: 120px;
 }
 
-/* Full-bleed band, then the content put back on the container grid.
+/* Full-bleed band — a section that paints a colour edge to edge, with its
+   content put back on the container grid.
 
-   The arithmetic here is the one place a lifted rule had to change. In the
-   WordPress theme the escape was core's job — bands carried `alignfull` and the
-   block layout stylesheet cancelled the root gutter for them — so its inner
-   wrapper had to add *two* gutters back (`gutter * 4` on the max-width,
-   `gutter * 2` on the padding). There is no root padding to cancel here, so the
-   band escapes itself and the inner wrapper re-adds exactly one gutter. Same
-   rendered pixels, different route.
+   No escape arithmetic. A band is a page-level section, so its containing
+   block is `<main>`, which is already exactly the width of the client area;
+   filling it is the whole job, and `.ms-container` inside does the rest.
 
-   Note this rides the *wide* container, not `--container`: the design puts page
-   sections on a 1240px content box and reserves 1160px for the header and
-   footer chrome, so a band lining up with the page must match contentSize.
+   The classic `width: 100vw; margin-inline: calc(50% - 50vw)` pair was here
+   first, lifted from the theme where core's `alignfull` needed it. It is wrong
+   on any page that has a scrollbar: `100vw` counts the scrollbar, so the band
+   came out 15px wider than the page and its content sat 7.5px LEFT of every
+   constrained section above and below it — measured on About at 1164px of
+   client width. The offset is invisible at widths where the container is
+   centred with room to spare, and appears the moment the container becomes
+   gutter bound, which is most of the responsive range.
 
-   `100vw` counts the scrollbar, which is why `body` keeps `overflow-x: hidden` —
-   the same trade-off the decorative flourishes make. */
+   A band nested inside something narrower than the page would need the escape
+   back. Nothing does that, and a band that is not page-level is a contradiction
+   in terms. */
 .ms-band {
-	margin-inline: calc(50% - 50vw);
-	width: 100vw;
-}
-
-.ms-band__inner {
-	margin: 0 auto;
-	max-width: calc(var(--wp--custom--container-wide) + var(--wp--custom--gutter) * 2);
-	padding-inline: var(--wp--custom--gutter);
+	width: 100%;
 }

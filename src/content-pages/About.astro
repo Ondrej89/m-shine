@@ -1,0 +1,39 @@
+---
+import AboutCta from '../components/sections/AboutCta.astro';
+import AboutHero from '../components/sections/AboutHero.astro';
+import AboutReviews from '../components/sections/AboutReviews.astro';
+import AboutStory from '../components/sections/AboutStory.astro';
+import MissionValues from '../components/sections/MissionValues.astro';
+import PageLayout from '../layouts/PageLayout.astro';
+import type { Locale } from '../i18n/config';
+import type { RouteId } from '../i18n/routes';
+import { useTranslations } from '../i18n/ui';
+
+/*
+ * The About page. Five sections, in the design's order.
+ *
+ * Unlike Home there is no page-level flourish: the only watermark on this page
+ * belongs to the hero band, so it hangs off that section rather than <main>.
+ */
+interface Props {
+	locale: Locale;
+	route: RouteId;
+}
+
+const { locale, route } = Astro.props;
+const t = useTranslations(locale);
+---
+
+<PageLayout
+	locale={locale}
+	route={route}
+	title={`${t('meta.about.title')} | ${t('site.name')}`}
+	description={t('meta.about.description')}
+	pageClass="ms-main--about"
+>
+	<AboutHero locale={locale} />
+	<MissionValues locale={locale} />
+	<AboutStory locale={locale} />
+	<AboutReviews locale={locale} />
+	<AboutCta locale={locale} />
+</PageLayout>

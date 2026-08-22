@@ -129,8 +129,8 @@ first; English and Slovak then fit comfortably.
 
 ## Current state
 
-**Done:** project setup, i18n foundation, the component library, and the Home page fully
-ported and refined.
+**Done:** project setup, i18n foundation, the component library, and the Home and About
+pages fully ported and refined.
 
 - **i18n** — de-AT default at `/`, English at `/en/`, Slovak at `/sk/`, with per-language
   slugs (`/leistungen/`, `/en/services/`, `/sk/sluzby/`) from the registry in
@@ -142,6 +142,8 @@ ported and refined.
 - **Home** — `src/content-pages/Home.astro`, six sections: `HomeHero`, `ServicesGrid`,
   `WhyChoose`, `BeforeAfter`, `SubscriptionCta`, `ReviewsCarousel`. `ServicesGrid` takes its
   services as a prop so the Services page can reuse it with a fifth entry.
+- **About** — `src/content-pages/About.astro`, five sections: `AboutHero`, `MissionValues`,
+  `AboutStory`, `AboutReviews`, `AboutCta`, with `src/styles/components/about.css`.
 
 Home refinements worth not undoing:
 
@@ -158,6 +160,25 @@ Home refinements worth not undoing:
   **"Warum Magic Shine?"** five reasons in a 3 + 2 grid (five across gives 134px tracks in
   the `2fr` column — too narrow).
 
+About refinements worth not undoing:
+
+- **CLS is 0** here too, and no horizontal overflow in any of the three languages at 375,
+  480, 720, 820, 960, 1180 or 1400.
+- The hero tick list goes **one column at 480px**, not the design's 2x2 all the way down.
+  At 375 each label box is 120px and "Zufriedenheitsgarantie" sets 154px, so the German
+  labels broke mid-word — `overflow-wrap` breaks without even a hyphen. Two tracks need
+  428px of client width. Same measurement and same step as the home hero's trust row.
+- **`.ms-band` no longer escapes to `100vw`.** A band is a page-level section and `<main>`
+  is already the client width, so the classic `width: 100vw; margin-inline: calc(50% - 50vw)`
+  pair only added the scrollbar back: band content sat **7.5px left** of every constrained
+  section, at every width where the container is gutter bound. About is the first page to
+  use a band; `width: 100%` is the whole rule now. See section.css.
+- The design's two booking CTAs became the quote request (hero, closing CTA primary) and
+  the contact page (closing CTA secondary) — there is no booking engine to send them to.
+- The reviews band reuses `reviews.one`–`three`, and the story figures reuse
+  `home.stats.*`: the same three claims the client still has to sign off on live in one
+  place, not two.
+
 **Scaffolding to delete before launch:** `Styleguide.astro` with its `ROUTES` entry and the
 sitemap filter in `astro.config.mjs`; `Placeholder.astro` once the last real page replaces
 it.
@@ -166,16 +187,18 @@ it.
 
 Port the remaining pages one at a time, existing content first:
 
-1. **About**, **Services**, **Service Detail**, **Contact** — port from the reference.
-   `Placeholder.astro` currently stands in for About, Services, Pricing, Contact and Quote
-   so every nav link resolves.
+1. **Services**, **Service Detail**, **Contact** — port from the reference.
+   `Placeholder.astro` currently stands in for Services, Pricing, Contact and Quote so every
+   nav link resolves.
 
 Then the new content:
 
-2. Long-form **"Warum Magic Shine?"** paragraphs on About.
-3. The **B2B landing page** — a new route, so it needs a `ROUTES` entry and a nav decision.
-4. **"Preise & Ablauf"** — the reframed pricing page.
-5. The **quote request form**, replacing the booking wizard.
+2. The **B2B landing page** — a new route, so it needs a `ROUTES` entry and a nav decision.
+   The long-form **"Warum Magic Shine?"** paragraphs belong here, not on About: About
+   already covers that ground with Mission / Vision / Values, and the long form is aimed at
+   the B2B audience. Client's call, 2026-08-22 — do not add it back to About.
+3. **"Preise & Ablauf"** — the reframed pricing page.
+4. The **quote request form**, replacing the booking wizard.
 
 Then translation review and deploy.
 

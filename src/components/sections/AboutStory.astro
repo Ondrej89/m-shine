@@ -1,0 +1,65 @@
+---
+import Eyebrow from '../Eyebrow.astro';
+import Section from '../Section.astro';
+import type { Locale } from '../../i18n/config';
+import { useTranslations } from '../../i18n/ui';
+
+/*
+ * "Our Story" — photo left, copy right, closing on the three figures.
+ *
+ * The design hard-breaks the heading after "Built on Trust,". That break is
+ * dropped for the same reason the home hero drops its own: it lands in the
+ * wrong place in two of the three languages. The line wraps inside the column
+ * instead.
+ *
+ * The figures are the home hero's stats, reused rather than restated — they
+ * are the same three claims, and having one set of numbers means the client's
+ * decision about them (see the pre-launch list) is made in one place.
+ */
+interface Props {
+	locale: Locale;
+}
+
+const { locale } = Astro.props;
+const t = useTranslations(locale);
+
+const FIGURES = ['homes', 'rating', 'repeat'] as const;
+---
+
+<Section class="ms-about-story" rhythm="none">
+	<div class="ms-about-story__grid">
+		<figure class="ms-about-story__figure">
+			<img
+				src="/img/photos/about-story.webp"
+				alt={t('about.story.photoAlt')}
+				width="1200"
+				height="675"
+				loading="lazy"
+				decoding="async"
+			/>
+		</figure>
+
+		<div class="ms-about-story__copy">
+			<Eyebrow>{t('about.story.eyebrow')}</Eyebrow>
+			<h2 class="ms-about-story__title">{t('about.story.title')}</h2>
+			<p>{t('about.story.bodyOne')}</p>
+			<p>{t('about.story.bodyTwo')}</p>
+
+			<ul class="ms-about-story__figures">
+				{
+					FIGURES.map((figure) => (
+						<li>
+							<b class="ms-about-story__value">
+								{t(`home.stats.${figure}.value` as 'home.stats.homes.value')}
+								{figure === 'rating' && <span> ★</span>}
+							</b>
+							<span class="ms-about-story__label">
+								{t(`home.stats.${figure}.label` as 'home.stats.homes.label')}
+							</span>
+						</li>
+					))
+				}
+			</ul>
+		</div>
+	</div>
+</Section>
