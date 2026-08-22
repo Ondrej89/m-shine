@@ -92,9 +92,17 @@ mobile footer — so it wins over the design files wherever the two disagree.
 ### GitHub Pages preview
 
 `.github/workflows/pages.yml` builds the site and publishes it to GitHub Pages on every
-push to `main` (or `master`), and on demand from the Actions tab. Turn it on once, in
-**Settings → Pages → Build and deployment → Source: GitHub Actions**; the first push after
-that publishes to `https://<user>.github.io/<repo>/`.
+push to `main` (or `master`), and on demand from the Actions tab. It publishes to
+`https://<user>.github.io/<repo>/`.
+
+**One setting has to be right, and it is not set by the workflow:**
+**Settings → Pages → Build and deployment → Source** must be **GitHub Actions**.
+
+The workflow asks `actions/configure-pages` to enable Pages if it is off, but that enables
+it with the *branch* source, which makes GitHub run its own Jekyll build of the repository
+and serve the README instead of the built site. Both deployments then race and Jekyll wins.
+If the site at the Pages URL looks like a rendered README, this is why: switch the source
+to GitHub Actions and re-run the workflow.
 
 The workflow does not hard-code the repository name. `actions/configure-pages` reports the
 origin and the subpath, and they are passed to the build as `PAGES_SITE` and `PAGES_BASE`,
