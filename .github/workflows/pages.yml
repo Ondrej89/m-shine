@@ -44,6 +44,12 @@ jobs:
       # has to hard-code the repository name.
       - uses: actions/configure-pages@v5
         id: pages
+        with:
+          # Turns Pages on for the repository if it is not on already, so the
+          # first push deploys without anyone visiting Settings first. Without
+          # it this step fails outright on a repository that has never had Pages
+          # enabled — which is exactly what happened on the first run here.
+          enablement: true
 
       # `npm run build` runs `astro check` first, so a missing translation key
       # fails the deployment rather than shipping a hole in the page.
