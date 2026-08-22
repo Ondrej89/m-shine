@@ -1,0 +1,94 @@
+---
+import Flourish from '../Flourish.astro';
+import Icon from '../Icon.astro';
+import Section from '../Section.astro';
+import SectionHead from '../SectionHead.astro';
+import type { Locale } from '../../i18n/config';
+import { useTranslations } from '../../i18n/ui';
+
+/*
+ * The before/after comparison slider.
+ *
+ * The reveal is driven by a real `<input type="range">` laid transparently
+ * over the two images, not by pointer handlers on a div as the reference
+ * design does. That is the refined theme's decision and it is the right one:
+ * pointer drag, touch and arrow keys all work with no JavaScript at all, and a
+ * screen reader announces a labelled slider rather than an inert graphic.
+ *
+ * The script below only mirrors the input's value into a custom property. With
+ * scripting off the slider still moves — the reveal just stays at 50%, which
+ * is a static before/after split rather than a broken control.
+ */
+interface Props {
+	locale: Locale;
+}
+
+const { locale } = Astro.props;
+const t = useTranslations(locale);
+---
+
+<Section class="ms-ba-section" rhythm="none" flourishes clip>
+	<Flourish name="corner" slot="flourish" />
+
+	<SectionHead
+		eyebrow={t('beforeAfter.eyebrow')}
+		title={t('beforeAfter.title')}
+		divider={false}
+		close
+	/>
+
+	<div class="ms-ba" data-ms-ba>
+		<figure class="ms-ba__after">
+			<img
+				src="/img/photos/home-after.webp"
+				alt={t('beforeAfter.afterAlt')}
+				width="1240"
+				height="460"
+				loading="lazy"
+				decoding="async"
+			/>
+		</figure>
+
+		<figure class="ms-ba__before">
+			<img
+				src="/img/photos/home-before.webp"
+				alt={t('beforeAfter.beforeAlt')}
+				width="1240"
+				height="460"
+				loading="lazy"
+				decoding="async"
+			/>
+		</figure>
+
+		<span class="ms-ba__tag ms-ba__tag--before">{t('beforeAfter.before')}</span>
+		<span class="ms-ba__tag ms-ba__tag--after">{t('beforeAfter.after')}</span>
+
+		<span class="ms-ba__handle" aria-hidden="true">
+			<span class="ms-ba__grip">
+				<Icon name="chevron-left" size={16} stroke={2.4} />
+				<Icon name="chevron-right" size={16} stroke={2.4} />
+			</span>
+		</span>
+
+		<input
+			class="ms-ba__range"
+			type="range"
+			min="0"
+			max="100"
+			value="50"
+			step="1"
+			aria-label={t('beforeAfter.sliderLabel')}
+		/>
+	</div>
+</Section>
+
+<script>
+	document.querySelectorAll<HTMLElement>('[data-ms-ba]').forEach((root) => {
+		const range = root.querySelector<HTMLInputElement>('.ms-ba__range');
+		if (!range) return;
+
+		const sync = () => root.style.setProperty('--ms-ba-pos', `${range.value}%`);
+		range.addEventListener('input', sync);
+		sync();
+	});
+</script>

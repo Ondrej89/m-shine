@@ -24,7 +24,7 @@
   "meta": {
     "home": {
       "title": "Cleaning Company in Vienna",
-      "description": "Professional apartment, house and move-out cleaning in Vienna. Insured, reliable and eco-friendly. Request your free quote today."
+      "description": "Professional house, apartment, move-out and deep cleaning in Vienna. Insured, background-checked teams and eco-friendly products. Request your free quote today."
     },
     "placeholder": {
       "title": "In progress",
@@ -32,82 +32,135 @@
     }
   },
   "home": {
-    "eyebrow": "Cleaning Services in Vienna",
-    "title": "A spotless home, without lifting a finger",
-    "lede": "Magic Shine is your cleaning partner in Vienna. Trained teams, checked quality, and a quote tailored to your home.",
-    "ctaPrimary": "Get a Free Quote",
-    "ctaSecondary": "See Our Services"
+    "hero": {
+      "eyebrow": "A Clean Home. A Better You.",
+      "titleLead": "Luxury Cleaning for",
+      "titleAccent": "Modern Living",
+      "lede": "We bring hotel-quality cleanliness to your home so you can focus on what matters most.",
+      "ctaPrimary": "Get a Free Quote",
+      "ctaSecondary": "Explore Services",
+      "photoAlt": "A Magic Shine cleaner finishing a bright, freshly tidied living room"
+    },
+    "trust": {
+      "guarantee": "Satisfaction Guaranteed",
+      "eco": "Eco-Friendly Products",
+      "insured": "Insured & Bonded",
+      "checked": "Background Checked"
+    },
+    "stats": {
+      "homes": { "value": "10,000+", "label": "Homes Cleaned" },
+      "rating": { "value": "4.9", "label": "Average Rating" },
+      "repeat": { "value": "98%", "label": "Repeat Clients" },
+      "satisfaction": { "value": "100%", "label": "Satisfaction" }
+    }
   },
   "services": {
-    "eyebrow": "Our Services",
-    "title": "The right clean for every home",
-    "learnMore": "Learn more",
+    "eyebrow": "What We Offer",
+    "title": "Our Cleaning Services",
+    "learnMore": "Learn More",
+    "viewAll": "View All Services",
     "house": {
       "title": "House Cleaning",
-      "description": "A thorough clean for your whole house — regularly or as a one-off."
+      "description": "Regular cleaning to keep your home fresh, clean and comfortable.",
+      "photoAlt": "A tidy, sunlit living room"
     },
     "apartment": {
       "title": "Apartment Cleaning",
-      "description": "Dependable cleaning for apartments of any size, across Vienna."
+      "description": "Perfect for apartments and condos of all sizes.",
+      "photoAlt": "A clean, modern kitchen"
     },
     "move": {
       "title": "Move In / Move Out",
-      "description": "Handover-ready, so your deposit comes back in full."
+      "description": "We make moving easy with a spotless clean space.",
+      "photoAlt": "Stacked moving boxes in an empty room"
     },
     "housekeeping": {
       "title": "Housekeeping",
-      "description": "Your regular cleaner, keeping your home in shape week after week."
+      "description": "Regular help that keeps your home in order week after week.",
+      "photoAlt": "Folded laundry on a made bed"
     },
     "deep": {
       "title": "Deep Cleaning",
-      "description": "Into every corner — limescale, grease and everything that has built up."
+      "description": "A detailed clean for those extra special occasions.",
+      "photoAlt": "A spotless, gleaming bathroom"
     }
   },
   "why": {
-    "eyebrow": "Why Magic Shine",
-    "title": "A clean you can count on",
-    "insured": {
-      "title": "Insured & vetted",
-      "description": "Every team member is background-checked, trained and fully insured."
+    "eyebrow": "Why Choose Magic Shine",
+    "title": "More Than Just a Cleaning Service",
+    "lede": "We go beyond just cleaning. We build trust, save you time, and make your life a little easier.",
+    "trained": {
+      "title": "Trained Professionals",
+      "description": "Our team is background checked and highly trained."
     },
-    "eco": {
-      "title": "Eco-friendly products",
-      "description": "Effective cleaners that are safe around children, pets and allergies."
+    "reliable": {
+      "title": "Reliable & On-Time",
+      "description": "We respect your time and always show up when we say."
     },
-    "punctual": {
-      "title": "On time, around you",
-      "description": "We come when it suits you — evenings and weekends included."
+    "custom": {
+      "title": "Custom Plans",
+      "description": "Tailored cleaning plans to fit your needs and budget."
     },
-    "guarantee": {
-      "title": "Satisfaction guarantee",
-      "description": "Not happy? We come back and put it right."
+    "improving": {
+      "title": "Always Improving",
+      "description": "We listen, we care and we get better every day."
     }
+  },
+  "beforeAfter": {
+    "eyebrow": "See the Difference",
+    "title": "Before & After",
+    "before": "Before",
+    "after": "After",
+    "beforeAlt": "A cluttered, dusty room before cleaning",
+    "afterAlt": "The same room after cleaning, bright and spotless",
+    "sliderLabel": "Drag to reveal more of the before or after photo"
+  },
+  "plans": {
+    "eyebrow": "Save Time. Save More.",
+    "title": "Enjoy a Cleaner Home, Every Week",
+    "lede": "Recurring cleaning plans with priority scheduling, exclusive discounts and a consistently clean home you can count on.",
+    "priority": "Priority Scheduling",
+    "discounts": "Exclusive Discounts",
+    "flexible": "Cancel or Pause Anytime",
+    "action": "Explore Plans",
+    "photoAlt": "Neatly folded towels beside a house plant"
   },
   "reviews": {
-    "eyebrow": "Testimonials",
-    "title": "What Viennese clients say",
+    "eyebrow": "What Our Clients Say",
+    "title": "Trusted by Families & Homeowners",
     "ratingLabel": "5 out of 5 stars",
+    "previous": "Previous reviews",
+    "next": "Next reviews",
     "one": {
-      "quote": "After the move the old flat looked better than the day I moved in. Got the full deposit back.",
-      "name": "Andrea K.",
-      "role": "Leopoldstadt"
+      "quote": "Magic Shine has been a game changer for our family. Our home has never been cleaner!",
+      "name": "Jessica M.",
+      "role": "Homeowner"
     },
     "two": {
-      "quote": "Every two weeks for a year now — always on time, always thorough. I never have to ask twice.",
-      "name": "Markus H.",
-      "role": "Währing"
+      "quote": "Professional, reliable, and detail-oriented. The team is amazing — highly recommend!",
+      "name": "David R.",
+      "role": "Property Manager"
     },
     "three": {
-      "quote": "Finally a team that cleans the places you can never reach yourself. Highly recommended.",
-      "name": "Sofia B.",
-      "role": "Neubau"
+      "quote": "Great service and such attention to detail. My home always feels brand new after.",
+      "name": "Emily W.",
+      "role": "Airbnb Host"
+    },
+    "four": {
+      "quote": "On time, friendly, and thorough every single visit. Getting a quote is effortless too.",
+      "name": "Marcus T.",
+      "role": "Homeowner"
+    },
+    "five": {
+      "quote": "They treat our place like their own. We finally have our weekends back!",
+      "name": "Priya S.",
+      "role": "Working Parent"
+    },
+    "six": {
+      "quote": "Spotless results and eco-friendly products. Couldn't ask for more.",
+      "name": "Liam O.",
+      "role": "Condo Owner"
     }
-  },
-  "cta": {
-    "eyebrow": "Ready for a cleaner home?",
-    "title": "Request your free quote",
-    "lede": "Tell us briefly what you need and you will have a fixed price within 24 hours, with no obligation.",
-    "action": "Request a Quote"
   },
   "footer": {
     "blurb": "Premium cleaning services for a cleaner, healthier and happier home.",

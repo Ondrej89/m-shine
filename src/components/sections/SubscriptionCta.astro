@@ -1,0 +1,73 @@
+---
+import Button from '../Button.astro';
+import Eyebrow from '../Eyebrow.astro';
+import Flourish from '../Flourish.astro';
+import Icon, { type IconName } from '../Icon.astro';
+import Section from '../Section.astro';
+import type { Locale } from '../../i18n/config';
+import { localizedPath } from '../../i18n/routes';
+import { useTranslations } from '../../i18n/ui';
+
+/*
+ * The recurring-plan CTA band: a gradient card with copy, three plan
+ * highlights, the action, and a photo.
+ *
+ * The design's copy said "priority booking". The booking engine is gone, so
+ * this reads "priority scheduling" instead — the same promise, phrased for how
+ * the business actually takes work now.
+ */
+interface Props {
+	locale: Locale;
+}
+
+const { locale } = Astro.props;
+const t = useTranslations(locale);
+
+const FEATURES = [
+	{ key: 'priority', icon: 'calendar-check' },
+	{ key: 'discounts', icon: 'tag' },
+	{ key: 'flexible', icon: 'repeat' },
+] as const;
+---
+
+<Section class="ms-cta-section" rhythm="none">
+	<div class="ms-cta ms-flourish-host">
+		<Flourish name="lotus-center" />
+
+		<div class="ms-cta__copy">
+			<Eyebrow>{t('plans.eyebrow')}</Eyebrow>
+			<h2>{t('plans.title')}</h2>
+			<p>{t('plans.lede')}</p>
+
+			<ul class="ms-cta__feats">
+				{
+					FEATURES.map((feature) => (
+						<li class="ms-cta__feat">
+							<span>
+								<Icon name={feature.icon as IconName} size={21} stroke={1.8} />
+							</span>
+							<span>{t(`plans.${feature.key}` as 'plans.priority')}</span>
+						</li>
+					))
+				}
+			</ul>
+		</div>
+
+		<div class="ms-cta__action">
+			<Button variant="green" href={localizedPath(locale, 'pricing')} icon="arrow-right">
+				{t('plans.action')}
+			</Button>
+		</div>
+
+		<figure class="ms-cta__figure">
+			<img
+				src="/img/photos/home-towels.webp"
+				alt={t('plans.photoAlt')}
+				width="285"
+				height="225"
+				loading="lazy"
+				decoding="async"
+			/>
+		</figure>
+	</div>
+</Section>

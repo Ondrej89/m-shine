@@ -24,7 +24,7 @@
   "meta": {
     "home": {
       "title": "Upratovacia firma vo Viedni",
-      "description": "Profesionálne upratovanie bytov, domov a po sťahovaní vo Viedni. Poistené, spoľahlivé a šetrné k životnému prostrediu. Vyžiadajte si bezplatnú cenovú ponuku."
+      "description": "Profesionálne upratovanie domov, bytov, po sťahovaní a generálne upratovanie vo Viedni. Poistené a preverené tímy, ekologické prostriedky. Vyžiadajte si bezplatnú ponuku."
     },
     "placeholder": {
       "title": "Pripravujeme",
@@ -32,82 +32,135 @@
     }
   },
   "home": {
-    "eyebrow": "Upratovacie služby vo Viedni",
-    "title": "Dokonale čistý domov bez námahy",
-    "lede": "Magic Shine je váš upratovací partner vo Viedni. Školené tímy, overená kvalita a ponuka na mieru vášmu domovu.",
-    "ctaPrimary": "Bezplatná ponuka",
-    "ctaSecondary": "Pozrieť služby"
+    "hero": {
+      "eyebrow": "Čistý domov. Lepší pocit.",
+      "titleLead": "Prvotriedne upratovanie pre",
+      "titleAccent": "moderné bývanie",
+      "lede": "Prinášame do vášho domova hotelovú čistotu, aby ste sa mohli venovať tomu, na čom naozaj záleží.",
+      "ctaPrimary": "Bezplatná ponuka",
+      "ctaSecondary": "Pozrieť služby",
+      "photoAlt": "Pracovníčka Magic Shine dokončuje prácu v svetlej, čerstvo upratanej obývačke"
+    },
+    "trust": {
+      "guarantee": "Záruka spokojnosti",
+      "eco": "Ekologické prostriedky",
+      "insured": "Poistení a krytí",
+      "checked": "Preverený personál"
+    },
+    "stats": {
+      "homes": { "value": "10 000+", "label": "upratených domácností" },
+      "rating": { "value": "4,9", "label": "priemerné hodnotenie" },
+      "repeat": { "value": "98 %", "label": "vracajúcich sa klientov" },
+      "satisfaction": { "value": "100 %", "label": "spokojnosť" }
+    }
   },
   "services": {
-    "eyebrow": "Naše služby",
-    "title": "Pre každý domov to správne upratovanie",
+    "eyebrow": "Čo ponúkame",
+    "title": "Naše upratovacie služby",
     "learnMore": "Zistiť viac",
+    "viewAll": "Zobraziť všetky služby",
     "house": {
       "title": "Upratovanie domov",
-      "description": "Dôkladné upratovanie celého domu – pravidelne alebo jednorazovo."
+      "description": "Pravidelné upratovanie, aby váš domov zostal svieži, čistý a útulný.",
+      "photoAlt": "Upratená, slnkom zaliata obývačka"
     },
     "apartment": {
       "title": "Upratovanie bytov",
-      "description": "Spoľahlivé upratovanie bytov každej veľkosti po celej Viedni."
+      "description": "Ideálne pre byty každej veľkosti.",
+      "photoAlt": "Čistá, moderná kuchyňa"
     },
     "move": {
       "title": "Upratovanie po sťahovaní",
-      "description": "Byt pripravený na odovzdanie – aby sa depozit vrátil celý."
+      "description": "Sťahovanie zvládnete ľahšie – priestor odovzdáme dokonale čistý.",
+      "photoAlt": "Poukladané sťahovacie krabice v prázdnej miestnosti"
     },
     "housekeeping": {
       "title": "Pravidelná starostlivosť",
-      "description": "Vaša stála upratovačka, ktorá udrží domov v kondícii."
+      "description": "Pravidelná pomoc, ktorá udrží váš domov v poriadku týždeň čo týždeň.",
+      "photoAlt": "Poskladaná bielizeň na ustlanej posteli"
     },
     "deep": {
       "title": "Generálne upratovanie",
-      "description": "Do posledného kúta – vodný kameň, mastnota a všetko nahromadené."
+      "description": "Dôkladné upratovanie pre výnimočné príležitosti.",
+      "photoAlt": "Dokonale čistá, lesklá kúpeľňa"
     }
   },
   "why": {
     "eyebrow": "Prečo Magic Shine",
-    "title": "Čistota, na ktorú sa môžete spoľahnúť",
-    "insured": {
-      "title": "Poistení a preverení",
-      "description": "Každý člen tímu je preverený, zaškolený a plne poistený."
+    "title": "Viac než len upratovacia služba",
+    "lede": "Nielen upratujeme. Budujeme dôveru, šetríme váš čas a robíme vám život o niečo ľahším.",
+    "trained": {
+      "title": "Školení profesionáli",
+      "description": "Náš tím je preverený a dôkladne vyškolený."
     },
-    "eco": {
-      "title": "Ekologické prostriedky",
-      "description": "Účinné prostriedky bezpečné pre deti, zvieratá aj alergikov."
+    "reliable": {
+      "title": "Spoľahliví a načas",
+      "description": "Vážime si váš čas a prídeme vždy, keď to sľúbime."
     },
-    "punctual": {
-      "title": "Načas a flexibilne",
-      "description": "Prídeme, keď sa to hodí vám – aj večer a cez víkend."
+    "custom": {
+      "title": "Plány na mieru",
+      "description": "Upratovacie plány prispôsobené vašim potrebám aj rozpočtu."
     },
-    "guarantee": {
-      "title": "Záruka spokojnosti",
-      "description": "Nie ste spokojní? Vrátime sa a napravíme to."
+    "improving": {
+      "title": "Stále lepší",
+      "description": "Počúvame, záleží nám a každý deň sa zlepšujeme."
     }
+  },
+  "beforeAfter": {
+    "eyebrow": "Pozrite ten rozdiel",
+    "title": "Pred a po",
+    "before": "Pred",
+    "after": "Po",
+    "beforeAlt": "Neupratená, zaprášená miestnosť pred upratovaním",
+    "afterAlt": "Tá istá miestnosť po upratovaní: svetlá a dokonale čistá",
+    "sliderLabel": "Potiahnutím zobrazíte viac z fotografie pred alebo po"
+  },
+  "plans": {
+    "eyebrow": "Ušetrite čas. Ušetrite viac.",
+    "title": "Čistý domov, každý týždeň",
+    "lede": "Pravidelné upratovacie plány s prednostnými termínmi, exkluzívnymi zľavami a domovom, ktorý je spoľahlivo čistý.",
+    "priority": "Prednostné termíny",
+    "discounts": "Exkluzívne zľavy",
+    "flexible": "Kedykoľvek pozastaviť či zrušiť",
+    "action": "Pozrieť plány",
+    "photoAlt": "Úhľadne poskladané uteráky vedľa izbovej rastliny"
   },
   "reviews": {
-    "eyebrow": "Referencie",
-    "title": "Čo hovoria klienti z Viedne",
+    "eyebrow": "Čo hovoria naši klienti",
+    "title": "Dôverujú nám rodiny aj majitelia domov",
     "ratingLabel": "5 z 5 hviezdičiek",
+    "previous": "Predchádzajúce hodnotenia",
+    "next": "Ďalšie hodnotenia",
     "one": {
-      "quote": "Po sťahovaní vyzeral starý byt lepšie ako v deň nasťahovania. Depozit sa vrátil celý.",
-      "name": "Andrea K.",
-      "role": "Leopoldstadt"
+      "quote": "Magic Shine bola pre našu rodinu zásadná zmena. Náš domov nebol nikdy čistejší!",
+      "name": "Jessica M.",
+      "role": "Majiteľka domu"
     },
     "two": {
-      "quote": "Už rok chodia každé dva týždne – vždy načas, vždy dôkladne. Nikdy nemusím nič pripomínať.",
-      "name": "Markus H.",
-      "role": "Währing"
+      "quote": "Profesionálni, spoľahliví a dôslední. Tím je skvelý – jednoznačne odporúčam!",
+      "name": "David R.",
+      "role": "Správca nehnuteľností"
     },
     "three": {
-      "quote": "Konečne tím, ktorý vyčistí aj miesta, na ktoré sa sama nikdy nedostanem. Odporúčam.",
-      "name": "Sofia B.",
-      "role": "Neubau"
+      "quote": "Skvelá služba a zmysel pre detail. Môj domov sa potom vždy cíti ako nový.",
+      "name": "Emily W.",
+      "role": "Hostiteľka na Airbnb"
+    },
+    "four": {
+      "quote": "Načas, milí a dôkladní pri každej návšteve. A ponuku získate úplne bez námahy.",
+      "name": "Marcus T.",
+      "role": "Majiteľ domu"
+    },
+    "five": {
+      "quote": "K nášmu bytu sa správajú ako k vlastnému. Konečne máme späť víkendy!",
+      "name": "Priya S.",
+      "role": "Pracujúca mama"
+    },
+    "six": {
+      "quote": "Dokonalý výsledok a ekologické prostriedky. Viac sa žiadať nedá.",
+      "name": "Liam O.",
+      "role": "Majiteľ bytu"
     }
-  },
-  "cta": {
-    "eyebrow": "Pripravení na čistý domov?",
-    "title": "Vyžiadajte si bezplatnú ponuku",
-    "lede": "Stačí krátko napísať, o čo ide – do 24 hodín dostanete pevnú cenu, nezáväzne.",
-    "action": "Vyžiadať ponuku"
   },
   "footer": {
     "blurb": "Prvotriedne upratovacie služby pre čistejší, zdravší a šťastnejší domov.",

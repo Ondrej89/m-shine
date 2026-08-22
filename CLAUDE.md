@@ -57,17 +57,31 @@ than the design. `<Section width={...}>` picks; the list is in `base.css`.
 `(width <= 720px)`, which parses as nothing on Safari below 16.4 — every breakpoint gone at
 once on an iOS 16.0–16.3 phone. If you change that setting, re-check the built CSS.
 
+**Check the layout at 375px and at ~1180px before calling a page done.** Both have already
+caught real bugs that were invisible at a typical desktop width, and both were the same
+cause: a grid or flex track refuses to shrink below its content's `min-content`, so one
+long German word or one wide row silently pushes the whole layout past the viewport where
+`overflow-x: hidden` swallows it. `min-width: 0` on the item is the fix. The window in this
+environment may not resize — a sized `<iframe>` pointing at the page triggers media queries
+correctly and is a fine substitute.
+
 ## Current state
 
-Steps 1 (setup + i18n) and 2 (component library) are done.
+Steps 1 (setup + i18n), 2 (component library) and 3a (Home) are done.
 
+- `src/content-pages/Home.astro` is the real page, composed from six section components in
+  `src/components/sections/`. `ServicesGrid` takes its services as a prop so the Services
+  page can reuse it with a fifth entry.
 - `src/components/` holds the design system. `src/content-pages/Styleguide.astro` renders
   all of it at `/styleguide/` — an internal review tool. Delete it, its `ROUTES` entry and
   its sitemap filter before launch.
 - `src/content-pages/Placeholder.astro` is a stub standing in for About, Services, Pricing,
-  Contact and Quote so every nav link resolves. Step 3 replaces them one at a time; when
-  the last one goes, delete the stub.
-- `src/content-pages/Home.astro` is still a placeholder — real chrome, placeholder body.
+  Contact and Quote so every nav link resolves. Replace them one at a time; when the last
+  one goes, delete the stub.
+
+Content is the existing site's, authored in English and translated. New content — "Warum
+Magic Shine", a B2B page, reframed pricing, the quote form — comes after the existing pages
+are ported.
 
 ## Before launch
 

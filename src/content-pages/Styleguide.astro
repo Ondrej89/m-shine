@@ -44,10 +44,10 @@ const SERVICES = [
 ] as const;
 
 const FEATURES = [
-	{ key: 'insured', icon: 'shield' },
-	{ key: 'eco', icon: 'leaf' },
-	{ key: 'punctual', icon: 'clock' },
-	{ key: 'guarantee', icon: 'sparkle' },
+	{ key: 'trained', icon: 'user-check' },
+	{ key: 'reliable', icon: 'clock' },
+	{ key: 'custom', icon: 'clipboard-check' },
+	{ key: 'improving', icon: 'leaf' },
 ] as const;
 
 const REVIEWS = [
@@ -198,9 +198,9 @@ const SPACING = [1, 2, 3, 4, 5, 6, 7, 8];
 			the saturated CTA band, which is why they are shown on navy here.
 		</p>
 		<div class="sg-row">
-			<Button variant="primary" href="#" icon="arrow-right">{t('home.ctaPrimary')}</Button>
+			<Button variant="primary" href="#" icon="arrow-right">{t('home.hero.ctaPrimary')}</Button>
 			<Button variant="primary" href="#" icon="calendar">{t('nav.quote')}</Button>
-			<Button variant="ghost" href="#">{t('home.ctaSecondary')}</Button>
+			<Button variant="ghost" href="#">{t('home.hero.ctaSecondary')}</Button>
 			<LearnMore href="#">{t('services.learnMore')}</LearnMore>
 		</div>
 	</Section>
@@ -250,8 +250,8 @@ const SPACING = [1, 2, 3, 4, 5, 6, 7, 8];
 				FEATURES.map((f) => (
 					<FeatureCard
 						icon={f.icon}
-						title={t(`why.${f.key}.title` as 'why.insured.title')}
-						description={t(`why.${f.key}.description` as 'why.insured.description')}
+						title={t(`why.${f.key}.title` as 'why.trained.title')}
+						description={t(`why.${f.key}.description` as 'why.trained.description')}
 					/>
 				))
 			}
@@ -375,10 +375,10 @@ const SPACING = [1, 2, 3, 4, 5, 6, 7, 8];
 	<Section band rhythm="none" class="sg-band" flourishes clip>
 		<Flourish name="lotus-center" slot="flourish" />
 		<div class="sg-band__inner">
-			<Eyebrow pill>{t('cta.eyebrow')}</Eyebrow>
-			<h2>{t('cta.title')}</h2>
-			<p>{t('cta.lede')}</p>
-			<Button variant="light" href="#" icon="arrow-right">{t('cta.action')}</Button>
+			<Eyebrow pill>{t('plans.eyebrow')}</Eyebrow>
+			<h2>{t('plans.title')}</h2>
+			<p>{t('plans.lede')}</p>
+			<Button variant="light" href="#" icon="arrow-right">{t('plans.action')}</Button>
 			<p class="sg-cap">
 				Full-bleed band with the lotus flourish behind it at 12% — hidden below 720px, like
 				every flourish.

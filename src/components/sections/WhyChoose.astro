@@ -1,0 +1,52 @@
+---
+import Eyebrow from '../Eyebrow.astro';
+import FeatureCard from '../FeatureCard.astro';
+import Section from '../Section.astro';
+import Underline from '../Underline.astro';
+import type { IconName } from '../Icon.astro';
+import type { Locale } from '../../i18n/config';
+import { useTranslations } from '../../i18n/ui';
+
+/*
+ * "More than just a cleaning service" — a 1fr/2fr split with the intro on the
+ * left and four features on the right. The intro heading is a fixed 36px
+ * rather than the fluid section preset; the design sets it apart from every
+ * other h2 on the page.
+ */
+interface Props {
+	locale: Locale;
+}
+
+const { locale } = Astro.props;
+const t = useTranslations(locale);
+
+const FEATURES = [
+	{ key: 'trained', icon: 'user-check' },
+	{ key: 'reliable', icon: 'clock' },
+	{ key: 'custom', icon: 'clipboard-check' },
+	{ key: 'improving', icon: 'leaf' },
+] as const;
+---
+
+<Section class="ms-why" rhythm="none">
+	<div class="ms-why__grid">
+		<div class="ms-why__intro">
+			<Eyebrow>{t('why.eyebrow')}</Eyebrow>
+			<h2>{t('why.title')}</h2>
+			<Underline />
+			<p>{t('why.lede')}</p>
+		</div>
+
+		<div class="ms-feat-row">
+			{
+				FEATURES.map((feature) => (
+					<FeatureCard
+						icon={feature.icon as IconName}
+						title={t(`why.${feature.key}.title` as 'why.trained.title')}
+						description={t(`why.${feature.key}.description` as 'why.trained.description')}
+					/>
+				))
+			}
+		</div>
+	</div>
+</Section>

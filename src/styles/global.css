@@ -18,6 +18,9 @@
 @import './components/section.css';
 @import './components/media.css';
 @import './components/cards.css';
+@import './components/hero.css';
+@import './components/before-after.css';
+@import './components/cta-band.css';
 @import './components/flourishes.css';
 @import './components/header.css';
 @import './components/footer.css';

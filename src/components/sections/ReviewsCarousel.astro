@@ -1,0 +1,201 @@
+---
+import Icon from '../Icon.astro';
+import ReviewCard from '../ReviewCard.astro';
+import Section from '../Section.astro';
+import SectionHead from '../SectionHead.astro';
+import type { Locale } from '../../i18n/config';
+import { useTranslations } from '../../i18n/ui';
+
+/*
+ * The reviews carousel.
+ *
+ * The reference design translates a flex track by a computed offset and stores
+ * the index in component state. The refined theme replaced that with a
+ * scroll-snap track, which is what is built here: the cards are a horizontally
+ * scrolling list, so touch swipe, trackpad, keyboard scrolling and screen
+ * readers all work with no JavaScript. The arrows and dots below are pure
+ * enhancement layered on `scrollTo`.
+ *
+ * The design shows six reviews three at a time, so only four scroll positions
+ * are reachable. Rather than hard-code that, the script measures and hides the
+ * dots that cannot be reached — the count then stays right when the breakpoint
+ * changes how many cards fit.
+ */
+interface Props {
+	locale: Locale;
+}
+
+const { locale } = Astro.props;
+const t = useTranslations(locale);
+
+const REVIEWS = [
+	{ key: 'one', initials: 'JM', avatar: 'blue' },
+	{ key: 'two', initials: 'DR', avatar: 'green' },
+	{ key: 'three', initials: 'EW', avatar: 'blue' },
+	{ key: 'four', initials: 'MT', avatar: 'green' },
+	{ key: 'five', initials: 'PS', avatar: 'blue' },
+	{ key: 'six', initials: 'LO', avatar: 'green' },
+] as const;
+---
+
+<Section class="ms-reviews" width={1180} rhythm="none">
+	<SectionHead eyebrow={t('reviews.eyebrow')} title={t('reviews.title')} divider={false} />
+
+	<div class="ms-reviews__viewport" data-ms-reviews>
+		<ul class="ms-reviews__track">
+			{
+				REVIEWS.map((review) => (
+					<ReviewCard
+						quote={t(`reviews.${review.key}.quote` as 'reviews.one.quote')}
+						name={t(`reviews.${review.key}.name` as 'reviews.one.name')}
+						role={t(`reviews.${review.key}.role` as 'reviews.one.role')}
+						initials={review.initials}
+						avatar={review.avatar}
+						ratingLabel={t('reviews.ratingLabel')}
+					/>
+				))
+			}
+		</ul>
+
+		{/* Hidden until the script confirms it can drive them — a dead arrow is
+		    worse than no arrow. */}
+		<button class="ms-reviews__nav ms-reviews__nav--prev" type="button" hidden>
+			<Icon name="chevron-left" size={20} stroke={2.2} />
+			<span class="screen-reader-text">{t('reviews.previous')}</span>
+		</button>
+		<button class="ms-reviews__nav ms-reviews__nav--next" type="button" hidden>
+			<Icon name="chevron-right" size={20} stroke={2.2} />
+			<span class="screen-reader-text">{t('reviews.next')}</span>
+		</button>
+	</div>
+
+	<ul class="ms-reviews__dots" data-ms-reviews-dots hidden>
+		{
+			REVIEWS.map((_, index) => (
+				<li>
+					<button class="ms-reviews__dot" type="button" data-index={index}>
+						<span class="screen-reader-text">{index + 1}</span>
+					</button>
+				</li>
+			))
+		}
+	</ul>
+</Section>
+
+<script>
+	document.querySelectorAll<HTMLElement>('[data-ms-reviews]').forEach((viewport) => {
+		const track = viewport.querySelector<HTMLElement>('.ms-reviews__track');
+		const prev = viewport.querySelector<HTMLButtonElement>('.ms-reviews__nav--prev');
+		const next = viewport.querySelector<HTMLButtonElement>('.ms-reviews__nav--next');
+		const dotList = viewport.parentElement?.querySelector<HTMLElement>('[data-ms-reviews-dots]');
+		if (!track || !prev || !next) return;
+
+		const cards = Array.from(track.children) as HTMLElement[];
+		const dots = dotList
+			? (Array.from(dotList.querySelectorAll('button')) as HTMLButtonElement[])
+			: [];
+		if (cards.length === 0) return;
+
+		prev.hidden = false;
+		next.hidden = false;
+		if (dotList) dotList.hidden = false;
+
+		/* Snap positions, not raw offsets.
+
+		   The track carries 11px of inline padding, so card N's scroll-snap
+		   position IS its `offsetLeft`. Scrolling to `offsetLeft - cards[0].offsetLeft`
+		   landed 11px short of every snap point and `scroll-snap-type: x mandatory`
+		   rejected the near miss, so the arrows and dots moved nothing at all.
+
+		   The last cards' snap positions sit past the maximum scroll, so they are
+		   clamped — the track cannot scroll further than its own overflow. */
+		const maxScroll = () => track.scrollWidth - track.clientWidth;
+		const posOf = (i: number) => Math.min(cards[i].offsetLeft, maxScroll());
+
+		/* The furthest card that can still reach the left edge. Recomputed rather
+		   than stored because how many cards fit changes at every breakpoint. The
+		   leading padding is the tolerance: a card within it of the maximum scroll
+		   still reads as the leftmost one. */
+		const maxIndex = () => {
+			const limit = maxScroll() + cards[0].offsetLeft;
+			for (let i = cards.length - 1; i >= 0; i--) {
+				if (cards[i].offsetLeft <= limit) return i;
+			}
+			return 0;
+		};
+
+		const nearestIndex = () => {
+			let best = 0;
+			let bestGap = Infinity;
+			cards.forEach((_, i) => {
+				const gap = Math.abs(posOf(i) - track.scrollLeft);
+				if (gap < bestGap) {
+					bestGap = gap;
+					best = i;
+				}
+			});
+			return best;
+		};
+
+		let current = 0;
+
+		const render = () => {
+			const last = maxIndex();
+			current = Math.min(current, last);
+			prev.disabled = current <= 0;
+			next.disabled = current >= last;
+			dots.forEach((dot, i) => {
+				dot.classList.toggle('is-active', i === current);
+				// Unreachable dots would be dead controls; take them out of the flow
+				// rather than leaving them clickable and inert.
+				dot.parentElement!.hidden = i > last;
+			});
+		};
+
+		let settle = 0;
+
+		const goTo = (index: number) => {
+			current = Math.max(0, Math.min(index, maxIndex()));
+			const target = posOf(current);
+
+			/* The arrows and dots repaint from `current` immediately rather than
+			   waiting for a scroll event to report back. That is not just belt and
+			   braces — it is the only thing that works when the scroll event does
+			   not fire, which is the case in an automated browser, and it removes a
+			   frame of lag everywhere else. The listener below still exists, for the
+			   position a *user* lands on by swiping. */
+			render();
+
+			track.scrollTo({ left: target, behavior: 'smooth' });
+
+			/* `smooth` is the intent — the design's carousel glides — but Chrome
+			   drops the animation outright in some contexts and leaves the track
+			   exactly where it started. Verify the move actually happened and jump
+			   if it did not, so a dropped animation cannot strand the carousel.
+			   Where smooth works this fires after arrival and does nothing. */
+			clearTimeout(settle);
+			settle = window.setTimeout(() => {
+				if (Math.abs(track.scrollLeft - target) > 2) {
+					track.scrollTo({ left: target, behavior: 'instant' });
+				}
+			}, 500);
+		};
+
+		prev.addEventListener('click', () => goTo(current - 1));
+		next.addEventListener('click', () => goTo(current + 1));
+		dots.forEach((dot, i) => dot.addEventListener('click', () => goTo(i)));
+
+		// Swipe, trackpad and keyboard scrolling: adopt wherever the user landed.
+		let frame = 0;
+		track.addEventListener('scroll', () => {
+			cancelAnimationFrame(frame);
+			frame = requestAnimationFrame(() => {
+				current = nearestIndex();
+				render();
+			});
+		});
+
+		window.addEventListener('resize', render);
+		render();
+	});
+</script>

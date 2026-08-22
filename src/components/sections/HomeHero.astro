@@ -1,0 +1,120 @@
+---
+import Button from '../Button.astro';
+import Eyebrow from '../Eyebrow.astro';
+import Icon, { type IconName } from '../Icon.astro';
+import Section from '../Section.astro';
+import type { Locale } from '../../i18n/config';
+import { localizedPath } from '../../i18n/routes';
+import { useTranslations } from '../../i18n/ui';
+
+/*
+ * The home hero: copy and trust row on the left, photo with a floating stats
+ * card on the right.
+ *
+ * Two things about it are unusual and deliberate, both from the refined theme:
+ * the media column is a fixed 750px so the photo bleeds ~61px past the
+ * container toward the viewport edge, and the section does NOT clip, because
+ * clipping sliced the right side off the stats card.
+ *
+ * The design hard-breaks the h1 after "Luxury Cleaning". That break is dropped
+ * here: German runs roughly a third longer than English and a hard <br> lands
+ * in the wrong place in two of the three languages. The line wraps naturally
+ * inside the grid column instead.
+ */
+interface Props {
+	locale: Locale;
+}
+
+const { locale } = Astro.props;
+const t = useTranslations(locale);
+
+const TRUST = [
+	{ key: 'guarantee', icon: 'shield-check', tone: 'blue' },
+	{ key: 'eco', icon: 'leaf', tone: 'green' },
+	{ key: 'insured', icon: 'shield', tone: 'blue' },
+	{ key: 'checked', icon: 'user-check', tone: 'green' },
+] as const;
+
+const STATS = [
+	{ key: 'homes', icon: 'house' },
+	{ key: 'rating', icon: 'star' },
+	{ key: 'repeat', icon: 'repeat' },
+	{ key: 'satisfaction', icon: 'shield-check' },
+] as const;
+---
+
+<Section class="ms-hero" rhythm="none">
+	<div class="ms-hero__grid">
+		<div class="ms-hero__intro">
+			<Eyebrow pill>{t('home.hero.eyebrow')}</Eyebrow>
+
+			<h1 class="ms-hero__title">
+				{t('home.hero.titleLead')}{' '}
+				<span class="ms-accent">{t('home.hero.titleAccent')}</span>
+			</h1>
+
+			<p class="ms-hero__lede">{t('home.hero.lede')}</p>
+
+			<div class="ms-hero__actions">
+				<Button variant="primary" href={localizedPath(locale, 'quote')} icon="arrow-right">
+					{t('home.hero.ctaPrimary')}
+				</Button>
+				<Button variant="ghost" href={localizedPath(locale, 'services')} icon="arrow-right">
+					{t('home.hero.ctaSecondary')}
+				</Button>
+			</div>
+
+			<ul class="ms-trust">
+				{
+					TRUST.map((item) => (
+						<li class="ms-trust__item">
+							<span class={`ms-icon ms-icon--${item.tone}`}>
+								<Icon name={item.icon as IconName} size={16} />
+							</span>
+							<span>{t(`home.trust.${item.key}` as 'home.trust.eco')}</span>
+						</li>
+					))
+				}
+			</ul>
+		</div>
+
+		<div class="ms-hero__media">
+			<figure class="ms-hero__figure ms-mask-fade ms-mask-fade--deep">
+				{/*
+				 * The only image above the fold, and the page's LCP element — hence
+				 * `eager` and `fetchpriority`, while everything below stays lazy.
+				 */}
+				<img
+					src="/img/photos/home-hero.webp"
+					alt={t('home.hero.photoAlt')}
+					width="750"
+					height="500"
+					loading="eager"
+					fetchpriority="high"
+					decoding="async"
+				/>
+			</figure>
+
+			<ul class="ms-hero__stats">
+				{
+					STATS.map((stat) => (
+						<li class="ms-stat">
+							<span class="ms-stat__icon">
+								<Icon name={stat.icon as IconName} size={19} />
+							</span>
+							<span>
+								<b class="ms-stat__value">
+									{t(`home.stats.${stat.key}.value` as 'home.stats.homes.value')}
+									{stat.key === 'rating' && <span class="ms-stat__star"> ★</span>}
+								</b>
+								<span class="ms-stat__label">
+									{t(`home.stats.${stat.key}.label` as 'home.stats.homes.label')}
+								</span>
+							</span>
+						</li>
+					))
+				}
+			</ul>
+		</div>
+	</div>
+</Section>

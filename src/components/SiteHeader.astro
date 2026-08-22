@@ -81,9 +81,13 @@ const navItems = NAV_ROUTES.map((id) => ({
 					</span>
 				</a>
 
+				{/*
+				 * No trailing icon. The design put a calendar here because it was a
+				 * booking button; requesting a quote is not a calendar action, and
+				 * dropping it also buys back 25px in a row that had none to spare.
+				 */}
 				<a class="ms-btn ms-btn--primary ms-bookbtn" href={localizedPath(locale, 'quote')}>
 					{t('nav.quote')}
-					<Icon name="calendar" size={15} />
 				</a>
 
 				<LanguageSwitcher locale={locale} route={route} />

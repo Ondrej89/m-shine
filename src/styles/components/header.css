@@ -17,10 +17,20 @@
 	z-index: 50;
 }
 
+/* Gaps tightened from the design's 24 / 30 / 18 to 20 / 26 / 16.
+
+   This is a localisation adjustment, not a taste change. The header content box
+   is 1160px at every width — that is the design's chrome grid and it does not
+   grow with the viewport — and the German row (five nav items plus
+   "Angebot anfordern") measured 1164px inside it. Being 4px over meant the
+   language switcher hung off the right edge on *every* screen, and no media
+   query could fix it because the overflow is against the box, not the viewport.
+   The three gaps give back 32px, which lands the row at ~1132 with real slack
+   for Slovak and for a longer real phone number. */
 .ms-header {
 	align-items: center;
 	display: flex;
-	gap: 24px;
+	gap: 20px;
 	justify-content: space-between;
 	margin: 0 auto;
 	max-width: var(--wp--custom--container);
@@ -64,7 +74,7 @@
 .ms-header__nav ul {
 	align-items: center;
 	display: flex;
-	gap: 30px;
+	gap: 26px;
 	list-style: none;
 	margin: 0;
 	padding: 0;
@@ -106,7 +116,7 @@
 	align-items: center;
 	display: flex;
 	flex: none;
-	gap: 18px;
+	gap: 16px;
 }
 
 .ms-phone {
@@ -265,15 +275,29 @@
 	width: 44px;
 }
 
-/* The design drops both header extras here, so from tablet down the bar is
-   logo + nav only. See `SiteHeader.dc.html`:
-   `@media(max-width:1100px){.msh-phone{display:none}.msh-bookbtn{display:none}}` */
+/* The design drops both header extras at 1100
+   (`@media(max-width:1100px){.msh-phone{display:none}.msh-bookbtn{display:none}}`
+   in `SiteHeader.dc.html`), but it drops them together and that is one step too
+   few here.
+
+   The design's nav is six short English words. Ours is five German ones plus a
+   German CTA label, and the row measures ~1164px against a 1160px content box —
+   so it overflowed at *every* width, pushing the language switcher off the
+   right of the screen. Splitting the rule fixes it without losing the CTA on a
+   laptop: the phone goes first, at the width where the row actually stops
+   fitting, and the button keeps the design's own 1100. The phone number is
+   still in the footer and on the contact page; the quote CTA has nowhere else
+   to be. */
+@media (max-width: 1240px) {
+	.ms-phone {
+		display: none;
+	}
+}
+
 @media (max-width: 1100px) {
-	.ms-phone,
 	/* Qualified `a.` to beat `a.ms-btn { display: inline-flex }` (0,1,1) from the
 	   button system — a bare `.ms-bookbtn` (0,1,0) loses to it and the button
-	   stays on screen right through the iPad range while `.ms-phone`, which has
-	   no `a.`-qualified rule, hides correctly from the very same declaration.
+	   stays on screen right through the iPad range.
 	   Deliberately NOT `.ms-header a.ms-bookbtn` (0,2,1): that would also outrank
 	   `.ms-header__panel .ms-bookbtn` (0,2,0) below and take the button out of
 	   the open burger menu, where the design keeps it. */
@@ -294,11 +318,16 @@
 	.ms-header__panel {
 		background: var(--wp--preset--color--base);
 		display: block;
-		left: calc(var(--wp--custom--gutter) * -1);
+		/* -40px, matching `.ms-header-wrap`'s fixed 40px inset, so the panel
+		   reaches the screen edges. The theme had these on the responsive gutter
+		   while the wrap it has to cancel is fixed at 40 — the two disagreed below
+		   720px and left the panel inset 18px, then 24px, from the header it hangs
+		   under. Same fixed-vs-gutter mismatch the footer note calls out. */
+		left: -40px;
 		max-height: 0;
 		overflow: hidden;
 		position: absolute;
-		right: calc(var(--wp--custom--gutter) * -1);
+		right: -40px;
 		top: 100%;
 		transition: max-height 0.28s ease;
 		z-index: 60;
@@ -309,7 +338,9 @@
 	}
 
 	.ms-header__nav {
-		padding: 8px var(--wp--custom--gutter) 0;
+		/* Fixed 40px, as the design draws it: `padding:8px 40px 20px` on its
+		   mobile block. */
+		padding: 8px 40px 0;
 	}
 
 	.ms-header__nav ul {
@@ -339,7 +370,7 @@
 		display: flex;
 		flex-direction: column;
 		gap: 16px;
-		padding: 16px var(--wp--custom--gutter) 20px;
+		padding: 16px 40px 20px;
 	}
 
 	.ms-header__panel .ms-bookbtn {

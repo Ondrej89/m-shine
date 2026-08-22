@@ -1,0 +1,161 @@
+/* =========================================================================
+   Before / after comparison
+   Lifted from section 7 of the refined style.css.
+
+   The reference design drives the reveal with pointer handlers on a div. The
+   theme replaced that with a real `<input type="range">` laid transparently
+   over the images, and that is what is kept here: pointer drag, touch and
+   arrow keys all work natively, and a screen reader announces a labelled
+   slider instead of an inert graphic. The oversized thumb is what makes the
+   whole 460px height draggable rather than a thin strip.
+   ====================================================================== */
+
+.ms-ba-section {
+	overflow: hidden;
+	padding-block: 70px 30px;
+}
+
+.ms-ba {
+	--ms-ba-pos: 50%;
+	border-radius: 18px;
+	box-shadow: var(--wp--preset--shadow--media);
+	height: 460px;
+	overflow: hidden;
+	position: relative;
+	touch-action: pan-y;
+	user-select: none;
+	width: 100%;
+}
+
+.ms-ba:focus-within {
+	outline: 2px solid var(--wp--preset--color--blue);
+	outline-offset: 3px;
+}
+
+.ms-ba figure {
+	inset: 0;
+	margin: 0;
+	position: absolute;
+}
+
+.ms-ba img {
+	display: block;
+	height: 100%;
+	object-fit: cover;
+	width: 100%;
+}
+
+.ms-ba__before {
+	clip-path: inset(0 calc(100% - var(--ms-ba-pos)) 0 0);
+}
+
+.ms-ba__tag {
+	border-radius: var(--wp--custom--radius--sm);
+	color: var(--wp--preset--color--base);
+	font-size: 13px;
+	font-weight: 700;
+	padding: 7px 16px;
+	pointer-events: none;
+	position: absolute;
+	top: 22px;
+	z-index: 2;
+}
+
+.ms-ba__tag--before {
+	background: rgba(18, 42, 82, 0.92);
+	left: 22px;
+}
+
+.ms-ba__tag--after {
+	background: rgba(111, 156, 86, 0.95);
+	right: 22px;
+}
+
+.ms-ba__handle {
+	background: var(--wp--preset--color--base);
+	bottom: 0;
+	box-shadow: 0 0 12px rgba(0, 0, 0, 0.25);
+	left: var(--ms-ba-pos);
+	pointer-events: none;
+	position: absolute;
+	top: 0;
+	transform: translateX(-50%);
+	width: 3px;
+	z-index: 3;
+}
+
+.ms-ba__grip {
+	align-items: center;
+	background: var(--wp--preset--color--base);
+	border-radius: 50%;
+	box-shadow: 0 4px 14px rgba(0, 0, 0, 0.25);
+	color: var(--wp--preset--color--blue);
+	display: flex;
+	height: 46px;
+	justify-content: center;
+	left: 50%;
+	position: absolute;
+	top: 50%;
+	transform: translate(-50%, -50%);
+	width: 46px;
+}
+
+.ms-ba__range {
+	-webkit-appearance: none;
+	appearance: none;
+	background: transparent;
+	cursor: ew-resize;
+	height: 100%;
+	inset: 0;
+	margin: 0;
+	opacity: 0;
+	position: absolute;
+	width: 100%;
+	z-index: 4;
+}
+
+.ms-ba__range::-webkit-slider-thumb {
+	-webkit-appearance: none;
+	appearance: none;
+	height: 460px;
+	width: 46px;
+}
+
+.ms-ba__range::-moz-range-thumb {
+	border: none;
+	height: 460px;
+	width: 46px;
+}
+
+
+/* --- Responsive -------------------------------------------------------- */
+
+/* The thumb height has to track the frame height at every step, or the
+   draggable area stops covering the image. */
+@media (max-width: 1000px) {
+	.ms-ba {
+		height: 380px;
+	}
+
+	.ms-ba__range::-webkit-slider-thumb {
+		height: 380px;
+	}
+
+	.ms-ba__range::-moz-range-thumb {
+		height: 380px;
+	}
+}
+
+@media (max-width: 720px) {
+	.ms-ba {
+		height: 300px;
+	}
+
+	.ms-ba__range::-webkit-slider-thumb {
+		height: 300px;
+	}
+
+	.ms-ba__range::-moz-range-thumb {
+		height: 300px;
+	}
+}

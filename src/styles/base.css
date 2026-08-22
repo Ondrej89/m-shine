@@ -181,22 +181,30 @@ figcaption {
    the reviews carousel comment in style.css shows what happens when one is off
    by 60px. `--ms-container-wide` (1240) is Home and About; 1200 is Pricing and
    Service Detail; 1180 is Contact; `--ms-container` (1160) is Services and the
-   header/footer chrome. `<Section width="...">` picks between them. */
+   header/footer chrome. `<Section width="...">` picks between them.
+
+   Each number is the width of the CONTENT, with the gutter sitting outside it —
+   the design draws `padding: 76px 40px` on the section and `max-width: 1240px`
+   on the inner div, so the band is 1320px wide at rest. `box-sizing:
+   border-box` is global here, so a bare `max-width: 1240px` alongside
+   `padding-inline` would cap the outer box instead and leave the content 80px
+   narrow at every width. Hence the `+ gutter * 2`, which is the same
+   arithmetic the footer's inner wrapper uses. */
 .ms-container {
 	margin-inline: auto;
-	max-width: var(--ms-container-wide);
+	max-width: calc(var(--ms-container-wide) + var(--ms-gutter) * 2);
 	padding-inline: var(--ms-gutter);
 	width: 100%;
 }
 
 .ms-container--1200 {
-	max-width: var(--ms-container-plan);
+	max-width: calc(var(--ms-container-plan) + var(--ms-gutter) * 2);
 }
 
 .ms-container--1180 {
-	max-width: var(--ms-container-contact);
+	max-width: calc(var(--ms-container-contact) + var(--ms-gutter) * 2);
 }
 
 .ms-container--1160 {
-	max-width: var(--ms-container);
+	max-width: calc(var(--ms-container) + var(--ms-gutter) * 2);
 }

@@ -1,20 +1,24 @@
 ---
-/*
- * Still a placeholder — the real home page (hero, services grid, before/after
- * slider, reviews) is built in step 3. What is real here is the chrome: the
- * header, the footer, the page flourish and the design-system primitives, all
- * driven from the locale files.
- */
-import Button from '../components/Button.astro';
-import Eyebrow from '../components/Eyebrow.astro';
 import Flourish from '../components/Flourish.astro';
-import Section from '../components/Section.astro';
-import Underline from '../components/Underline.astro';
+import BeforeAfter from '../components/sections/BeforeAfter.astro';
+import HomeHero from '../components/sections/HomeHero.astro';
+import ReviewsCarousel from '../components/sections/ReviewsCarousel.astro';
+import ServicesGrid from '../components/sections/ServicesGrid.astro';
+import SubscriptionCta from '../components/sections/SubscriptionCta.astro';
+import WhyChoose from '../components/sections/WhyChoose.astro';
 import PageLayout from '../layouts/PageLayout.astro';
-import { localizedPath, type RouteId } from '../i18n/routes';
 import type { Locale } from '../i18n/config';
+import type { RouteId } from '../i18n/routes';
 import { useTranslations } from '../i18n/ui';
 
+/*
+ * The home page. Six sections, in the design's order, each one a component.
+ *
+ * The floral strip is a page-level flourish rather than a section one: the
+ * design anchors it to the top of the *document* so it starts behind the
+ * header, which is why it hangs off `<main>` and offsets itself upward by
+ * `--ms-header-h`.
+ */
 interface Props {
 	locale: Locale;
 	route: RouteId;
@@ -33,39 +37,10 @@ const t = useTranslations(locale);
 >
 	<Flourish name="home-strip" slot="flourish" />
 
-	<Section class="ms-hero">
-		<Eyebrow>{t('home.eyebrow')}</Eyebrow>
-		<h1>{t('home.title')}</h1>
-		<Underline />
-		<p class="ms-hero__lede">{t('home.lede')}</p>
-		<div class="ms-hero__actions">
-			<Button variant="primary" href={localizedPath(locale, 'quote')} icon="arrow-right">
-				{t('home.ctaPrimary')}
-			</Button>
-			<Button variant="ghost" href={localizedPath(locale, 'services')}>
-				{t('home.ctaSecondary')}
-			</Button>
-		</div>
-	</Section>
+	<HomeHero locale={locale} />
+	<ServicesGrid locale={locale} />
+	<WhyChoose locale={locale} />
+	<BeforeAfter locale={locale} />
+	<SubscriptionCta locale={locale} />
+	<ReviewsCarousel locale={locale} />
 </PageLayout>
-
-<style>
-	.ms-hero h1 {
-		margin-block: 14px 12px;
-		max-width: 18ch;
-	}
-
-	.ms-hero__lede {
-		color: var(--ms-color-ink-soft);
-		font-size: var(--ms-size-lg);
-		margin-top: 20px;
-		max-width: 52ch;
-	}
-
-	.ms-hero__actions {
-		display: flex;
-		flex-wrap: wrap;
-		gap: 16px;
-		margin-top: var(--ms-space-5);
-	}
-</style>

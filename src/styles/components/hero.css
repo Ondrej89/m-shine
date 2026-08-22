@@ -1,0 +1,246 @@
+/* =========================================================================
+   Home hero
+   Lifted from section 4 of the refined style.css, with its responsive steps.
+   ====================================================================== */
+
+/* No `overflow: hidden` here. The stats card hangs 14px past the media column
+   by design, and clipping at the container edge sliced its right side off. The
+   page-level `overflow-x` is what keeps anything that does escape from
+   widening the document. */
+.ms-hero {
+	padding-block: 24px 70px;
+}
+
+/* The media column wants to be 750px. The theme states that flatly — the
+   design's own `1.08fr` computes to 616px, which is a visibly smaller photo —
+   but a hard 750px track only fits at one width and overflows below it. At a
+   1179px viewport the grid came out 1490px wide and carried the floating stats
+   card clean off the right of the screen, which is most of the laptop range.
+   `min()` keeps the exact 750px wherever the design assumes it (a 1240px
+   content box and up) and lets the photo give ground below that, which is what
+   the design's fluid track did in the first place. */
+.ms-hero__grid {
+	align-items: center;
+	display: grid;
+	gap: 54px;
+	grid-template-columns: 1fr min(750px, 62%);
+}
+
+/* A grid item's automatic minimum is `min-content`, not zero, so a track
+   refuses to shrink below the widest thing inside it. Both columns hit this:
+   the copy column was held open at 685px by the four-across trust row on
+   desktop, and once stacked the media column was held at 420px by the stats
+   card, whose German labels ("Durchschnittsbewertung") do not fit two-up on a
+   phone. The second one overflowed a 343px viewport by 77px, invisibly —
+   `overflow-x: hidden` on the page hides the scrollbar but not the lost copy.
+
+   Same trap, and the same fix, as the tick lists in section 17 of the theme. */
+.ms-hero__grid > * {
+	min-width: 0;
+}
+
+.ms-hero__title {
+	margin: 0 0 22px;
+}
+
+.ms-accent {
+	color: var(--wp--preset--color--blue-bright);
+}
+
+.ms-hero__lede {
+	color: var(--wp--preset--color--ink-soft);
+	font-size: var(--wp--preset--font-size--large);
+	line-height: 1.65;
+	margin: 0 0 30px;
+	max-width: 440px;
+}
+
+.ms-hero__actions {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 16px;
+	margin-bottom: 36px;
+}
+
+/* An auto-fitting grid rather than the design's flex row.
+
+   The design fits four across because its copy column is 570px; the theme's
+   750px photo leaves 436px, and four items in 436px collapse to ~90px each and
+   break words down the middle. `auto-fit` + a 150px floor lets the row be four
+   across wherever there is room for it and fall to 2x2 where there is not,
+   with no breakpoint to keep in step — which is also what the design's own
+   720px rule does, just arrived at by measurement instead of by guess. */
+.ms-trust {
+	display: grid;
+	gap: 16px 26px;
+	grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+	list-style: none;
+	margin: 0;
+	padding-left: 0;
+}
+
+/* The design writes these labels with a hard `<br>` — "Satisfaction<br>
+   Guaranteed". A hard break cannot survive translation, so the labels wrap on
+   their own instead; `min-width: 0` is what lets them wrap rather than hold the
+   track open. Deliberately NO `overflow-wrap: break-word` here: with the grid
+   floor above there is always room for the longest word, and break-word was
+   splitting "Zufriedenheitsgarantie" across five lines mid-syllable. */
+.ms-trust__item {
+	align-items: center;
+	display: flex;
+	font-size: 13px;
+	font-weight: 600;
+	gap: 9px;
+	line-height: 1.25;
+	min-width: 0;
+}
+
+.ms-trust__item > span:last-child {
+	min-width: 0;
+}
+
+.ms-trust__item .ms-icon {
+	height: 34px;
+	width: 34px;
+}
+
+.ms-trust__item span:last-child {
+	color: var(--wp--preset--color--slate);
+}
+
+.ms-hero__media {
+	position: relative;
+}
+
+.ms-hero__figure {
+	margin: 0;
+}
+
+.ms-hero__figure img {
+	border-radius: 20px;
+	display: block;
+	height: 500px;
+	object-fit: cover;
+	width: 100%;
+}
+
+.ms-hero__stats {
+	background: var(--wp--preset--color--base);
+	border-radius: var(--wp--custom--radius--lg);
+	box-shadow: var(--wp--preset--shadow--float);
+	display: flex;
+	flex-direction: column;
+	gap: 18px;
+	/* Carries its own `list-style` so it stays out of any shared list reset,
+	   which would zero the padding below and let the rows sit flush against the
+	   card's left edge. */
+	list-style: none;
+	min-width: 210px;
+	padding: 22px 24px;
+	position: absolute;
+	right: -14px;
+	top: 50%;
+	transform: translateY(-50%);
+}
+
+.ms-stat {
+	align-items: center;
+	display: flex;
+	gap: 13px;
+	min-width: 0;
+}
+
+/* Lets the label wrap instead of holding its grid track open. */
+.ms-stat > span:last-child {
+	min-width: 0;
+}
+
+.ms-stat__icon {
+	align-items: center;
+	background: var(--wp--preset--color--tint-blue-soft);
+	border-radius: 11px;
+	color: var(--wp--preset--color--blue);
+	display: flex;
+	flex: none;
+	height: 40px;
+	justify-content: center;
+	width: 40px;
+}
+
+.ms-stat__value {
+	color: var(--wp--preset--color--navy);
+	display: block;
+	font-size: 19px;
+	font-weight: 700;
+	line-height: 1.2;
+}
+
+.ms-stat__star {
+	color: var(--wp--preset--color--gold);
+}
+
+.ms-stat__label {
+	color: var(--wp--preset--color--ink-light);
+	display: block;
+	font-size: 12.5px;
+}
+
+
+/* --- Responsive -------------------------------------------------------- */
+
+@media (max-width: 1100px) {
+	.ms-hero__grid {
+		grid-template-columns: 1fr;
+	}
+
+	.ms-hero__figure img {
+		height: 400px;
+	}
+
+	/* Off the photo and back into the flow, as a four-across strip. The 210px
+	   floor above is there to keep the *floating* card from collapsing onto the
+	   photo; in the flow it would just stop the strip from fitting. */
+	.ms-hero__stats {
+		display: grid;
+		grid-template-columns: repeat(4, 1fr);
+		margin-top: 20px;
+		min-width: 0;
+		position: static;
+		transform: none;
+		width: 100%;
+	}
+}
+
+@media (max-width: 720px) {
+	.ms-hero__stats {
+		grid-template-columns: 1fr 1fr;
+	}
+
+	.ms-hero__figure img {
+		height: 300px;
+	}
+
+	.ms-hero__lede {
+		max-width: none;
+	}
+
+	/* `.ms-trust` needs no rule here — the auto-fit grid above has already
+	   dropped it to two columns, and to one where even that will not fit. */
+}
+
+@media (max-width: 480px) {
+	.ms-hero__figure img {
+		height: 240px;
+	}
+
+	/* One column, not the design's two. Two 166px columns cannot hold a 40px
+	   icon plus "Durchschnittsbewertung" without breaking the word in half. */
+	.ms-hero__stats {
+		grid-template-columns: 1fr;
+	}
+
+	/* The fluid preset stalls around 34px at 375; the design steps to 32. */
+	.ms-hero__title {
+		font-size: 32px;
+	}
+}
