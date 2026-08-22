@@ -44,14 +44,25 @@
     "trust": {
       "guarantee": "Satisfaction Guaranteed",
       "eco": "Eco-Friendly Products",
-      "insured": "Insured & Bonded",
       "checked": "Background Checked"
     },
     "stats": {
-      "homes": { "value": "10,000+", "label": "Homes Cleaned" },
-      "rating": { "value": "4.9", "label": "Average Rating" },
-      "repeat": { "value": "98%", "label": "Repeat Clients" },
-      "satisfaction": { "value": "100%", "label": "Satisfaction" }
+      "homes": {
+        "value": "10,000+",
+        "label": "Homes Cleaned"
+      },
+      "rating": {
+        "value": "4.9",
+        "label": "Average Rating"
+      },
+      "repeat": {
+        "value": "98%",
+        "label": "Repeat Clients"
+      },
+      "satisfaction": {
+        "value": "100%",
+        "label": "Satisfaction"
+      }
     }
   },
   "services": {
@@ -86,24 +97,28 @@
     }
   },
   "why": {
-    "eyebrow": "Why Choose Magic Shine",
-    "title": "More Than Just a Cleaning Service",
-    "lede": "We go beyond just cleaning. We build trust, save you time, and make your life a little easier.",
-    "trained": {
-      "title": "Trained Professionals",
-      "description": "Our team is background checked and highly trained."
+    "eyebrow": "WHY CHOOSE US",
+    "title": "Why Magic Shine?",
+    "lede": "Five reasons clients stay with us — and recommend us.",
+    "reliability": {
+      "title": "Reliability",
+      "description": "We show up when we say we will, every time."
     },
-    "reliable": {
-      "title": "Reliable & On-Time",
-      "description": "We respect your time and always show up when we say."
+    "quality": {
+      "title": "Quality",
+      "description": "Thorough work you can see and feel in every room."
     },
-    "custom": {
-      "title": "Custom Plans",
-      "description": "Tailored cleaning plans to fit your needs and budget."
+    "professionalism": {
+      "title": "Professionalism",
+      "description": "Trained, vetted staff who respect your space."
     },
-    "improving": {
-      "title": "Always Improving",
-      "description": "We listen, we care and we get better every day."
+    "flexibility": {
+      "title": "Flexibility",
+      "description": "Schedules and services adapted to how you work."
+    },
+    "personal": {
+      "title": "Personal Approach",
+      "description": "One contact who knows you and your needs."
     }
   },
   "beforeAfter": {

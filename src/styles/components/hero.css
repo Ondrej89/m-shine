@@ -63,43 +63,57 @@
 	margin-bottom: 36px;
 }
 
-/* A fixed 2x2 grid rather than the design's four-across flex row.
+/* Three across, one row.
 
-   The design fits four across because its labels carry a hard `<br>`
-   ("Satisfaction<br>Guaranteed"), which halves their width — and a hard break
-   cannot survive translation. With labels free to wrap, four across in a 570px
-   column would give ~130px each and break words mid-syllable.
+   The design's row is four items in a flex line with hard-broken labels
+   ("Satisfaction<br>Guaranteed"). There are three items now — the
+   insured/bonded claim was withdrawn — and three fit a single row cleanly,
+   which is what the client asked for. A hard `<br>` cannot survive
+   translation, so the labels wrap on their own; `min-width: 0` on the item is
+   what lets them.
 
-   Deliberately NOT `auto-fit` with a minmax floor, which was tried first: at
-   the design's 570px column it resolves to three tracks and leaves a 3+1
-   layout, which looks like a mistake. Two columns is stable at every width the
-   copy column ever takes, and the design's own 720px rule goes there anyway. */
+   The item itself stacks its icon above its label — see the note there. That
+   is what makes three tracks wide enough for the German labels. */
 .ms-trust {
 	display: grid;
-	gap: 16px 26px;
-	grid-template-columns: 1fr 1fr;
+	/* 18px between columns, not the design's 26. Three tracks at 26px gaps come
+	   to 135px each at a 1101px viewport — the narrowest the copy column ever is
+	   while the hero is still two columns — and "Zufriedenheitsgarantie" needs
+	   138. Eight pixels of gap buys the three that matter and is not visible. */
+	gap: 16px 18px;
+	grid-template-columns: repeat(3, minmax(0, 1fr));
 	list-style: none;
 	margin: 0;
 	padding-left: 0;
 }
 
-/* The design writes these labels with a hard `<br>` — "Satisfaction<br>
-   Guaranteed". A hard break cannot survive translation, so the labels wrap on
-   their own instead; `min-width: 0` is what lets them wrap rather than hold the
-   track open. Deliberately NO `overflow-wrap: break-word` here: with the grid
-   floor above there is always room for the longest word, and break-word was
-   splitting "Zufriedenheitsgarantie" across five lines mid-syllable. */
+/* Icon ABOVE the label, not beside it as the design has it.
+
+   Measured: "Zufriedenheitsgarantie" sets 138px at 13px/600 Mulish. Beside a
+   34px icon the label box is 130px at the design's content width — eight
+   pixels short — so the word hyphenated, and Chrome's German dictionary breaks
+   it "Zufriedenheitsga-rantie" rather than at the compound seam. Tightening
+   gaps recovered at most six of those eight pixels; nothing beside the icon
+   fits it. Stacking hands the label the whole 173px track and it sets on one
+   line, in every language, at every width down to where the row goes two-up. */
 .ms-trust__item {
-	align-items: center;
+	align-items: flex-start;
 	display: flex;
+	flex-direction: column;
 	font-size: 13px;
 	font-weight: 600;
-	gap: 9px;
+	gap: 10px;
 	line-height: 1.25;
 	min-width: 0;
 }
 
+/* Kept as a safety net, not because anything needs it today: with the stacked
+   layout above every current label fits on one line. If the client writes a
+   longer compound later it hyphenates rather than overhanging its column, and
+   the limits keep the break off two- and three-letter fragments. */
 .ms-trust__item > span:last-child {
+	hyphens: auto;
+	hyphenate-limit-chars: 8 5 4;
 	min-width: 0;
 }
 
@@ -220,6 +234,12 @@
 		grid-template-columns: 1fr 1fr;
 	}
 
+	/* Two up, as the design's own 720px step does. The odd one out sits on the
+	   second row rather than squeezing three into a phone-width column. */
+	.ms-trust {
+		grid-template-columns: 1fr 1fr;
+	}
+
 	.ms-hero__figure img {
 		height: 300px;
 	}
@@ -240,6 +260,12 @@
 	/* One column, not the design's two. Two 166px columns cannot hold a 40px
 	   icon plus "Durchschnittsbewertung" without breaking the word in half. */
 	.ms-hero__stats {
+		grid-template-columns: 1fr;
+	}
+
+	/* Same reason: at 343px of content, two tracks leave ~115px for a label and
+	   the German compounds do not fit even hyphenated. */
+	.ms-trust {
 		grid-template-columns: 1fr;
 	}
 

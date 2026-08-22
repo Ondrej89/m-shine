@@ -44,14 +44,25 @@
     "trust": {
       "guarantee": "Záruka spokojnosti",
       "eco": "Ekologické prostriedky",
-      "insured": "Poistení a krytí",
       "checked": "Preverený personál"
     },
     "stats": {
-      "homes": { "value": "10 000+", "label": "upratených domácností" },
-      "rating": { "value": "4,9", "label": "priemerné hodnotenie" },
-      "repeat": { "value": "98 %", "label": "vracajúcich sa klientov" },
-      "satisfaction": { "value": "100 %", "label": "spokojnosť" }
+      "homes": {
+        "value": "10 000+",
+        "label": "upratených domácností"
+      },
+      "rating": {
+        "value": "4,9",
+        "label": "priemerné hodnotenie"
+      },
+      "repeat": {
+        "value": "98 %",
+        "label": "vracajúcich sa klientov"
+      },
+      "satisfaction": {
+        "value": "100 %",
+        "label": "spokojnosť"
+      }
     }
   },
   "services": {
@@ -86,24 +97,28 @@
     }
   },
   "why": {
-    "eyebrow": "Prečo Magic Shine",
-    "title": "Viac než len upratovacia služba",
-    "lede": "Nielen upratujeme. Budujeme dôveru, šetríme váš čas a robíme vám život o niečo ľahším.",
-    "trained": {
-      "title": "Školení profesionáli",
-      "description": "Náš tím je preverený a dôkladne vyškolený."
+    "eyebrow": "PREČO MY",
+    "title": "Prečo Magic Shine?",
+    "lede": "Päť dôvodov, prečo s nami klienti zostávajú — a odporúčajú nás.",
+    "reliability": {
+      "title": "Spoľahlivosť",
+      "description": "Prídeme vždy vtedy, keď sľúbime."
     },
-    "reliable": {
-      "title": "Spoľahliví a načas",
-      "description": "Vážime si váš čas a prídeme vždy, keď to sľúbime."
+    "quality": {
+      "title": "Kvalita",
+      "description": "Dôkladná práca, ktorú vidieť v každej miestnosti."
     },
-    "custom": {
-      "title": "Plány na mieru",
-      "description": "Upratovacie plány prispôsobené vašim potrebám aj rozpočtu."
+    "professionalism": {
+      "title": "Profesionalita",
+      "description": "Školený, preverený personál s rešpektom k vášmu priestoru."
     },
-    "improving": {
-      "title": "Stále lepší",
-      "description": "Počúvame, záleží nám a každý deň sa zlepšujeme."
+    "flexibility": {
+      "title": "Flexibilita",
+      "description": "Termíny a služby prispôsobené vám."
+    },
+    "personal": {
+      "title": "Osobný prístup",
+      "description": "Jeden kontakt, ktorý pozná vás aj vaše potreby."
     }
   },
   "beforeAfter": {

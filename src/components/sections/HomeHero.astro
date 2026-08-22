@@ -28,11 +28,12 @@ interface Props {
 const { locale } = Astro.props;
 const t = useTranslations(locale);
 
+/* Three, not the design's four: the insured/bonded claim came out because the
+   client cannot substantiate it. The tones still alternate blue/green/blue. */
 const TRUST = [
 	{ key: 'guarantee', icon: 'shield-check', tone: 'blue' },
 	{ key: 'eco', icon: 'leaf', tone: 'green' },
-	{ key: 'insured', icon: 'shield', tone: 'blue' },
-	{ key: 'checked', icon: 'user-check', tone: 'green' },
+	{ key: 'checked', icon: 'user-check', tone: 'blue' },
 ] as const;
 
 const STATS = [

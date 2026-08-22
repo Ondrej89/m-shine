@@ -135,10 +135,18 @@
 	margin: 22px 0 0;
 }
 
+/* Three across, so the client's five reasons fall 3 + 2.
+
+   Five across was the alternative and it does not work: this row sits in the
+   2fr half of the section's 1fr/2fr split, which is 789px at the design's
+   content width, and five tracks there are 134px each — narrower than the 52px
+   icon plus a two-word title. Three tracks give 243px, which is roomier than
+   the 175px the design's own four-across layout had. The short last row reads
+   as deliberate because the intro column balances it on the left. */
 .ms-feat-row {
 	display: grid;
 	gap: 30px;
-	grid-template-columns: repeat(4, 1fr);
+	grid-template-columns: repeat(3, minmax(0, 1fr));
 }
 
 .ms-feat__icon {

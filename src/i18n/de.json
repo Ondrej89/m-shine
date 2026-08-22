@@ -44,14 +44,25 @@
     "trust": {
       "guarantee": "Zufriedenheitsgarantie",
       "eco": "Umweltfreundliche Mittel",
-      "insured": "Versichert & haftpflichtgedeckt",
       "checked": "Überprüftes Personal"
     },
     "stats": {
-      "homes": { "value": "10.000+", "label": "gereinigte Zuhause" },
-      "rating": { "value": "4,9", "label": "Durchschnittsbewertung" },
-      "repeat": { "value": "98 %", "label": "Stammkundschaft" },
-      "satisfaction": { "value": "100 %", "label": "Zufriedenheit" }
+      "homes": {
+        "value": "10.000+",
+        "label": "gereinigte Zuhause"
+      },
+      "rating": {
+        "value": "4,9",
+        "label": "Durchschnittsbewertung"
+      },
+      "repeat": {
+        "value": "98 %",
+        "label": "Stammkundschaft"
+      },
+      "satisfaction": {
+        "value": "100 %",
+        "label": "Zufriedenheit"
+      }
     }
   },
   "services": {
@@ -86,24 +97,28 @@
     }
   },
   "why": {
-    "eyebrow": "Warum Magic Shine",
-    "title": "Mehr als nur eine Reinigungsfirma",
-    "lede": "Wir putzen nicht einfach. Wir schaffen Vertrauen, sparen Ihnen Zeit und machen Ihren Alltag ein Stück leichter.",
-    "trained": {
-      "title": "Geschulte Profis",
-      "description": "Unser Team ist überprüft und bestens ausgebildet."
+    "eyebrow": "WARUM WIR",
+    "title": "Warum Magic Shine?",
+    "lede": "Fünf Gründe, warum Kundinnen und Kunden bleiben — und uns weiterempfehlen.",
+    "reliability": {
+      "title": "Zuverlässigkeit",
+      "description": "Wir kommen, wann wir es zusagen. Jedes Mal."
     },
-    "reliable": {
-      "title": "Verlässlich & pünktlich",
-      "description": "Wir achten Ihre Zeit und kommen, wenn wir es zusagen."
+    "quality": {
+      "title": "Qualität",
+      "description": "Gründliche Arbeit, die man in jedem Raum sieht."
     },
-    "custom": {
-      "title": "Individuelle Pläne",
-      "description": "Reinigungspläne, die zu Ihrem Bedarf und Ihrem Budget passen."
+    "professionalism": {
+      "title": "Professionalität",
+      "description": "Geschultes, geprüftes Personal mit Respekt für Ihre Räume."
     },
-    "improving": {
-      "title": "Immer besser",
-      "description": "Wir hören zu, wir kümmern uns und wir werden jeden Tag besser."
+    "flexibility": {
+      "title": "Flexibilität",
+      "description": "Termine und Leistungen, die sich Ihnen anpassen."
+    },
+    "personal": {
+      "title": "Persönlicher Ansatz",
+      "description": "Eine Ansprechperson, die Sie und Ihre Wünsche kennt."
     }
   },
   "beforeAfter": {

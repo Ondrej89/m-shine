@@ -44,10 +44,11 @@ const SERVICES = [
 ] as const;
 
 const FEATURES = [
-	{ key: 'trained', icon: 'user-check' },
-	{ key: 'reliable', icon: 'clock' },
-	{ key: 'custom', icon: 'clipboard-check' },
-	{ key: 'improving', icon: 'leaf' },
+	{ key: 'reliability', icon: 'clock' },
+	{ key: 'quality', icon: 'sparkle' },
+	{ key: 'professionalism', icon: 'user-check' },
+	{ key: 'flexibility', icon: 'calendar-check' },
+	{ key: 'personal', icon: 'phone' },
 ] as const;
 
 const REVIEWS = [
@@ -242,7 +243,7 @@ const SPACING = [1, 2, 3, 4, 5, 6, 7, 8];
 	<Section rhythm="none" class="sg-block">
 		<h2 class="sg-h">Features</h2>
 		<p class="sg-note">
-			4 → 2 columns at 1000px, and then it <em>stays</em> 2×2 — the design never takes these
+			3 → 2 columns at 1000px, and then it <em>stays</em> two-up — the design never takes these
 			to a single column, and doing so made the section four screens tall on a phone.
 		</p>
 		<div class="ms-feat-row">
@@ -250,8 +251,8 @@ const SPACING = [1, 2, 3, 4, 5, 6, 7, 8];
 				FEATURES.map((f) => (
 					<FeatureCard
 						icon={f.icon}
-						title={t(`why.${f.key}.title` as 'why.trained.title')}
-						description={t(`why.${f.key}.description` as 'why.trained.description')}
+						title={t(`why.${f.key}.title` as 'why.reliability.title')}
+						description={t(`why.${f.key}.description` as 'why.reliability.description')}
 					/>
 				))
 			}
