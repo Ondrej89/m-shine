@@ -7,26 +7,28 @@ import type { Locale } from '../../i18n/config';
 import { useTranslations } from '../../i18n/ui';
 
 /*
- * The quote request form — the booking wizard's four steps, refitted.
+ * The quote request wizard — the booking wizard's four steps, one at a time.
  *
- * Structure and behaviour are explained at the top of quote.css. The short
- * version: one form, four numbered cards, and the only thing that changes as
- * you fill it in is which half of step two shows, which is CSS.
+ * The markup renders every step expanded and the Next/Back controls hidden.
+ * The script then takes over: it hides all but the current step and reveals
+ * the controls. That order matters — with no JavaScript the page stays a
+ * single long form that submits correctly, which is what it degrades to rather
+ * than a wizard stuck on step one with no way forward.
  *
- * Like the contact form and the newsletter, it has no endpoint yet
- * (`SITE_DETAILS.quoteAction` is `null`). The browser's own validation runs
- * first, then the script at the foot swaps the form for the success panel.
- * That panel says plainly that nothing has been transmitted yet and points at
- * the phone and the mailbox — a form that has not been wired up must not tell
- * someone their request is on its way. When the form service lands, set
- * `quoteAction`, drop `successBody` for the real confirmation line, and the
- * `data-` hook disappears on its own.
+ * Values survive stepping because nothing is ever removed: the whole form is
+ * one `<form>` and stepping only toggles `hidden`. There is no serialisation
+ * and nothing to restore.
  *
- * One thing to do at that point and not before: a panel hidden by CSS still
- * posts its fields, so a business enquiry would arrive carrying empty
- * `privateSize`, `pets` and the rest. Disabling the hidden half needs
- * JavaScript — `disabled` cannot be set from a stylesheet — and doing it now
- * would mean shipping script for no benefit while nothing is being sent.
+ * The private/business branch is handled by disabling the inactive half's
+ * `<fieldset>`, which both removes its fields from submission and stops them
+ * being validated. Switching branches also resets those fields, so a business
+ * enquiry can never arrive carrying a half-filled private one. The `:has()`
+ * rule in quote.css does the same hiding for the no-JavaScript case.
+ *
+ * There is still no endpoint (`SITE_DETAILS.quoteAction` is `null`). The final
+ * step's submit shows the success panel, and that panel says plainly that
+ * nothing has been transmitted. When the form service lands, set `quoteAction`
+ * and swap `quote.successBody` for a real confirmation.
  */
 interface Props {
 	locale: Locale;
@@ -66,16 +68,18 @@ const quoteAction = SITE_DETAILS.quoteAction;
 	<h1 class="ms-quote__title">{t('quote.heroTitle')}</h1>
 	<p class="ms-quote__lede">{t('quote.heroLede')}</p>
 
-	{/* A map of the form rather than a control — every step is on the page. */}
-	<ol class="ms-stepper">
+	<ol class="ms-stepper" data-ms-stepper>
 		{
-			STEPS.map((step) => (
-				<li class="ms-stepper__item">
+			STEPS.map((step, index) => (
+				<li class="ms-stepper__item" data-stepper-step={index + 1}>
 					<span class="ms-stepper__label">{t(`quote.${step}` as 'quote.step1')}</span>
 				</li>
 			))
 		}
 	</ol>
+
+	{/* Carries the step count on phones, where the stepper drops its words. */}
+	<p class="ms-quote__count" hidden data-ms-quote-count></p>
 </Section>
 
 <Section class="ms-quote-body" width={1200} rhythm="none">
@@ -88,8 +92,8 @@ const quoteAction = SITE_DETAILS.quoteAction;
 				data-ms-quote={quoteAction ? undefined : 'pending'}
 			>
 				{/* ---- Step 1: who is asking ---- */}
-				<fieldset class="ms-qstep">
-					<legend class="ms-qstep__head">
+				<fieldset class="ms-qstep" data-step="1">
+					<legend class="ms-qstep__head" tabindex="-1">
 						<span class="ms-qstep__num">1</span>
 						<span class="ms-qstep__title">{t('quote.s1Title')}</span>
 					</legend>
@@ -133,8 +137,8 @@ const quoteAction = SITE_DETAILS.quoteAction;
 				</fieldset>
 
 				{/* ---- Step 2: the property, private ---- */}
-				<fieldset class="ms-qstep" data-when="private">
-					<legend class="ms-qstep__head">
+				<fieldset class="ms-qstep" data-step="2" data-when="private">
+					<legend class="ms-qstep__head" tabindex="-1">
 						<span class="ms-qstep__num">2</span>
 						<span class="ms-qstep__title">{t('quote.s2Title')}</span>
 					</legend>
@@ -222,8 +226,8 @@ const quoteAction = SITE_DETAILS.quoteAction;
 				</fieldset>
 
 				{/* ---- Step 2: the premises, business ---- */}
-				<fieldset class="ms-qstep" data-when="business">
-					<legend class="ms-qstep__head">
+				<fieldset class="ms-qstep" data-step="2" data-when="business">
+					<legend class="ms-qstep__head" tabindex="-1">
 						<span class="ms-qstep__num">2</span>
 						<span class="ms-qstep__title">{t('quote.s2Title')}</span>
 					</legend>
@@ -280,8 +284,8 @@ const quoteAction = SITE_DETAILS.quoteAction;
 				</fieldset>
 
 				{/* ---- Step 3: how often, from when ---- */}
-				<fieldset class="ms-qstep">
-					<legend class="ms-qstep__head">
+				<fieldset class="ms-qstep" data-step="3">
+					<legend class="ms-qstep__head" tabindex="-1">
 						<span class="ms-qstep__num">3</span>
 						<span class="ms-qstep__title">{t('quote.s3Title')}</span>
 					</legend>
@@ -330,8 +334,8 @@ const quoteAction = SITE_DETAILS.quoteAction;
 				</fieldset>
 
 				{/* ---- Step 4: contact ---- */}
-				<fieldset class="ms-qstep">
-					<legend class="ms-qstep__head">
+				<fieldset class="ms-qstep" data-step="4">
+					<legend class="ms-qstep__head" tabindex="-1">
 						<span class="ms-qstep__num">4</span>
 						<span class="ms-qstep__title">{t('quote.s4Title')}</span>
 					</legend>
@@ -341,7 +345,7 @@ const quoteAction = SITE_DETAILS.quoteAction;
 							<span class="ms-qfield__label">{t('quote.fName')}</span>
 							<input class="ms-qinput" type="text" name="name" autocomplete="name" required />
 						</label>
-						{/* Only asked of businesses, so it rides the same conditional. */}
+						{/* Only asked of businesses, so it rides the same branch switch. */}
 						<label class="ms-qfield" data-when="business">
 							<span class="ms-qfield__label">{t('quote.fCompany')}</span>
 							<input class="ms-qinput" type="text" name="company" autocomplete="organization" />
@@ -399,14 +403,29 @@ const quoteAction = SITE_DETAILS.quoteAction;
 					</label>
 				</fieldset>
 
-				<button class="ms-quote__submit" type="submit">
+				{/*
+				 * Both controls start hidden and the script reveals them, so a page
+				 * without JavaScript shows every step and one working submit rather
+				 * than a Next button that goes nowhere.
+				 */}
+				<div class="ms-quote__nav" hidden data-ms-quote-nav>
+					<button class="ms-quote__back" type="button" data-ms-quote-back>
+						<Icon name="chevron-left" size={16} />
+						{t('quote.back')}
+					</button>
+					<button class="ms-quote__next" type="button" data-ms-quote-next>
+						{t('quote.next')}
+						<Icon name="chevron-right" size={16} />
+					</button>
+				</div>
+
+				<button class="ms-quote__submit" type="submit" data-ms-quote-submit>
 					{t('quote.submit')}
 					<Icon name="send" size={16} />
 				</button>
 				<p class="ms-quote__submit-note">{t('quote.submitNote')}</p>
 			</form>
 
-			{/* Shown in place of the form once it validates. */}
 			<div class="ms-quote__success" hidden data-ms-quote-success>
 				<span class="ms-quote__success-icon">
 					<Icon name="check" size={26} stroke={2.4} />
@@ -444,25 +463,159 @@ const quoteAction = SITE_DETAILS.quoteAction;
 	</div>
 </Section>
 
-<script is:inline>
-	document.querySelectorAll('[data-ms-quote="pending"]').forEach((form) => {
+<script is:inline define:vars={{ countTemplate: t('quote.stepOf') }}>
+	document.querySelectorAll('.ms-quote__form').forEach((form) => {
+		const LAST = 4;
+
+		const stepper = document.querySelector('[data-ms-stepper]');
+		const count = document.querySelector('[data-ms-quote-count]');
+		const nav = form.querySelector('[data-ms-quote-nav]');
+		const back = form.querySelector('[data-ms-quote-back]');
+		const next = form.querySelector('[data-ms-quote-next]');
+		const submit = form.querySelector('[data-ms-quote-submit]');
+		const note = form.querySelector('.ms-quote__submit-note');
 		const success = document.querySelector('[data-ms-quote-success]');
-		if (!success) return;
+		const panels = Array.from(form.querySelectorAll('[data-step]'));
 
-		form.addEventListener('submit', (event) => {
-			// Native validation has already passed by the time submit fires.
+		let current = 1;
+
+		const branch = () => form.querySelector('[name="customerKind"]:checked').value;
+
+		/* The panels that make up a step: the ones for this step number, minus
+		   the branch that is not selected. */
+		const panelsFor = (step) =>
+			panels.filter(
+				(panel) => Number(panel.dataset.step) === step && (!panel.dataset.when || panel.dataset.when === branch()),
+			);
+
+		/* Disabling the inactive branch keeps its fields out of submission and
+		   out of validation; resetting them means a switch never leaves data
+		   from the other half behind. `<fieldset disabled>` covers a whole step;
+		   the company field is a lone label, so it is handled by name. */
+		function syncBranch() {
+			const active = branch();
+
+			panels.forEach((panel) => {
+				if (!panel.dataset.when) return;
+				const on = panel.dataset.when === active;
+				if (panel.disabled === on) resetFields(panel);
+				panel.disabled = !on;
+			});
+
+			form.querySelectorAll('.ms-qfield[data-when]').forEach((field) => {
+				const on = field.dataset.when === active;
+				field.hidden = !on;
+				field.querySelectorAll('input, select, textarea').forEach((input) => {
+					if (input.disabled === on) resetField(input);
+					input.disabled = !on;
+				});
+			});
+		}
+
+		function resetField(input) {
+			if (input.type === 'radio' || input.type === 'checkbox') input.checked = input.defaultChecked;
+			else if (input.tagName === 'SELECT') input.selectedIndex = 0;
+			else input.value = input.defaultValue;
+		}
+
+		function resetFields(scope) {
+			scope.querySelectorAll('input, select, textarea').forEach(resetField);
+		}
+
+		function render() {
+			panels.forEach((panel) => {
+				panel.hidden = !panelsFor(current).includes(panel);
+			});
+
+			/* `data-stepper-step`, not `data-step`: the form's own fieldsets use
+			   that one, and a document-wide query for it would pick up both. */
+			Array.from(stepper.children).forEach((item) => {
+				const step = Number(item.dataset.stepperStep);
+				item.classList.toggle('is-current', step === current);
+				item.classList.toggle('is-done', step < current);
+				if (step === current) item.setAttribute('aria-current', 'step');
+				else item.removeAttribute('aria-current');
+			});
+
+			count.hidden = false;
+			count.textContent = countTemplate.replace('{current}', current).replace('{total}', LAST);
+
+			back.hidden = current === 1;
+			next.hidden = current === LAST;
+			submit.hidden = current !== LAST;
+			note.hidden = current !== LAST;
+		}
+
+		function focusStep() {
+			const head = panelsFor(current)[0]?.querySelector('.ms-qstep__head');
+			head?.focus();
+		}
+
+		/* Validates only what is on screen. `reportValidity()` on the form would
+		   also flag a required field three steps ahead, which reads as the wizard
+		   refusing to move for no visible reason. */
+		function stepIsValid() {
+			for (const panel of panelsFor(current)) {
+				for (const input of panel.querySelectorAll('input, select, textarea')) {
+					if (!input.checkValidity()) {
+						input.reportValidity();
+						return false;
+					}
+				}
+			}
+			return true;
+		}
+
+		next.addEventListener('click', () => {
+			if (!stepIsValid()) return;
+			current = Math.min(current + 1, LAST);
+			render();
+			focusStep();
+		});
+
+		back.addEventListener('click', () => {
+			current = Math.max(current - 1, 1);
+			render();
+			focusStep();
+		});
+
+		form.querySelectorAll('[name="customerKind"]').forEach((input) => {
+			input.addEventListener('change', () => {
+				syncBranch();
+				render();
+			});
+		});
+
+		/* Enter inside a text field submits a form; on any step but the last that
+		   should advance instead. */
+		form.addEventListener('keydown', (event) => {
+			if (event.key !== 'Enter' || current === LAST) return;
+			if (event.target.tagName === 'TEXTAREA') return;
 			event.preventDefault();
-			form.hidden = true;
-			success.hidden = false;
-			success.setAttribute('tabindex', '-1');
-			success.focus();
-			success.scrollIntoView({ block: 'center' });
+			next.click();
 		});
 
-		success.querySelector('[data-ms-quote-again]')?.addEventListener('click', () => {
-			success.hidden = true;
-			form.hidden = false;
-			form.scrollIntoView({ block: 'start' });
-		});
+		if (form.dataset.msQuote === 'pending' && success) {
+			form.addEventListener('submit', (event) => {
+				event.preventDefault();
+				form.hidden = true;
+				success.hidden = false;
+				success.setAttribute('tabindex', '-1');
+				success.focus();
+				success.scrollIntoView({ block: 'center' });
+			});
+
+			success.querySelector('[data-ms-quote-again]')?.addEventListener('click', () => {
+				success.hidden = true;
+				form.hidden = false;
+				current = 1;
+				render();
+				form.scrollIntoView({ block: 'start' });
+			});
+		}
+
+		nav.hidden = false;
+		syncBranch();
+		render();
 	});
 </script>

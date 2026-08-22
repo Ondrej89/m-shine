@@ -1,22 +1,21 @@
 /* =========================================================================
    Quote request page
 
-   The booking wizard's visual language, refitted. The design's four-step
-   stepper, its big `.opt` choice cards, its `.chip` pills, its `.bk-in` fields
-   and its `.bk-grid` two-column layout with a sticky side panel are all here —
-   what is gone is the wizard's *statefulness*. The design showed one step at a
-   time and held the current step in component state; this is one form with
-   four numbered sections, all visible.
+   The booking wizard's visual language and its behaviour: the four-step
+   stepper, the big `.opt` choice cards, the `.chip` pills, the `.bk-in` fields
+   and the `.bk-grid` two-column layout with a sticky side panel — with one
+   step on screen at a time and Next/Back between them.
 
-   That is deliberate. A quote request is short enough to read in one pass, a
-   single form has no way to lose what you typed in step two, and it works with
-   no JavaScript at all: the only thing that changes as you fill it in is which
-   half of step two is showing, and that is CSS.
+   The stepping is JavaScript, which is the one place on this site that needs
+   it. Everything degrades: the markup renders every step open with the nav
+   hidden, and the script hides all but the current step and reveals the nav.
+   Without it the page is a single long form that still submits.
 
-   `:has()` drives that. Safari needs 15.4 for it, which is already this site's
-   floor — `mask-composite: intersect` needs the same version (see the note in
-   astro.config.mjs). Below it, both halves of step two stay visible and the
-   form still submits; nothing breaks, it is just longer.
+   `:has()` covers the private/business branch for that no-JavaScript case.
+   Safari needs 15.4, which is already this site's floor — `mask-composite:
+   intersect` needs the same version (see the note in astro.config.mjs). With
+   JavaScript the branch is switched by disabling the inactive `<fieldset>`
+   instead, which also keeps its fields out of submission and validation.
    ====================================================================== */
 
 .ms-quote {
@@ -40,9 +39,10 @@
 
 /* --- Stepper ----------------------------------------------------------- */
 
-/* A map of the form, not a control: every step is on the page already, so
-   these are labels rather than links. The numbers come from a counter for the
-   same reason they do on the pricing page — no digits in the markup. */
+/* A progress indicator, not a control — you move with Next/Back, not by
+   clicking a circle, so these are plain list items. The numbers come from a
+   counter for the same reason they do on the pricing page: no digits in the
+   markup, so reordering the steps renumbers them. */
 .ms-stepper {
 	align-items: center;
 	counter-reset: ms-quote-step;
@@ -86,6 +86,34 @@
 	line-height: 1.2;
 }
 
+/* Steps behind you and the step you are on. Both the circle and the label
+   change, because on a phone the labels are gone and the circle carries the
+   whole signal. */
+.ms-stepper__item.is-done::before {
+	background: var(--wp--preset--color--green);
+}
+
+.ms-stepper__item.is-current::before {
+	box-shadow: 0 0 0 4px rgba(28, 71, 160, 0.16);
+}
+
+.ms-stepper__item:not(.is-current):not(.is-done)::before {
+	background: var(--wp--preset--color--line-strong);
+	color: var(--wp--preset--color--ink-light);
+}
+
+.ms-stepper__item.is-current .ms-stepper__label {
+	color: var(--wp--preset--color--blue);
+}
+
+.ms-stepper__item:not(.is-current):not(.is-done) .ms-stepper__label {
+	color: var(--wp--preset--color--ink-light);
+}
+
+.ms-stepper__item.is-done::after {
+	background: var(--wp--preset--color--green);
+}
+
 /* The connecting rule between two steps, drawn on the gaps rather than the
    items so it never appears after the last one. */
 .ms-stepper__item:not(:last-child)::after {
@@ -95,6 +123,15 @@
 	height: 2px;
 	margin-left: 10px;
 	min-width: 12px;
+}
+
+/* Reads out the position the stepper shows, for the widths where the labels
+   are gone and for anyone using a screen reader. */
+.ms-quote__count {
+	color: var(--wp--preset--color--ink-muted);
+	font-size: 13px;
+	font-weight: 700;
+	margin: 14px 0 0;
 }
 
 /* --- Layout ------------------------------------------------------------ */
@@ -125,11 +162,24 @@
 	padding: 26px 28px;
 }
 
+/* Focused on every step change so keyboard and screen-reader users land on
+   the new step rather than at the top of the document. The outline is the
+   browser's; only the default focus ring on a programmatic focus is dropped,
+   because arriving at a heading is not the same as tabbing to a control. */
 .ms-qstep__head {
 	align-items: baseline;
 	display: flex;
 	gap: 10px;
 	margin-bottom: 18px;
+}
+
+.ms-qstep__head:focus {
+	outline: none;
+}
+
+.ms-qstep__head:focus-visible {
+	outline: 2px solid var(--wp--preset--color--blue);
+	outline-offset: 4px;
 }
 
 .ms-qstep__num {
@@ -345,6 +395,58 @@ textarea.ms-qinput {
 .ms-quote__form:has(#ms-q-kind-private:checked) [data-when="business"],
 .ms-quote__form:has(#ms-q-kind-business:checked) [data-when="private"] {
 	display: none;
+}
+
+/* --- Step navigation --------------------------------------------------- */
+
+/* `space-between` with Back hidden on step one would push Next left; the
+   margin keeps it on the right wherever it is the only control. */
+.ms-quote__nav {
+	display: flex;
+	gap: 12px;
+	justify-content: space-between;
+	margin-bottom: 12px;
+}
+
+.ms-quote__next {
+	margin-left: auto;
+}
+
+.ms-quote__back,
+.ms-quote__next {
+	align-items: center;
+	border-radius: 10px;
+	cursor: pointer;
+	display: inline-flex;
+	font-family: var(--wp--preset--font-family--mulish);
+	font-size: 15px;
+	font-weight: 700;
+	gap: 8px;
+	line-height: normal;
+	padding: 14px 24px;
+}
+
+.ms-quote__back {
+	background: var(--wp--preset--color--base);
+	border: 1.5px solid var(--wp--preset--color--line-strong);
+	color: var(--wp--preset--color--navy);
+}
+
+.ms-quote__back:hover,
+.ms-quote__back:focus {
+	border-color: var(--wp--preset--color--blue);
+	color: var(--wp--preset--color--blue);
+}
+
+.ms-quote__next {
+	background: var(--wp--preset--color--navy);
+	border: none;
+	color: var(--wp--preset--color--base);
+}
+
+.ms-quote__next:hover,
+.ms-quote__next:focus {
+	background: var(--wp--preset--color--navy-deep);
 }
 
 /* --- Submit ------------------------------------------------------------ */

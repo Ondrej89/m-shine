@@ -321,17 +321,29 @@ Pricing page notes worth not undoing:
 
 Quote page notes worth not undoing:
 
-- **One form, not a wizard.** The design showed one step at a time and held the step in
-  component state. A quote request is short enough to read in one pass, a single form
-  cannot lose what you typed two steps ago, and this works with no JavaScript at all.
-- **Step two switches with CSS**, not script: `:has()` on the private/business radio. Safari
-  needs 15.4, which is already the floor for `mask-composite`. Without support both halves
-  show — a longer form, not a broken one.
+- **It is a real wizard: one step on screen, Next/Back between them.** The client asked for
+  the booking wizard's step-by-step feel specifically, after a first pass built it as one
+  long form. Do not flatten it again.
+- **It degrades.** The markup renders every step open with the nav hidden; the script hides
+  all but the current step and reveals the nav. Without JavaScript the page is the long
+  form, which still submits. CLS is 0 because that happens before first paint.
+- **Values survive stepping for free** — the whole thing is one `<form>` and stepping only
+  toggles `hidden`. There is no state to serialise.
+- **The branch switch disables the inactive half's `<fieldset>` and resets its fields**, so
+  a business enquiry cannot carry private fields or the reverse. Verified by reading
+  `FormData`: a private submission has no `businessSize`, a business one has no `pets`.
+  `disabled` also takes those fields out of validation, which is what stops a hidden
+  required field blocking submit. The `:has()` rule in quote.css does the hiding for the
+  no-JavaScript case.
+- **Next validates only the current step.** `form.reportValidity()` would flag a field
+  three steps ahead, which reads as the wizard refusing to advance for no visible reason.
 - **The success panel is honest.** It appears on submit as the client asked, and says
   plainly that the form is not connected yet and nothing was transmitted, with the phone
   and mailbox beside it. When the endpoint lands, swap `quote.successBody` for a real
-  confirmation — and disable the hidden half's fields first, or a business enquiry arrives
-  carrying empty private fields. See the note in QuoteForm.astro.
+  confirmation.
+- The stepper's items use `data-stepper-step`, the form's fieldsets `data-step`. They are
+  different attributes on purpose: a document-wide query for `[data-step]` would otherwise
+  return both.
 - **Every "Angebot anfordern" on the site ends here** — 31 of them on the German pages
   alone, all through `localizedPath(locale, 'quote')`, so the slug change from
   `/angebot-anfordern/` to `/angebot/` was one line in the registry.
