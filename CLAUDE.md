@@ -41,6 +41,14 @@ CSS against them.
 weight of both families (Playfair `wght` 400–900, Mulish `wght` 200–1000), latin +
 latin-ext. Never add a Google Fonts `<link>`. latin-ext is required — Slovak depends on it.
 
+**Keep the metric-matched fallbacks in the font stacks.** `'Playfair Fallback'` and
+`'Mulish Fallback'` (fonts.css) are `size-adjust`-ed aliases for the system faces, and they
+must stay second in `--ms-font-heading` / `--ms-font-body`. Without them `font-display: swap`
+reflows the page when the real font arrives: Playfair and Georgia differ by under 1% in
+width, which was enough to tip the German h1 onto a fifth line and move everything below it
+61px — measured CLS goes from 0 back to a visible jump. If you change a font, re-measure the
+ratio (canvas `measureText` at 100px over a representative string) and update `size-adjust`.
+
 **Component CSS is global, not scoped.** It lives in `src/styles/components/*.css` and is
 pulled in by `global.css`. That is deliberate: the lifted rules reach across component
 boundaries (`.ms-header__panel .ms-bookbtn`, `.ms-card::after`, the shared responsive

@@ -61,3 +61,46 @@
 	unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304,
 		U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
 }
+
+
+/* =========================================================================
+   Metric-matched fallbacks — the cure for the swap reflow
+   -------------------------------------------------------------------------
+   `font-display: swap` means the page paints in a fallback face first and
+   re-renders when the real one arrives. That re-render is free only if the two
+   faces occupy the same space, and they did not: measured at 100px over a
+   representative string, Playfair Display sets 4568px against Georgia's 4608px.
+   Under 1% — but it was enough to tip the German h1 onto a fifth line, which
+   moved everything below it 61px and the hero photo 30px (the grid centres its
+   columns, so a taller copy column drags the photo down too). That is the jump.
+
+   `size-adjust` scales the fallback so the two set to within ~0.1%, and the
+   line count then agrees. No ascent/descent overrides: every line-height in
+   this design is an explicit unitless number, so the line box height does not
+   depend on font metrics at all — only the glyph widths, which is exactly what
+   `size-adjust` controls.
+
+   Ratios are per underlying font, so each face names ONE local font rather
+   than a list. If it is absent the face simply fails to load and the stack
+   falls through to the next family, unadjusted — no worse than before.
+   ====================================================================== */
+
+@font-face {
+	font-family: 'Playfair Fallback';
+	/* Georgia only. Times New Roman would need 108.28% — nine points away — so
+	   lumping the two under one ratio would trade one mismatch for another.
+	   Without Georgia this face just fails to load and the stack falls through. */
+	src: local('Georgia');
+	size-adjust: 99.13%; /* 4568.1 / 4608.11 */
+}
+
+@font-face {
+	font-family: 'Mulish Fallback';
+	/* One face, several candidates: `src` takes the first that resolves. These
+	   sit within 1.5% of each other (Segoe UI 105.58%, Arial 104.02%), so a
+	   single ratio covers all of them. They must be ONE face — two faces sharing
+	   a family name and a unicode-range would let the later one win even where
+	   the earlier font exists, which would apply Arial's ratio to Segoe UI. */
+	src: local('Segoe UI'), local('Helvetica Neue'), local('Roboto'), local('Arial');
+	size-adjust: 105%;
+}

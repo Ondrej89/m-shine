@@ -42,9 +42,12 @@
 	--ms-gradient-cta-bright: linear-gradient(120deg, #1c47a0 0%, #2a5fc0 100%);
 
 	/* --- Type --------------------------------------------------------- */
-	--ms-font-heading: 'Playfair Display', Georgia, 'Times New Roman', serif;
-	--ms-font-body: Mulish, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial,
-		sans-serif;
+	/* The `* Fallback` entries are metric-matched aliases for the system faces
+	   behind them — see the note at the foot of fonts.css. They must sit second,
+	   ahead of the plain families, or the swap reflow comes back. */
+	--ms-font-heading: 'Playfair Display', 'Playfair Fallback', Georgia, 'Times New Roman', serif;
+	--ms-font-body: Mulish, 'Mulish Fallback', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
+		Helvetica, Arial, sans-serif;
 
 	--ms-size-xs: 12px; /* eyebrow */
 	--ms-size-sm: 13.5px;
