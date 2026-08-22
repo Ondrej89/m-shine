@@ -8,12 +8,14 @@
     "languageLabel": "Jazyk",
     "currentLanguage": "Aktuálny jazyk",
     "menu": "Menu",
-    "mainNav": "Hlavná navigácia"
+    "mainNav": "Hlavná navigácia",
+    "breadcrumb": "Navigácia omrvinkami"
   },
   "nav": {
     "home": "Domov",
     "about": "O nás",
-    "services": "Služby",
+    "services": "Domácnosti",
+    "commercial": "Firmy",
     "pricing": "Cenník",
     "contact": "Kontakt",
     "quote": "Vyžiadať ponuku"
@@ -25,6 +27,34 @@
     "home": {
       "title": "Upratovacia firma vo Viedni",
       "description": "Profesionálne upratovanie domov, bytov, po sťahovaní a generálne upratovanie vo Viedni. Poistené a preverené tímy, ekologické prostriedky. Vyžiadajte si bezplatnú ponuku."
+    },
+    "services": {
+      "title": "Upratovanie pre domácnosti vo Viedni",
+      "description": "Upratovanie domov, bytov, po sťahovaní a generálne upratovanie pre domácnosti vo Viedni. Školený personál, ekologické prostriedky."
+    },
+    "serviceHouse": {
+      "title": "Upratovanie domov vo Viedni",
+      "description": "Pravidelné upratovanie domov vo Viedni: prach, podlahy, kuchyňa a kúpeľňa pri každej návšteve. Ekologické prostriedky, jedna kontaktná osoba."
+    },
+    "serviceApartment": {
+      "title": "Upratovanie bytov vo Viedni",
+      "description": "Upratovanie bytov vo Viedni pre každú veľkosť: všetky miestnosti, spotrebiče, podlahy a kúpeľňa. Flexibilné termíny, ekologické prostriedky."
+    },
+    "serviceMove": {
+      "title": "Upratovanie po sťahovaní vo Viedni",
+      "description": "Upratovanie pri sťahovaní vo Viedni: skrine zvnútra, spotrebiče, soklové lišty, okná. Pripravené na odovzdanie. Vyžiadajte si ponuku."
+    },
+    "serviceDeep": {
+      "title": "Generálne upratovanie vo Viedni",
+      "description": "Generálne upratovanie vo Viedni od podlahy po strop: škáry, za spotrebičmi, okná, lišty. Ideálne pred udalosťou. Vyžiadajte si ponuku."
+    },
+    "contact": {
+      "title": "Kontakt – upratovacia firma vo Viedni",
+      "description": "Otázky k upratovaniu domov, bytov alebo generálnemu upratovaniu vo Viedni? Napíšte nám a ozveme sa s nezáväznou ponukou."
+    },
+    "commercial": {
+      "title": "Upratovanie kancelárií a firiem vo Viedni",
+      "description": "Upratovanie kancelárií, ambulancií, hotelov, reštaurácií a objektov vo Viedni. Individuálna kalkulácia, písomná ponuka do 24–48 hodín."
     },
     "about": {
       "title": "O nás – váš upratovací tím vo Viedni",
@@ -116,18 +146,138 @@
     "viewAll": "Zobraziť všetky služby",
     "house": {
       "title": "Upratovanie domov",
+      "nameInline": "upratovanie domov",
       "description": "Pravidelné upratovanie, aby váš domov zostal svieži, čistý a útulný.",
-      "photoAlt": "Upratená, slnkom zaliata obývačka"
+      "photoAlt": "Upratená, slnkom zaliata obývačka",
+      "detail": "Pravidelné upratovanie, aby váš domov zostal svieži a útulný – prach, podlahy, kuchyňa a kúpeľňa pri každej návšteve.",
+      "rowPhotoAlt": "Svetlá, čerstvo uprataná obývačka s dvoma pohovkami",
+      "features": {
+        "one": "Prach a povrchy",
+        "two": "Vysávanie a umývanie",
+        "three": "Kuchyňa a kúpeľňa",
+        "four": "Upratané obytné priestory"
+      },
+      "lede": "Pravidelné, dôkladné upratovanie, ktoré udrží celý váš domov sviežy a útulný – návštevu za návštevou.",
+      "heroPhotoAlt": "Svetlá obývačka po upratovaní od Magic Shine",
+      "overviewOne": "Naše upratovanie domov zahŕňa každú miestnosť, v ktorej žijete – od obývačky a spálne až po kuchyňu a kúpeľňu. Odprášime, povysávame, umyjeme podlahy a vydezinfikujeme povrchy, na ktorých záleží.",
+      "overviewTwo": "Nastavte si rytmus, ktorý vám vyhovuje – týždenne, raz za dva týždne alebo mesačne – a vracajte sa do čistého domova.",
+      "includes": {
+        "one": "Odprášené všetky povrchy",
+        "two": "Povysávané a umyté podlahy",
+        "three": "Vyčistená a vydezinfikovaná kuchyňa",
+        "four": "Vydrhnutá a vydezinfikovaná kúpeľňa",
+        "five": "Ustlané postele a upratané",
+        "six": "Vynesený odpad"
+      },
+      "frequency": "Týždenne / raz za dva týždne / mesačne",
+      "price": "120 €",
+      "reviews": {
+        "one": {
+          "quote": "Náš domov nebol nikdy čistejší. Tím pracuje dôkladne a vždy príde načas.",
+          "name": "Jessica M.",
+          "role": "Majiteľka domu"
+        },
+        "two": {
+          "quote": "Týždenné upratovanie nám vrátilo víkendy. Stojí to za každé euro.",
+          "name": "Priya S.",
+          "role": "Pracujúca mama"
+        },
+        "three": {
+          "quote": "Spoľahliví, milí a všímajú si detaily. Vrelo odporúčam.",
+          "name": "Marcus T.",
+          "role": "Majiteľ domu"
+        }
+      }
     },
     "apartment": {
       "title": "Upratovanie bytov",
+      "nameInline": "upratovanie bytov",
       "description": "Ideálne pre byty každej veľkosti.",
-      "photoAlt": "Čistá, moderná kuchyňa"
+      "photoAlt": "Čistá, moderná kuchyňa",
+      "detail": "Ideálne pre byty každej veľkosti. Efektívne a dôkladné upratovanie prispôsobené menším, žitým priestorom.",
+      "rowPhotoAlt": "Pracovníčka Magic Shine utiera pracovnú dosku vo svetlej kuchyni",
+      "features": {
+        "one": "Všetky miestnosti",
+        "two": "Starostlivosť o malé priestory",
+        "three": "Utreté spotrebiče",
+        "four": "Flexibilné termíny"
+      },
+      "lede": "Efektívne a dôkladné upratovanie navrhnuté pre byty každej veľkosti.",
+      "heroPhotoAlt": "Svetlá, čerstvo uprataná kuchyňa",
+      "overviewOne": "Aj malé priestory si zaslúžia rovnakú starostlivosť. Upraceme každú miestnosť vášho bytu a z menších dispozícií vyťažíme maximum efektívnou a dôslednou rutinou.",
+      "overviewTwo": "Ideálne pre nájomníkov, majiteľov bytov aj zaneprázdnených profesionálov, ktorí chcú mať doma stále poriadok.",
+      "includes": {
+        "one": "Všetky miestnosti upratané",
+        "two": "Starostlivosť o malé priestory",
+        "three": "Utreté spotrebiče",
+        "four": "Povysávané a umyté podlahy",
+        "five": "Vydezinfikovaná kúpeľňa",
+        "six": "Flexibilné termíny"
+      },
+      "frequency": "Týždenne / raz za dva týždne / mesačne",
+      "price": "110 €",
+      "reviews": {
+        "one": {
+          "quote": "Ideálne pre môj byt. Rýchlo, potichu a zakaždým bez chyby.",
+          "name": "Liam O.",
+          "role": "Majiteľ bytu"
+        },
+        "two": {
+          "quote": "Prispôsobia sa môjmu programu a neuniknú im detaily.",
+          "name": "Sofia D.",
+          "role": "Nájomníčka"
+        },
+        "three": {
+          "quote": "Po každej návšteve pôsobí môj byt ako nový.",
+          "name": "Nina K.",
+          "role": "Profesionálka"
+        }
+      }
     },
     "move": {
       "title": "Upratovanie po sťahovaní",
+      "nameInline": "upratovanie po sťahovaní",
       "description": "Sťahovanie zvládnete ľahšie – priestor odovzdáme dokonale čistý.",
-      "photoAlt": "Poukladané sťahovacie krabice v prázdnej miestnosti"
+      "photoAlt": "Poukladané sťahovacie krabice v prázdnej miestnosti",
+      "detail": "Sťahovanie s nami zvládnete ľahko – dôkladné upratovanie od podlahy po strop, pri odovzdaní kľúčov aj pri nasťahovaní.",
+      "rowPhotoAlt": "Pracovníčku Magic Shine s upratovacím košom vítajú pri vchodových dverách",
+      "features": {
+        "one": "Skrine zvnútra",
+        "two": "Spotrebiče do detailu",
+        "three": "Soklové lišty a steny",
+        "four": "Pripravené na odovzdanie"
+      },
+      "lede": "Dôkladné upratovanie od podlahy po strop – pri odovzdaní kľúčov aj pri nasťahovaní.",
+      "heroPhotoAlt": "Pracovníčku Magic Shine s upratovacím košom vítajú pri vchodových dverách",
+      "overviewOne": "Sťahovanie je stresu dosť. Upratovanie zoberieme na seba – dôkladne a do detailu: skrine zvnútra, spotrebiče, soklové lišty a každý kút.",
+      "overviewTwo": "Ideálne pre nájomníkov, ktorí chcú späť depozit, pre prenajímateľov pripravujúcich byt aj pre každého, kto chce začať načisto.",
+      "includes": {
+        "one": "Skrine a zásuvky zvnútra",
+        "two": "Spotrebiče do detailu",
+        "three": "Soklové lišty a steny",
+        "four": "Okná a parapety",
+        "five": "Kompletne obnovená kúpeľňa",
+        "six": "Pripravené na odovzdanie"
+      },
+      "frequency": "Jednorazovo",
+      "price": "150 €",
+      "reviews": {
+        "one": {
+          "quote": "Vďaka tomu, ako to nechali čisté, som dostala späť celý depozit.",
+          "name": "Emily W.",
+          "role": "Nájomníčka"
+        },
+        "two": {
+          "quote": "Nový byt pripravili ešte pred dňom sťahovania. Bezchybne.",
+          "name": "David R.",
+          "role": "Majiteľ"
+        },
+        "three": {
+          "quote": "Takto dávam upratať každú výmenu nájomníka. Spoľahlivé.",
+          "name": "Carlos V.",
+          "role": "Prenajímateľ"
+        }
+      }
     },
     "housekeeping": {
       "title": "Pravidelná starostlivosť",
@@ -136,8 +286,195 @@
     },
     "deep": {
       "title": "Generálne upratovanie",
+      "nameInline": "generálne upratovanie",
       "description": "Dôkladné upratovanie pre výnimočné príležitosti.",
-      "photoAlt": "Dokonale čistá, lesklá kúpeľňa"
+      "photoAlt": "Dokonale čistá, lesklá kúpeľňa",
+      "detail": "Dôkladné upratovanie od podlahy po strop – na výnimočné príležitosti alebo keď váš domov potrebuje úplný reset.",
+      "rowPhotoAlt": "Pracovníčka Magic Shine čistí sprchovú zástenu v mramorovej kúpeľni",
+      "features": {
+        "one": "Škáry a obklady",
+        "two": "Za spotrebičmi",
+        "three": "Dôkladné odprášenie",
+        "four": "Okná a parapety"
+      },
+      "lede": "Dôkladný reset od podlahy po strop – na výnimočné príležitosti alebo keď to váš domov najviac potrebuje.",
+      "heroPhotoAlt": "Pracovníčka Magic Shine čistí sprchovú zástenu v mramorovej kúpeľni",
+      "overviewOne": "Naša najdôkladnejšia služba sa dostane tam, kde bežné upratovanie nesiaha – škáry, za spotrebiče, dôkladné odprášenie, okná aj parapety.",
+      "overviewTwo": "Ideálne pred veľkou udalosťou, pri zmene ročných období alebo ako prvé upratovanie pred začiatkom pravidelného rytmu.",
+      "includes": {
+        "one": "Vydrhnuté škáry a obklady",
+        "two": "Za spotrebičmi",
+        "three": "Dôkladné odprášenie",
+        "four": "Okná a parapety",
+        "five": "Soklové a ozdobné lišty",
+        "six": "Kompletná dezinfekcia"
+      },
+      "frequency": "Jednorazovo alebo sezónne",
+      "price": "180 €",
+      "reviews": {
+        "one": {
+          "quote": "Rozdiel bol ako deň a noc. Dostali sa na miesta, na ktoré som zabudla.",
+          "name": "Olivia N.",
+          "role": "Majiteľka"
+        },
+        "two": {
+          "quote": "Objednala som to pred oslavou a hostia zostali ohromení. Dokonalé.",
+          "name": "Ryan L.",
+          "role": "Hostiteľ"
+        },
+        "three": {
+          "quote": "Najlepšie generálne upratovanie, aké sme kedy mali. Bez debaty.",
+          "name": "Grace F.",
+          "role": "Majiteľka"
+        }
+      }
+    },
+    "hero": {
+      "eyebrow": "Naše služby",
+      "title": "Upratovanie na mieru pre každý priestor",
+      "lede": "Ponúkame široké spektrum služieb prispôsobených vašim potrebám – od pravidelnej starostlivosti až po dôkladné generálne upratovanie."
+    },
+    "commercial": {
+      "eyebrow": "Nad rámec domácnosti",
+      "title": "Komerčné a špecializované upratovanie",
+      "lede": "Každá prevádzka je iná. Tieto služby prispôsobujeme vášmu priestoru a oceňujeme individuálne – nie sú na online objednanie. Povedzte nám, čo potrebujete, a pripravíme plán aj cenu.",
+      "office": "Upratovanie kancelárií",
+      "medical": "Ambulancie a zubné praxe",
+      "restaurant": "Reštaurácie",
+      "school": "Školy",
+      "residential": "Bytové domy"
+    },
+    "cta": {
+      "eyebrow": "Pripravení na čistý domov?",
+      "title": "Opýtajte sa dnes, zajtra oddychujte",
+      "lede": "Zažite rozdiel Magic Shine – spoľahlivo, dôkladne a so zárukou spokojnosti.",
+      "secondary": "Kontaktujte nás",
+      "photoAlt": "Rodina so psom oddychuje vo svetlej, čistej obývačke"
+    },
+    "detailPage": {
+      "priceLabel": "od",
+      "priceUnit": "za návštevu",
+      "overviewEyebrow": "Prehľad",
+      "overviewTitle": "Čo táto služba zahŕňa",
+      "factsTitle": "Detaily služby",
+      "factDuration": "Trvanie",
+      "factTeam": "Tím",
+      "factFrequency": "Frekvencia",
+      "factProducts": "Prostriedky",
+      "durationValue": "Od 2 hodín",
+      "teamValue": "1+ pracovníčka",
+      "productsValue": "Ekologické, bezpečné pre zvieratá",
+      "reviewsEyebrow": "Overené hodnotenia",
+      "reviewsTitle": "Čo klienti hovoria o službe {service}",
+      "othersEyebrow": "Objavte viac",
+      "othersTitle": "Ďalšie služby",
+      "othersLink": "Zobraziť detaily",
+      "ctaTitle": "Pripravení na {service}?",
+      "ctaText": "Spoľahlivo, dôkladne a so zárukou spokojnosti – pri každej návšteve."
+    }
+  },
+  "commercial": {
+    "heroEyebrow": "Pre firmy",
+    "heroTitle": "Upratovanie kancelárií, ambulancií a hotelov vo Viedni",
+    "heroLede": "Preberáme pravidelné upratovanie kancelárií, ambulancií, hotelov, reštaurácií a bytových domov – spoľahlivo, diskrétne a prispôsobené vašej prevádzke.",
+    "heroCta": "Vyžiadať ponuku",
+    "heroNote": "Individuálna ponuka, písomne do 24 – 48 hodín.",
+    "sectorsEyebrow": "Čo robíme pre firmy",
+    "sectorsTitle": "Upratovanie pre váš odbor",
+    "sectorsLede": "Každý odbor kladie iné nároky na hygienu, časové okná a diskrétnosť. Zoznámime sa s vašou prevádzkou namiesto toho, aby sme odbavili štandardný balík.",
+    "whyEyebrow": "Prečo Magic Shine",
+    "whyTitle": "Päť dôvodov, prečo firmy zostávajú",
+    "whyLede": "Čo si na spolupráci s nami cenia klienti vo Viedni – a prečo sa z prvej zákazky zvyčajne stane dlhodobá spolupráca.",
+    "priceEyebrow": "Ceny",
+    "priceTitle": "Ako vzniká ponuka",
+    "priceLede": "Pre komerčné priestory neexistuje cenník, a to z dobrého dôvodu: dve kancelárie s rovnakou plochou môžu znamenať celkom iný objem práce. Kalkulujeme podľa troch faktorov.",
+    "priceNote": "Po vašej žiadosti si priestory pozrieme – na mieste alebo podľa plánov a fotografií – a spravidla do 24 až 48 hodín dostanete písomnú nezáväznú ponuku.",
+    "ctaTitle": "Poďme sa baviť o vašich priestoroch",
+    "ctaText": "Povedzte nám, o aké plochy ide a kedy sa má upratovať – ozveme sa s konkrétnou ponukou.",
+    "ctaAction": "Vyžiadať ponuku",
+    "ctaSecondary": "Kontaktujte nás",
+    "sectors": {
+      "one": {
+        "title": "Upratovanie kancelárií",
+        "body": "Od jednej kancelárie po celé poschodie: pracoviská, zasadačky, kuchynky a sociálne zariadenia upratujeme pred vašimi hodinami alebo po nich, aby prevádzka nikdy nestála. Na želanie zabezpečíme aj vnútorné sklenené plochy a doplňovanie spotrebného materiálu.",
+        "points": {
+          "one": "Upratovanie mimo pracovných hodín",
+          "two": "Kuchynky, sociálne zariadenia a zasadačky",
+          "three": "Prevzatie kľúčov a alarmu po dohode"
+        }
+      },
+      "two": {
+        "title": "Upratovanie ambulancií",
+        "body": "Ambulancie a zubné praxe si vyžadujú inú starostlivosť než kancelária. Pracujeme podľa vášho hygienického plánu, dôsledne oddeľujeme ošetrovňu od čakárne a upratovanie zdokumentujeme, ak to potrebujete do svojej evidencie.",
+        "points": {
+          "one": "Práca podľa vášho hygienického plánu",
+          "two": "Oddelené upratovanie ošetrovne a čakárne",
+          "three": "Dokumentácia na želanie"
+        }
+      },
+      "three": {
+        "title": "Upratovanie hotelov",
+        "body": "Pre hotely, apartmány a ubytovne zabezpečujeme upratovanie izieb, výmenu bielizne a spoločné priestory – aj krátkodobo, keď sa obsadenosť mení. Pri vysokej obsadenosti tím posilníme, namiesto presúvania termínov.",
+        "points": {
+          "one": "Izby, bielizeň a spoločné priestory",
+          "two": "Krátkodobé posilnenie tímu",
+          "three": "Koordinácia s recepciou a housekeepingom"
+        }
+      },
+      "four": {
+        "title": "Upratovanie reštaurácií",
+        "body": "Priestor pre hostí, kuchyňu a sociálne zariadenia upratujeme pred otvorením alebo po zatváracej hodine. Poznáme požiadavky potravinovej hygieny a pracujeme tak, aby bola vaša kuchyňa pri otvorení pripravená.",
+        "points": {
+          "one": "Upratovanie pred otvorením alebo po zatvorení",
+          "two": "Priestor pre hostí, kuchyňa a sociálne zariadenia",
+          "three": "V súlade s potravinovou hygienou"
+        }
+      },
+      "five": {
+        "title": "Správa budov",
+        "body": "Pre správcov budov a spoločenstvá vlastníkov sa staráme o schodiská, chodby, práčovne, miestnosti na odpad a vonkajšie plochy v dohodnutom rytme. O všetky objekty sa stará jedna kontaktná osoba, takže nemusíte koordinovať každý dom zvlášť.",
+        "points": {
+          "one": "Schodiská, chodby a vedľajšie priestory",
+          "two": "Pevný, zdokumentovaný rytmus",
+          "three": "Jedna kontaktná osoba pre všetky objekty"
+        }
+      }
+    },
+    "why": {
+      "one": {
+        "title": "Spoľahlivosť",
+        "body": "Pre firmu nie je vynechané upratovanie kozmetická chyba, ale problém hneď ráno. Prídeme v dohodnutom čase, aj na okraji dňa, a sami sa ozveme, ak nastane komplikácia. Dovolenku či práceneschopnosť riešime my, bez toho, aby ste sa museli pýtať – v ideálnom prípade zmenu ani nepostrehnete."
+      },
+      "two": {
+        "title": "Kvalita",
+        "body": "Dôkladnosť sa prejaví na miestach, ktoré si všimnete až na druhý pohľad: soklové lišty, kľučky, pás za dverami, škára pri umývadle. Pracujeme podľa pevného zoznamu pre každý objekt, aby výsledok nezávisel od dňa, a tento zoznam s vami pravidelne prechádzame."
+      },
+      "three": {
+        "title": "Profesionalita",
+        "body": "Náš personál je školený, riadne zamestnaný a preverený. Vo vašich priestoroch sa pohybuje tak, ako sa človek pohybuje v cudzích: diskrétne, bez listovania v dokumentoch, s rešpektom k tomu, čo leží na stoloch. Tam, kde je predpísaná mlčanlivosť – napríklad v ambulanciách – ju máme písomne."
+      },
+      "four": {
+        "title": "Flexibilita",
+        "body": "Firmy sa menia: pribudne poschodie, posunú sa otváracie hodiny, pred podujatím treba prísť navyše. Rytmus aj rozsah prispôsobíme, namiesto trvania na ročnej zmluve, a fakturujeme to, čo sa skutočne urobilo."
+      },
+      "five": {
+        "title": "Osobný prístup",
+        "body": "Máte jednu kontaktnú osobu, ktorá pozná váš objekt – nie infolinku a nie meniace sa zodpovednosti. Táto osoba tam bola, vie, kde visí kľúč a ktorá miestnosť je v stredu obsadená, a je dostupná, keď má niečo krátkodobo prebehnúť inak."
+      }
+    },
+    "factors": {
+      "one": {
+        "title": "Plocha",
+        "body": "Metre štvorcové, počet miestností a to, čo v nich je. Otvorený open space sa upratuje rýchlejšie než rovnaká plocha rozdelená na 20 kancelárií so sociálnymi zariadeniami a kuchynkou."
+      },
+      "two": {
+        "title": "Frekvencia",
+        "body": "Denne, trikrát týždenne alebo raz týždenne. Vyššia frekvencia citeľne znižuje náročnosť jednej návštevy, pretože sa toho menej nazbiera – cena za jedno upratovanie tak klesá."
+      },
+      "three": {
+        "title": "Prístupnosť",
+        "body": "Kedy môžeme pracovať a ako sa dostaneme dnu. Upratovanie počas prevádzky trvá dlhšie než po zatvorení; odovzdanie kľúčov, alarm a výťah tiež ovplyvňujú priebeh."
+      }
     }
   },
   "why": {
@@ -219,6 +556,51 @@
       "quote": "Dokonalý výsledok a ekologické prostriedky. Viac sa žiadať nedá.",
       "name": "Liam O.",
       "role": "Majiteľ bytu"
+    }
+  },
+  "contact": {
+    "faqEyebrow": "Časté otázky",
+    "faqTitle": "Máte otázky? Máme odpovede.",
+    "help": "Potrebujete poradiť? Ozvite sa nám kedykoľvek.",
+    "eyebrow": "Kontakt",
+    "title": "Rozžiarme váš domov",
+    "intro": "Napíšte nám pár detailov o tom, čo potrebujete – čoskoro sa ozveme s nezáväznou ponukou.",
+    "labelPhone": "Telefón",
+    "labelEmail": "E-mail",
+    "labelAddress": "Adresa",
+    "labelHours": "Otváracie hodiny",
+    "hoursWeek": "Po – Pi: 8:00 – 18:00",
+    "hoursWeekend": "So: 9:00 – 15:00",
+    "formName": "Vaše meno",
+    "formEmail": "Váš e-mail",
+    "formMessage": "Vaša správa",
+    "formSubmit": "Odoslať správu",
+    "formPending": "Formulár zatiaľ nie je aktívny. Napíšte nám prosím priamo e-mailom alebo zavolajte – čoskoro sa ozveme.",
+    "faqs": {
+      "one": {
+        "q": "Čo zahŕňa štandardné upratovanie?",
+        "a": "Utieranie prachu, vysávanie, umývanie podláh, čistenie a dezinfekcia kuchyne a kúpeľne a upratanie všetkých bežných obytných priestorov. Práce generálneho upratovania vieme doplniť na požiadanie."
+      },
+      "two": {
+        "q": "Musím byť počas upratovania doma?",
+        "a": "Nie. Mnohí klienti nám sprístupnia byt a venujú sa svojmu dňu. Ako sa dostaneme dnu, dohodneme s vami vopred osobne."
+      },
+      "three": {
+        "q": "Čo ak nebudem s upratovaním spokojný?",
+        "a": "Dajte nám vedieť do 24 hodín a dané miesto upraceme znova bezplatne. To znamená naša záruka spokojnosti."
+      },
+      "four": {
+        "q": "Nosíte si vlastné čistiace prostriedky?",
+        "a": "Áno – prichádzame s profesionálnymi, ekologickými prostriedkami a potrebným vybavením. Ak by ste radšej použili vlastné produkty, stačí povedať."
+      },
+      "five": {
+        "q": "Môžem si prispôsobiť plán upratovania?",
+        "a": "Samozrejme. Doplnkové služby, dôraz na konkrétne miesta aj pravidelný rytmus sa dajú ľubovoľne kombinovať – doladíme to spoločne pri vašej žiadosti."
+      },
+      "six": {
+        "q": "Ako platím?",
+        "a": "Po návšteve dostanete faktúru. Spôsob platby dohodneme pri vašej žiadosti tak, aby vám vyhovoval."
+      }
     }
   },
   "footer": {

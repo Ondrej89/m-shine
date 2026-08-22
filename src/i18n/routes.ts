@@ -15,6 +15,43 @@ export const ROUTES = {
 	home: { de: '', en: '', sk: '' },
 	about: { de: 'ueber-uns', en: 'about-us', sk: 'o-nas' },
 	services: { de: 'leistungen', en: 'services', sk: 'sluzby' },
+
+	/*
+	 * The service detail pages. One entry each rather than a parametrised
+	 * route: the slug has to differ per language anyway, which is exactly what
+	 * this registry stores, and a route id per service keeps `localizedPath`
+	 * and the hreflang set working untouched. The slugs nest under the
+	 * Services slug in every language, so the URL reads as the breadcrumb
+	 * does — `/leistungen/hausreinigung/`. `src/data/services.ts` maps each
+	 * one to its content.
+	 */
+	serviceHouse: {
+		de: 'leistungen/hausreinigung',
+		en: 'services/house-cleaning',
+		sk: 'sluzby/upratovanie-domov',
+	},
+	serviceApartment: {
+		de: 'leistungen/wohnungsreinigung',
+		en: 'services/apartment-cleaning',
+		sk: 'sluzby/upratovanie-bytov',
+	},
+	serviceMove: {
+		de: 'leistungen/umzugsreinigung',
+		en: 'services/move-in-move-out',
+		sk: 'sluzby/upratovanie-po-stahovani',
+	},
+	serviceDeep: {
+		de: 'leistungen/grundreinigung',
+		en: 'services/deep-cleaning',
+		sk: 'sluzby/generalne-upratovanie',
+	},
+	/*
+	 * The business half of the catalogue. `services` above is the private/
+	 * residential half — the two are separate pages with separate audiences,
+	 * and both sit in the nav. The slug is a customer type rather than a
+	 * service name because that is what the page sells.
+	 */
+	commercial: { de: 'geschaeftskunden', en: 'commercial', sk: 'firmy' },
 	pricing: { de: 'preise', en: 'pricing', sk: 'cennik' },
 	contact: { de: 'kontakt', en: 'contact', sk: 'kontakt' },
 	quote: { de: 'angebot-anfordern', en: 'request-a-quote', sk: 'vyziadat-ponuku' },
@@ -24,8 +61,14 @@ export const ROUTES = {
 } as const satisfies Record<string, Record<Locale, string>>;
 
 /** The pages that appear in the header and footer navigation, in order. */
-export const NAV_ROUTES = ['home', 'about', 'services', 'pricing', 'contact'] as const satisfies
-	readonly RouteId[];
+export const NAV_ROUTES = [
+	'home',
+	'about',
+	'services',
+	'commercial',
+	'pricing',
+	'contact',
+] as const satisfies readonly RouteId[];
 
 export type RouteId = keyof typeof ROUTES;
 

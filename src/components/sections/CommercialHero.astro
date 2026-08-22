@@ -1,0 +1,44 @@
+---
+import Button from '../Button.astro';
+import Eyebrow from '../Eyebrow.astro';
+import Flourish from '../Flourish.astro';
+import Section from '../Section.astro';
+import type { Locale } from '../../i18n/config';
+import { localizedPath } from '../../i18n/routes';
+import { useTranslations } from '../../i18n/ui';
+
+/*
+ * The B2B hero. Structurally the Services hero — centred copy in a 760px
+ * column under the big lotus — and it reuses those classes rather than
+ * restating them, with the action and the turnaround note added.
+ *
+ * The headline carries the terms a Vienna business actually searches for
+ * ("Büroreinigung", "Ordinationsreinigung", "Hotelreinigung") in a sentence
+ * that reads as a sentence. The rest of the sectors are in the lede, where
+ * they belong.
+ */
+interface Props {
+	locale: Locale;
+}
+
+const { locale } = Astro.props;
+const t = useTranslations(locale);
+---
+
+<Section class="ms-svc-hero" width={1160} rhythm="none" flourishes>
+	<Flourish name="lotus-hero" slot="flourish" />
+
+	<div class="ms-svc-hero__inner">
+		<Eyebrow>{t('commercial.heroEyebrow')}</Eyebrow>
+		<h1 class="ms-svc-hero__title">{t('commercial.heroTitle')}</h1>
+		<p class="ms-svc-hero__lede">{t('commercial.heroLede')}</p>
+
+		<div class="ms-b2b-actions">
+			<Button variant="primary" href={localizedPath(locale, 'quote')} icon="arrow-right">
+				{t('commercial.heroCta')}
+			</Button>
+		</div>
+
+		<p class="ms-b2b-hero__note">{t('commercial.heroNote')}</p>
+	</div>
+</Section>

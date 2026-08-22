@@ -85,7 +85,7 @@
 	--ms-container-plan: 1200px; /* Pricing, Service Detail */
 	--ms-container-contact: 1180px; /* Contact; also the reviews carousel */
 	--ms-gutter: 40px; /* stepped down in the queries below */
-	--ms-header-breakpoint: 900px;
+	--ms-header-breakpoint: 1000px;
 	--ms-header-h: 88px; /* 48px row inside 20px padding */
 
 	/* --- Radius ------------------------------------------------------- */

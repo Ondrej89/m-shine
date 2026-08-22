@@ -17,7 +17,7 @@
 	z-index: 50;
 }
 
-/* Gaps tightened from the design's 24 / 30 / 18 to 20 / 26 / 16.
+/* Gaps tightened from the design's 24 / 30 / 18 to 20 / 20 / 16.
 
    This is a localisation adjustment, not a taste change. The header content box
    is 1160px at every width — that is the design's chrome grid and it does not
@@ -25,8 +25,17 @@
    "Angebot anfordern") measured 1164px inside it. Being 4px over meant the
    language switcher hung off the right edge on *every* screen, and no media
    query could fix it because the overflow is against the box, not the viewport.
-   The three gaps give back 32px, which lands the row at ~1132 with real slack
-   for Slovak and for a longer real phone number. */
+   The three gaps gave back 32px, which landed the row at ~1132.
+
+   Then the nav went from five items to six — the catalogue split into
+   Privatkunden and Geschäftskunden — and the German row went over again, by
+   118px with the phone block showing and by 6px without it. Three changes buy
+   it back: the nav gap goes 26 -> 20 here (30px across the five gaps), the
+   phone block comes out entirely (see the note further down), and the burger
+   step moves 900 -> 1000, because below ~1000 the row ran out of room again.
+
+   Measured German after all three: 64px between nav and actions at full width,
+   33px at 1001px, which is now the tightest the desktop row ever gets. */
 .ms-header {
 	align-items: center;
 	display: flex;
@@ -74,7 +83,7 @@
 .ms-header__nav ul {
 	align-items: center;
 	display: flex;
-	gap: 26px;
+	gap: 20px;
 	list-style: none;
 	margin: 0;
 	padding: 0;
@@ -275,23 +284,36 @@
 	width: 44px;
 }
 
-/* The design drops both header extras at 1100
+/* The phone block is gone from the header at every width, not just below 1240
+   as it was when the nav had five items.
+
+   Measured with six items: the German row needs 118px more than the 1160px
+   content box has while the block is showing, and the box does not grow with
+   the viewport — it is capped at the chrome grid — so no breakpoint can buy the
+   room. The block itself is 159px. Removing it is the only lever big enough,
+   and it is the one the theme already reached for at 1240.
+
+   The number is still in the footer, on the Contact page and behind the quote
+   CTA. The alternative, if the client wants it back in the header, is shorter
+   German nav labels: "Privat" and "Gewerbe" instead of "Privatkunden" and
+   "Geschäftskunden" free ~95px between them.
+
+   The design drops both header extras at 1100
    (`@media(max-width:1100px){.msh-phone{display:none}.msh-bookbtn{display:none}}`
    in `SiteHeader.dc.html`), but it drops them together and that is one step too
    few here.
 
-   The design's nav is six short English words. Ours is five German ones plus a
-   German CTA label, and the row measures ~1164px against a 1160px content box —
-   so it overflowed at *every* width, pushing the language switcher off the
-   right of the screen. Splitting the rule fixes it without losing the CTA on a
-   laptop: the phone goes first, at the width where the row actually stops
-   fitting, and the button keeps the design's own 1100. The phone number is
-   still in the footer and on the contact page; the quote CTA has nowhere else
-   to be. */
+   The design's nav is six short English words. Ours is six German ones plus a
+   German CTA label, and the row overflowed at *every* width even with five,
+   pushing the language switcher off the right of the screen. The two extras are
+   still dropped separately rather than together: the phone is gone outright,
+   while the quote CTA keeps the design's own 1100px step, because it has
+   nowhere else to be. */
+.ms-phone {
+	display: none;
+}
+
 @media (max-width: 1240px) {
-	.ms-phone {
-		display: none;
-	}
 }
 
 @media (max-width: 1100px) {
@@ -306,7 +328,7 @@
 	}
 }
 
-@media (max-width: 900px) {
+@media (max-width: 1000px) {
 	.ms-burger {
 		display: flex;
 	}
@@ -448,7 +470,7 @@
 	justify-content: center;
 }
 
-@media (max-width: 900px) {
+@media (max-width: 1000px) {
 	:root.no-js .ms-header__panel {
 		left: auto;
 		max-height: none;

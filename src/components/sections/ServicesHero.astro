@@ -1,0 +1,35 @@
+---
+import Eyebrow from '../Eyebrow.astro';
+import Flourish from '../Flourish.astro';
+import Section from '../Section.astro';
+import type { Locale } from '../../i18n/config';
+import { useTranslations } from '../../i18n/ui';
+
+/*
+ * The Services hero: centred copy in a 760px column, with the big lotus
+ * watermark bleeding off the top-left.
+ *
+ * The section must not clip. The design's hero clips at the viewport because
+ * it spans the full width; this one is constrained to 1160, so clipping would
+ * cut the lotus off at the container edge instead of the screen edge.
+ *
+ * The design hard-breaks the h1 after "Tailored Cleaning". Dropped, as on the
+ * home hero: the break lands in the wrong place in the other two languages.
+ */
+interface Props {
+	locale: Locale;
+}
+
+const { locale } = Astro.props;
+const t = useTranslations(locale);
+---
+
+<Section class="ms-svc-hero" width={1160} rhythm="none" flourishes>
+	<Flourish name="lotus-hero" slot="flourish" />
+
+	<div class="ms-svc-hero__inner">
+		<Eyebrow>{t('services.hero.eyebrow')}</Eyebrow>
+		<h1 class="ms-svc-hero__title">{t('services.hero.title')}</h1>
+		<p class="ms-svc-hero__lede">{t('services.hero.lede')}</p>
+	</div>
+</Section>

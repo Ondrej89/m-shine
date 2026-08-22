@@ -2,31 +2,27 @@
 import Button from '../Button.astro';
 import Section from '../Section.astro';
 import SectionHead from '../SectionHead.astro';
-import ServiceCard, { type ServiceIcon } from '../ServiceCard.astro';
+import ServiceCard from '../ServiceCard.astro';
+import { SERVICES, type Service } from '../../data/services';
 import type { Locale } from '../../i18n/config';
 import { localizedPath } from '../../i18n/routes';
 import { useTranslations } from '../../i18n/ui';
 
 /*
- * The four-card services grid. Written to be reusable — the Services page
- * needs the same cards with a fifth entry — so the list of services is a prop
- * rather than baked in.
+ * The four-card services grid.
+ *
+ * The list comes from the catalogue in `src/data/services.ts`, which is also
+ * what the Services page's rows and the detail template read, so a service is
+ * described in exactly one place. It stays a prop so a page can show a subset.
  */
 interface Props {
 	locale: Locale;
-	/** Which services to show, in order. Keys index into `services.*` copy. */
-	services?: readonly { key: string; icon: ServiceIcon; image: string }[];
+	/** Which services to show, in order. Defaults to the whole catalogue. */
+	services?: readonly Service[];
 	showCta?: boolean;
 }
 
-const HOME_SERVICES = [
-	{ key: 'house', icon: 'house', image: '/img/photos/home-svc-house.webp' },
-	{ key: 'apartment', icon: 'apartment', image: '/img/photos/home-svc-apt.webp' },
-	{ key: 'move', icon: 'move', image: '/img/photos/home-svc-move.webp' },
-	{ key: 'deep', icon: 'deep', image: '/img/photos/home-svc-deep.webp' },
-] as const satisfies readonly { key: string; icon: ServiceIcon; image: string }[];
-
-const { locale, services = HOME_SERVICES, showCta = true } = Astro.props;
+const { locale, services = SERVICES, showCta = true } = Astro.props;
 const t = useTranslations(locale);
 ---
 
@@ -40,9 +36,9 @@ const t = useTranslations(locale);
 					title={t(`services.${service.key}.title` as 'services.house.title')}
 					description={t(`services.${service.key}.description` as 'services.house.description')}
 					imageAlt={t(`services.${service.key}.photoAlt` as 'services.house.photoAlt')}
-					image={service.image}
-					icon={service.icon}
-					href={localizedPath(locale, 'services')}
+					image={service.cardImage}
+					icon={service.key}
+					href={localizedPath(locale, service.route)}
 					linkLabel={t('services.learnMore')}
 				/>
 			))

@@ -1,0 +1,524 @@
+/* =========================================================================
+   Service detail page
+   Lifted from section 13 of the refined style.css, with its responsive steps.
+
+   On the 1200px grid — a fourth width, and the theme is explicit that it is
+   deliberate. `<Section width={1200}>` supplies it, so the theme's shared
+   `max-width` block for `.ms-sd-wrap` and friends is absent here.
+
+   One template renders four pages; nothing below is per-service.
+   ====================================================================== */
+
+.ms-sd-section-title {
+	font-size: 30px;
+	line-height: normal;
+	margin: 12px 0 22px;
+}
+
+.ms-sd-section-title--small {
+	font-size: 26px;
+	margin-bottom: 20px;
+}
+
+/* --- Breadcrumb -------------------------------------------------------- */
+
+.ms-sd-crumbs {
+	padding-block: 34px 24px;
+}
+
+.ms-crumbs {
+	align-items: center;
+	color: #4f6079;
+	display: flex;
+	flex-wrap: wrap;
+	font-size: 13.5px;
+	gap: 9px;
+	line-height: normal;
+	list-style: none;
+	margin: 0;
+	padding-left: 0;
+}
+
+.ms-crumbs li {
+	align-items: center;
+	display: flex;
+	gap: 9px;
+}
+
+.ms-crumbs__sep {
+	opacity: 0.5;
+}
+
+.ms-crumbs__current {
+	color: var(--wp--preset--color--navy);
+	font-weight: 700;
+}
+
+/* --- Hero -------------------------------------------------------------- */
+
+.ms-sd-hero {
+	padding-block: 6px 30px;
+}
+
+/* `auto-fit` with a 320px floor, which is the design's own track definition:
+   the two columns collapse on their own well before the 960px step below. */
+.ms-sd-hero__grid {
+	align-items: center;
+	display: grid;
+	gap: 50px;
+	grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+}
+
+.ms-sd-hero__copy {
+	min-width: 0;
+}
+
+.ms-sd-hero__title {
+	font-size: 50px;
+	line-height: 1.08;
+	margin: 12px 0 16px;
+}
+
+.ms-sd-hero__lede {
+	color: #3f5063;
+	font-size: 17px;
+	line-height: 1.65;
+	margin: 0 0 24px;
+	max-width: 520px;
+	text-wrap: pretty;
+}
+
+.ms-sd-hero__meta {
+	align-items: center;
+	display: flex;
+	flex-wrap: wrap;
+	gap: 20px;
+	margin-bottom: 30px;
+}
+
+.ms-sd-price {
+	align-items: baseline;
+	color: #4f6079;
+	display: inline-flex;
+	flex-wrap: wrap;
+	font-size: 14px;
+	gap: 7px;
+	line-height: normal;
+	margin: 0;
+}
+
+.ms-sd-price b {
+	color: var(--wp--preset--color--navy);
+	font-family: var(--wp--preset--font-family--playfair);
+	font-size: 30px;
+	font-weight: 600;
+}
+
+.ms-sd-price__unit {
+	color: #4f6079;
+	font-size: 14px;
+}
+
+.ms-sd-guarantee {
+	align-items: center;
+	color: var(--wp--preset--color--green-dark);
+	display: flex;
+	font-size: 13.5px;
+	font-weight: 700;
+	gap: 7px;
+	line-height: normal;
+}
+
+.ms-sd-guarantee svg {
+	flex: none;
+}
+
+.ms-sd-hero__actions {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 14px;
+}
+
+.ms-sd-hero__media {
+	border-radius: 20px;
+	margin: 0;
+	overflow: hidden;
+}
+
+.ms-sd-hero__media img {
+	display: block;
+	height: 440px;
+	object-fit: cover;
+	width: 100%;
+}
+
+/* --- Overview and facts card ------------------------------------------- */
+
+.ms-sd-body {
+	padding-block: 40px 20px;
+}
+
+.ms-sd-body__grid {
+	align-items: start;
+	display: grid;
+	gap: 44px;
+	grid-template-columns: 1.3fr 1fr;
+}
+
+.ms-sd-body__grid > * {
+	min-width: 0;
+}
+
+.ms-sd-overview__title {
+	font-size: 30px;
+	line-height: normal;
+	margin: 12px 0 16px;
+}
+
+.ms-sd-overview__text {
+	color: #3f5063;
+	font-size: 15.5px;
+	line-height: 1.75;
+	margin: 0 0 14px;
+}
+
+.ms-sd-overview__text:last-of-type {
+	margin-bottom: 26px;
+}
+
+.ms-sd-includes {
+	display: grid;
+	gap: 13px 24px;
+	grid-template-columns: 1fr 1fr;
+	list-style: none;
+	margin: 0;
+	padding-left: 0;
+}
+
+.ms-sd-include {
+	align-items: flex-start;
+	color: var(--wp--preset--color--ink);
+	display: flex;
+	font-size: 14.5px;
+	gap: 10px;
+	line-height: 1.45;
+	overflow-wrap: break-word;
+}
+
+.ms-sd-includes > *,
+.ms-sd-include > :not(svg) {
+	min-width: 0;
+}
+
+.ms-sd-include svg {
+	color: var(--wp--preset--color--green);
+	flex: none;
+	margin-top: 1px;
+}
+
+.ms-sd-facts {
+	background: var(--wp--preset--color--base);
+	border: 1px solid #e2e9f1;
+	border-radius: 18px;
+	box-shadow: 0 16px 40px rgba(15, 42, 84, 0.07);
+	padding: 28px 30px;
+}
+
+.ms-sd-facts__title {
+	font-family: var(--wp--preset--font-family--playfair);
+	font-size: 20px;
+	font-weight: 600;
+	line-height: normal;
+	margin: 0 0 18px;
+}
+
+.ms-sd-facts__list {
+	display: flex;
+	flex-direction: column;
+	gap: 16px;
+	list-style: none;
+	margin: 0;
+	padding-left: 0;
+}
+
+.ms-sd-fact {
+	align-items: center;
+	display: flex;
+	gap: 13px;
+}
+
+.ms-sd-fact > :not(.ms-sd-fact__icon) {
+	min-width: 0;
+}
+
+.ms-sd-fact__icon {
+	align-items: center;
+	background: #e7effa;
+	border-radius: 11px;
+	color: var(--wp--preset--color--blue);
+	display: flex;
+	flex: none;
+	height: 42px;
+	justify-content: center;
+	width: 42px;
+}
+
+.ms-sd-fact__label {
+	color: #4f6079;
+	display: block;
+	font-size: 12px;
+	font-weight: 700;
+	letter-spacing: 0.4px;
+	text-transform: uppercase;
+}
+
+.ms-sd-fact__value {
+	color: var(--wp--preset--color--ink);
+	font-size: 14.5px;
+	font-weight: 600;
+}
+
+.ms-sd-facts__cta {
+	display: flex;
+	font-size: 14.5px;
+	gap: 9px;
+	justify-content: center;
+	margin-top: 22px;
+	padding: 14px;
+	width: 100%;
+}
+
+/* --- Reviews ----------------------------------------------------------- */
+
+.ms-sd-reviews-section {
+	padding-block: 44px 20px;
+}
+
+.ms-sd-reviews-section .ms-section__head {
+	margin-bottom: 26px;
+}
+
+.ms-sd-reviews {
+	display: grid;
+	gap: 20px;
+	grid-template-columns: repeat(3, 1fr);
+	list-style: none;
+	margin: 0;
+	padding-left: 0;
+}
+
+.ms-sd-review {
+	background: var(--wp--preset--color--base);
+	border: 1px solid var(--wp--preset--color--line);
+	border-radius: 16px;
+	display: flex;
+	flex-direction: column;
+	height: 100%;
+	margin: 0;
+	min-width: 0;
+	padding: 24px;
+}
+
+.ms-sd-review__stars {
+	color: var(--wp--preset--color--green);
+	font-size: 14px;
+	letter-spacing: 2px;
+	margin-bottom: 12px;
+}
+
+.ms-sd-review__quote {
+	border: none;
+	flex: 1;
+	margin: 0 0 18px;
+	padding: 0;
+}
+
+.ms-sd-review__quote p {
+	color: var(--wp--preset--color--ink-soft);
+	font-size: 14px;
+	line-height: 1.65;
+	margin: 0;
+}
+
+.ms-sd-review__person {
+	align-items: center;
+	display: flex;
+	gap: 11px;
+}
+
+.ms-sd-review__name {
+	color: var(--wp--preset--color--navy);
+	display: block;
+	font-size: 13.5px;
+	font-weight: 700;
+}
+
+.ms-sd-review__role {
+	color: #8391a8;
+	font-size: 12.5px;
+}
+
+/* --- Other services ---------------------------------------------------- */
+
+.ms-sd-others-section {
+	padding-block: 44px 30px;
+}
+
+/* `auto-fit`, not the theme's `repeat(4, 1fr)`. The design has five services so
+   its row always holds four; we have four, so it holds three and a fixed
+   four-column grid left an empty track on the right. Empty tracks collapse with
+   auto-fit, so the row fills whatever the catalogue leaves — including the
+   fourth card if Housekeeping is ever added. */
+.ms-sd-others {
+	display: grid;
+	gap: 18px;
+	grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+	list-style: none;
+	margin: 0;
+	padding-left: 0;
+}
+
+.ms-sd-other {
+	background: var(--wp--preset--color--base);
+	border: 1px solid var(--wp--preset--color--line);
+	border-radius: 14px;
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+	height: 100%;
+	padding: 22px;
+	text-decoration: none;
+	transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.ms-sd-other:hover,
+.ms-sd-other:focus-visible {
+	box-shadow: 0 16px 34px rgba(15, 42, 84, 0.14);
+	transform: translateY(-4px);
+}
+
+.ms-sd-other__icon {
+	align-items: center;
+	background: #e0efe0;
+	border-radius: 11px;
+	color: var(--wp--preset--color--green);
+	display: flex;
+	flex: none;
+	height: 44px;
+	justify-content: center;
+	width: 44px;
+}
+
+.ms-sd-other__name {
+	color: var(--wp--preset--color--navy);
+	font-family: var(--wp--preset--font-family--playfair);
+	font-size: 17px;
+	font-weight: 600;
+}
+
+.ms-sd-other__link {
+	align-items: center;
+	color: var(--wp--preset--color--blue);
+	display: inline-flex;
+	font-size: 13px;
+	font-weight: 700;
+	gap: 6px;
+}
+
+.ms-sd-other__link svg {
+	flex: none;
+}
+
+/* --- Closing CTA ------------------------------------------------------- */
+
+.ms-sd-cta-section {
+	padding-block: 20px 84px;
+}
+
+.ms-sd-cta {
+	align-items: center;
+	background: var(--wp--preset--gradient--cta-band);
+	border-radius: 22px;
+	display: flex;
+	flex-wrap: wrap;
+	gap: 28px;
+	justify-content: space-between;
+	padding: 46px 50px;
+}
+
+.ms-sd-cta__copy {
+	min-width: 0;
+}
+
+.ms-sd-cta__title {
+	color: var(--wp--preset--color--base);
+	font-size: 28px;
+	line-height: normal;
+	margin: 0 0 8px;
+}
+
+.ms-sd-cta__text {
+	color: #c5d4ea;
+	font-size: 15px;
+	margin: 0;
+}
+
+.ms-sd-cta__action {
+	flex: none;
+}
+
+/* --- Responsive ------------------------------------------------------- */
+
+@media (max-width: 960px) {
+	.ms-sd-hero__grid,
+	.ms-sd-body__grid {
+		grid-template-columns: 1fr;
+	}
+
+	/* Photo above the copy, as everywhere else on the site once stacked. */
+	.ms-sd-hero__media {
+		order: -1;
+	}
+
+	.ms-sd-hero__media img {
+		height: 300px;
+	}
+}
+
+/* Service detail draws its own two steps at 760 and 520 rather than the shared
+   720/480 — the design does, and the card rows need the extra room. */
+@media (max-width: 760px) {
+	.ms-sd-reviews,
+	.ms-sd-others {
+		grid-template-columns: 1fr 1fr;
+	}
+
+	/* 50 -> 30 here, then *up* to 34 at 520. That is the design's own curve: its
+	   `.h2` rule takes every heading to 30, and a separate rule pulls the hero
+	   title back up on phones. */
+	.ms-sd-hero__title {
+		font-size: 30px;
+	}
+}
+
+@media (max-width: 520px) {
+	.ms-sd-reviews,
+	.ms-sd-others,
+	.ms-sd-includes {
+		grid-template-columns: 1fr;
+	}
+
+	.ms-sd-hero__title {
+		font-size: 34px;
+	}
+
+	.ms-sd-section-title,
+	.ms-sd-overview__title,
+	.ms-sd-cta__title {
+		font-size: 26px;
+	}
+
+	.ms-sd-cta {
+		padding: 32px 24px;
+	}
+}

@@ -1,0 +1,53 @@
+---
+import Eyebrow from '../Eyebrow.astro';
+import Icon, { type IconName } from '../Icon.astro';
+import Section from '../Section.astro';
+import { SERVICES, type Service } from '../../data/services';
+import type { Locale } from '../../i18n/config';
+import { localizedPath } from '../../i18n/routes';
+import { useTranslations } from '../../i18n/ui';
+
+/*
+ * The other three services, as cards linking to their own detail pages.
+ *
+ * The list comes from the catalogue minus the current service, so adding a
+ * service anywhere means adding it once, in `src/data/services.ts`.
+ */
+interface Props {
+	locale: Locale;
+	service: Service;
+}
+
+const { locale, service } = Astro.props;
+const t = useTranslations(locale);
+
+const others = SERVICES.filter((entry) => entry.key !== service.key);
+---
+
+<Section class="ms-sd-others-section" width={1200} rhythm="none">
+	<Eyebrow>{t('services.detailPage.othersEyebrow')}</Eyebrow>
+	<h2 class="ms-sd-section-title ms-sd-section-title--small">
+		{t('services.detailPage.othersTitle')}
+	</h2>
+
+	<ul class="ms-sd-others">
+		{
+			others.map((other) => (
+				<li>
+					<a class="ms-sd-other" href={localizedPath(locale, other.route)}>
+						<span class="ms-sd-other__icon">
+							<Icon name={other.icon as IconName} size={21} stroke={1.9} />
+						</span>
+						<b class="ms-sd-other__name">
+							{t(`services.${other.key}.title` as 'services.house.title')}
+						</b>
+						<span class="ms-sd-other__link">
+							{t('services.detailPage.othersLink')}
+							<Icon name="arrow-right" size={14} />
+						</span>
+					</a>
+				</li>
+			))
+		}
+	</ul>
+</Section>

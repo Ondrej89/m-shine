@@ -47,6 +47,32 @@ html {
 	}
 }
 
+/* A page shorter than the screen must still put its footer at the bottom.
+
+   Contact is the page that needs it — measured at 1024x1366 (iPad Pro
+   portrait) it renders 1333px, and the last 33px showed the page background
+   below the navy footer. The Placeholder pages are shorter still. Nothing
+   overflows and nothing is misaligned; the document simply does not reach the
+   bottom, so `<main>` takes up the slack and the footer keeps its own height.
+
+   The theme scopes this to Contact with a body class because WordPress buries
+   the page in a wrapper it cannot select. There is no wrapper here — header,
+   main and footer are body's own children — so it costs one rule and applies
+   everywhere, which is what a short page wants on any of them.
+
+   `100vh`, not `100dvh`: on a phone the two differ by the browser chrome, and
+   the larger value is the safe one — it can only push the footer below the
+   fold, never leave a gap. */
+body {
+	display: flex;
+	flex-direction: column;
+	min-height: 100vh;
+}
+
+.ms-main {
+	flex: 1 0 auto;
+}
+
 body {
 	background-color: var(--ms-color-sky);
 	color: var(--ms-color-ink);

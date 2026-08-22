@@ -1,0 +1,49 @@
+---
+import Flourish from '../components/Flourish.astro';
+import ServiceRows from '../components/sections/ServiceRows.astro';
+import ServicesCta from '../components/sections/ServicesCta.astro';
+import ServicesHero from '../components/sections/ServicesHero.astro';
+import ServicesTrust from '../components/sections/ServicesTrust.astro';
+import PageLayout from '../layouts/PageLayout.astro';
+import type { Locale } from '../i18n/config';
+import type { RouteId } from '../i18n/routes';
+import { useTranslations } from '../i18n/ui';
+
+/*
+ * The Services page — private households only. Four sections: the hero, the
+ * four residential rows, the trust row and the closing CTA.
+ *
+ * Commercial work is its own page now (`Commercial.astro`), with its own
+ * audience, its own sectors and its own way of quoting. It is not a section
+ * here and must not come back as one.
+ *
+ * Everything here sits on the 1160px grid rather than the 1240px Home and
+ * About use — the design draws this page narrower, and `<Section width={1160}>`
+ * on each section is what says so.
+ *
+ * The botanical cluster is a page-level flourish: the design anchors it to the
+ * top of the document, behind the header, which is why it hangs off `<main>`.
+ */
+interface Props {
+	locale: Locale;
+	route: RouteId;
+}
+
+const { locale, route } = Astro.props;
+const t = useTranslations(locale);
+---
+
+<PageLayout
+	locale={locale}
+	route={route}
+	title={`${t('meta.services.title')} | ${t('site.name')}`}
+	description={t('meta.services.description')}
+	pageClass="ms-main--services"
+>
+	<Flourish name="services-cluster" slot="flourish" />
+
+	<ServicesHero locale={locale} />
+	<ServiceRows locale={locale} />
+	<ServicesTrust locale={locale} />
+	<ServicesCta locale={locale} />
+</PageLayout>

@@ -1,0 +1,47 @@
+---
+import Icon, { type IconName } from '../Icon.astro';
+import Section from '../Section.astro';
+import type { Locale } from '../../i18n/config';
+import { useTranslations } from '../../i18n/ui';
+
+/*
+ * The trust row: three claims separated by hairlines.
+ *
+ * Three, not the design's four — "Insured & Bonded" is gone for the same
+ * reason it went from the home hero, and the same reason it went from About:
+ * the client cannot substantiate it.
+ *
+ * The strings are the home hero's `home.trust.*` rather than a second set. It
+ * is the same row making the same three claims, and when the client revises
+ * the wording it should change in one place, not two.
+ */
+interface Props {
+	locale: Locale;
+}
+
+const { locale } = Astro.props;
+const t = useTranslations(locale);
+
+const TRUST = [
+	{ key: 'eco', icon: 'leaf', tone: 'green' },
+	{ key: 'guarantee', icon: 'shield-check', tone: 'blue' },
+	{ key: 'checked', icon: 'user-check', tone: 'green' },
+] as const;
+---
+
+<Section class="ms-svc-trust-section" width={1160} rhythm="none">
+	<ul class="ms-svc-trust">
+		{
+			TRUST.map((item) => (
+				<li class="ms-svc-trust__item">
+					<span class={`ms-svc-trust__icon ms-svc-trust__icon--${item.tone}`}>
+						<Icon name={item.icon as IconName} size={21} stroke={1.9} />
+					</span>
+					<span class="ms-svc-trust__label">
+						{t(`home.trust.${item.key}` as 'home.trust.eco')}
+					</span>
+				</li>
+			))
+		}
+	</ul>
+</Section>

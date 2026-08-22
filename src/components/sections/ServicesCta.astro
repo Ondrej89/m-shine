@@ -1,0 +1,55 @@
+---
+import Button from '../Button.astro';
+import Eyebrow from '../Eyebrow.astro';
+import Section from '../Section.astro';
+import type { Locale } from '../../i18n/config';
+import { localizedPath } from '../../i18n/routes';
+import { useTranslations } from '../../i18n/ui';
+
+/*
+ * The closing CTA: copy over a photo, darkened left-to-right by a gradient so
+ * the text stays readable while the photo still reads on the right.
+ *
+ * The design's headline was "Book Your Cleaning Today and Relax Tomorrow" and
+ * its lede promised "trusted, insured, and satisfaction guaranteed". Both are
+ * changed: there is no booking, and the insured claim is one the client cannot
+ * substantiate — it was removed from the home hero and from About for the same
+ * reason. The two actions are the quote request and the contact page.
+ */
+interface Props {
+	locale: Locale;
+}
+
+const { locale } = Astro.props;
+const t = useTranslations(locale);
+---
+
+<Section class="ms-svc-cta-section" width={1160} rhythm="none">
+	<div class="ms-svc-cta">
+		<figure class="ms-svc-cta__media">
+			<img
+				src="/img/photos/srv-cta.webp"
+				alt={t('services.cta.photoAlt')}
+				width="1200"
+				height="675"
+				loading="lazy"
+				decoding="async"
+			/>
+		</figure>
+
+		<div class="ms-svc-cta__copy">
+			<Eyebrow>{t('services.cta.eyebrow')}</Eyebrow>
+			<h2 class="ms-svc-cta__title">{t('services.cta.title')}</h2>
+			<p class="ms-svc-cta__lede">{t('services.cta.lede')}</p>
+
+			<div class="ms-svc-cta__actions">
+				<Button variant="blue" href={localizedPath(locale, 'quote')} icon="arrow-right">
+					{t('nav.quote')}
+				</Button>
+				<Button variant="light" href={localizedPath(locale, 'contact')}>
+					{t('services.cta.secondary')}
+				</Button>
+			</div>
+		</div>
+	</div>
+</Section>

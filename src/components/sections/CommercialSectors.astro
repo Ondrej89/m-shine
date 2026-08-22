@@ -1,0 +1,81 @@
+---
+import Button from '../Button.astro';
+import Icon, { type IconName } from '../Icon.astro';
+import Section from '../Section.astro';
+import SectionHead from '../SectionHead.astro';
+import type { Locale } from '../../i18n/config';
+import { localizedPath } from '../../i18n/routes';
+import { useTranslations } from '../../i18n/ui';
+
+/*
+ * The five sectors, each with a paragraph and three specifics.
+ *
+ * The cards are the old commercial strip's — same icons, same tinted chips —
+ * but carrying real copy instead of a bare label, so they are three across and
+ * left-aligned. The bullets reuse the Services rows' tick list.
+ */
+interface Props {
+	locale: Locale;
+}
+
+const { locale } = Astro.props;
+const t = useTranslations(locale);
+
+const SECTORS = [
+	{ key: 'one', icon: 'office', tone: 'blue' },
+	{ key: 'two', icon: 'clinic', tone: 'green' },
+	{ key: 'three', icon: 'bed', tone: 'blue' },
+	{ key: 'four', icon: 'restaurant', tone: 'green' },
+	{ key: 'five', icon: 'apartments', tone: 'blue' },
+] as const;
+
+const POINTS = ['one', 'two', 'three'] as const;
+---
+
+<Section class="ms-b2b-sectors" width={1160} rhythm="none" band>
+	<SectionHead
+		eyebrow={t('commercial.sectorsEyebrow')}
+		title={t('commercial.sectorsTitle')}
+		divider={false}
+	>
+		<p class="ms-b2b-sectors__lede">{t('commercial.sectorsLede')}</p>
+	</SectionHead>
+
+	<ul class="ms-comm-grid">
+		{
+			SECTORS.map((sector) => (
+				<li class="ms-comm-card">
+					<span class={`ms-comm-card__icon ms-comm-card__icon--${sector.tone}`}>
+						<Icon name={sector.icon as IconName} size={24} stroke={1.8} />
+					</span>
+
+					<h3 class="ms-comm-card__label">
+						{t(`commercial.sectors.${sector.key}.title` as 'commercial.sectors.one.title')}
+					</h3>
+					<p class="ms-comm-card__body">
+						{t(`commercial.sectors.${sector.key}.body` as 'commercial.sectors.one.body')}
+					</p>
+
+					<ul class="ms-svc-feats">
+						{POINTS.map((point) => (
+							<li class="ms-svc-feat">
+								<Icon class="ms-svc-feat__tick" name="check" size={15} stroke={2.4} />
+								<span>
+									{t(
+										`commercial.sectors.${sector.key}.points.${point}` as 'commercial.sectors.one.points.one',
+									)}
+								</span>
+							</li>
+						))}
+					</ul>
+				</li>
+			))
+		}
+	</ul>
+
+	<div class="ms-b2b-actions">
+		<Button variant="primary" href={localizedPath(locale, 'quote')} icon="arrow-right">
+			{t('nav.quote')}
+		</Button>
+	</div>
+</Section>

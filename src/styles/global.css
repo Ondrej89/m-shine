@@ -22,6 +22,10 @@
 @import './components/before-after.css';
 @import './components/cta-band.css';
 @import './components/about.css';
+@import './components/services.css';
+@import './components/service-detail.css';
+@import './components/contact.css';
+@import './components/commercial.css';
 @import './components/flourishes.css';
 @import './components/header.css';
 @import './components/footer.css';

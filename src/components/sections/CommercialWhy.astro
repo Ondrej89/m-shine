@@ -1,0 +1,49 @@
+---
+import Section from '../Section.astro';
+import SectionHead from '../SectionHead.astro';
+import type { Locale } from '../../i18n/config';
+import { useTranslations } from '../../i18n/ui';
+
+/*
+ * The long-form "Warum Magic Shine?" — the client's five reasons, written out
+ * for a business reader rather than compressed to the one-liners the home page
+ * uses.
+ *
+ * A reading column, not cards: these are meant to be read in order, and the
+ * home page already has the scannable version. Same five reasons, same order,
+ * so the two pages agree.
+ */
+interface Props {
+	locale: Locale;
+}
+
+const { locale } = Astro.props;
+const t = useTranslations(locale);
+
+const REASONS = ['one', 'two', 'three', 'four', 'five'] as const;
+---
+
+<Section class="ms-b2b-why" width={1160} rhythm="none">
+	<SectionHead
+		eyebrow={t('commercial.whyEyebrow')}
+		title={t('commercial.whyTitle')}
+		divider={false}
+	>
+		<p class="ms-b2b-sectors__lede">{t('commercial.whyLede')}</p>
+	</SectionHead>
+
+	<ol class="ms-b2b-why__list">
+		{
+			REASONS.map((reason) => (
+				<li class="ms-b2b-why__item">
+					<h3 class="ms-b2b-why__title">
+						{t(`commercial.why.${reason}.title` as 'commercial.why.one.title')}
+					</h3>
+					<p class="ms-b2b-why__body">
+						{t(`commercial.why.${reason}.body` as 'commercial.why.one.body')}
+					</p>
+				</li>
+			))
+		}
+	</ol>
+</Section>

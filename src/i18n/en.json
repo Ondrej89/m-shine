@@ -8,12 +8,14 @@
     "languageLabel": "Language",
     "currentLanguage": "Current language",
     "menu": "Menu",
-    "mainNav": "Main navigation"
+    "mainNav": "Main navigation",
+    "breadcrumb": "Breadcrumb"
   },
   "nav": {
     "home": "Home",
     "about": "About Us",
-    "services": "Services",
+    "services": "Residential",
+    "commercial": "Commercial",
     "pricing": "Pricing",
     "contact": "Contact",
     "quote": "Request a Quote"
@@ -25,6 +27,34 @@
     "home": {
       "title": "Cleaning Company in Vienna",
       "description": "Professional house, apartment, move-out and deep cleaning in Vienna. Insured, background-checked teams and eco-friendly products. Request your free quote today."
+    },
+    "services": {
+      "title": "Home Cleaning Services in Vienna",
+      "description": "House, apartment, move-out and deep cleaning for private homes in Vienna. Trained staff, eco-friendly products. Request your free quote today."
+    },
+    "serviceHouse": {
+      "title": "House Cleaning in Vienna",
+      "description": "Regular house cleaning in Vienna: dusting, floors, kitchen and bathroom every visit. Eco-friendly products, one personal contact. Request a quote."
+    },
+    "serviceApartment": {
+      "title": "Apartment Cleaning in Vienna",
+      "description": "Apartment cleaning in Vienna for every size: all rooms, appliances, floors and bathroom. Flexible scheduling, eco-friendly products. Request a quote."
+    },
+    "serviceMove": {
+      "title": "Move-Out Cleaning in Vienna",
+      "description": "Move-in and move-out cleaning in Vienna: inside cabinets, appliances, baseboards, windows. Handover-ready. Request a quote."
+    },
+    "serviceDeep": {
+      "title": "Deep Cleaning in Vienna",
+      "description": "Deep cleaning in Vienna from floor to ceiling: grout, behind appliances, windows, baseboards. Ideal before an occasion. Request a quote."
+    },
+    "contact": {
+      "title": "Contact – Cleaning Company in Vienna",
+      "description": "Questions about house, apartment or deep cleaning in Vienna? Send us a message and we will come back to you with a free quote."
+    },
+    "commercial": {
+      "title": "Office & Commercial Cleaning in Vienna",
+      "description": "Office, medical practice, hotel, restaurant and property cleaning in Vienna. Individually calculated, written quote within 24–48 hours."
     },
     "about": {
       "title": "About Us – Your Cleaning Team in Vienna",
@@ -116,18 +146,138 @@
     "viewAll": "View All Services",
     "house": {
       "title": "House Cleaning",
+      "nameInline": "house cleaning",
       "description": "Regular cleaning to keep your home fresh, clean and comfortable.",
-      "photoAlt": "A tidy, sunlit living room"
+      "photoAlt": "A tidy, sunlit living room",
+      "detail": "Regular cleaning to keep your home fresh, clean and comfortable — dusting, floors, kitchens and bathrooms every visit.",
+      "rowPhotoAlt": "A bright, freshly cleaned living room with two sofas",
+      "features": {
+        "one": "Dusting & surfaces",
+        "two": "Vacuum & mop",
+        "three": "Kitchen & baths",
+        "four": "Tidy living areas"
+      },
+      "lede": "Regular, thorough cleaning that keeps your whole home fresh and comfortable — visit after visit.",
+      "heroPhotoAlt": "A bright living room after a Magic Shine clean",
+      "overviewOne": "Our house cleaning covers every room your family lives in, from living areas and bedrooms to kitchens and bathrooms. We dust, vacuum, mop and sanitise the surfaces that matter most.",
+      "overviewTwo": "Set it to a schedule that suits you — weekly, fortnightly or monthly — and come home to a spotless space without lifting a finger.",
+      "includes": {
+        "one": "Dusting all surfaces",
+        "two": "Vacuum & mop floors",
+        "three": "Kitchen clean & sanitise",
+        "four": "Bathroom scrub & sanitise",
+        "five": "Beds made & tidying",
+        "six": "Trash removed"
+      },
+      "frequency": "Weekly / fortnightly / monthly",
+      "price": "€120",
+      "reviews": {
+        "one": {
+          "quote": "Our home has never been cleaner. The team is thorough and always on time.",
+          "name": "Jessica M.",
+          "role": "Homeowner"
+        },
+        "two": {
+          "quote": "Weekly cleaning has given us our weekends back. Worth every cent.",
+          "name": "Priya S.",
+          "role": "Working Parent"
+        },
+        "three": {
+          "quote": "Reliable, friendly and detail-oriented. Highly recommend.",
+          "name": "Marcus T.",
+          "role": "Homeowner"
+        }
+      }
     },
     "apartment": {
       "title": "Apartment Cleaning",
+      "nameInline": "apartment cleaning",
       "description": "Perfect for apartments and condos of all sizes.",
-      "photoAlt": "A clean, modern kitchen"
+      "photoAlt": "A clean, modern kitchen",
+      "detail": "Perfect for apartments and condos of all sizes. Efficient, thorough cleaning tailored to smaller, well-loved spaces.",
+      "rowPhotoAlt": "A Magic Shine cleaner wiping down the counter in a bright kitchen",
+      "features": {
+        "one": "All rooms cleaned",
+        "two": "Compact-space care",
+        "three": "Appliance wipe-down",
+        "four": "Flexible scheduling"
+      },
+      "lede": "Efficient, detailed cleaning designed for apartments of every size.",
+      "heroPhotoAlt": "A bright, freshly cleaned kitchen",
+      "overviewOne": "Compact spaces deserve just as much care. We clean every room of your apartment, making the most of smaller layouts with an efficient, meticulous routine.",
+      "overviewTwo": "Perfect for renters, owners and busy professionals who want a consistently tidy place with flexible scheduling.",
+      "includes": {
+        "one": "All rooms cleaned",
+        "two": "Compact-space care",
+        "three": "Appliance wipe-down",
+        "four": "Floors vacuumed & mopped",
+        "five": "Bathroom sanitised",
+        "six": "Flexible scheduling"
+      },
+      "frequency": "Weekly / fortnightly / monthly",
+      "price": "€110",
+      "reviews": {
+        "one": {
+          "quote": "Perfect for my flat. Quick, quiet and spotless every time.",
+          "name": "Liam O.",
+          "role": "Apartment Owner"
+        },
+        "two": {
+          "quote": "They work around my schedule and never miss a detail.",
+          "name": "Sofia D.",
+          "role": "Renter"
+        },
+        "three": {
+          "quote": "My apartment feels brand new after every visit.",
+          "name": "Nina K.",
+          "role": "Professional"
+        }
+      }
     },
     "move": {
       "title": "Move In / Move Out",
+      "nameInline": "move-in / move-out clean",
       "description": "We make moving easy with a spotless clean space.",
-      "photoAlt": "Stacked moving boxes in an empty room"
+      "photoAlt": "Stacked moving boxes in an empty room",
+      "detail": "We make moving easy with a spotless, top-to-bottom clean — perfect for handing back keys or settling into a new home.",
+      "rowPhotoAlt": "A Magic Shine cleaner with her caddy being welcomed at the front door",
+      "features": {
+        "one": "Inside cabinets",
+        "two": "Appliances detailed",
+        "three": "Baseboards & walls",
+        "four": "Move-ready finish"
+      },
+      "lede": "A spotless, top-to-bottom clean for handing back keys or settling into a new home.",
+      "heroPhotoAlt": "A Magic Shine cleaner with her caddy being welcomed at the front door",
+      "overviewOne": "Moving is stressful enough. We take the cleaning off your plate with a deep, detailed reset — inside cabinets, appliances, baseboards and every corner.",
+      "overviewTwo": "Ideal for tenants chasing a deposit back, landlords prepping a flat, or anyone who wants a fresh start in a brand-new space.",
+      "includes": {
+        "one": "Inside cabinets & drawers",
+        "two": "Appliances detailed",
+        "three": "Baseboards & walls",
+        "four": "Windows & sills",
+        "five": "Full bathroom reset",
+        "six": "Move-ready finish"
+      },
+      "frequency": "One-time",
+      "price": "€150",
+      "reviews": {
+        "one": {
+          "quote": "Got my full deposit back thanks to how spotless they left it.",
+          "name": "Emily W.",
+          "role": "Tenant"
+        },
+        "two": {
+          "quote": "Turned our new place around before move-in day. Flawless.",
+          "name": "David R.",
+          "role": "Homeowner"
+        },
+        "three": {
+          "quote": "I use them for every changeover now. Dependable.",
+          "name": "Carlos V.",
+          "role": "Landlord"
+        }
+      }
     },
     "housekeeping": {
       "title": "Housekeeping",
@@ -136,8 +286,195 @@
     },
     "deep": {
       "title": "Deep Cleaning",
+      "nameInline": "deep clean",
       "description": "A detailed clean for those extra special occasions.",
-      "photoAlt": "A spotless, gleaming bathroom"
+      "photoAlt": "A spotless, gleaming bathroom",
+      "detail": "A detailed, floor-to-ceiling clean for those extra special occasions or when your home needs a full reset.",
+      "rowPhotoAlt": "A Magic Shine cleaner polishing the shower screen in a marble bathroom",
+      "features": {
+        "one": "Grout & tile scrub",
+        "two": "Behind appliances",
+        "three": "Detailed dusting",
+        "four": "Windows & sills"
+      },
+      "lede": "A detailed, floor-to-ceiling reset for special occasions or when your home needs it most.",
+      "heroPhotoAlt": "A Magic Shine cleaner polishing the shower screen in a marble bathroom",
+      "overviewOne": "Our most thorough service reaches the places routine cleaning misses — grout, behind appliances, detailed dusting, windows and sills all get careful attention.",
+      "overviewTwo": "Perfect before a big event, at the change of seasons, or as the ideal first clean before starting a recurring plan.",
+      "includes": {
+        "one": "Grout & tile scrub",
+        "two": "Behind appliances",
+        "three": "Detailed dusting",
+        "four": "Windows & sills",
+        "five": "Baseboards & trim",
+        "six": "Full sanitise"
+      },
+      "frequency": "One-time or seasonal",
+      "price": "€180",
+      "reviews": {
+        "one": {
+          "quote": "The difference was night and day. They reached spots I forgot existed.",
+          "name": "Olivia N.",
+          "role": "Homeowner"
+        },
+        "two": {
+          "quote": "Booked it before hosting and my guests were stunned. Immaculate.",
+          "name": "Ryan L.",
+          "role": "Host"
+        },
+        "three": {
+          "quote": "Best deep clean we have ever had, hands down.",
+          "name": "Grace F.",
+          "role": "Homeowner"
+        }
+      }
+    },
+    "hero": {
+      "eyebrow": "Our Services",
+      "title": "Tailored Cleaning for Every Space",
+      "lede": "We provide a wide range of cleaning services customised to your needs — from routine upkeep to deep, detailed transformations."
+    },
+    "commercial": {
+      "eyebrow": "Beyond the Home",
+      "title": "Commercial & Specialised Cleaning",
+      "lede": "Every business is different. These services are tailored to your space and quoted individually — not booked online. Tell us what you need and we will build a plan and a price around it.",
+      "office": "Office Cleaning",
+      "medical": "Medical & Dental Practices",
+      "restaurant": "Restaurants",
+      "school": "Schools",
+      "residential": "Residential Buildings"
+    },
+    "cta": {
+      "eyebrow": "Ready for a Cleaner Home?",
+      "title": "Ask Today, Relax Tomorrow",
+      "lede": "Experience the Magic Shine difference — reliable, thorough and satisfaction guaranteed.",
+      "secondary": "Get in Touch",
+      "photoAlt": "A family and their dog relaxing in their bright, clean living room"
+    },
+    "detailPage": {
+      "priceLabel": "from",
+      "priceUnit": "per visit",
+      "overviewEyebrow": "Overview",
+      "overviewTitle": "What This Service Includes",
+      "factsTitle": "Service Details",
+      "factDuration": "Duration",
+      "factTeam": "Team",
+      "factFrequency": "Frequency",
+      "factProducts": "Products",
+      "durationValue": "From 2 hours",
+      "teamValue": "1+ cleaner",
+      "productsValue": "Eco-friendly, pet-safe",
+      "reviewsEyebrow": "Verified Reviews",
+      "reviewsTitle": "What Clients Say About {service}",
+      "othersEyebrow": "Explore More",
+      "othersTitle": "Other Services",
+      "othersLink": "View details",
+      "ctaTitle": "Ready for your {service}?",
+      "ctaText": "Reliable, thorough and satisfaction guaranteed — every visit."
+    }
+  },
+  "commercial": {
+    "heroEyebrow": "For Business",
+    "heroTitle": "Office, Practice and Hotel Cleaning in Vienna",
+    "heroLede": "We take on the day-to-day cleaning for offices, medical practices, hotels, restaurants and property managers — reliably, discreetly and built around how you work.",
+    "heroCta": "Request a Quote",
+    "heroNote": "An individual quote, in writing within 24–48 hours.",
+    "sectorsEyebrow": "What We Do for Businesses",
+    "sectorsTitle": "Cleaning for Your Sector",
+    "sectorsLede": "Every sector makes different demands on hygiene, timing and discretion. We learn how your premises run rather than working through a standard package.",
+    "whyEyebrow": "Why Magic Shine",
+    "whyTitle": "Five Reasons Businesses Stay",
+    "whyLede": "What clients in Vienna value about working with us — and why a first job usually turns into a long-term arrangement.",
+    "priceEyebrow": "Pricing",
+    "priceTitle": "How a Quote Comes Together",
+    "priceLede": "There is no price list for commercial premises, and for good reason: two offices with the same floor area can mean very different amounts of work. We calculate along three factors.",
+    "priceNote": "After your enquiry we look at the premises — on site, or from plans and photos — and you normally receive a written, no-obligation quote within 24 to 48 hours.",
+    "ctaTitle": "Let's Talk About Your Premises",
+    "ctaText": "Tell us which areas are involved and when they need cleaning — we will come back with a concrete quote.",
+    "ctaAction": "Request a Quote",
+    "ctaSecondary": "Get in Touch",
+    "sectors": {
+      "one": {
+        "title": "Office Cleaning",
+        "body": "From a single office to a whole floor: workstations, meeting rooms, kitchens and washrooms are cleaned before or after your business hours so work never stops. Interior glass and consumables can be included on request.",
+        "points": {
+          "one": "Cleaning outside office hours",
+          "two": "Kitchens, washrooms and meeting rooms",
+          "three": "Key and alarm handling by arrangement"
+        }
+      },
+      "two": {
+        "title": "Medical Practice Cleaning",
+        "body": "Medical and dental practices call for a different kind of care than an office. We work to your hygiene plan, keep treatment and waiting areas properly separated, and document the work when you need it for your records.",
+        "points": {
+          "one": "Work to your hygiene plan",
+          "two": "Treatment and waiting areas kept separate",
+          "three": "Documentation on request"
+        }
+      },
+      "three": {
+        "title": "Hotel Cleaning",
+        "body": "For hotels, serviced apartments and boarding houses we handle room cleaning, linen changes and the public areas — at short notice too, when occupancy shifts. When you are full we add people rather than move appointments.",
+        "points": {
+          "one": "Rooms, linen and public areas",
+          "two": "Extra staff at short notice",
+          "three": "Coordinated with reception and housekeeping"
+        }
+      },
+      "four": {
+        "title": "Restaurant Cleaning",
+        "body": "Dining room, kitchen and washrooms are cleaned before opening or after closing time. We know what food hygiene requires and work so that your kitchen is ready to go when you open.",
+        "points": {
+          "one": "Cleaning before opening or after closing",
+          "two": "Dining room, kitchen and washrooms",
+          "three": "Aligned with food hygiene requirements"
+        }
+      },
+      "five": {
+        "title": "Property Management",
+        "body": "For property managers and owners' associations we look after stairwells, corridors, laundry and bin rooms and outdoor areas on an agreed schedule. One contact handles every building, so you are not re-coordinating for each address.",
+        "points": {
+          "one": "Stairwells, corridors and ancillary rooms",
+          "two": "A fixed, documented schedule",
+          "three": "One contact for every building"
+        }
+      }
+    },
+    "why": {
+      "one": {
+        "title": "Reliability",
+        "body": "For a business, a missed clean is not a cosmetic issue — it is a problem the next morning. We arrive in the agreed window, including at either end of the day, and tell you ourselves if something comes up. Holidays and sick leave are covered by us, without you having to ask; ideally you never notice the change."
+      },
+      "two": {
+        "title": "Quality",
+        "body": "Thoroughness shows in the places you only notice on second glance: skirting boards, door handles, the strip behind the door, the seal around the basin. We work to a fixed checklist per site so the standard does not depend on the day, and we go through that list with you periodically."
+      },
+      "three": {
+        "title": "Professionalism",
+        "body": "Our staff are trained, properly employed and background-checked. They move through your premises the way you should move through someone else's: discreetly, without leafing through paperwork, with respect for what is on the desks. Where confidentiality is required — in a medical practice, for instance — we put it in writing."
+      },
+      "four": {
+        "title": "Flexibility",
+        "body": "Businesses change: a floor is added, opening hours shift, an event needs one extra visit. We adjust the schedule and the scope rather than insisting on an annual contract, and we invoice what was actually done."
+      },
+      "five": {
+        "title": "A Personal Approach",
+        "body": "You have one contact who knows your site — not a hotline and not a rotating cast. That person has been there, knows where the key hangs and which room is occupied on Wednesdays, and is reachable when something has to run differently at short notice."
+      }
+    },
+    "factors": {
+      "one": {
+        "title": "Floor area",
+        "body": "Square metres, number of rooms and what is in them. An open-plan office is quicker than the same area split into 20 individual offices with washrooms and a kitchenette."
+      },
+      "two": {
+        "title": "Frequency",
+        "body": "Daily, three times a week or once a week. A higher frequency noticeably lowers the effort per visit because less builds up — so the price per clean falls with it."
+      },
+      "three": {
+        "title": "Access",
+        "body": "When we can work and how we get in. Cleaning during business hours takes longer than after closing; key handover, alarm systems and lift access all shape the schedule."
+      }
     }
   },
   "why": {
@@ -219,6 +556,51 @@
       "quote": "Spotless results and eco-friendly products. Couldn't ask for more.",
       "name": "Liam O.",
       "role": "Condo Owner"
+    }
+  },
+  "contact": {
+    "faqEyebrow": "Frequently Asked Questions",
+    "faqTitle": "Got Questions? We've Got Answers.",
+    "help": "Need more help? Get in touch any time.",
+    "eyebrow": "Contact Us",
+    "title": "Let's Make Your Home Shine",
+    "intro": "Send us a few details about what you need — we will come back to you shortly with a free quote.",
+    "labelPhone": "Phone",
+    "labelEmail": "Email",
+    "labelAddress": "Address",
+    "labelHours": "Business Hours",
+    "hoursWeek": "Mon – Fri: 8am – 6pm",
+    "hoursWeekend": "Sat: 9am – 3pm",
+    "formName": "Your name",
+    "formEmail": "Your email address",
+    "formMessage": "Your message",
+    "formSubmit": "Send message",
+    "formPending": "This form is not live yet. Please email or call us directly — we will come back to you shortly.",
+    "faqs": {
+      "one": {
+        "q": "What is included in a standard cleaning?",
+        "a": "Dusting, vacuuming, mopping, cleaning and sanitising the kitchen and bathroom, and tidying all standard living areas. Deep-cleaning work can be added on request."
+      },
+      "two": {
+        "q": "Do I need to be home during the cleaning?",
+        "a": "Not at all. Many clients arrange access and go about their day. We agree how we get in with you beforehand, in person."
+      },
+      "three": {
+        "q": "What if I am not satisfied with the cleaning?",
+        "a": "Tell us within 24 hours and we will re-clean the area free of charge. That is what our satisfaction guarantee means."
+      },
+      "four": {
+        "q": "Do you bring your own cleaning supplies?",
+        "a": "Yes — we arrive with professional, eco-friendly products and the equipment we need. If you would rather we used your own products, just say so."
+      },
+      "five": {
+        "q": "Can I customise my cleaning plan?",
+        "a": "Of course. Extras, focus areas and a recurring schedule can be combined however you like — we work it out together when you enquire."
+      },
+      "six": {
+        "q": "How do I pay?",
+        "a": "You receive an invoice after the visit. We agree the payment method when you enquire, so it suits you."
+      }
     }
   },
   "footer": {

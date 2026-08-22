@@ -1,0 +1,74 @@
+---
+import Breadcrumbs, { type Crumb } from '../components/Breadcrumbs.astro';
+import OtherServices from '../components/sections/OtherServices.astro';
+import Section from '../components/Section.astro';
+import ServiceDetailCta from '../components/sections/ServiceDetailCta.astro';
+import ServiceDetailHero from '../components/sections/ServiceDetailHero.astro';
+import ServiceOverview from '../components/sections/ServiceOverview.astro';
+import ServiceReviews from '../components/sections/ServiceReviews.astro';
+import PageLayout from '../layouts/PageLayout.astro';
+import { serviceForRoute } from '../data/services';
+import type { Locale } from '../i18n/config';
+import { localizedPath, type RouteId } from '../i18n/routes';
+import { useTranslations } from '../i18n/ui';
+
+/*
+ * The service detail template. One component, four pages: the route registry
+ * has an entry per service and `serviceForRoute` turns the route back into a
+ * catalogue entry, so nothing here is written per service.
+ *
+ * The gallery section the design draws between the overview and the reviews is
+ * NOT here. Its four cells are empty slots in the reference — there is no
+ * photography for them — and four grey boxes are worse than no section. The
+ * theme's `.ms-sd-gallery` rules are left out with it; both come back together
+ * when the client supplies photos. See the pre-launch list.
+ */
+interface Props {
+	locale: Locale;
+	route: RouteId;
+}
+
+const { locale, route } = Astro.props;
+const t = useTranslations(locale);
+
+const service = serviceForRoute(route);
+if (!service) {
+	/* Unreachable via the router — every route mapped to this component is in
+	   the catalogue — but a wrong entry should fail the build, not render a
+	   half-empty page. */
+	throw new Error(`ServiceDetail rendered for "${route}", which is not a service route.`);
+}
+
+const name = t(`services.${service.key}.title` as 'services.house.title');
+
+const crumbs: Crumb[] = [
+	{ label: t('nav.home'), href: localizedPath(locale, 'home') },
+	{ label: t('nav.services'), href: localizedPath(locale, 'services') },
+	{ label: name },
+];
+
+const metaKey = {
+	house: 'meta.serviceHouse',
+	apartment: 'meta.serviceApartment',
+	move: 'meta.serviceMove',
+	deep: 'meta.serviceDeep',
+} as const;
+---
+
+<PageLayout
+	locale={locale}
+	route={route}
+	title={`${t(`${metaKey[service.key]}.title` as 'meta.serviceHouse.title')} | ${t('site.name')}`}
+	description={t(`${metaKey[service.key]}.description` as 'meta.serviceHouse.description')}
+	pageClass="ms-main--service"
+>
+	<Section class="ms-sd-crumbs" width={1200} rhythm="none">
+		<Breadcrumbs items={crumbs} label={t('a11y.breadcrumb')} />
+	</Section>
+
+	<ServiceDetailHero locale={locale} service={service} />
+	<ServiceOverview locale={locale} service={service} />
+	<ServiceReviews locale={locale} service={service} />
+	<OtherServices locale={locale} service={service} />
+	<ServiceDetailCta locale={locale} service={service} />
+</PageLayout>

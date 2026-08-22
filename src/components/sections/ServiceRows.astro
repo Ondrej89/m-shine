@@ -1,0 +1,110 @@
+---
+import Button from '../Button.astro';
+import Icon from '../Icon.astro';
+import Section from '../Section.astro';
+import { SERVICES } from '../../data/services';
+import type { Locale } from '../../i18n/config';
+import { localizedPath } from '../../i18n/routes';
+import { useTranslations } from '../../i18n/ui';
+
+/*
+ * The four residential services, as alternating photo/copy rows.
+ *
+ * The photo always comes first in the markup and `--reversed` moves it to the
+ * far side with `order`, so the rows read the same in source order as they do
+ * on a phone once they stack — photo above copy, every time.
+ *
+ * One departure from the design: "Book This Service" is the quote request,
+ * because there is no booking engine to send it to. "Read More" and the linked
+ * title point at the service's own detail page, as the design has them.
+ *
+ * The design also prints "Starting at $120/visit" on every row. There are no
+ * euro prices yet — see the pre-launch list — so `.ms-svc-price` is unused for
+ * now and the actions sit alone in the row's foot.
+ */
+interface Props {
+	locale: Locale;
+}
+
+const { locale } = Astro.props;
+const t = useTranslations(locale);
+
+const FEATURES = ['one', 'two', 'three', 'four'] as const;
+---
+
+<Section class="ms-svc-list" width={1160} rhythm="none">
+	<ul class="ms-svc-list__inner">
+		{
+			SERVICES.map((service, index) => {
+				/* Odd rows put the photo on the right; the mask has to fade on
+				   whichever edge meets the copy. */
+				const reversed = index % 2 === 1;
+				return (
+					<li>
+						<article class={`ms-svc-row${reversed ? ' ms-svc-row--reversed' : ''}`}>
+							<figure class="ms-svc-row__media">
+								<img
+									class={`ms-mask-fade${reversed ? '' : ' ms-mask-fade--flip'}`}
+									src={service.rowImage}
+									alt={t(`services.${service.key}.rowPhotoAlt` as 'services.house.rowPhotoAlt')}
+									width="1068"
+									height="712"
+									loading="lazy"
+									decoding="async"
+								/>
+							</figure>
+
+							<div class="ms-svc-row__body">
+								<h2 class="ms-svc-row__title">
+									<a href={localizedPath(locale, service.route)}>
+										{t(`services.${service.key}.title` as 'services.house.title')}
+									</a>
+								</h2>
+								<p class="ms-svc-row__text">
+									{t(`services.${service.key}.detail` as 'services.house.detail')}
+								</p>
+
+								<ul class="ms-svc-feats">
+									{FEATURES.map((feature) => (
+										<li class="ms-svc-feat">
+											<Icon
+												class="ms-svc-feat__tick"
+												name="check"
+												size={15}
+												stroke={2.4}
+											/>
+											<span>
+												{t(
+													`services.${service.key}.features.${feature}` as 'services.house.features.one',
+												)}
+											</span>
+										</li>
+									))}
+								</ul>
+
+								<div class="ms-svc-row__foot">
+									<div class="ms-svc-row__actions">
+										<Button
+											variant="ghost"
+											href={localizedPath(locale, service.route)}
+											icon="arrow-right"
+										>
+											{t('services.learnMore')}
+										</Button>
+										<Button
+											variant="primary"
+											href={localizedPath(locale, 'quote')}
+											icon="arrow-right"
+										>
+											{t('nav.quote')}
+										</Button>
+									</div>
+								</div>
+							</div>
+						</article>
+					</li>
+				);
+			})
+		}
+	</ul>
+</Section>

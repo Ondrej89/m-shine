@@ -14,8 +14,12 @@
 import type { Locale } from '../i18n/config';
 import { allRoutePaths, type RouteId } from '../i18n/routes';
 import About from '../content-pages/About.astro';
+import Commercial from '../content-pages/Commercial.astro';
+import Contact from '../content-pages/Contact.astro';
 import Home from '../content-pages/Home.astro';
 import Placeholder from '../content-pages/Placeholder.astro';
+import ServiceDetail from '../content-pages/ServiceDetail.astro';
+import Services from '../content-pages/Services.astro';
 import Styleguide from '../content-pages/Styleguide.astro';
 
 export function getStaticPaths() {
@@ -25,15 +29,23 @@ export function getStaticPaths() {
 /*
  * `Placeholder` is a stub, not a page: it exists so every nav link and every
  * language-switcher target resolves during review. It is replaced one page at
- * a time; four are left.
+ * a time; two are left.
+ *
+ * The four service routes share one component: `ServiceDetail` reads the
+ * route back into a catalogue entry, so the template is written once.
  */
 const PAGES = {
 	home: Home,
 	styleguide: Styleguide,
 	about: About,
-	services: Placeholder,
+	services: Services,
+	commercial: Commercial,
+	serviceHouse: ServiceDetail,
+	serviceApartment: ServiceDetail,
+	serviceMove: ServiceDetail,
+	serviceDeep: ServiceDetail,
 	pricing: Placeholder,
-	contact: Placeholder,
+	contact: Contact,
 	quote: Placeholder,
 } satisfies Record<RouteId, unknown>;
 

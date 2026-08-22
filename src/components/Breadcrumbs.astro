@@ -1,0 +1,47 @@
+---
+/*
+ * The breadcrumb trail. A `<nav>` wrapping an ordered list, because that is
+ * what it is: a labelled, ordered path back up the site. The last crumb is the
+ * current page and is not a link — it is marked `aria-current="page"` so a
+ * screen reader announces it as the destination rather than a dead item.
+ *
+ * The separators are decorative and `aria-hidden`; the list structure already
+ * conveys the sequence.
+ */
+export interface Crumb {
+	label: string;
+	/** Omit on the final crumb — the page you are already on. */
+	href?: string;
+}
+
+interface Props {
+	items: Crumb[];
+	/** Accessible name for the nav landmark, translated by the caller. */
+	label: string;
+	class?: string;
+}
+
+const { items, label, class: className } = Astro.props;
+const classes = ['ms-crumbs', className].filter(Boolean).join(' ');
+---
+
+<nav aria-label={label}>
+	<ol class={classes}>
+		{
+			items.map((item, index) => (
+				<li>
+					{item.href ? <a href={item.href}>{item.label}</a> : (
+						<span class="ms-crumbs__current" aria-current="page">
+							{item.label}
+						</span>
+					)}
+					{index < items.length - 1 && (
+						<span class="ms-crumbs__sep" aria-hidden="true">
+							/
+						</span>
+					)}
+				</li>
+			))
+		}
+	</ol>
+</nav>

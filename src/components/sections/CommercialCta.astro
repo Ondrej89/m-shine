@@ -1,0 +1,37 @@
+---
+import Button from '../Button.astro';
+import Section from '../Section.astro';
+import type { Locale } from '../../i18n/config';
+import { localizedPath } from '../../i18n/routes';
+import { useTranslations } from '../../i18n/ui';
+
+/*
+ * The closing band. The service-detail CTA's markup and classes exactly —
+ * navy gradient, copy left, action right — because it is the same object doing
+ * the same job, and a second one styled from scratch would only drift.
+ */
+interface Props {
+	locale: Locale;
+}
+
+const { locale } = Astro.props;
+const t = useTranslations(locale);
+---
+
+<Section class="ms-sd-cta-section" width={1160} rhythm="none">
+	<div class="ms-sd-cta">
+		<div class="ms-sd-cta__copy">
+			<h2 class="ms-sd-cta__title">{t('commercial.ctaTitle')}</h2>
+			<p class="ms-sd-cta__text">{t('commercial.ctaText')}</p>
+		</div>
+
+		<div class="ms-b2b-actions ms-b2b-actions--flush">
+			<Button variant="green" href={localizedPath(locale, 'quote')} icon="arrow-right">
+				{t('commercial.ctaAction')}
+			</Button>
+			<Button variant="outline" href={localizedPath(locale, 'contact')}>
+				{t('commercial.ctaSecondary')}
+			</Button>
+		</div>
+	</div>
+</Section>

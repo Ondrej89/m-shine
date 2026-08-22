@@ -8,10 +8,10 @@ import { useTranslations } from '../i18n/ui';
 
 /*
  * The site header: brand, navigation, phone, quote CTA and the language
- * switcher, collapsing to a burger panel at 900px.
+ * switcher, collapsing to a burger panel at 1000px.
  *
  * `.ms-header__panel` is `display: contents` on desktop, so the nav and the
- * actions are direct flex children of the header; below 900px it becomes the
+ * actions are direct flex children of the header; below 1000px it becomes the
  * slide-down panel. That is what lets the links exist exactly ONCE in the
  * document — the reference design duplicates its whole nav into a second
  * mobile block, which would mean two copies of every link for a crawler to
@@ -98,9 +98,9 @@ const navItems = NAV_ROUTES.map((id) => ({
 
 <script>
 	/*
-	 * Burger toggle. The panel is a plain block below 900px whose `max-height`
+	 * Burger toggle. The panel is a plain block below 1000px whose `max-height`
 	 * animates from 0, so opening it is one class on the wrapper — see
-	 * header.css. Nothing here runs above 900px, where the panel is
+	 * header.css. Nothing here runs above 1000px, where the panel is
 	 * `display: contents` and the burger is hidden.
 	 */
 	document.querySelectorAll<HTMLElement>('[data-ms-header]').forEach((wrap) => {

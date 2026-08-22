@@ -1,0 +1,57 @@
+---
+import FeatureCard from '../FeatureCard.astro';
+import Icon from '../Icon.astro';
+import Section from '../Section.astro';
+import SectionHead from '../SectionHead.astro';
+import type { IconName } from '../Icon.astro';
+import type { Locale } from '../../i18n/config';
+import { useTranslations } from '../../i18n/ui';
+
+/*
+ * How a commercial quote is put together: the three factors, then the
+ * turnaround promise.
+ *
+ * No prices, and none coming — the point of the section is to explain why
+ * there is no price list without leaving the reader empty-handed. The cards
+ * are the home page's `<FeatureCard>` in its own three-across row.
+ */
+interface Props {
+	locale: Locale;
+}
+
+const { locale } = Astro.props;
+const t = useTranslations(locale);
+
+const FACTORS = [
+	{ key: 'one', icon: 'house' },
+	{ key: 'two', icon: 'repeat' },
+	{ key: 'three', icon: 'clock' },
+] as const;
+---
+
+<Section class="ms-b2b-price" width={1160} rhythm="none">
+	<SectionHead
+		eyebrow={t('commercial.priceEyebrow')}
+		title={t('commercial.priceTitle')}
+		divider={false}
+	/>
+
+	<p class="ms-b2b-price__lede">{t('commercial.priceLede')}</p>
+
+	<div class="ms-feat-row">
+		{
+			FACTORS.map((factor) => (
+				<FeatureCard
+					icon={factor.icon as IconName}
+					title={t(`commercial.factors.${factor.key}.title` as 'commercial.factors.one.title')}
+					description={t(`commercial.factors.${factor.key}.body` as 'commercial.factors.one.body')}
+				/>
+			))
+		}
+	</div>
+
+	<p class="ms-b2b-price__note">
+		<Icon name="clipboard-check" size={20} stroke={1.9} />
+		{t('commercial.priceNote')}
+	</p>
+</Section>

@@ -1,0 +1,198 @@
+---
+import Flourish from '../Flourish.astro';
+import Eyebrow from '../Eyebrow.astro';
+import Icon, { type IconName } from '../Icon.astro';
+import Section from '../Section.astro';
+import { SITE_DETAILS } from '../../data/site';
+import type { Locale } from '../../i18n/config';
+import { useTranslations } from '../../i18n/ui';
+
+/*
+ * The whole Contact page: FAQs on the left, the contact facts and the message
+ * form on the right. One section because the design draws one — the two
+ * columns share a grid and the bottom-right vine belongs to both.
+ *
+ * The FAQ accordion is `<details>`/`<summary>`. The design scripts it with
+ * component state; the browser does all of it natively, including keyboard
+ * operation and the expanded state, so there is nothing to ship.
+ *
+ * The form has no endpoint yet. It still renders and still validates — the
+ * browser's own constraint validation blocks an empty name, an empty message
+ * or a malformed address before submit ever fires — and then the script at the
+ * foot stops the submit and explains, rather than reloading the page and
+ * throwing the message away. Exactly the arrangement the footer's newsletter
+ * uses, and it comes out the same way when `contactAction` is filled in: the
+ * `data-` hook disappears and the form posts.
+ */
+interface Props {
+	locale: Locale;
+}
+
+const { locale } = Astro.props;
+const t = useTranslations(locale);
+
+const FAQS = ['one', 'two', 'three', 'four', 'five', 'six'] as const;
+
+const { address } = SITE_DETAILS;
+const addressLine = `${address.street}, ${address.postcode} ${address.city}`;
+const contactAction = SITE_DETAILS.contactAction;
+---
+
+<Section class="ms-contact" width={1180} rhythm="none" flourishes>
+	<Flourish name="vine-br" slot="flourish" />
+
+	<div class="ms-contact__grid">
+		<div class="ms-contact__faq-col">
+			<Eyebrow>{t('contact.faqEyebrow')}</Eyebrow>
+			<h2 class="ms-contact__title">{t('contact.faqTitle')}</h2>
+
+			<ul class="ms-contact__faqs">
+				{
+					FAQS.map((faq, index) => (
+						<li>
+							{/* The design opens the first one; the rest start closed. */}
+							<details class="ms-cfaq" open={index === 0}>
+								<summary class="ms-cfaq__q">
+									{t(`contact.faqs.${faq}.q` as 'contact.faqs.one.q')}
+									<span class="ms-cfaq__mark" aria-hidden="true" />
+								</summary>
+								<p class="ms-cfaq__a">{t(`contact.faqs.${faq}.a` as 'contact.faqs.one.a')}</p>
+							</details>
+						</li>
+					))
+				}
+			</ul>
+
+			<p class="ms-contact__help">
+				<Icon name="help" size={17} />
+				{t('contact.help')}
+			</p>
+		</div>
+
+		<div class="ms-contact__form-col">
+			{/*
+			 * The page's h1, even though it is the second heading in the source.
+			 * The design draws both columns at the same size and gives the page no
+			 * title of its own; of the two, this is the one that says what the page
+			 * is. Leaving the page with no h1 at all — which is what the design
+			 * literally specifies — is the worse trade. `.ms-contact__title` sets
+			 * the size and leading, so it looks identical to its neighbour.
+			 */}
+			<Eyebrow>{t('contact.eyebrow')}</Eyebrow>
+			<h1 class="ms-contact__title">{t('contact.title')}</h1>
+			<p class="ms-contact__intro">{t('contact.intro')}</p>
+
+			<div class="ms-contact__inner">
+				<ul class="ms-contact__facts">
+					<li class="ms-cfact">
+						<span class="ms-cfact__icon"><Icon name="phone" size={18} /></span>
+						<span>
+							<b class="ms-cfact__label">{t('contact.labelPhone')}</b>
+							<a class="ms-cfact__value" href={`tel:${SITE_DETAILS.phoneHref}`}>
+								{SITE_DETAILS.phone}
+							</a>
+						</span>
+					</li>
+
+					<li class="ms-cfact">
+						<span class="ms-cfact__icon"><Icon name="mail" size={18} /></span>
+						<span>
+							<b class="ms-cfact__label">{t('contact.labelEmail')}</b>
+							<a class="ms-cfact__value" href={`mailto:${SITE_DETAILS.email}`}>
+								{SITE_DETAILS.email}
+							</a>
+						</span>
+					</li>
+
+					<li class="ms-cfact">
+						<span class="ms-cfact__icon"><Icon name="pin" size={18} /></span>
+						<span>
+							<b class="ms-cfact__label">{t('contact.labelAddress')}</b>
+							<span class="ms-cfact__value">{addressLine}</span>
+						</span>
+					</li>
+
+					<li class="ms-cfact">
+						<span class="ms-cfact__icon"><Icon name="clock" size={18} /></span>
+						<span>
+							<b class="ms-cfact__label">{t('contact.labelHours')}</b>
+							<span class="ms-cfact__value">
+								{t('contact.hoursWeek')}<br />{t('contact.hoursWeekend')}
+							</span>
+						</span>
+					</li>
+
+					<li>
+						<div class="ms-contact__socials">
+							{
+								SITE_DETAILS.socials.map((social) => (
+									<a class="ms-social" href={social.href} aria-label={social.name}>
+										<Icon name={social.icon as IconName} size={17} />
+									</a>
+								))
+							}
+						</div>
+					</li>
+				</ul>
+
+				<form
+					class="ms-contact__form"
+					action={contactAction ?? undefined}
+					method="post"
+					data-ms-contact={contactAction ? undefined : 'pending'}
+				>
+					<label class="screen-reader-text" for="ms-contact-name">{t('contact.formName')}</label>
+					<input
+						class="ms-input"
+						type="text"
+						id="ms-contact-name"
+						name="name"
+						autocomplete="name"
+						placeholder={t('contact.formName')}
+						required
+					/>
+
+					<label class="screen-reader-text" for="ms-contact-email">{t('contact.formEmail')}</label>
+					<input
+						class="ms-input"
+						type="email"
+						id="ms-contact-email"
+						name="email"
+						autocomplete="email"
+						placeholder={t('contact.formEmail')}
+						required
+					/>
+
+					<label class="screen-reader-text" for="ms-contact-message">
+						{t('contact.formMessage')}
+					</label>
+					<textarea
+						class="ms-input ms-input--area"
+						id="ms-contact-message"
+						name="message"
+						rows="4"
+						placeholder={t('contact.formMessage')}
+						required></textarea>
+
+					<button class="ms-contact__submit" type="submit">
+						{t('contact.formSubmit')}
+						<Icon name="send" size={16} />
+					</button>
+
+					{/* `role="status"` so the notice is announced when it appears. */}
+					<p class="ms-contact__note" role="status" data-ms-contact-msg></p>
+				</form>
+			</div>
+		</div>
+	</div>
+</Section>
+
+<script is:inline define:vars={{ pendingMsg: t('contact.formPending') }}>
+	document.querySelectorAll('[data-ms-contact="pending"]').forEach((form) => {
+		form.addEventListener('submit', (event) => {
+			event.preventDefault();
+			const msg = form.querySelector('[data-ms-contact-msg]');
+			if (msg) msg.textContent = pendingMsg;
+		});
+	});
+</script>

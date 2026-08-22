@@ -1,0 +1,98 @@
+---
+import Button from '../Button.astro';
+import Eyebrow from '../Eyebrow.astro';
+import Icon, { type IconName } from '../Icon.astro';
+import Section from '../Section.astro';
+import type { Service } from '../../data/services';
+import type { Locale } from '../../i18n/config';
+import { localizedPath } from '../../i18n/routes';
+import { useTranslations } from '../../i18n/ui';
+
+/*
+ * The overview: two paragraphs and a six-item checklist on the left, the
+ * facts card on the right.
+ *
+ * Three of the four facts are the same for every service, so they come from
+ * `services.detailPage.*`; only the frequency differs, and it is the one value
+ * read from the service's own copy.
+ */
+interface Props {
+	locale: Locale;
+	service: Service;
+}
+
+const { locale, service } = Astro.props;
+const t = useTranslations(locale);
+const key = service.key;
+
+const INCLUDES = ['one', 'two', 'three', 'four', 'five', 'six'] as const;
+
+const FACTS = [
+	{ icon: 'clock', label: 'factDuration', value: t('services.detailPage.durationValue') },
+	{ icon: 'user-check', label: 'factTeam', value: t('services.detailPage.teamValue') },
+	{
+		icon: 'repeat',
+		label: 'factFrequency',
+		value: t(`services.${key}.frequency` as 'services.house.frequency'),
+	},
+	{ icon: 'leaf', label: 'factProducts', value: t('services.detailPage.productsValue') },
+] as const;
+---
+
+<Section class="ms-sd-body" width={1200} rhythm="none">
+	<div class="ms-sd-body__grid">
+		<div>
+			<Eyebrow>{t('services.detailPage.overviewEyebrow')}</Eyebrow>
+			<h2 class="ms-sd-overview__title">{t('services.detailPage.overviewTitle')}</h2>
+
+			<p class="ms-sd-overview__text">
+				{t(`services.${key}.overviewOne` as 'services.house.overviewOne')}
+			</p>
+			<p class="ms-sd-overview__text">
+				{t(`services.${key}.overviewTwo` as 'services.house.overviewTwo')}
+			</p>
+
+			<ul class="ms-sd-includes">
+				{
+					INCLUDES.map((item) => (
+						<li class="ms-sd-include">
+							<Icon name="check" size={18} stroke={2.4} />
+							<span>{t(`services.${key}.includes.${item}` as 'services.house.includes.one')}</span>
+						</li>
+					))
+				}
+			</ul>
+		</div>
+
+		<aside class="ms-sd-facts">
+			<h2 class="ms-sd-facts__title">{t('services.detailPage.factsTitle')}</h2>
+
+			<ul class="ms-sd-facts__list">
+				{
+					FACTS.map((fact) => (
+						<li class="ms-sd-fact">
+							<span class="ms-sd-fact__icon">
+								<Icon name={fact.icon as IconName} size={19} stroke={1.9} />
+							</span>
+							<span>
+								<b class="ms-sd-fact__label">
+									{t(`services.detailPage.${fact.label}` as 'services.detailPage.factDuration')}
+								</b>
+								<span class="ms-sd-fact__value">{fact.value}</span>
+							</span>
+						</li>
+					))
+				}
+			</ul>
+
+			<Button
+				class="ms-sd-facts__cta"
+				variant="primary"
+				href={localizedPath(locale, 'quote')}
+				icon="arrow-right"
+			>
+				{t('nav.quote')}
+			</Button>
+		</aside>
+	</div>
+</Section>

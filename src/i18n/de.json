@@ -8,12 +8,14 @@
     "languageLabel": "Sprache",
     "currentLanguage": "Aktuelle Sprache",
     "menu": "Menü",
-    "mainNav": "Hauptnavigation"
+    "mainNav": "Hauptnavigation",
+    "breadcrumb": "Brotkrümelnavigation"
   },
   "nav": {
     "home": "Startseite",
     "about": "Über uns",
-    "services": "Leistungen",
+    "services": "Privatkunden",
+    "commercial": "Geschäftskunden",
     "pricing": "Preise",
     "contact": "Kontakt",
     "quote": "Angebot anfordern"
@@ -25,6 +27,34 @@
     "home": {
       "title": "Reinigungsfirma in Wien",
       "description": "Professionelle Haus-, Wohnungs-, Umzugs- und Grundreinigung in Wien. Versicherte, überprüfte Teams und umweltfreundliche Mittel. Jetzt kostenloses Angebot anfordern."
+    },
+    "services": {
+      "title": "Reinigung für Privatkunden in Wien",
+      "description": "Haus-, Wohnungs-, Umzugs- und Grundreinigung für Privathaushalte in Wien. Geschultes Personal, umweltfreundliche Mittel. Jetzt kostenloses Angebot anfordern."
+    },
+    "serviceHouse": {
+      "title": "Hausreinigung in Wien",
+      "description": "Regelmäßige Hausreinigung in Wien: Staub, Böden, Küche und Bad bei jedem Termin. Umweltfreundliche Mittel, fixe Ansprechperson. Jetzt Angebot anfordern."
+    },
+    "serviceApartment": {
+      "title": "Wohnungsreinigung in Wien",
+      "description": "Wohnungsreinigung in Wien für jede Größe: alle Räume, Geräte, Böden und Bad. Flexible Termine, umweltfreundliche Mittel. Jetzt Angebot anfordern."
+    },
+    "serviceMove": {
+      "title": "Umzugsreinigung in Wien",
+      "description": "Umzugsreinigung in Wien für Übergabe und Einzug: Schränke innen, Geräte, Sockelleisten, Fenster. Übergabefertig. Jetzt Angebot anfordern."
+    },
+    "serviceDeep": {
+      "title": "Grundreinigung in Wien",
+      "description": "Grundreinigung in Wien vom Boden bis zur Decke: Fugen, hinter den Geräten, Fenster, Sockelleisten. Ideal vor Anlässen. Jetzt Angebot anfordern."
+    },
+    "contact": {
+      "title": "Kontakt – Reinigungsfirma in Wien",
+      "description": "Fragen zur Haus-, Wohnungs- oder Grundreinigung in Wien? Schreiben Sie uns – wir melden uns zeitnah mit einem unverbindlichen Angebot."
+    },
+    "commercial": {
+      "title": "Büroreinigung & Gewerbereinigung in Wien",
+      "description": "Büroreinigung, Ordinationsreinigung, Hotelreinigung, Gastronomie und Objektbetreuung in Wien. Individuell kalkuliert, schriftliches Angebot in 24–48 Stunden."
     },
     "about": {
       "title": "Über uns – Ihr Reinigungsteam in Wien",
@@ -116,18 +146,138 @@
     "viewAll": "Alle Leistungen ansehen",
     "house": {
       "title": "Hausreinigung",
+      "nameInline": "Hausreinigung",
       "description": "Regelmäßige Reinigung, damit Ihr Zuhause frisch, sauber und behaglich bleibt.",
-      "photoAlt": "Ein aufgeräumtes, sonnendurchflutetes Wohnzimmer"
+      "photoAlt": "Ein aufgeräumtes, sonnendurchflutetes Wohnzimmer",
+      "detail": "Regelmäßige Reinigung, damit Ihr Zuhause frisch und behaglich bleibt – Staub, Böden, Küche und Bad bei jedem Termin.",
+      "rowPhotoAlt": "Ein helles, frisch gereinigtes Wohnzimmer mit zwei Sofas",
+      "features": {
+        "one": "Staub & Oberflächen",
+        "two": "Saugen & Wischen",
+        "three": "Küche & Bad",
+        "four": "Wohnräume aufgeräumt"
+      },
+      "lede": "Regelmäßige, gründliche Reinigung, die Ihr ganzes Zuhause frisch und behaglich hält – Termin für Termin.",
+      "heroPhotoAlt": "Ein helles Wohnzimmer nach der Reinigung durch Magic Shine",
+      "overviewOne": "Unsere Hausreinigung umfasst jeden Raum, in dem Sie leben – von Wohnbereich und Schlafzimmer bis zu Küche und Bad. Wir entstauben, saugen, wischen und reinigen die Oberflächen, auf die es ankommt.",
+      "overviewTwo": "Legen Sie den Rhythmus fest, der zu Ihnen passt – wöchentlich, zweiwöchentlich oder monatlich – und kommen Sie nach Hause in ein sauberes Zuhause.",
+      "includes": {
+        "one": "Alle Oberflächen entstaubt",
+        "two": "Böden gesaugt und gewischt",
+        "three": "Küche gereinigt und desinfiziert",
+        "four": "Bad geschrubbt und desinfiziert",
+        "five": "Betten gemacht, aufgeräumt",
+        "six": "Müll entsorgt"
+      },
+      "frequency": "Wöchentlich / zweiwöchentlich / monatlich",
+      "price": "120 €",
+      "reviews": {
+        "one": {
+          "quote": "Unser Zuhause war noch nie so sauber. Das Team arbeitet gründlich und ist immer pünktlich.",
+          "name": "Jessica M.",
+          "role": "Eigentümerin"
+        },
+        "two": {
+          "quote": "Die wöchentliche Reinigung hat uns die Wochenenden zurückgegeben. Jeden Cent wert.",
+          "name": "Priya S.",
+          "role": "Berufstätige Mutter"
+        },
+        "three": {
+          "quote": "Verlässlich, freundlich und mit Blick fürs Detail. Klare Empfehlung.",
+          "name": "Marcus T.",
+          "role": "Eigentümer"
+        }
+      }
     },
     "apartment": {
       "title": "Wohnungsreinigung",
+      "nameInline": "Wohnungsreinigung",
       "description": "Ideal für Wohnungen und Eigentumswohnungen jeder Größe.",
-      "photoAlt": "Eine saubere, moderne Küche"
+      "photoAlt": "Eine saubere, moderne Küche",
+      "detail": "Ideal für Wohnungen jeder Größe. Effizient und gründlich, abgestimmt auf kleinere, viel genutzte Räume.",
+      "rowPhotoAlt": "Eine Reinigungskraft von Magic Shine wischt die Arbeitsfläche in einer hellen Küche",
+      "features": {
+        "one": "Alle Räume gereinigt",
+        "two": "Sorgfalt auf kleinem Raum",
+        "three": "Geräte abgewischt",
+        "four": "Flexible Termine"
+      },
+      "lede": "Effiziente, sorgfältige Reinigung für Wohnungen jeder Größe.",
+      "heroPhotoAlt": "Eine helle, frisch gereinigte Wohnküche",
+      "overviewOne": "Kleine Räume verdienen dieselbe Sorgfalt. Wir reinigen jeden Raum Ihrer Wohnung und holen mit einer effizienten, genauen Routine das Beste aus kompakten Grundrissen heraus.",
+      "overviewTwo": "Ideal für Mieterinnen und Mieter, Eigentumswohnungen und alle, die wenig Zeit und trotzdem gern ordentlich haben.",
+      "includes": {
+        "one": "Alle Räume gereinigt",
+        "two": "Sorgfalt auf kleinem Raum",
+        "three": "Geräte abgewischt",
+        "four": "Böden gesaugt und gewischt",
+        "five": "Bad desinfiziert",
+        "six": "Flexible Termine"
+      },
+      "frequency": "Wöchentlich / zweiwöchentlich / monatlich",
+      "price": "110 €",
+      "reviews": {
+        "one": {
+          "quote": "Perfekt für meine Wohnung. Schnell, leise und jedes Mal makellos.",
+          "name": "Liam O.",
+          "role": "Wohnungseigentümer"
+        },
+        "two": {
+          "quote": "Sie richten sich nach meinem Terminplan und übersehen kein Detail.",
+          "name": "Sofia D.",
+          "role": "Mieterin"
+        },
+        "three": {
+          "quote": "Nach jedem Termin fühlt sich meine Wohnung wie neu an.",
+          "name": "Nina K.",
+          "role": "Berufstätige"
+        }
+      }
     },
     "move": {
       "title": "Umzugsreinigung",
+      "nameInline": "Umzugsreinigung",
       "description": "Wir machen den Umzug leicht – mit einer makellos sauberen Übergabe.",
-      "photoAlt": "Gestapelte Umzugskartons in einem leeren Raum"
+      "photoAlt": "Gestapelte Umzugskartons in einem leeren Raum",
+      "detail": "Wir machen den Umzug leicht – mit einer makellosen Reinigung von oben bis unten, für die Schlüsselübergabe oder den Einzug.",
+      "rowPhotoAlt": "Eine Reinigungskraft von Magic Shine wird mit ihrem Putzkorb an der Wohnungstür empfangen",
+      "features": {
+        "one": "Schränke innen",
+        "two": "Geräte im Detail",
+        "three": "Sockelleisten & Wände",
+        "four": "Übergabefertig"
+      },
+      "lede": "Eine makellose Reinigung von oben bis unten – für die Schlüsselübergabe oder den Einzug.",
+      "heroPhotoAlt": "Eine Reinigungskraft von Magic Shine wird mit ihrem Putzkorb an der Wohnungstür empfangen",
+      "overviewOne": "Ein Umzug ist Stress genug. Wir nehmen Ihnen die Reinigung ab – gründlich und im Detail: Schränke innen, Geräte, Sockelleisten und jede Ecke.",
+      "overviewTwo": "Ideal für Mietende, die ihre Kaution zurückwollen, für Vermietende, die eine Wohnung herrichten, und für alle, die frisch anfangen möchten.",
+      "includes": {
+        "one": "Schränke und Laden innen",
+        "two": "Geräte im Detail",
+        "three": "Sockelleisten und Wände",
+        "four": "Fenster und Fensterbänke",
+        "five": "Bad komplett zurückgesetzt",
+        "six": "Übergabefertig"
+      },
+      "frequency": "Einmalig",
+      "price": "150 €",
+      "reviews": {
+        "one": {
+          "quote": "Dank der makellosen Übergabe habe ich die ganze Kaution zurückbekommen.",
+          "name": "Emily W.",
+          "role": "Mieterin"
+        },
+        "two": {
+          "quote": "Unsere neue Wohnung war vor dem Einzugstag fertig. Tadellos.",
+          "name": "David R.",
+          "role": "Eigentümer"
+        },
+        "three": {
+          "quote": "Ich lasse inzwischen jede Wohnungsübergabe so machen. Verlässlich.",
+          "name": "Carlos V.",
+          "role": "Vermieter"
+        }
+      }
     },
     "housekeeping": {
       "title": "Haushaltsbetreuung",
@@ -136,8 +286,195 @@
     },
     "deep": {
       "title": "Grundreinigung",
+      "nameInline": "Grundreinigung",
       "description": "Eine gründliche Reinigung für ganz besondere Anlässe.",
-      "photoAlt": "Ein makellos glänzendes Badezimmer"
+      "photoAlt": "Ein makellos glänzendes Badezimmer",
+      "detail": "Eine gründliche Reinigung vom Boden bis zur Decke – für besondere Anlässe oder wenn Ihr Zuhause einen Neustart braucht.",
+      "rowPhotoAlt": "Eine Reinigungskraft von Magic Shine reinigt die Duschabtrennung in einem Marmorbad",
+      "features": {
+        "one": "Fugen & Fliesen",
+        "two": "Hinter den Geräten",
+        "three": "Gründliches Entstauben",
+        "four": "Fenster & Fensterbänke"
+      },
+      "lede": "Eine gründliche Reinigung vom Boden bis zur Decke – für besondere Anlässe oder wenn es Zeit dafür ist.",
+      "heroPhotoAlt": "Eine Reinigungskraft von Magic Shine reinigt die Duschabtrennung in einem Marmorbad",
+      "overviewOne": "Unsere gründlichste Leistung erreicht, was die regelmäßige Reinigung auslässt: Fugen, hinter den Geräten, sorgfältiges Entstauben, Fenster und Fensterbänke.",
+      "overviewTwo": "Perfekt vor einem großen Anlass, zum Jahreszeitenwechsel oder als erste Reinigung, bevor ein regelmäßiger Rhythmus beginnt.",
+      "includes": {
+        "one": "Fugen und Fliesen geschrubbt",
+        "two": "Hinter den Geräten",
+        "three": "Gründliches Entstauben",
+        "four": "Fenster und Fensterbänke",
+        "five": "Sockelleisten und Zierleisten",
+        "six": "Komplett desinfiziert"
+      },
+      "frequency": "Einmalig oder saisonal",
+      "price": "180 €",
+      "reviews": {
+        "one": {
+          "quote": "Der Unterschied war wie Tag und Nacht. Sie kamen an Stellen, die ich vergessen hatte.",
+          "name": "Olivia N.",
+          "role": "Eigentümerin"
+        },
+        "two": {
+          "quote": "Vor einer Feier gebucht – meine Gäste waren beeindruckt. Makellos.",
+          "name": "Ryan L.",
+          "role": "Gastgeber"
+        },
+        "three": {
+          "quote": "Die beste Grundreinigung, die wir je hatten. Ohne Zweifel.",
+          "name": "Grace F.",
+          "role": "Eigentümerin"
+        }
+      }
+    },
+    "hero": {
+      "eyebrow": "Unsere Leistungen",
+      "title": "Reinigung nach Maß für jeden Raum",
+      "lede": "Wir bieten ein breites Leistungsspektrum, abgestimmt auf Ihre Bedürfnisse – von der regelmäßigen Pflege bis zur gründlichen Grundreinigung."
+    },
+    "commercial": {
+      "eyebrow": "Über das Zuhause hinaus",
+      "title": "Gewerbe- und Spezialreinigung",
+      "lede": "Jeder Betrieb ist anders. Diese Leistungen stimmen wir auf Ihre Räume ab und bieten sie individuell an – nicht online buchbar. Sagen Sie uns, was Sie brauchen, und wir erstellen Plan und Preis dafür.",
+      "office": "Büroreinigung",
+      "medical": "Arzt- und Zahnarztpraxen",
+      "restaurant": "Gastronomie",
+      "school": "Schulen",
+      "residential": "Wohnhausanlagen"
+    },
+    "cta": {
+      "eyebrow": "Bereit für ein sauberes Zuhause?",
+      "title": "Heute anfragen, morgen entspannen",
+      "lede": "Erleben Sie den Unterschied von Magic Shine – verlässlich, gründlich und mit Zufriedenheitsgarantie.",
+      "secondary": "Kontakt aufnehmen",
+      "photoAlt": "Eine Familie mit Hund entspannt in ihrem hellen, sauberen Wohnzimmer"
+    },
+    "detailPage": {
+      "priceLabel": "ab",
+      "priceUnit": "pro Termin",
+      "overviewEyebrow": "Überblick",
+      "overviewTitle": "Was diese Leistung umfasst",
+      "factsTitle": "Leistungsdetails",
+      "factDuration": "Dauer",
+      "factTeam": "Team",
+      "factFrequency": "Rhythmus",
+      "factProducts": "Mittel",
+      "durationValue": "ab 2 Stunden",
+      "teamValue": "1+ Reinigungskraft",
+      "productsValue": "Umweltfreundlich, haustiersicher",
+      "reviewsEyebrow": "Geprüfte Bewertungen",
+      "reviewsTitle": "Was Kundinnen und Kunden über {service} sagen",
+      "othersEyebrow": "Mehr entdecken",
+      "othersTitle": "Weitere Leistungen",
+      "othersLink": "Details ansehen",
+      "ctaTitle": "Bereit für Ihre {service}?",
+      "ctaText": "Verlässlich, gründlich und mit Zufriedenheitsgarantie – bei jedem Termin."
+    }
+  },
+  "commercial": {
+    "heroEyebrow": "Geschäftskunden",
+    "heroTitle": "Büro-, Ordinations- und Hotelreinigung in Wien",
+    "heroLede": "Wir übernehmen die laufende Reinigung für Büros, Ordinationen, Hotels, Gastronomie und Hausverwaltungen – zuverlässig, diskret und auf den Betrieb abgestimmt, statt nach Schema F.",
+    "heroCta": "Angebot anfordern",
+    "heroNote": "Individuelles Angebot, schriftlich in 24–48 Stunden.",
+    "sectorsEyebrow": "Was wir für Betriebe tun",
+    "sectorsTitle": "Reinigung für Ihre Branche",
+    "sectorsLede": "Jede Branche stellt andere Anforderungen an Hygiene, Zeitfenster und Diskretion. Wir arbeiten uns in Ihren Betrieb ein, statt ein Standardpaket abzuarbeiten.",
+    "whyEyebrow": "Warum Magic Shine",
+    "whyTitle": "Fünf Gründe, warum Betriebe bleiben",
+    "whyLede": "Was Auftraggeber in Wien an uns schätzen – und warum aus dem ersten Auftrag meist eine langfristige Zusammenarbeit wird.",
+    "priceEyebrow": "Preise",
+    "priceTitle": "Wie ein Angebot entsteht",
+    "priceLede": "Für Gewerbeobjekte gibt es keine Preisliste, und das aus gutem Grund: Zwei Büros mit derselben Quadratmeterzahl können unterschiedlich viel Aufwand bedeuten. Wir kalkulieren entlang von drei Faktoren.",
+    "priceNote": "Nach Ihrer Anfrage sehen wir uns das Objekt an – vor Ort oder anhand von Plänen und Fotos – und Sie erhalten in der Regel innerhalb von 24 bis 48 Stunden ein schriftliches, unverbindliches Angebot.",
+    "ctaTitle": "Sprechen wir über Ihr Objekt",
+    "ctaText": "Sagen Sie uns, um welche Flächen es geht und wann gereinigt werden soll – wir melden uns mit einem konkreten Angebot.",
+    "ctaAction": "Angebot anfordern",
+    "ctaSecondary": "Kontakt aufnehmen",
+    "sectors": {
+      "one": {
+        "title": "Büroreinigung",
+        "body": "Vom Einzelbüro bis zur Etage: Arbeitsplätze, Besprechungsräume, Küchen und Sanitäranlagen werden vor oder nach Ihren Geschäftszeiten gereinigt, damit der Betrieb nie stillsteht. Auf Wunsch übernehmen wir auch Glasflächen im Innenbereich und die Betreuung der Verbrauchsmaterialien.",
+        "points": {
+          "one": "Reinigung außerhalb der Bürozeiten",
+          "two": "Küchen, Sanitär und Besprechungsräume",
+          "three": "Schlüssel- und Alarmübernahme nach Absprache"
+        }
+      },
+      "two": {
+        "title": "Ordinationsreinigung",
+        "body": "Ordinationen und Zahnarztpraxen verlangen eine andere Sorgfalt als ein Büro. Wir arbeiten nach Ihrem Hygieneplan, trennen Behandlungs- und Wartebereiche sauber voneinander und dokumentieren die Reinigung, wenn Sie das für Ihre Unterlagen brauchen.",
+        "points": {
+          "one": "Arbeit nach Ihrem Hygieneplan",
+          "two": "Getrennte Reinigung von Behandlung und Wartebereich",
+          "three": "Dokumentation auf Wunsch"
+        }
+      },
+      "three": {
+        "title": "Hotelreinigung",
+        "body": "Für Hotels, Apartments und Boardinghouses übernehmen wir Zimmerreinigung, Wäschewechsel und die öffentlichen Bereiche – auch kurzfristig, wenn die Auslastung schwankt. Bei hoher Belegung stocken wir das Team auf, statt Termine zu verschieben.",
+        "points": {
+          "one": "Zimmer, Wäsche und öffentliche Bereiche",
+          "two": "Kurzfristige Aufstockung bei Auslastung",
+          "three": "Abstimmung mit Rezeption und Housekeeping"
+        }
+      },
+      "four": {
+        "title": "Gastronomiereinigung",
+        "body": "Gastraum, Küche und Sanitäranlagen werden vor der Öffnung oder nach dem Sperrstunden-Betrieb gereinigt. Wir kennen die Anforderungen der Lebensmittelhygiene und arbeiten so, dass Ihre Küche zur Öffnung einsatzbereit ist.",
+        "points": {
+          "one": "Reinigung vor Öffnung oder nach Sperrstunde",
+          "two": "Gastraum, Küche und Sanitär",
+          "three": "Abgestimmt auf Lebensmittelhygiene"
+        }
+      },
+      "five": {
+        "title": "Hausverwaltung",
+        "body": "Für Hausverwaltungen und Eigentümergemeinschaften betreuen wir Stiegenhäuser, Gänge, Waschküchen, Müllräume und Außenflächen im vereinbarten Rhythmus. Eine feste Ansprechperson kümmert sich um alle Objekte, damit Sie nicht bei jedem Haus neu koordinieren müssen.",
+        "points": {
+          "one": "Stiegenhaus, Gänge und Nebenräume",
+          "two": "Fixer Rhythmus, dokumentiert",
+          "three": "Eine Ansprechperson für alle Objekte"
+        }
+      }
+    },
+    "why": {
+      "one": {
+        "title": "Zuverlässigkeit",
+        "body": "Für einen Betrieb ist eine ausgefallene Reinigung kein Schönheitsfehler, sondern ein Problem am nächsten Morgen. Wir kommen zum vereinbarten Zeitfenster, auch am Rand des Tages, und melden uns von uns aus, wenn etwas dazwischenkommt. Bei Urlaub oder Krankheit organisieren wir den Ersatz, ohne dass Sie nachfragen müssen – Sie bemerken den Wechsel im besten Fall gar nicht."
+      },
+      "two": {
+        "title": "Qualität",
+        "body": "Gründlichkeit zeigt sich an den Stellen, die man erst auf den zweiten Blick sieht: Fußleisten, Türgriffe, der Rand hinter der Tür, die Fuge am Waschbecken. Wir arbeiten nach einer festen Checkliste je Objekt, damit dieselbe Leistung nicht von der Tagesform abhängt, und gehen die Liste in Abständen gemeinsam mit Ihnen durch."
+      },
+      "three": {
+        "title": "Professionalität",
+        "body": "Unser Personal ist geschult, angemeldet und überprüft. Es bewegt sich in Ihren Räumen so, wie man sich in fremden Räumen bewegt: diskret, ohne in Unterlagen zu blättern, mit Respekt vor dem, was auf den Schreibtischen liegt. Wo Vertraulichkeit vorgeschrieben ist – in Ordinationen etwa – halten wir sie schriftlich fest."
+      },
+      "four": {
+        "title": "Flexibilität",
+        "body": "Betriebe verändern sich: eine Etage kommt dazu, die Öffnungszeiten verschieben sich, vor einer Veranstaltung braucht es einmal mehr. Wir passen Rhythmus und Umfang an, statt auf einem Jahresvertrag zu bestehen, und rechnen ab, was tatsächlich geleistet wurde."
+      },
+      "five": {
+        "title": "Persönlicher Ansatz",
+        "body": "Sie haben eine Ansprechperson, die Ihr Objekt kennt – keine Hotline und keine wechselnden Zuständigkeiten. Diese Person war vor Ort, weiß, wo der Schlüssel hängt und welcher Raum mittwochs belegt ist, und ist erreichbar, wenn etwas kurzfristig anders laufen muss."
+      }
+    },
+    "factors": {
+      "one": {
+        "title": "Fläche",
+        "body": "Quadratmeter, Anzahl der Räume und was darin steht. Ein offenes Großraumbüro ist schneller gereinigt als dieselbe Fläche mit 20 Einzelbüros, Sanitäranlagen und einer Teeküche."
+      },
+      "two": {
+        "title": "Frequenz",
+        "body": "Täglich, dreimal pro Woche oder einmal wöchentlich. Höhere Frequenz senkt den Aufwand pro Termin spürbar, weil weniger liegen bleibt – der Preis je Reinigung sinkt entsprechend."
+      },
+      "three": {
+        "title": "Zugänglichkeit",
+        "body": "Wann wir arbeiten können und wie wir hineinkommen. Reinigung während des Betriebs dauert länger als nach Feierabend; Schlüsselübergabe, Alarmanlage und Lift beeinflussen den Ablauf ebenfalls."
+      }
     }
   },
   "why": {
@@ -219,6 +556,51 @@
       "quote": "Makelloses Ergebnis und umweltfreundliche Mittel. Mehr kann man nicht verlangen.",
       "name": "Liam O.",
       "role": "Wohnungseigentümer"
+    }
+  },
+  "contact": {
+    "faqEyebrow": "Häufige Fragen",
+    "faqTitle": "Fragen? Wir haben Antworten.",
+    "help": "Sie brauchen mehr Hilfe? Melden Sie sich jederzeit bei uns.",
+    "eyebrow": "Kontakt",
+    "title": "Machen wir Ihr Zuhause strahlend",
+    "intro": "Schreiben Sie uns kurz, worum es geht – wir melden uns zeitnah mit einem unverbindlichen Angebot.",
+    "labelPhone": "Telefon",
+    "labelEmail": "E-Mail",
+    "labelAddress": "Adresse",
+    "labelHours": "Öffnungszeiten",
+    "hoursWeek": "Mo – Fr: 8 – 18 Uhr",
+    "hoursWeekend": "Sa: 9 – 15 Uhr",
+    "formName": "Ihr Name",
+    "formEmail": "Ihre E-Mail-Adresse",
+    "formMessage": "Ihre Nachricht",
+    "formSubmit": "Nachricht senden",
+    "formPending": "Das Formular ist noch nicht aktiv. Schreiben Sie uns bitte direkt per E-Mail oder rufen Sie an – wir melden uns zeitnah.",
+    "faqs": {
+      "one": {
+        "q": "Was ist in einer Standardreinigung enthalten?",
+        "a": "Staubwischen, Saugen, Wischen, Reinigen und Desinfizieren von Küche und Bad sowie das Aufräumen aller üblichen Wohnbereiche. Leistungen der Grundreinigung kommen auf Wunsch dazu."
+      },
+      "two": {
+        "q": "Muss ich während der Reinigung zu Hause sein?",
+        "a": "Nein. Viele Kundinnen und Kunden hinterlegen eine Zutrittsmöglichkeit und gehen ihrem Tag nach. Wie wir hineinkommen, klären wir vorher persönlich mit Ihnen."
+      },
+      "three": {
+        "q": "Was ist, wenn ich mit der Reinigung nicht zufrieden bin?",
+        "a": "Sagen Sie uns innerhalb von 24 Stunden Bescheid und wir reinigen den betroffenen Bereich kostenlos nach. Dafür steht unsere Zufriedenheitsgarantie."
+      },
+      "four": {
+        "q": "Bringen Sie Ihre eigenen Reinigungsmittel mit?",
+        "a": "Ja – wir kommen mit professionellen, umweltfreundlichen Mitteln und der nötigen Ausrüstung. Wenn Sie lieber Ihre eigenen Produkte verwendet haben möchten, sagen Sie einfach Bescheid."
+      },
+      "five": {
+        "q": "Kann ich meinen Reinigungsplan anpassen?",
+        "a": "Selbstverständlich. Zusatzleistungen, Schwerpunkte und ein regelmäßiger Rhythmus lassen sich frei kombinieren – wir stimmen das gemeinsam mit Ihrer Anfrage ab."
+      },
+      "six": {
+        "q": "Wie bezahle ich?",
+        "a": "Sie erhalten nach dem Termin eine Rechnung. Die Zahlungsart besprechen wir bei der Anfrage, damit sie zu Ihnen passt."
+      }
     }
   },
   "footer": {

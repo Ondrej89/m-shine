@@ -129,8 +129,9 @@ first; English and Slovak then fit comfortably.
 
 ## Current state
 
-**Done:** project setup, i18n foundation, the component library, and the Home and About
-pages fully ported and refined.
+**Done:** project setup, i18n foundation, the component library, and the Home, About,
+Services (residential), Service Detail, Contact and Commercial pages. Every page of the
+original site is ported, and the catalogue is split into a private and a business half.
 
 - **i18n** — de-AT default at `/`, English at `/en/`, Slovak at `/sk/`, with per-language
   slugs (`/leistungen/`, `/en/services/`, `/sk/sluzby/`) from the registry in
@@ -140,10 +141,30 @@ pages fully ported and refined.
   for page sections. `src/content-pages/Styleguide.astro` renders all of it at
   `/styleguide/`, in whichever language you switch to.
 - **Home** — `src/content-pages/Home.astro`, six sections: `HomeHero`, `ServicesGrid`,
-  `WhyChoose`, `BeforeAfter`, `SubscriptionCta`, `ReviewsCarousel`. `ServicesGrid` takes its
-  services as a prop so the Services page can reuse it with a fifth entry.
+  `WhyChoose`, `BeforeAfter`, `SubscriptionCta`, `ReviewsCarousel`. `ServicesGrid` reads the
+  catalogue in `src/data/services.ts`; its cards link to the service detail pages.
 - **About** — `src/content-pages/About.astro`, five sections: `AboutHero`, `MissionValues`,
   `AboutStory`, `AboutReviews`, `AboutCta`, with `src/styles/components/about.css`.
+- **Services (private customers)** — `src/content-pages/Services.astro`, four sections:
+  `ServicesHero`, `ServiceRows`, `ServicesTrust`, `ServicesCta`, with
+  `src/styles/components/services.css`. The whole page is on the **1160px** grid. Nav label
+  is **Privatkunden / Residential / Domácnosti**; the slugs stay `/leistungen/` and friends
+  because twelve service-detail URLs nest under them.
+- **Commercial (business customers)** — `src/content-pages/Commercial.astro`, five
+  sections: `CommercialHero`, `CommercialSectors`, `CommercialWhy`, `CommercialPricing`,
+  `CommercialCta`, with `src/styles/components/commercial.css`. Also 1160px.
+  `/geschaeftskunden/`, `/en/commercial/`, `/sk/firmy/`.
+- **Service Detail** — `src/content-pages/ServiceDetail.astro`, **one template, four
+  pages**, on the **1200px** grid. Sections: `ServiceDetailHero`, `ServiceOverview`,
+  `ServiceReviews`, `OtherServices`, `ServiceDetailCta`, plus the reusable
+  `Breadcrumbs.astro`, with `src/styles/components/service-detail.css`.
+- **Contact** — `src/content-pages/Contact.astro`, one section (`ContactSection`) on the
+  **1180px** grid, with `src/styles/components/contact.css`. FAQs left, contact facts and
+  the message form right.
+- **`src/data/services.ts`** — the service catalogue, and the reason none of the above
+  repeat themselves. Home's cards, the Services rows, and the detail template (its own
+  page *and* its "other services" row) all read this one list. Adding a service is an
+  entry here, a `ROUTES` entry and its copy.
 
 Home refinements worth not undoing:
 
@@ -179,31 +200,130 @@ About refinements worth not undoing:
   `home.stats.*`: the same three claims the client still has to sign off on live in one
   place, not two.
 
+Services refinements worth not undoing:
+
+- **CLS is 0** in all three languages, and no overflow — outer or inside any track — at
+  375, 480, 600, 720, 820, 960, 1180 or 1400.
+- The trust row is **three** items, not the design's four: "Insured & Bonded" is gone here
+  too. Its strings are the home hero's `home.trust.*` rather than a second copy of the same
+  three claims.
+- That row **stacks its icon above its label at 820px**, which is not in the design or the
+  theme. "Zufriedenheitsgarantie" is a single unbreakable 153px word; beside a 46px icon an
+  item needs 212px, and three across only clear that above ~765px. The theme's answer (two
+  columns at 600, capped at 420px) gives 141px of label box and the word hung 13px past the
+  viewport at 375, swallowed by `overflow-x: hidden`. Stacking hands the label the whole
+  track — the home hero's fix, for the identical reason.
+- The tick lists go one column at 480 — the design's own step, which the theme dropped.
+  Nothing breaks without it; it buys one line per tick instead of two.
+- **No prices.** The design prints "Starting at $120/visit" on every row. Those are USD
+  placeholders for a Vienna business and the pricing page is being reframed, so the price
+  line is not rendered. `.ms-svc-price` and the markup slot stay ready — see the pre-launch
+  list.
+- **No "Read More" and no linked row titles.** Both pointed at Service Detail, which has no
+  route yet. When it lands, give each entry in `ServiceRows` a route id and restore them;
+  `.ms-svc-row__title a` styling is already there.
+- `services.housekeeping` (Haushaltsbetreuung) has copy and a footer link but **no row** —
+  the design draws four. `_design-reference/slots/srv-house2.webp` is unused and would suit
+  a fifth. Client's call.
+
+Service Detail refinements worth not undoing:
+
+- **Four routes, one component.** `ROUTES` has an entry per service with a slug nested
+  under the Services slug in each language (`/leistungen/hausreinigung/`,
+  `/en/services/house-cleaning/`), and `serviceForRoute()` turns the route back into a
+  catalogue entry. `localizedPath`, the hreflang set and the sitemap needed no changes —
+  a multi-segment slug already worked.
+- **`nameInline`** is a second name per service, for the running-text CTA. Without it
+  English read "Ready for your Move In / Move Out?" and Slovak capitalised a common noun
+  mid-sentence. German is unchanged (it capitalises nouns anyway). The design carries the
+  same pair, as `nameLower`.
+- The reviews heading and the CTA interpolate `{service}` with a one-token `.replace()`.
+  `t()` has no interpolation and does not need any — this is the only sentence on the site
+  that varies, and a placeholder keeps the whole clause, word order included, in the
+  translator's hands.
+- **The eyebrow is the category, not the service name.** The design puts the same string
+  in the eyebrow and the h1 ("HAUSREINIGUNG" over "Hausreinigung"), which reads as a
+  mistake; it uses `services.hero.eyebrow`, which already existed.
+- **No gallery.** The design's four-cell gallery between the overview and the reviews is
+  an empty slot — there is no photography for it in the reference, and four grey boxes are
+  worse than no section. See the pre-launch list.
+- Move In / Move Out and Deep Cleaning have **no `sd-` hero photo** in the reference, so
+  they reuse their Services row photo. Real hero photography is a `heroImage` change each.
+- Services rows and the home cards now link to these pages — the two deferred links from
+  the Services port.
+
+Contact refinements worth not undoing:
+
+- **The form has no endpoint and says so.** `SITE_DETAILS.contactAction` is `null`, exactly
+  like `newsletterAction`; the form renders, the browser's own constraint validation blocks
+  an empty field or a malformed address, and then the inline script stops the submit and
+  explains rather than reloading the page and throwing the message away. Filling in
+  `contactAction` removes the `data-` hook and the form posts — no other change.
+  It deliberately does **not** say "message sent", which would be a lie.
+- **The FAQ accordion is `<details>`/`<summary>`**, not the design's scripted state. The
+  browser supplies the toggle, the keyboard behaviour and the expanded state, and the
+  answers stay findable by in-page search. Nothing ships.
+- **The page has an `<h1>`** — the contact-column heading. The design draws both column
+  headings at the same size and gives the page no title, which would leave it with no h1 at
+  all. It is the second heading in source order; that is the lesser problem.
+- **`body` is a flex column and `.ms-main` takes the slack** (base.css). Contact is the one
+  page that can come out shorter than the screen — at 1024x1366 it rendered 1333px and the
+  last 33px showed the page background below the footer. The theme scopes the same fix to
+  Contact with a body class because WordPress buries the page in an unselectable wrapper;
+  here it is one rule for every page, and the Placeholder pages need it too.
+- Business hours live in `contact.hoursWeek` / `hoursWeekend` per language, not in
+  `site.ts`: the day names are translatable, the rest of the business facts are not.
+
+Commercial page notes worth not undoing:
+
+- **It is not a variant of the Services page** and must not be merged back into one. The
+  old "Commercial & Specialized" section is gone from Services; its card CSS moved to
+  `commercial.css`, where the cards now carry a paragraph and three specifics each and sit
+  three across instead of five.
+- Almost no new CSS: the hero reuses `.ms-svc-hero*`, the pricing factors reuse
+  `<FeatureCard>` and `.ms-feat-row`, the closing band reuses `.ms-sd-cta*`. What is new is
+  the sector-card block, the long-form reading column and the quote-turnaround note.
+- `.ms-feat-row` goes **one column at 600px on this page only**. Its 2x2-to-375 behaviour
+  is right for the home page's one-line features and documented in cards.css; these three
+  factors carry a two-sentence paragraph each, which at 375 meant a 149px column running
+  ten lines deep.
+- The **long-form "Warum Magic Shine?"** lives here, in the same five reasons and the same
+  order as the home page's short version, so the two never disagree. Client approved the
+  drafted German as final on 2026-08-23.
+- **The header lost its phone block to make room.** Six German nav items needed 118px more
+  than the 1160px chrome box while it showed, and that box does not grow with the viewport.
+  The nav gap went 26 -> 20 and the burger step 900 -> 1000 as well; German now has 64px of
+  slack at full width and 33px at 1001px. Client approved keeping the full-length labels
+  over keeping the phone. See the long note in header.css.
+
 **Scaffolding to delete before launch:** `Styleguide.astro` with its `ROUTES` entry and the
 sitemap filter in `astro.config.mjs`; `Placeholder.astro` once the last real page replaces
 it.
 
 ## Next
 
-Port the remaining pages one at a time, existing content first:
+Every page of the original site is ported and the catalogue is split in two.
+`Placeholder.astro` now stands in for Pricing and Quote only, and everything left to build
+is new content:
 
-1. **Services**, **Service Detail**, **Contact** — port from the reference.
-   `Placeholder.astro` currently stands in for Services, Pricing, Contact and Quote so every
-   nav link resolves.
-
-Then the new content:
-
-2. The **B2B landing page** — a new route, so it needs a `ROUTES` entry and a nav decision.
-   The long-form **"Warum Magic Shine?"** paragraphs belong here, not on About: About
-   already covers that ground with Mission / Vision / Values, and the long form is aimed at
-   the B2B audience. Client's call, 2026-08-22 — do not add it back to About.
-3. **"Preise & Ablauf"** — the reframed pricing page.
-4. The **quote request form**, replacing the booking wizard.
+1. **"Preise & Ablauf"** — the reframed pricing page.
+2. The **quote request form**, replacing the booking wizard. The Contact form is the
+   pattern to follow, and both want the same service — see the pre-launch list.
 
 Then translation review and deploy.
 
 ## Pre-launch list
 
+- **Service prices are the design's USD figures relabelled in euro** — 120/110/150/180 —
+  and shown as "ab 120 €" rather than a firm number, per the client. They are still
+  unconfirmed amounts and belong with the "Preise & Ablauf" decision. They live in
+  `services.<key>.price`, one string each. The Services *rows* still show no price at all;
+  decide whether they should match the detail pages.
+- **"Haustiersicher" / "pet-safe"** is on every detail page's facts card, from the design.
+  It is a product-safety claim the client has not substantiated — the same class as the
+  insured/bonded line that was removed. Confirm or drop it.
+- **No service galleries.** The design reserves four photos per service and the reference
+  has none. The section is not rendered; it needs 16 photos (four services) to come back.
 - **Hero stats claims** — "10.000+ gereinigte Zuhause", "4,9 Durchschnittsbewertung",
   "98 % Stammkundschaft" are unsubstantiated, carried over from the design. Awaiting the
   client's decision; **leave as-is for now**. Same class of claim as the insured/bonded line
@@ -217,7 +337,13 @@ Then translation review and deploy.
 - **Newsletter needs a provider.** `SITE_DETAILS.newsletterAction` is `null`; until it is
   set the footer form renders but refuses to submit and says so, rather than reloading and
   dropping the address.
-- **The quote form will need a form/email service** — there is no backend.
+- **The contact and quote forms need a form/email service** — there is no backend.
+  `SITE_DETAILS.contactAction` and the quote form's equivalent both stay `null` until one
+  is chosen; the contact form already renders, validates and declines to submit.
+- **Payment answer on Contact is deliberately vague** ("you receive an invoice after the
+  visit; we agree the method when you enquire"). The design promised card payment and SEPA
+  direct debit, which the client has not confirmed and which no backend supports. Replace
+  with the real terms.
 - **German and Slovak copy needs a native review**, German especially given the B2B audience
   in Vienna. Current copy is the existing site's, authored in English and translated here,
   plus the client's own five reasons — all placeholder until she refines it.

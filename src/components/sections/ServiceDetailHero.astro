@@ -1,0 +1,84 @@
+---
+import Button from '../Button.astro';
+import Eyebrow from '../Eyebrow.astro';
+import Icon from '../Icon.astro';
+import Section from '../Section.astro';
+import type { Service } from '../../data/services';
+import type { Locale } from '../../i18n/config';
+import { localizedPath } from '../../i18n/routes';
+import { useTranslations } from '../../i18n/ui';
+
+/*
+ * The detail hero: name, lede, the "from" price and the guarantee, two
+ * actions, and the service photo.
+ *
+ * The price is deliberately a *starting* price — "ab 120 €" rather than a firm
+ * figure — because the real number depends on the property. The amounts
+ * themselves are still the design's, converted to euro and unconfirmed; see
+ * the pre-launch list.
+ *
+ * The design's actions were "Book This Service" and "Get a Quote", which are
+ * now the same thing. The primary is the quote request; the secondary goes to
+ * contact for people who would rather talk first.
+ */
+interface Props {
+	locale: Locale;
+	service: Service;
+}
+
+const { locale, service } = Astro.props;
+const t = useTranslations(locale);
+const key = service.key;
+---
+
+<Section class="ms-sd-hero" width={1200} rhythm="none">
+	<div class="ms-sd-hero__grid">
+		<div class="ms-sd-hero__copy">
+			{/*
+			 * The design puts the service name in the eyebrow AND in the h1 — the
+			 * same string twice, which reads as a mistake rather than as emphasis.
+			 * The eyebrow carries the category instead, which is copy that already
+			 * exists for the Services hero.
+			 */}
+			<Eyebrow>{t('services.hero.eyebrow')}</Eyebrow>
+			<h1 class="ms-sd-hero__title">{t(`services.${key}.title` as 'services.house.title')}</h1>
+			<p class="ms-sd-hero__lede">{t(`services.${key}.lede` as 'services.house.lede')}</p>
+
+			<div class="ms-sd-hero__meta">
+				<p class="ms-sd-price">
+					{t('services.detailPage.priceLabel')}
+					<b>{t(`services.${key}.price` as 'services.house.price')}</b>
+					<span class="ms-sd-price__unit">{t('services.detailPage.priceUnit')}</span>
+				</p>
+
+				<p class="ms-sd-guarantee">
+					<Icon name="check" size={17} stroke={2.2} />
+					{t('home.trust.guarantee')}
+				</p>
+			</div>
+
+			<div class="ms-sd-hero__actions">
+				<Button variant="primary" href={localizedPath(locale, 'quote')} icon="arrow-right">
+					{t('nav.quote')}
+				</Button>
+				<Button variant="ghost" href={localizedPath(locale, 'contact')}>
+					{t('services.cta.secondary')}
+				</Button>
+			</div>
+		</div>
+
+		<figure class="ms-sd-hero__media">
+			{/* The page's LCP element on every one of the four services. */}
+			<img
+				class="ms-mask-fade"
+				src={service.heroImage}
+				alt={t(`services.${key}.heroPhotoAlt` as 'services.house.heroPhotoAlt')}
+				width="1068"
+				height="712"
+				loading="eager"
+				fetchpriority="high"
+				decoding="async"
+			/>
+		</figure>
+	</div>
+</Section>

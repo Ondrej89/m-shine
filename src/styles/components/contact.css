@@ -1,0 +1,327 @@
+/* =========================================================================
+   Contact page
+   Lifted from section 14 of the refined style.css, with its responsive steps.
+
+   1180px — the fifth container width. `<Section width={1180}>` supplies it, so
+   the theme's `max-width` on `.ms-contact__grid` is absent here.
+
+   Both flourishes are `<Flourish>` components (`contact-vine` on the page,
+   `vine-br` in the section), so the theme's two pseudo-element blocks are gone
+   the same way About's band and the Services cluster went.
+   ====================================================================== */
+
+.ms-contact {
+	overflow: hidden;
+	padding-block: 56px 84px;
+}
+
+.ms-contact__grid {
+	align-items: start;
+	display: grid;
+	gap: 60px;
+	grid-template-columns: 1fr 1fr;
+}
+
+.ms-contact__grid > * {
+	min-width: 0;
+}
+
+.ms-contact__title {
+	font-size: 34px;
+	line-height: 1.14;
+	margin: 12px 0 24px;
+}
+
+/* --- FAQ column -------------------------------------------------------- */
+
+.ms-contact__faqs {
+	display: flex;
+	flex-direction: column;
+	gap: 11px;
+	list-style: none;
+	margin: 0;
+	padding-left: 0;
+}
+
+/* `<details>`/`<summary>`, not a scripted accordion. The browser gives us the
+   toggle, the keyboard behaviour and the expanded state for free, and the
+   answers stay findable by in-page search when closed in the browsers that
+   support it. */
+.ms-cfaq {
+	background: var(--wp--preset--color--base);
+	border: 1px solid var(--wp--preset--color--line);
+	border-radius: 12px;
+	overflow: hidden;
+}
+
+.ms-cfaq__q {
+	align-items: center;
+	color: var(--wp--preset--color--ink);
+	cursor: pointer;
+	display: flex;
+	font-size: 14.5px;
+	font-weight: 600;
+	gap: 12px;
+	justify-content: space-between;
+	line-height: normal;
+	list-style: none;
+	padding: 17px 20px;
+	transition: color 0.12s;
+}
+
+/* Both are needed: WebKit still uses the pseudo-element, everything else the
+   `::marker`. Without them the default triangle sits beside the design's own
+   +/- glyph. */
+.ms-cfaq__q::-webkit-details-marker {
+	display: none;
+}
+
+.ms-cfaq__q::marker {
+	content: "";
+}
+
+.ms-cfaq__q:hover,
+.ms-cfaq__q:focus-visible {
+	color: var(--wp--preset--color--blue);
+}
+
+/* The glyph is drawn from content, and its `normal` leading sets the row
+   height. Decorative — the open state is already exposed by `<details>`. */
+.ms-cfaq__mark {
+	color: var(--wp--preset--color--blue);
+	flex: none;
+	font-size: 22px;
+	line-height: normal;
+}
+
+.ms-cfaq__mark::before {
+	content: "+";
+}
+
+.ms-cfaq[open] .ms-cfaq__mark::before {
+	content: "−";
+}
+
+.ms-cfaq__a {
+	color: var(--wp--preset--color--ink-muted);
+	font-size: 13.5px;
+	line-height: 1.65;
+	margin: 0;
+	padding: 0 20px 16px;
+}
+
+.ms-contact__help {
+	align-items: center;
+	color: #3f5063;
+	display: flex;
+	font-size: 14px;
+	gap: 8px;
+	line-height: normal;
+	margin: 22px 0 0;
+}
+
+.ms-contact__help svg {
+	color: var(--wp--preset--color--green-dark);
+	flex: none;
+}
+
+/* --- Contact column ---------------------------------------------------- */
+
+.ms-contact__intro {
+	color: var(--wp--preset--color--ink-muted);
+	font-size: 14.5px;
+	line-height: 1.65;
+	margin: -12px 0 22px;
+	max-width: 460px;
+}
+
+.ms-contact__inner {
+	align-items: start;
+	display: grid;
+	gap: 26px;
+	grid-template-columns: 0.85fr 1fr;
+}
+
+.ms-contact__inner > * {
+	min-width: 0;
+}
+
+.ms-contact__facts {
+	display: flex;
+	flex-direction: column;
+	gap: 18px;
+	list-style: none;
+	margin: 0;
+	padding-left: 0;
+}
+
+.ms-cfact {
+	align-items: flex-start;
+	display: flex;
+	gap: 12px;
+}
+
+.ms-cfact > :not(.ms-cfact__icon) {
+	min-width: 0;
+}
+
+.ms-cfact__icon {
+	align-items: center;
+	background: #e7effa;
+	border-radius: 11px;
+	color: var(--wp--preset--color--blue);
+	display: flex;
+	flex: none;
+	height: 40px;
+	justify-content: center;
+	width: 40px;
+}
+
+.ms-cfact__label {
+	color: #4f6079;
+	display: block;
+	font-size: 11.5px;
+	font-weight: 700;
+	letter-spacing: 0.4px;
+	text-transform: uppercase;
+}
+
+.ms-cfact__value {
+	color: var(--wp--preset--color--ink);
+	display: block;
+	font-size: 14px;
+	font-weight: 600;
+	line-height: 1.4;
+	/* The phone and email values are links; a long address must still wrap. */
+	overflow-wrap: break-word;
+	text-decoration: none;
+}
+
+a.ms-cfact__value:hover,
+a.ms-cfact__value:focus {
+	color: var(--wp--preset--color--blue);
+}
+
+.ms-contact__socials {
+	display: flex;
+	gap: 11px;
+	margin-top: 20px;
+}
+
+/* The contact socials sit on the pale page rather than the navy footer, so they
+   take the light treatment instead of `.ms-social`'s translucent white. */
+.ms-contact__socials .ms-social {
+	background: #e7effa;
+	color: var(--wp--preset--color--blue);
+	height: 40px;
+	width: 40px;
+}
+
+.ms-contact__socials .ms-social:hover,
+.ms-contact__socials .ms-social:focus {
+	background: #d3e2f7;
+	color: var(--wp--preset--color--blue);
+}
+
+/* --- Form -------------------------------------------------------------- */
+
+.ms-contact__form {
+	background: var(--wp--preset--color--base);
+	border: 1px solid #e2e9f1;
+	border-radius: 16px;
+	box-shadow: 0 16px 40px rgba(15, 42, 84, 0.07);
+	display: flex;
+	flex-direction: column;
+	gap: 11px;
+	padding: 22px;
+}
+
+.ms-input {
+	border: 1px solid #dbe4ef;
+	border-radius: 9px;
+	color: var(--wp--preset--color--ink);
+	font-family: var(--wp--preset--font-family--mulish);
+	font-size: 14px;
+	padding: 13px 15px;
+	width: 100%;
+}
+
+.ms-input:focus {
+	border-color: var(--wp--preset--color--blue);
+	outline: none;
+}
+
+/* The browser's own validation styling, kept quiet: a red border only once the
+   field has been submitted or left, never while it is still being typed in. */
+.ms-input:user-invalid {
+	border-color: #c2413a;
+}
+
+.ms-input--area {
+	resize: vertical;
+}
+
+.ms-contact__submit {
+	align-items: center;
+	background: var(--wp--preset--color--navy);
+	border: none;
+	border-radius: 10px;
+	color: var(--wp--preset--color--base);
+	cursor: pointer;
+	display: flex;
+	font-family: var(--wp--preset--font-family--mulish);
+	font-size: 14.5px;
+	font-weight: 700;
+	gap: 9px;
+	justify-content: center;
+	line-height: normal;
+	padding: 13px;
+}
+
+.ms-contact__submit:hover,
+.ms-contact__submit:focus {
+	background: var(--wp--preset--color--navy-deep);
+}
+
+/* Reserves its own line so the message does not shift the card when it appears.
+   Green in the design, where it only ever said "message sent"; this one also
+   carries the "not connected yet" notice, so it takes the ink colour and the
+   line-height a sentence needs. */
+.ms-contact__note {
+	color: var(--wp--preset--color--ink-muted);
+	font-size: 13px;
+	font-weight: 600;
+	line-height: 1.5;
+	margin: 0;
+	min-height: 16px;
+}
+
+/* --- Responsive ------------------------------------------------------- */
+
+/* Contact's own step: the FAQ column and the contact column stop sitting side
+   by side well before the shared breakpoints, so the design splits them here. */
+@media (max-width: 900px) {
+	.ms-contact__grid {
+		gap: 44px;
+		grid-template-columns: 1fr;
+	}
+}
+
+@media (max-width: 600px) {
+	.ms-contact__title {
+		font-size: 28px;
+	}
+}
+
+/* Contact stacks its facts above the form here — the design's own number. */
+@media (max-width: 560px) {
+	.ms-contact__inner {
+		grid-template-columns: 1fr;
+	}
+}
+
+@media (max-width: 480px) {
+	.ms-contact__title {
+		font-size: 24px;
+	}
+}

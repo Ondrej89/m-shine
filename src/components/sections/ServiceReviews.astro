@@ -1,0 +1,87 @@
+---
+import Section from '../Section.astro';
+import SectionHead from '../SectionHead.astro';
+import type { Service } from '../../data/services';
+import type { Locale } from '../../i18n/config';
+import { useTranslations } from '../../i18n/ui';
+
+/*
+ * Three reviews written for this particular service.
+ *
+ * The heading names the service, so its string carries a `{service}`
+ * placeholder that is filled here. `t()` has no interpolation of its own and
+ * does not need any: this is the only pattern on the site that wants it, and a
+ * one-token replace keeps the whole sentence — including its word order — in
+ * the translator's hands, which a concatenation would not.
+ */
+interface Props {
+	locale: Locale;
+	service: Service;
+}
+
+const { locale, service } = Astro.props;
+const t = useTranslations(locale);
+const key = service.key;
+
+const name = t(`services.${key}.title` as 'services.house.title');
+const title = t('services.detailPage.reviewsTitle').replace('{service}', name);
+
+const REVIEWS = ['one', 'two', 'three'] as const;
+
+/* Initials from the name rather than a hard-coded pair, so they stay right
+   when the client swaps in real reviewers. "Jessica M." -> "JM". */
+const initials = (person: string) =>
+	person
+		.split(/\s+/)
+		.map((part) => part.charAt(0))
+		.join('')
+		.toUpperCase();
+---
+
+<Section class="ms-sd-reviews-section" width={1200} rhythm="none">
+	<SectionHead
+		eyebrow={t('services.detailPage.reviewsEyebrow')}
+		title={title}
+		divider={false}
+		class="ms-sd-section-title--centred"
+	/>
+
+	<ul class="ms-sd-reviews">
+		{
+			REVIEWS.map((review, index) => {
+				const person = t(
+					`services.${key}.reviews.${review}.name` as 'services.house.reviews.one.name',
+				);
+				return (
+				<li>
+					<figure class="ms-sd-review">
+						<div class="ms-sd-review__stars">
+							<span aria-hidden="true">★★★★★</span>
+							<span class="screen-reader-text">{t('reviews.ratingLabel')}</span>
+						</div>
+
+						<blockquote class="ms-sd-review__quote">
+							<p>{t(`services.${key}.reviews.${review}.quote` as 'services.house.reviews.one.quote')}</p>
+						</blockquote>
+
+						<figcaption class="ms-sd-review__person">
+							<span
+								class={`ms-avatar ms-avatar--${index % 2 === 0 ? 'blue' : 'green'}`}
+								aria-hidden="true"
+							>
+								{initials(person)}
+							</span>
+							<span>
+								<span class="ms-sd-review__name">{person}</span>
+								<span class="ms-sd-review__role">
+									{t(`services.${key}.reviews.${review}.role` as 'services.house.reviews.one.role')}
+								</span>
+							</span>
+						</figcaption>
+					</figure>
+				</li>
+				);
+			})
+		}
+	</ul>
+</Section>

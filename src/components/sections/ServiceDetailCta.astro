@@ -1,0 +1,49 @@
+---
+import Button from '../Button.astro';
+import Section from '../Section.astro';
+import type { Service } from '../../data/services';
+import type { Locale } from '../../i18n/config';
+import { localizedPath } from '../../i18n/routes';
+import { useTranslations } from '../../i18n/ui';
+
+/*
+ * The closing band: a line naming the service, and one action.
+ *
+ * The design read "Ready to book your deep clean?" over "Trusted, insured, and
+ * satisfaction guaranteed". There is no booking, and the insured claim is one
+ * the client cannot substantiate — it came off the home hero, About and
+ * Services for the same reason.
+ */
+interface Props {
+	locale: Locale;
+	service: Service;
+}
+
+const { locale, service } = Astro.props;
+const t = useTranslations(locale);
+
+/* `nameInline`, not `title`: this one runs inside a sentence, so English and
+   Slovak need the lower-case form ("Ready for your deep clean?"). German
+   capitalises its nouns and the two are identical there. The design carries
+   the same pair for the same reason. */
+const name = t(`services.${service.key}.nameInline` as 'services.house.nameInline');
+const title = t('services.detailPage.ctaTitle').replace('{service}', name);
+---
+
+<Section class="ms-sd-cta-section" width={1200} rhythm="none">
+	<div class="ms-sd-cta">
+		<div class="ms-sd-cta__copy">
+			<h2 class="ms-sd-cta__title">{title}</h2>
+			<p class="ms-sd-cta__text">{t('services.detailPage.ctaText')}</p>
+		</div>
+
+		<Button
+			class="ms-sd-cta__action"
+			variant="green"
+			href={localizedPath(locale, 'quote')}
+			icon="arrow-right"
+		>
+			{t('nav.quote')}
+		</Button>
+	</div>
+</Section>

@@ -1,0 +1,39 @@
+---
+import ContactSection from '../components/sections/ContactSection.astro';
+import Flourish from '../components/Flourish.astro';
+import PageLayout from '../layouts/PageLayout.astro';
+import type { Locale } from '../i18n/config';
+import type { RouteId } from '../i18n/routes';
+import { useTranslations } from '../i18n/ui';
+
+/*
+ * The Contact page. One section, on the 1180px grid.
+ *
+ * The vine down the top-left is a page-level flourish — the design anchors it
+ * to the top of the document, behind the header — while the larger vine at the
+ * bottom right belongs to the section and lives there.
+ *
+ * This is the page that can come out shorter than the viewport — see the
+ * sticky-footer note in base.css, which is there because of this page and
+ * applies to every page.
+ */
+interface Props {
+	locale: Locale;
+	route: RouteId;
+}
+
+const { locale, route } = Astro.props;
+const t = useTranslations(locale);
+---
+
+<PageLayout
+	locale={locale}
+	route={route}
+	title={`${t('meta.contact.title')} | ${t('site.name')}`}
+	description={t('meta.contact.description')}
+	pageClass="ms-main--contact"
+>
+	<Flourish name="contact-vine" slot="flourish" />
+
+	<ContactSection locale={locale} />
+</PageLayout>

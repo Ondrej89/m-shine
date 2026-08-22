@@ -29,6 +29,14 @@ export const SITE_DETAILS = {
 	 * submit and says so rather than reloading the page and losing the address.
 	 */
 	newsletterAction: null as string | null,
+	/**
+	 * Where the contact form posts. `null` until a form/email service is chosen
+	 * — same arrangement as the newsletter above, and for the same reason: the
+	 * field renders and validates either way, but with no endpoint the form
+	 * refuses to submit and says so rather than reloading the page and throwing
+	 * the message away.
+	 */
+	contactAction: null as string | null,
 } as const;
 
 /** The five services the footer links to, as route + translation key pairs. */
