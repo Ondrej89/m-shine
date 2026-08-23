@@ -29,14 +29,54 @@
    The second one overflowed a 343px viewport by 77px, invisibly, because
    `overflow-x: hidden` on the page hides the scrollbar but not the lost copy.
    Same trap, and the same fix, as the tick lists in section 17 of the theme. */
+/* `1fr 750px` — the design's own tracks, read off the published build
+   (ondrej89.github.io/MagicShineWeb/Home.dc.html), where the hero grid computes
+   to `497.5px 750px` with a 54px gap inside a 1084px container. It overflows
+   its container on purpose: the photo is a fixed 750x500 that runs toward the
+   right screen edge, and the page's `overflow-x: hidden` clips whatever passes
+   it. An earlier pass here replaced the fixed track with `1.08fr` to stop that
+   overflow, which shrank the photo to 616px and, against the fixed 500px
+   height, had `object-fit: cover` throwing away a third of the frame.
+
+   The copy column has a 520px floor rather than the design's `min-content`.
+   Measured: the German h1 "Luxusreinigung für modernes Wohnen" sets on two
+   lines at 520px and breaks to three at 500. The design's English headline
+   fits its own min-content of 497.5px, which German does not — so the floor is
+   stated instead of inherited. Without it the copy lands at 436px inside a
+   1240 container and the headline runs to three lines at every width.
+
+   The grid overflows its 1240 container on purpose, as the design's does: the
+   photo runs on toward the right screen edge and the page's `overflow-x:
+   hidden` clips whatever passes it. `min-width: 0` goes on the media track
+   only — on the copy it would defeat the floor.
+
+   The photo track is 750px "where it fits". The design leaves it at 750px
+   always and lets the consequence stand: the stats card sits 14px past the
+   photo, so below about 1400px of viewport the card runs off the right edge,
+   and at 1164 the published design shows only 18px of it. Matching that
+   exactly would mean hiding four numbers from anyone on a 1280 or 1366 laptop,
+   so the track shrinks instead once there is no room, and the photo keeps its
+   3:2 ratio while it does.
+
+   The subtraction is what the row needs beside the photo: 520 copy + 54 gap +
+   14 for the card's overhang + 24 of clearance = 612, plus whatever margin the
+   centred container is already taking. The clearance is not padding for its
+   own sake: `100vw` counts the scrollbar and layout does not, so without it
+   the card overshot by exactly the scrollbar's width. Above ~1500 none of it
+   binds and the photo is the design's 750x500. */
 .ms-hero__grid {
 	align-items: center;
 	display: grid;
 	gap: 54px;
-	grid-template-columns: 1fr 1.08fr;
+	grid-template-columns:
+		minmax(520px, 1fr)
+		min(
+			750px,
+			calc(100vw - 612px - max(var(--wp--custom--gutter), (100vw - var(--wp--custom--container-wide)) / 2))
+		);
 }
 
-.ms-hero__grid > * {
+.ms-hero__media {
 	min-width: 0;
 }
 
@@ -130,36 +170,20 @@
 	position: relative;
 }
 
-/* The photo bleeds toward the right screen edge, as the design draws it.
-
-   Only the figure bleeds, not `.ms-hero__media` — the stats card is positioned
-   against the media box, and bleeding that would carry the card off the screen
-   with it. This way the photo widens and the card stays where the design puts
-   it, overlapping the photo a little inside the container edge.
-
-   The `min()` picks whichever is the smaller (more negative) of two distances:
-   from the container's right edge out to the viewport's, and one gutter. Above
-   the container's max width the first wins; once the container is gutter bound
-   the second does, because then the gutter *is* the distance to the edge.
-   `50vw` counts the scrollbar, so it reaches a handful of pixels further than
-   the viewport — invisible, and `overflow-x: hidden` on the body absorbs it,
-   the same trade every flourish on this site makes.
-
-   Capped at 780px, which is roughly what the design draws. Uncapped, a 1920px
-   screen gives the photo 956px against a 570px copy column, and the hero grows
-   a third taller for no reason. */
+/* No bleed of its own: the 750px track above already carries the photo out
+   toward the screen edge, and by exactly as much as the design does. The stats
+   card is positioned against `.ms-hero__media`, which the fixed track makes the
+   same box as the photo — so `right: -14px` below lands the card 14px past the
+   photo's right edge, which is where the design puts it. */
 .ms-hero__figure {
 	margin: 0;
-	margin-right: min(calc(var(--wp--custom--container-wide) / 2 - 50vw), calc(-1 * var(--wp--custom--gutter)));
-	max-width: 780px;
 }
 
-/* `aspect-ratio`, not a fixed height. The source is 1200x800 — 3:2 — and a
-   fixed 500px height against a 535px column made the box 1.07:1, so
-   `object-fit: cover` was throwing away 40% of the frame's width and the
-   subject came out cropped tight and looking squeezed. Letting the height
-   follow the width keeps the photo in its own proportions, which is what the
-   design shows.
+/* `aspect-ratio`, not a fixed height. The source is 1200x800 — 3:2 — so a
+   750px track gives exactly the design's 500px tall photo, with nothing
+   cropped. Stated as a ratio rather than `height: 500px` so the two can never
+   drift apart again: it was a fixed 500 against a 535px column that made the
+   box 1.07:1 and had `cover` discard 40% of the frame's width.
 
    `cover` stays for the stacked widths below, where the height IS fixed and
    cropping is the right behaviour for a wide banner. */

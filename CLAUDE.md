@@ -178,17 +178,26 @@ half, pricing is reframed as prices + process, and the booking wizard is a quote
 Home refinements worth not undoing:
 
 - **CLS is 0**, via the size-adjusted fallback fonts described above.
-- Hero grid is the design's `1fr 1.08fr` (570px copy / 616px photo at the design width), not
-  the theme's fixed 750px photo.
-- **The hero photo is `aspect-ratio: 3 / 2`, never a fixed height.** The source is 1200x800;
-  a fixed 500px height against a 535px column made the box 1.07:1, so `object-fit: cover`
-  threw away 40% of the frame's width and the subject came out visibly squeezed. The height
-  follows the width above the stacking step; below it the fixed heights come back, where
-  cropping a wide banner is the right behaviour.
-- **The figure bleeds toward the right screen edge**, capped at 780px — roughly what the
-  design draws, and the theme's fixed 750px column was really about giving a 3:2 photo a
-  500px height. Only the figure bleeds, not `.ms-hero__media`: the stats card is positioned
-  against the media box, and bleeding that would carry the card off screen.
+- **Hero grid is `minmax(520px, 1fr)` copy and a 750px photo** — the design's own tracks,
+  read off the published build at ondrej89.github.io/MagicShineWeb/Home.dc.html, where the
+  grid computes to `497.5px 750px` with a 54px gap and overflows its 1240 container on
+  purpose. An earlier pass here used `1fr 1.08fr` to avoid that overflow; it shrank the
+  photo to 616px and, against a fixed 500px height, had `object-fit: cover` throw away a
+  third of the frame. Do not go back to fractional tracks for the photo.
+- **The hero photo is `aspect-ratio: 3 / 2`, never a fixed height.** The source is 1200x800,
+  so the 750px track gives exactly the design's 500px tall photo with nothing cropped.
+  Stated as a ratio so the two cannot drift apart again.
+- **The copy column's 520px floor is a German measurement**, not a guess: "Luxusreinigung
+  für modernes Wohnen" sets on two lines at 520px and breaks to three at 500. The design's
+  English headline fits its own 497.5px min-content; German does not, so the floor is
+  stated rather than inherited.
+- **The photo track is 750px where it fits, and shrinks when it cannot.** The design leaves
+  it at 750 always, which puts the stats card — 14px past the photo's right edge — off the
+  screen below about 1400px; at 1164 the published design shows 18px of it. Rather than
+  hide four numbers from every 1280 and 1366 laptop, the track gives way instead and the
+  photo keeps its ratio. Above ~1500 nothing binds and it is the design's 750x500 exactly.
+  The 612px subtrahend is 520 copy + 54 gap + 14 card overhang + 24 clearance, and the
+  clearance is there because `100vw` counts the scrollbar while layout does not.
 - Hero buttons sit on one row in all three languages at every desktop width.
 - German h1 is **"Luxusreinigung für modernes Wohnen"** — two lines from ~1205px up.
 - Trust row is **three** items side by side, icon stacked _above_ the label.
