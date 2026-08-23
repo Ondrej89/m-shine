@@ -144,21 +144,49 @@ const quoteAction = SITE_DETAILS.quoteAction;
 					<div class="ms-qrow ms-qrow--three">
 						<label class="ms-qfield">
 							<span class="ms-qfield__label">{t('quote.fSize')}</span>
-							<input class="ms-qinput" type="number" name="privateSize" min="1" inputmode="numeric" />
+							<input
+								class="ms-qinput"
+								type="number"
+								name="privateSize"
+								min="1"
+								inputmode="numeric"
+								placeholder={t('quote.phSize')}
+							/>
 						</label>
 						<label class="ms-qfield">
 							<span class="ms-qfield__label">{t('quote.fRooms')}</span>
-							<input class="ms-qinput" type="number" name="privateRooms" min="1" inputmode="numeric" />
+							<input
+								class="ms-qinput"
+								type="number"
+								name="privateRooms"
+								min="1"
+								inputmode="numeric"
+								placeholder={t('quote.phRooms')}
+							/>
 						</label>
 						<label class="ms-qfield">
 							<span class="ms-qfield__label">{t('quote.fBaths')}</span>
-							<input class="ms-qinput" type="number" name="privateBaths" min="0" inputmode="numeric" />
+							<input
+								class="ms-qinput"
+								type="number"
+								name="privateBaths"
+								min="0"
+								inputmode="numeric"
+								placeholder={t('quote.phBaths')}
+							/>
 						</label>
 					</div>
 
 					<label class="ms-qfield">
 						<span class="ms-qfield__label">{t('quote.fBedrooms')}</span>
-						<input class="ms-qinput" type="number" name="privateBedrooms" min="0" inputmode="numeric" />
+						<input
+							class="ms-qinput"
+							type="number"
+							name="privateBedrooms"
+							min="0"
+							inputmode="numeric"
+							placeholder={t('quote.phBedrooms')}
+						/>
 					</label>
 
 					<div class="ms-qfield">
@@ -243,15 +271,35 @@ const quoteAction = SITE_DETAILS.quoteAction;
 					<div class="ms-qrow ms-qrow--three">
 						<label class="ms-qfield">
 							<span class="ms-qfield__label">{t('quote.fSize')}</span>
-							<input class="ms-qinput" type="number" name="businessSize" min="1" inputmode="numeric" />
+							<input
+								class="ms-qinput"
+								type="number"
+								name="businessSize"
+								min="1"
+								inputmode="numeric"
+								placeholder={t('quote.phBizSize')}
+							/>
 						</label>
 						<label class="ms-qfield">
 							<span class="ms-qfield__label">{t('quote.fFloors')}</span>
-							<input class="ms-qinput" type="text" name="businessFloors" />
+							<input
+								class="ms-qinput"
+								type="text"
+								name="businessFloors"
+								placeholder={t('quote.phFloors')}
+							/>
 						</label>
 						<label class="ms-qfield">
 							<span class="ms-qfield__label">{t('quote.fPerWeek')}</span>
-							<input class="ms-qinput" type="number" name="perWeek" min="1" max="14" inputmode="numeric" />
+							<input
+								class="ms-qinput"
+								type="number"
+								name="perWeek"
+								min="1"
+								max="14"
+								inputmode="numeric"
+								placeholder={t('quote.phPerWeek')}
+							/>
 						</label>
 					</div>
 

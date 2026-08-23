@@ -336,6 +336,14 @@ Quote page notes worth not undoing:
 - **The action row lives inside the step card**, under a divider, as the design draws it.
   There is one row and the script moves it into whichever step is on screen; that keeps its
   listeners and avoids repeating the markup per step.
+- **Three stepper states, from the client's reference:** a finished step turns green and
+  swaps its number for a tick, with the rule leaving it green too; the current step is blue
+  with its number; anything ahead is grey. The tick is `content` on the pseudo-element that
+  already draws the circle — no per-state markup.
+- The size/room/bathroom/bedroom fields and the business floor-area, rooms-and-floors and
+  cleans-per-week fields carry **example placeholders** ("z. B. 85"), not default values. A
+  real default would be submitted as though the person had typed it, and a quote would be
+  built on a number nobody chose.
 - **It degrades.** The markup renders every step open with the nav hidden; the script hides
   all but the current step and reveals the nav. Without JavaScript the page is the long
   form, which still submits. CLS is 0 because that happens before first paint.

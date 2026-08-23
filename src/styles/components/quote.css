@@ -111,25 +111,37 @@
 	max-width: 100%;
 }
 
-/* Where you are, and where you have been. Navy for both, as the design draws
-   it — the ring is what separates the two. */
-.ms-stepper__item.is-done::before,
-.ms-stepper__item.is-current::before {
-	background: var(--wp--preset--color--navy);
-	color: var(--wp--preset--color--base);
-}
+/* Three states, as the design draws them.
 
-.ms-stepper__item.is-current::before {
-	box-shadow: 0 0 0 5px rgba(18, 42, 82, 0.12);
+   A finished step stops being a number and becomes a green tick, and the rule
+   leaving it turns green too — so the trail behind you reads as progress at a
+   glance. The step you are on is blue with its number still showing. Anything
+   ahead stays grey.
+
+   The tick is `content`, not an icon: it swaps in on a pseudo-element that is
+   already there, with no markup per state and nothing to keep in sync. */
+.ms-stepper__item.is-done::before {
+	background: var(--wp--preset--color--green-dark);
+	color: var(--wp--preset--color--base);
+	content: "✓";
+	font-family: var(--wp--preset--font-family--mulish);
+	font-size: 19px;
+	font-weight: 700;
 }
 
 .ms-stepper__item.is-done::after {
-	background: var(--wp--preset--color--navy);
+	background: var(--wp--preset--color--green-dark);
 }
 
-.ms-stepper__item.is-current .ms-stepper__label,
-.ms-stepper__item.is-done .ms-stepper__label {
-	color: var(--wp--preset--color--navy);
+.ms-stepper__item.is-current::before {
+	background: var(--wp--preset--color--blue);
+	color: var(--wp--preset--color--base);
+}
+
+/* Only the current label is emphasised. A finished step has had its turn, so
+   it drops back to the same grey as the ones ahead. */
+.ms-stepper__item.is-current .ms-stepper__label {
+	color: var(--wp--preset--color--blue);
 	font-weight: 700;
 }
 
