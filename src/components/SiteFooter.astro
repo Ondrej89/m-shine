@@ -1,6 +1,7 @@
 ---
 import Icon, { type IconName } from './Icon.astro';
-import { SERVICE_KEYS, SITE_DETAILS } from '../data/site';
+import { SITE_DETAILS } from '../data/site';
+import { SERVICES } from '../data/services';
 import type { Locale } from '../i18n/config';
 import { NAV_ROUTES, localizedPath } from '../i18n/routes';
 import { useTranslations } from '../i18n/ui';
@@ -75,10 +76,10 @@ const newsletterAction = SITE_DETAILS.newsletterAction;
 				<h2 class="ms-footer__heading" id="ms-foot-services">{t('footer.ourServices')}</h2>
 				<ul class="ms-footer__links">
 					{
-						SERVICE_KEYS.map((key) => (
+						SERVICES.map((service) => (
 							<li>
-								<a href={localizedPath(locale, 'services')}>
-									{t(`services.${key}.title` as 'services.house.title')}
+								<a href={localizedPath(locale, service.route)}>
+									{t(`services.${service.key}.title` as 'services.house.title')}
 								</a>
 							</li>
 						))

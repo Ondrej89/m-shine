@@ -45,7 +45,9 @@ export const SITE_DETAILS = {
 	quoteAction: null as string | null,
 } as const;
 
-/** The five services the footer links to, as route + translation key pairs. */
-export const SERVICE_KEYS = ['house', 'apartment', 'move', 'housekeeping', 'deep'] as const;
-
-export type ServiceKey = (typeof SERVICE_KEYS)[number];
+/**
+ * The footer's service list used to live here, as a second copy of the
+ * catalogue that happened to carry Housekeeping as well. It is gone: the
+ * footer reads `SERVICES` from `src/data/services.ts` like every other place
+ * that lists services, so there is one list and it cannot drift.
+ */
