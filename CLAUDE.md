@@ -324,6 +324,18 @@ Quote page notes worth not undoing:
 - **It is a real wizard: one step on screen, Next/Back between them.** The client asked for
   the booking wizard's step-by-step feel specifically, after a first pass built it as one
   long form. Do not flatten it again.
+- **Match the booking design's chrome, which a first attempt did not.** 48px circles with
+  the number inside, the label centred *underneath*, and the rule running the whole way
+  across the gap between two circles — not small circles with the label beside them and a
+  12px stub. Each stepper item is an equal flex track, which is what lets the rule be
+  positioned from one circle's edge to the next regardless of label length.
+- **The step title is a `<legend>`, and a legend renders on the fieldset's border by
+  default** — which put it above the card, outside it, indented. It is floated full width
+  to drop it back into the content flow, and the card is a `flow-root` so it still contains
+  it. Anything following the title needs `clear: both`.
+- **The action row lives inside the step card**, under a divider, as the design draws it.
+  There is one row and the script moves it into whichever step is on screen; that keeps its
+  listeners and avoids repeating the markup per step.
 - **It degrades.** The markup renders every step open with the nav hidden; the script hides
   all but the current step and reveals the nav. Without JavaScript the page is the long
   form, which still submits. CLS is 0 because that happens before first paint.

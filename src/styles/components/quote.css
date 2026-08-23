@@ -40,17 +40,21 @@
 /* --- Stepper ----------------------------------------------------------- */
 
 /* A progress indicator, not a control — you move with Next/Back, not by
-   clicking a circle, so these are plain list items. The numbers come from a
-   counter for the same reason they do on the pricing page: no digits in the
-   markup, so reordering the steps renumbers them. */
+   clicking a circle, so these are plain list items.
+
+   The design's proportions, which the first attempt got wrong: a 48px circle
+   with the number inside it, the label centred *underneath*, and the rule
+   between two steps running the whole way across the gap. The numbers come
+   from a counter, so reordering the steps renumbers them.
+
+   Each item is an equal flex track, which is what lets the rule be positioned
+   from one circle's edge to the next one's regardless of how long the labels
+   are. */
 .ms-stepper {
-	align-items: center;
 	counter-reset: ms-quote-step;
 	display: flex;
-	gap: 8px;
-	justify-content: space-between;
 	list-style: none;
-	margin: 34px auto 0;
+	margin: 38px auto 0;
 	max-width: 820px;
 	padding-left: 0;
 }
@@ -59,79 +63,74 @@
 	align-items: center;
 	counter-increment: ms-quote-step;
 	display: flex;
-	gap: 10px;
+	flex: 1 1 0;
+	flex-direction: column;
 	min-width: 0;
+	position: relative;
+	text-align: center;
 }
 
 .ms-stepper__item::before {
 	align-items: center;
-	background: var(--wp--preset--color--navy);
+	background: var(--wp--preset--color--line);
 	border-radius: 50%;
-	color: var(--wp--preset--color--base);
+	color: var(--wp--preset--color--ink-light);
 	content: counter(ms-quote-step);
 	display: flex;
 	flex: none;
 	font-family: var(--wp--preset--font-family--playfair);
-	font-size: 15px;
+	font-size: 18px;
 	font-weight: 600;
-	height: 34px;
+	height: 48px;
 	justify-content: center;
-	width: 34px;
+	position: relative;
+	transition: background-color 0.15s, color 0.15s;
+	width: 48px;
+	z-index: 1;
+}
+
+/* From this circle's right edge to the next circle's left edge. `-50% + 24`
+   reaches into the following track by exactly the circle's radius. */
+.ms-stepper__item:not(:last-child)::after {
+	background: var(--wp--preset--color--line);
+	content: "";
+	height: 2px;
+	left: calc(50% + 32px);
+	position: absolute;
+	right: calc(-50% + 32px);
+	top: 23px;
 }
 
 .ms-stepper__label {
-	color: var(--wp--preset--color--slate);
+	color: var(--wp--preset--color--ink-light);
 	font-size: 13px;
-	font-weight: 700;
-	line-height: 1.2;
+	font-weight: 600;
+	line-height: 1.3;
+	margin-top: 10px;
+	overflow-wrap: break-word;
+	max-width: 100%;
 }
 
-/* Steps behind you and the step you are on. Both the circle and the label
-   change, because on a phone the labels are gone and the circle carries the
-   whole signal. */
-.ms-stepper__item.is-done::before {
-	background: var(--wp--preset--color--green);
+/* Where you are, and where you have been. Navy for both, as the design draws
+   it — the ring is what separates the two. */
+.ms-stepper__item.is-done::before,
+.ms-stepper__item.is-current::before {
+	background: var(--wp--preset--color--navy);
+	color: var(--wp--preset--color--base);
 }
 
 .ms-stepper__item.is-current::before {
-	box-shadow: 0 0 0 4px rgba(28, 71, 160, 0.16);
-}
-
-.ms-stepper__item:not(.is-current):not(.is-done)::before {
-	background: var(--wp--preset--color--line-strong);
-	color: var(--wp--preset--color--ink-light);
-}
-
-.ms-stepper__item.is-current .ms-stepper__label {
-	color: var(--wp--preset--color--blue);
-}
-
-.ms-stepper__item:not(.is-current):not(.is-done) .ms-stepper__label {
-	color: var(--wp--preset--color--ink-light);
+	box-shadow: 0 0 0 5px rgba(18, 42, 82, 0.12);
 }
 
 .ms-stepper__item.is-done::after {
-	background: var(--wp--preset--color--green);
+	background: var(--wp--preset--color--navy);
 }
 
-/* The connecting rule between two steps, drawn on the gaps rather than the
-   items so it never appears after the last one. */
-.ms-stepper__item:not(:last-child)::after {
-	background: var(--wp--preset--color--line-strong);
-	content: "";
-	flex: 1 1 auto;
-	height: 2px;
-	margin-left: 10px;
-	min-width: 12px;
-}
-
-/* Reads out the position the stepper shows, for the widths where the labels
-   are gone and for anyone using a screen reader. */
-.ms-quote__count {
-	color: var(--wp--preset--color--ink-muted);
-	font-size: 13px;
+.ms-stepper__item.is-current .ms-stepper__label,
+.ms-stepper__item.is-done .ms-stepper__label {
+	color: var(--wp--preset--color--navy);
 	font-weight: 700;
-	margin: 14px 0 0;
 }
 
 /* --- Layout ------------------------------------------------------------ */
@@ -158,19 +157,31 @@
 	border: 1px solid #e2e9f1;
 	border-radius: 16px;
 	box-shadow: 0 16px 40px rgba(15, 42, 84, 0.07);
+	/* Contains the floated legend — see the note on it below. */
+	display: flow-root;
 	margin-bottom: 20px;
-	padding: 26px 28px;
+	padding: 30px 32px;
 }
 
-/* Focused on every step change so keyboard and screen-reader users land on
-   the new step rather than at the top of the document. The outline is the
-   browser's; only the default focus ring on a programmatic focus is dropped,
-   because arriving at a heading is not the same as tabbing to a control. */
+/* A `<legend>` renders on the fieldset's border by default, which put this
+   title above the card and indented from its left edge instead of inside it.
+   Floating it full width drops it back into the content flow — the standard
+   fix, and the reason the card is a `flow-root` so it still contains it.
+
+   It is also the focus target on every step change, so keyboard and screen
+   reader users land on the new step rather than at the top of the document.
+   The ring is dropped for programmatic focus only. */
 .ms-qstep__head {
-	align-items: baseline;
-	display: flex;
-	gap: 10px;
-	margin-bottom: 18px;
+	color: var(--wp--preset--color--navy);
+	float: left;
+	font-family: var(--wp--preset--font-family--playfair);
+	font-size: 26px;
+	font-weight: 600;
+	letter-spacing: var(--ms-tracking-heading);
+	line-height: 1.25;
+	margin-bottom: 6px;
+	padding: 0;
+	width: 100%;
 }
 
 .ms-qstep__head:focus {
@@ -190,17 +201,18 @@
 	flex: none;
 }
 
-.ms-qstep__title {
-	font-size: 20px;
-	line-height: 1.3;
-	margin: 0;
+/* Sits under the floated title, so it clears it. */
+.ms-qstep__hint {
+	clear: both;
+	color: var(--wp--preset--color--ink-muted);
+	font-size: 14px;
+	line-height: 1.6;
+	margin: 0 0 22px;
 }
 
-.ms-qstep__hint {
-	color: var(--wp--preset--color--ink-muted);
-	font-size: 13.5px;
-	line-height: 1.6;
-	margin: -8px 0 16px;
+/* The first control of a step that has no hint line still has to clear. */
+.ms-qstep__head + * {
+	clear: both;
 }
 
 /* --- Fields ------------------------------------------------------------ */
@@ -260,6 +272,12 @@ textarea.ms-qinput {
 
 .ms-qrow > * {
 	min-width: 0;
+}
+
+/* A private enquiry hides the company field, which would otherwise leave its
+   neighbour sitting in half a row with a gap beside it. */
+.ms-qrow:has(> [hidden]) {
+	grid-template-columns: 1fr;
 }
 
 /* --- Choice cards (the design's `.opt`) -------------------------------- */
@@ -399,16 +417,26 @@ textarea.ms-qinput {
 
 /* --- Step navigation --------------------------------------------------- */
 
-/* `space-between` with Back hidden on step one would push Next left; the
+/* Inside the step card, under a divider, as the design draws it. The script
+   moves this row into whichever step is on screen.
+
+   `space-between` with Back hidden on step one would push Next left; the auto
    margin keeps it on the right wherever it is the only control. */
+.ms-quote__foot {
+	border-top: 1px solid var(--wp--preset--color--line);
+	clear: both;
+	margin-top: 26px;
+	padding-top: 22px;
+}
+
 .ms-quote__nav {
 	display: flex;
 	gap: 12px;
 	justify-content: space-between;
-	margin-bottom: 12px;
 }
 
-.ms-quote__next {
+.ms-quote__next,
+.ms-quote__submit {
 	margin-left: auto;
 }
 
@@ -458,7 +486,7 @@ textarea.ms-qinput {
 	border-radius: 10px;
 	color: var(--wp--preset--color--base);
 	cursor: pointer;
-	display: flex;
+	display: inline-flex;
 	font-family: var(--wp--preset--font-family--mulish);
 	font-size: 15px;
 	font-weight: 700;
@@ -466,7 +494,6 @@ textarea.ms-qinput {
 	justify-content: center;
 	line-height: normal;
 	padding: 15px 26px;
-	width: 100%;
 }
 
 .ms-quote__submit:hover,
@@ -475,10 +502,11 @@ textarea.ms-qinput {
 }
 
 .ms-quote__submit-note {
+	clear: both;
 	color: var(--wp--preset--color--ink-muted);
 	font-size: 13px;
 	line-height: 1.6;
-	margin: 12px 0 0;
+	margin: 14px 0 0;
 	text-align: center;
 }
 
@@ -628,14 +656,37 @@ textarea.ms-qinput {
 	}
 }
 
+@media (max-width: 720px) {
+	.ms-qstep {
+		padding: 24px 20px;
+	}
+
+	.ms-qstep__head {
+		font-size: 22px;
+	}
+
+	/* A smaller circle, and the rule shortens with it. */
+	.ms-stepper__item::before {
+		font-size: 16px;
+		height: 40px;
+		width: 40px;
+	}
+
+	.ms-stepper__item:not(:last-child)::after {
+		left: calc(50% + 26px);
+		right: calc(-50% + 26px);
+		top: 19px;
+	}
+
+	.ms-stepper__label {
+		font-size: 11.5px;
+	}
+}
+
 @media (max-width: 600px) {
 	/* The stepper keeps its numbers and drops the words, as the design does. */
 	.ms-stepper__label {
 		display: none;
-	}
-
-	.ms-stepper {
-		gap: 4px;
 	}
 
 	.ms-qopts,

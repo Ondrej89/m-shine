@@ -78,8 +78,11 @@ const quoteAction = SITE_DETAILS.quoteAction;
 		}
 	</ol>
 
-	{/* Carries the step count on phones, where the stepper drops its words. */}
-	<p class="ms-quote__count" hidden data-ms-quote-count></p>
+	{/*
+	 * Announces the position for screen readers. The stepper shows it visually,
+	 * so this is never painted — the design has no counter line.
+	 */}
+	<p class="screen-reader-text" role="status" data-ms-quote-count></p>
 </Section>
 
 <Section class="ms-quote-body" width={1200} rhythm="none">
@@ -93,10 +96,7 @@ const quoteAction = SITE_DETAILS.quoteAction;
 			>
 				{/* ---- Step 1: who is asking ---- */}
 				<fieldset class="ms-qstep" data-step="1">
-					<legend class="ms-qstep__head" tabindex="-1">
-						<span class="ms-qstep__num">1</span>
-						<span class="ms-qstep__title">{t('quote.s1Title')}</span>
-					</legend>
+					<legend class="ms-qstep__head" tabindex="-1">{t('quote.s1Title')}</legend>
 
 					<ul class="ms-qopts">
 						<li class="ms-qopt">
@@ -138,10 +138,7 @@ const quoteAction = SITE_DETAILS.quoteAction;
 
 				{/* ---- Step 2: the property, private ---- */}
 				<fieldset class="ms-qstep" data-step="2" data-when="private">
-					<legend class="ms-qstep__head" tabindex="-1">
-						<span class="ms-qstep__num">2</span>
-						<span class="ms-qstep__title">{t('quote.s2Title')}</span>
-					</legend>
+					<legend class="ms-qstep__head" tabindex="-1">{t('quote.s2Title')}</legend>
 					<p class="ms-qstep__hint">{t('quote.s2PrivateHint')}</p>
 
 					<div class="ms-qrow ms-qrow--three">
@@ -227,10 +224,7 @@ const quoteAction = SITE_DETAILS.quoteAction;
 
 				{/* ---- Step 2: the premises, business ---- */}
 				<fieldset class="ms-qstep" data-step="2" data-when="business">
-					<legend class="ms-qstep__head" tabindex="-1">
-						<span class="ms-qstep__num">2</span>
-						<span class="ms-qstep__title">{t('quote.s2Title')}</span>
-					</legend>
+					<legend class="ms-qstep__head" tabindex="-1">{t('quote.s2Title')}</legend>
 					<p class="ms-qstep__hint">{t('quote.s2BusinessHint')}</p>
 
 					<label class="ms-qfield">
@@ -285,10 +279,7 @@ const quoteAction = SITE_DETAILS.quoteAction;
 
 				{/* ---- Step 3: how often, from when ---- */}
 				<fieldset class="ms-qstep" data-step="3">
-					<legend class="ms-qstep__head" tabindex="-1">
-						<span class="ms-qstep__num">3</span>
-						<span class="ms-qstep__title">{t('quote.s3Title')}</span>
-					</legend>
+					<legend class="ms-qstep__head" tabindex="-1">{t('quote.s3Title')}</legend>
 
 					<div class="ms-qfield">
 						<span class="ms-qfield__label">{t('quote.fFrequency')}</span>
@@ -335,10 +326,7 @@ const quoteAction = SITE_DETAILS.quoteAction;
 
 				{/* ---- Step 4: contact ---- */}
 				<fieldset class="ms-qstep" data-step="4">
-					<legend class="ms-qstep__head" tabindex="-1">
-						<span class="ms-qstep__num">4</span>
-						<span class="ms-qstep__title">{t('quote.s4Title')}</span>
-					</legend>
+					<legend class="ms-qstep__head" tabindex="-1">{t('quote.s4Title')}</legend>
 
 					<div class="ms-qrow">
 						<label class="ms-qfield">
@@ -406,24 +394,27 @@ const quoteAction = SITE_DETAILS.quoteAction;
 				{/*
 				 * Both controls start hidden and the script reveals them, so a page
 				 * without JavaScript shows every step and one working submit rather
-				 * than a Next button that goes nowhere.
+				 * than a Next button that goes nowhere. The script also moves this
+				 * row into whichever step is on screen — the design puts the action
+				 * inside the card, under a divider.
 				 */}
-				<div class="ms-quote__nav" hidden data-ms-quote-nav>
-					<button class="ms-quote__back" type="button" data-ms-quote-back>
-						<Icon name="chevron-left" size={16} />
-						{t('quote.back')}
-					</button>
-					<button class="ms-quote__next" type="button" data-ms-quote-next>
-						{t('quote.next')}
-						<Icon name="chevron-right" size={16} />
-					</button>
+				<div class="ms-quote__foot" hidden data-ms-quote-nav>
+					<div class="ms-quote__nav">
+						<button class="ms-quote__back" type="button" data-ms-quote-back>
+							<Icon name="chevron-left" size={16} />
+							{t('quote.back')}
+						</button>
+						<button class="ms-quote__next" type="button" data-ms-quote-next>
+							{t('quote.next')}
+							<Icon name="chevron-right" size={16} />
+						</button>
+						<button class="ms-quote__submit" type="submit" data-ms-quote-submit>
+							{t('quote.submit')}
+							<Icon name="send" size={16} />
+						</button>
+					</div>
+					<p class="ms-quote__submit-note">{t('quote.submitNote')}</p>
 				</div>
-
-				<button class="ms-quote__submit" type="submit" data-ms-quote-submit>
-					{t('quote.submit')}
-					<Icon name="send" size={16} />
-				</button>
-				<p class="ms-quote__submit-note">{t('quote.submitNote')}</p>
 			</form>
 
 			<div class="ms-quote__success" hidden data-ms-quote-success>
@@ -537,8 +528,12 @@ const quoteAction = SITE_DETAILS.quoteAction;
 				else item.removeAttribute('aria-current');
 			});
 
-			count.hidden = false;
 			count.textContent = countTemplate.replace('{current}', current).replace('{total}', LAST);
+
+			/* The action row lives inside the step it belongs to, which is what
+			   the design draws. Moving one element keeps its listeners. */
+			const card = panelsFor(current)[0];
+			if (card && nav.parentElement !== card) card.appendChild(nav);
 
 			back.hidden = current === 1;
 			next.hidden = current === LAST;
