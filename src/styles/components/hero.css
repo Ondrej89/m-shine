@@ -130,14 +130,44 @@
 	position: relative;
 }
 
+/* The photo bleeds toward the right screen edge, as the design draws it.
+
+   Only the figure bleeds, not `.ms-hero__media` — the stats card is positioned
+   against the media box, and bleeding that would carry the card off the screen
+   with it. This way the photo widens and the card stays where the design puts
+   it, overlapping the photo a little inside the container edge.
+
+   The `min()` picks whichever is the smaller (more negative) of two distances:
+   from the container's right edge out to the viewport's, and one gutter. Above
+   the container's max width the first wins; once the container is gutter bound
+   the second does, because then the gutter *is* the distance to the edge.
+   `50vw` counts the scrollbar, so it reaches a handful of pixels further than
+   the viewport — invisible, and `overflow-x: hidden` on the body absorbs it,
+   the same trade every flourish on this site makes.
+
+   Capped at 780px, which is roughly what the design draws. Uncapped, a 1920px
+   screen gives the photo 956px against a 570px copy column, and the hero grows
+   a third taller for no reason. */
 .ms-hero__figure {
 	margin: 0;
+	margin-right: min(calc(var(--wp--custom--container-wide) / 2 - 50vw), calc(-1 * var(--wp--custom--gutter)));
+	max-width: 780px;
 }
 
+/* `aspect-ratio`, not a fixed height. The source is 1200x800 — 3:2 — and a
+   fixed 500px height against a 535px column made the box 1.07:1, so
+   `object-fit: cover` was throwing away 40% of the frame's width and the
+   subject came out cropped tight and looking squeezed. Letting the height
+   follow the width keeps the photo in its own proportions, which is what the
+   design shows.
+
+   `cover` stays for the stacked widths below, where the height IS fixed and
+   cropping is the right behaviour for a wide banner. */
 .ms-hero__figure img {
+	aspect-ratio: 3 / 2;
 	border-radius: 20px;
 	display: block;
-	height: 500px;
+	height: auto;
 	object-fit: cover;
 	width: 100%;
 }
@@ -211,7 +241,13 @@
 		grid-template-columns: 1fr;
 	}
 
+	.ms-hero__figure {
+		margin-right: 0;
+		max-width: none;
+	}
+
 	.ms-hero__figure img {
+		aspect-ratio: auto;
 		height: 400px;
 	}
 

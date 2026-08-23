@@ -180,6 +180,15 @@ Home refinements worth not undoing:
 - **CLS is 0**, via the size-adjusted fallback fonts described above.
 - Hero grid is the design's `1fr 1.08fr` (570px copy / 616px photo at the design width), not
   the theme's fixed 750px photo.
+- **The hero photo is `aspect-ratio: 3 / 2`, never a fixed height.** The source is 1200x800;
+  a fixed 500px height against a 535px column made the box 1.07:1, so `object-fit: cover`
+  threw away 40% of the frame's width and the subject came out visibly squeezed. The height
+  follows the width above the stacking step; below it the fixed heights come back, where
+  cropping a wide banner is the right behaviour.
+- **The figure bleeds toward the right screen edge**, capped at 780px — roughly what the
+  design draws, and the theme's fixed 750px column was really about giving a 3:2 photo a
+  500px height. Only the figure bleeds, not `.ms-hero__media`: the stats card is positioned
+  against the media box, and bleeding that would carry the card off screen.
 - Hero buttons sit on one row in all three languages at every desktop width.
 - German h1 is **"Luxusreinigung für modernes Wohnen"** — two lines from ~1205px up.
 - Trust row is **three** items side by side, icon stacked _above_ the label.
