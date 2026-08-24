@@ -11,7 +11,16 @@ import { withBase } from '../lib/paths';
  * the pseudo-element paints; `plain` suppresses the chip entirely rather than
  * leaving an empty green square.
  */
-export type ServiceIcon = 'house' | 'apartment' | 'move' | 'deep' | 'plain';
+export type ServiceIcon =
+	| 'house'
+	| 'apartment'
+	| 'move'
+	| 'deep'
+	| 'office'
+	| 'practice'
+	| 'hotel'
+	| 'restaurant'
+	| 'plain';
 
 interface Props {
 	title: string;

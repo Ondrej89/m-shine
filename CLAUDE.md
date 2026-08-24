@@ -142,8 +142,8 @@ half, pricing is reframed as prices + process, and the booking wizard is a quote
   for page sections. `src/content-pages/Styleguide.astro` renders all of it at
   `/styleguide/`, in whichever language you switch to.
 - **Home** — `src/content-pages/Home.astro`, six sections: `HomeHero`, `ServicesGrid`,
-  `WhyChoose`, `BeforeAfter`, `SubscriptionCta`, `ReviewsCarousel`. `ServicesGrid` reads the
-  catalogue in `src/data/services.ts`; its cards link to the service detail pages.
+  `WhyChoose`, `BeforeAfter`, `SubscriptionCta`, `ReviewsCarousel`. `ServicesGrid` sells the
+  **commercial** side — see below.
 - **About** — `src/content-pages/About.astro`, five sections: `AboutHero`, `MissionValues`,
   `AboutStory`, `AboutReviews`, `AboutCta`, with `src/styles/components/about.css`.
 - **Services (private customers)** — `src/content-pages/Services.astro`, four sections:
@@ -178,6 +178,35 @@ half, pricing is reframed as prices + process, and the booking wizard is a quote
 Home refinements worth not undoing:
 
 - **CLS is 0**, via the size-adjusted fallback fonts described above.
+- **The card grid sells commercial cleaning, not residential** (client's decision,
+  2026-08-24). Four cards — Büro-, Ordinations-, Hotel- und Gastronomiereinigung — which are
+  the first four sectors of the Commercial page and **read that page's copy**: the title from
+  `commercial.sectors.<n>.title` and the one-liner and photo alt from `cardShort` /
+  `cardPhotoAlt` beside it, so a sector is named and described once. The keys stay `one`..
+  `four` for that reason; the fifth sector (Hausverwaltung) has no card because the grid's
+  tracks are `repeat(4, 1fr)`. `ServicesGrid` no longer reads `src/data/services.ts`.
+- **Each card asks for a quote** (`nav.quote` -> `localizedPath(locale, 'quote')`), because
+  detail pages exist for the private-customer services only. The button under the grid still
+  goes to the residential Services page — confirmed deliberate, it is the home page's one
+  route through to the private-customer side. Do not "fix" it to point at the Commercial
+  page; `services.viewAll` says so out loud now ("Privatkunden-Leistungen ansehen" / "View
+  Our Residential Services" / "Zobraziť služby pre domácnosti") so a commercial row above a
+  residential button does not read as a mistake. The German is the compound rather than the
+  better-reading "Leistungen für Privatkunden ansehen" because that one needs 350px and the
+  button has 343 at 375px — it wrapped. All three set on one line from 360px up.
+- **The card bottom-aligns its link.** `.ms-card` is a flex column and `.ms-card__body`
+  takes the slack, so every "Angebot anfordern" sits on the card's bottom edge whatever the
+  copy above it does. Without it the home row's links stood 22px apart at 1400 and 23px at
+  1180 — the commercial one-liners run two lines or three where the residential ones ran one
+  or two, which is why the theme never needed this. `.ms-learn` gets `align-self: flex-start`
+  so it keeps its own width rather than stretching to a card-wide hit area.
+- Card photos are `home-svc-{office,practice,hotel,restaurant}.webp`, converted from
+  `_design-reference/img/Magic_Shine_*.jpg` to 456x304 webp — the size the four residential
+  card photos already used. The chips are new `.ms-card--{office,practice,hotel,restaurant}`
+  rules in cards.css, the same glyphs as `Icon.astro`'s `office`/`clinic`/`bed`/`restaurant`
+  redrawn as data URIs because the chip is a background image.
+- The residential `services.<key>.description` / `.photoAlt` strings are now read **only by
+  the styleguide**. They go orphaned when it is deleted; drop them then, not before.
 - **Hero grid is `minmax(520px, 1fr)` copy and a 750px photo** — the design's own tracks,
   read off the published build at ondrej89.github.io/MagicShineWeb/Home.dc.html, where the
   grid computes to `497.5px 750px` with a 54px gap and overflows its 1240 container on

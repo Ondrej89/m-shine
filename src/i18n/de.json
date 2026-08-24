@@ -145,9 +145,9 @@
   },
   "services": {
     "eyebrow": "Unser Angebot",
-    "title": "Unsere Reinigungsleistungen",
+    "title": "Unsere Gewerbereinigung",
     "learnMore": "Mehr erfahren",
-    "viewAll": "Alle Leistungen ansehen",
+    "viewAll": "Privatkunden-Leistungen ansehen",
     "house": {
       "title": "Hausreinigung",
       "nameInline": "Hausreinigung",
@@ -401,6 +401,8 @@
       "one": {
         "title": "Büroreinigung",
         "body": "Vom Einzelbüro bis zur Etage: Arbeitsplätze, Besprechungsräume, Küchen und Sanitäranlagen werden vor oder nach Ihren Geschäftszeiten gereinigt, damit der Betrieb nie stillsteht. Auf Wunsch übernehmen wir auch Glasflächen im Innenbereich und die Betreuung der Verbrauchsmaterialien.",
+        "cardShort": "Arbeitsplätze, Besprechungsräume und Sanitäranlagen – gereinigt außerhalb Ihrer Bürozeiten.",
+        "cardPhotoAlt": "Ein helles Großraumbüro mit weißen Schreibtischen und Bildschirmen",
         "points": {
           "one": "Reinigung außerhalb der Bürozeiten",
           "two": "Küchen, Sanitär und Besprechungsräume",
@@ -410,6 +412,8 @@
       "two": {
         "title": "Ordinationsreinigung",
         "body": "Ordinationen und Zahnarztpraxen verlangen eine andere Sorgfalt als ein Büro. Wir arbeiten nach Ihrem Hygieneplan, trennen Behandlungs- und Wartebereiche sauber voneinander und dokumentieren die Reinigung, wenn Sie das für Ihre Unterlagen brauchen.",
+        "cardShort": "Ordinationen und Zahnarztpraxen, gereinigt nach Ihrem Hygieneplan.",
+        "cardPhotoAlt": "Ein weißer Behandlungsraum mit Liege und Rollhocker",
         "points": {
           "one": "Arbeit nach Ihrem Hygieneplan",
           "two": "Getrennte Reinigung von Behandlung und Wartebereich",
@@ -419,6 +423,8 @@
       "three": {
         "title": "Hotelreinigung",
         "body": "Für Hotels, Apartments und Boardinghouses übernehmen wir Zimmerreinigung, Wäschewechsel und die öffentlichen Bereiche – auch kurzfristig, wenn die Auslastung schwankt. Bei hoher Belegung stocken wir das Team auf, statt Termine zu verschieben.",
+        "cardShort": "Zimmer, Wäsche und öffentliche Bereiche – auch kurzfristig bei hoher Belegung.",
+        "cardPhotoAlt": "Ein frisch hergerichtetes Hotelzimmer mit gemachtem Doppelbett",
         "points": {
           "one": "Zimmer, Wäsche und öffentliche Bereiche",
           "two": "Kurzfristige Aufstockung bei Auslastung",
@@ -428,6 +434,8 @@
       "four": {
         "title": "Gastronomiereinigung",
         "body": "Gastraum, Küche und Sanitäranlagen werden vor der Öffnung oder nach dem Sperrstunden-Betrieb gereinigt. Wir kennen die Anforderungen der Lebensmittelhygiene und arbeiten so, dass Ihre Küche zur Öffnung einsatzbereit ist.",
+        "cardShort": "Gastraum, Küche und Sanitär – vor der Öffnung oder nach der Sperrstunde.",
+        "cardPhotoAlt": "Ein aufgedeckter Tisch in einem hellen Restaurant",
         "points": {
           "one": "Reinigung vor Öffnung oder nach Sperrstunde",
           "two": "Gastraum, Küche und Sanitär",

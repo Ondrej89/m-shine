@@ -145,9 +145,9 @@
   },
   "services": {
     "eyebrow": "Čo ponúkame",
-    "title": "Naše upratovacie služby",
+    "title": "Naše upratovanie pre firmy",
     "learnMore": "Zistiť viac",
-    "viewAll": "Zobraziť všetky služby",
+    "viewAll": "Zobraziť služby pre domácnosti",
     "house": {
       "title": "Upratovanie domov",
       "nameInline": "upratovanie domov",
@@ -401,6 +401,8 @@
       "one": {
         "title": "Upratovanie kancelárií",
         "body": "Od jednej kancelárie po celé poschodie: pracoviská, zasadačky, kuchynky a sociálne zariadenia upratujeme pred vašimi hodinami alebo po nich, aby prevádzka nikdy nestála. Na želanie zabezpečíme aj vnútorné sklenené plochy a doplňovanie spotrebného materiálu.",
+        "cardShort": "Pracoviská, zasadačky a sociálne zariadenia – upratané mimo vašich pracovných hodín.",
+        "cardPhotoAlt": "Svetlá open-space kancelária s bielymi stolmi a monitormi",
         "points": {
           "one": "Upratovanie mimo pracovných hodín",
           "two": "Kuchynky, sociálne zariadenia a zasadačky",
@@ -410,6 +412,8 @@
       "two": {
         "title": "Upratovanie ambulancií",
         "body": "Ambulancie a zubné praxe si vyžadujú inú starostlivosť než kancelária. Pracujeme podľa vášho hygienického plánu, dôsledne oddeľujeme ošetrovňu od čakárne a upratovanie zdokumentujeme, ak to potrebujete do svojej evidencie.",
+        "cardShort": "Ambulancie a zubné praxe, upratané podľa vášho hygienického plánu.",
+        "cardPhotoAlt": "Biela ošetrovňa s vyšetrovacím lôžkom a stoličkou",
         "points": {
           "one": "Práca podľa vášho hygienického plánu",
           "two": "Oddelené upratovanie ošetrovne a čakárne",
@@ -419,6 +423,8 @@
       "three": {
         "title": "Upratovanie hotelov",
         "body": "Pre hotely, apartmány a ubytovne zabezpečujeme upratovanie izieb, výmenu bielizne a spoločné priestory – aj krátkodobo, keď sa obsadenosť mení. Pri vysokej obsadenosti tím posilníme, namiesto presúvania termínov.",
+        "cardShort": "Izby, bielizeň a spoločné priestory – aj krátkodobo pri vysokej obsadenosti.",
+        "cardPhotoAlt": "Čerstvo upravená hotelová izba s ustlanou manželskou posteľou",
         "points": {
           "one": "Izby, bielizeň a spoločné priestory",
           "two": "Krátkodobé posilnenie tímu",
@@ -428,6 +434,8 @@
       "four": {
         "title": "Upratovanie reštaurácií",
         "body": "Priestor pre hostí, kuchyňu a sociálne zariadenia upratujeme pred otvorením alebo po zatváracej hodine. Poznáme požiadavky potravinovej hygieny a pracujeme tak, aby bola vaša kuchyňa pri otvorení pripravená.",
+        "cardShort": "Priestor pre hostí, kuchyňu a sociálne zariadenia – pred otvorením alebo po zatváraní.",
+        "cardPhotoAlt": "Prestretý stôl vo svetlej reštaurácii",
         "points": {
           "one": "Upratovanie pred otvorením alebo po zatvorení",
           "two": "Priestor pre hostí, kuchyňa a sociálne zariadenia",

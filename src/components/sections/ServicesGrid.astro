@@ -3,27 +3,40 @@ import Button from '../Button.astro';
 import Section from '../Section.astro';
 import SectionHead from '../SectionHead.astro';
 import ServiceCard from '../ServiceCard.astro';
-import { SERVICES, type Service } from '../../data/services';
 import type { Locale } from '../../i18n/config';
 import { localizedPath } from '../../i18n/routes';
 import { useTranslations } from '../../i18n/ui';
 
 /*
- * The four-card services grid.
+ * The four-card services grid on the home page — commercial cleaning.
  *
- * The list comes from the catalogue in `src/data/services.ts`, which is also
- * what the Services page's rows and the detail template read, so a service is
- * described in exactly one place. It stays a prop so a page can show a subset.
+ * The cards are the first four sectors of the Commercial page, and they read
+ * that page's copy: `commercial.sectors.<n>.title` for the name and its
+ * `cardShort` / `cardPhotoAlt` for the one-line version, so a sector is named
+ * and described in exactly one place. The keys are the sector keys for that
+ * reason — `one`..`four` is the Commercial page's own order, and the two lists
+ * must stay in it. The fifth sector (Hausverwaltung) has no card: the design
+ * draws four and the grid's tracks are `repeat(4, 1fr)`.
+ *
+ * Each card asks for a quote rather than linking on to a detail page — there
+ * are detail pages for the private-customer services only. The button under the
+ * grid still goes to the residential Services page: the home page keeps one
+ * route through to the private-customer side, which is deliberate.
  */
 interface Props {
 	locale: Locale;
-	/** Which services to show, in order. Defaults to the whole catalogue. */
-	services?: readonly Service[];
 	showCta?: boolean;
 }
 
-const { locale, services = SERVICES, showCta = true } = Astro.props;
+const { locale, showCta = true } = Astro.props;
 const t = useTranslations(locale);
+
+const CARDS = [
+	{ key: 'one', icon: 'office', image: '/img/photos/home-svc-office.webp' },
+	{ key: 'two', icon: 'practice', image: '/img/photos/home-svc-practice.webp' },
+	{ key: 'three', icon: 'hotel', image: '/img/photos/home-svc-hotel.webp' },
+	{ key: 'four', icon: 'restaurant', image: '/img/photos/home-svc-restaurant.webp' },
+] as const;
 ---
 
 <Section class="ms-services" rhythm="none" clip>
@@ -31,15 +44,19 @@ const t = useTranslations(locale);
 
 	<div class="ms-services__grid">
 		{
-			services.map((service) => (
+			CARDS.map((card) => (
 				<ServiceCard
-					title={t(`services.${service.key}.title` as 'services.house.title')}
-					description={t(`services.${service.key}.description` as 'services.house.description')}
-					imageAlt={t(`services.${service.key}.photoAlt` as 'services.house.photoAlt')}
-					image={service.cardImage}
-					icon={service.key}
-					href={localizedPath(locale, service.route)}
-					linkLabel={t('services.learnMore')}
+					title={t(`commercial.sectors.${card.key}.title` as 'commercial.sectors.one.title')}
+					description={t(
+						`commercial.sectors.${card.key}.cardShort` as 'commercial.sectors.one.cardShort',
+					)}
+					imageAlt={t(
+						`commercial.sectors.${card.key}.cardPhotoAlt` as 'commercial.sectors.one.cardPhotoAlt',
+					)}
+					image={card.image}
+					icon={card.icon}
+					href={localizedPath(locale, 'quote')}
+					linkLabel={t('nav.quote')}
 				/>
 			))
 		}

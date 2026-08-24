@@ -17,7 +17,14 @@
 	grid-template-columns: repeat(4, 1fr);
 }
 
+/* The card is a flex column so the body can take the slack and pin its link to
+   the bottom edge. Grid rows stretch their items, so four cards are already the
+   same height; without this the "Angebot anfordern" links sit wherever the copy
+   ends — 22px apart across the home row at 1400, 23px at 1180, because the
+   commercial one-liners run two lines or three. */
 .ms-card {
+	display: flex;
+	flex-direction: column;
 	background: var(--wp--preset--color--base);
 	border: 1px solid var(--wp--preset--color--line);
 	border-radius: var(--wp--custom--radius--lg);
@@ -35,6 +42,7 @@
 }
 
 .ms-card__media {
+	flex: none;
 	height: 150px;
 	margin: 0;
 	position: relative;
@@ -87,8 +95,38 @@
 	background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="%235dbb63" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l1.9 4.1L18 9l-4.1 1.9L12 15l-1.9-4.1L6 9l4.1-1.9z"/><path d="M18 15l.9 2.1L21 18l-2.1.9L18 21l-.9-2.1L15 18l2.1-.9z"/></svg>');
 }
 
+/* The commercial chips. Same glyphs as the Commercial page's sector cards
+   (Icon.astro's `office`, `clinic`, `bed` and `restaurant`), redrawn here as
+   data URIs because the chip is a background image, not an element. */
+.ms-card--office::after {
+	background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="%235dbb63" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18M6 21V4a1 1 0 0 1 1-1h7a1 1 0 0 1 1 1v17M15 9h3a1 1 0 0 1 1 1v11M9 7h.01M9 11h.01M9 15h.01"/></svg>');
+}
+
+.ms-card--practice::after {
+	background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="%235dbb63" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v6M9 6h6M5 21V11a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v10M9 21v-4h6v4"/></svg>');
+}
+
+.ms-card--hotel::after {
+	background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="%235dbb63" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 4v16M2 8h18a2 2 0 0 1 2 2v10M2 17h20"/><path d="M6 8V6a2 2 0 0 1 2-2h4v4"/></svg>');
+}
+
+.ms-card--restaurant::after {
+	background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="%235dbb63" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2v7a3 3 0 0 0 6 0V2M9 2v20M18 2c-1.5 1-2 3-2 6v5h2v9"/></svg>');
+}
+
 .ms-card__body {
+	display: flex;
+	flex: 1;
+	flex-direction: column;
 	padding: 30px 20px 22px;
+}
+
+/* Whatever the copy does above it, the link sits on the bottom edge.
+   `align-self` keeps it its own width — a flex item would otherwise stretch the
+   whole track and give the link a card-wide hit area. */
+.ms-card__body .ms-learn {
+	align-self: flex-start;
+	margin-top: auto;
 }
 
 .ms-card__body h3 {
