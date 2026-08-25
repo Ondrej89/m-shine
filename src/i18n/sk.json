@@ -72,8 +72,8 @@
   "home": {
     "hero": {
       "eyebrow": "Čistý domov. Lepší pocit.",
-      "titleLead": "Prvotriedne upratovanie pre",
-      "titleAccent": "moderné bývanie",
+      "titleLead": "Čistota pre",
+      "titleAccent": "váš domov aj vašu firmu",
       "lede": "Prinášame do vášho domova hotelovú čistotu, aby ste sa mohli venovať tomu, na čom naozaj záleží.",
       "ctaPrimary": "Bezplatná ponuka",
       "ctaSecondary": "Pozrieť služby",
@@ -402,7 +402,7 @@
         "title": "Upratovanie kancelárií",
         "body": "Od jednej kancelárie po celé poschodie: pracoviská, zasadačky, kuchynky a sociálne zariadenia upratujeme pred vašimi hodinami alebo po nich, aby prevádzka nikdy nestála. Na želanie zabezpečíme aj vnútorné sklenené plochy a doplňovanie spotrebného materiálu.",
         "cardShort": "Pracoviská, zasadačky a sociálne zariadenia – upratané mimo vašich pracovných hodín.",
-        "cardPhotoAlt": "Svetlá open-space kancelária s bielymi stolmi a monitormi",
+        "cardPhotoAlt": "Pracovníčka Magic Shine vytiera podlahu vo svetlej open-space kancelárii",
         "points": {
           "one": "Upratovanie mimo pracovných hodín",
           "two": "Kuchynky, sociálne zariadenia a zasadačky",
@@ -413,7 +413,7 @@
         "title": "Upratovanie ambulancií",
         "body": "Ambulancie a zubné praxe si vyžadujú inú starostlivosť než kancelária. Pracujeme podľa vášho hygienického plánu, dôsledne oddeľujeme ošetrovňu od čakárne a upratovanie zdokumentujeme, ak to potrebujete do svojej evidencie.",
         "cardShort": "Ambulancie a zubné praxe, upratané podľa vášho hygienického plánu.",
-        "cardPhotoAlt": "Biela ošetrovňa s vyšetrovacím lôžkom a stoličkou",
+        "cardPhotoAlt": "Pracovníčka Magic Shine v ochranných rukaviciach utiera pracovnú plochu",
         "points": {
           "one": "Práca podľa vášho hygienického plánu",
           "two": "Oddelené upratovanie ošetrovne a čakárne",
@@ -424,7 +424,7 @@
         "title": "Upratovanie hotelov",
         "body": "Pre hotely, apartmány a ubytovne zabezpečujeme upratovanie izieb, výmenu bielizne a spoločné priestory – aj krátkodobo, keď sa obsadenosť mení. Pri vysokej obsadenosti tím posilníme, namiesto presúvania termínov.",
         "cardShort": "Izby, bielizeň a spoločné priestory – aj krátkodobo pri vysokej obsadenosti.",
-        "cardPhotoAlt": "Čerstvo upravená hotelová izba s ustlanou manželskou posteľou",
+        "cardPhotoAlt": "Pracovníčka Magic Shine čistí zrkadlo v kúpeľni",
         "points": {
           "one": "Izby, bielizeň a spoločné priestory",
           "two": "Krátkodobé posilnenie tímu",
@@ -435,7 +435,7 @@
         "title": "Upratovanie reštaurácií",
         "body": "Priestor pre hostí, kuchyňu a sociálne zariadenia upratujeme pred otvorením alebo po zatváracej hodine. Poznáme požiadavky potravinovej hygieny a pracujeme tak, aby bola vaša kuchyňa pri otvorení pripravená.",
         "cardShort": "Priestor pre hostí, kuchyňu a sociálne zariadenia – pred otvorením alebo po zatváraní.",
-        "cardPhotoAlt": "Prestretý stôl vo svetlej reštaurácii",
+        "cardPhotoAlt": "Pracovník Magic Shine vytiera podlahu v reštaurácii",
         "points": {
           "one": "Upratovanie pred otvorením alebo po zatvorení",
           "two": "Priestor pre hostí, kuchyňa a sociálne zariadenia",

@@ -200,11 +200,22 @@ Home refinements worth not undoing:
   1180 — the commercial one-liners run two lines or three where the residential ones ran one
   or two, which is why the theme never needed this. `.ms-learn` gets `align-self: flex-start`
   so it keeps its own width rather than stretching to a card-wide hit area.
-- Card photos are `home-svc-{office,practice,hotel,restaurant}.webp`, converted from
-  `_design-reference/img/Magic_Shine_*.jpg` to 456x304 webp — the size the four residential
-  card photos already used. The chips are new `.ms-card--{office,practice,hotel,restaurant}`
-  rules in cards.css, the same glyphs as `Icon.astro`'s `office`/`clinic`/`bed`/`restaurant`
-  redrawn as data URIs because the chip is a background image.
+- Card photos are `home-svc-{office,practice,hotel,restaurant}.webp` at 456x304 — the size
+  the four residential card photos already used. They are the client's own branded shots
+  (2026-08-25), converted from `_design-reference/img/new/{Office,Medical,Hotel,Restaurant}.jpeg`
+  and replacing the first pass off `_design-reference/img/Magic_Shine_*.jpg`. Three of the
+  four sources are ~1.49:1 and crop to 3:2 essentially untouched; **Medical is 1166x978 and
+  must be cropped from the top** (`position: 'top'`, not `'centre'`) — a centre crop takes
+  100px off each end and cuts the subject's head off. Re-crop with sharp if they are ever
+  regenerated. The chips are `.ms-card--{office,practice,hotel,restaurant}` rules in
+  cards.css, the same glyphs as `Icon.astro`'s `office`/`clinic`/`bed`/`restaurant` redrawn
+  as data URIs because the chip is a background image.
+- **The card `cardPhotoAlt` strings describe these photos**, so they changed with them: all
+  four now show a Magic Shine staff member at work, where the old set was empty rooms. They
+  are read by `ServicesGrid` only — the Commercial page's sector cards carry no photo — so
+  editing them touches the home page alone. Note the file named `Medical` is shot in an
+  office, not a treatment room; it sits on the Ordinationsreinigung card because that is
+  what the client named it, and the alt describes what is actually in frame.
 - The residential `services.<key>.description` / `.photoAlt` strings are now read **only by
   the styleguide**. They go orphaned when it is deleted; drop them then, not before.
 - **Hero grid is `minmax(520px, 1fr)` copy and a 750px photo** — the design's own tracks,
@@ -216,10 +227,10 @@ Home refinements worth not undoing:
 - **The hero photo is `aspect-ratio: 3 / 2`, never a fixed height.** The source is 1200x800,
   so the 750px track gives exactly the design's 500px tall photo with nothing cropped.
   Stated as a ratio so the two cannot drift apart again.
-- **The copy column's 520px floor is a German measurement**, not a guess: "Luxusreinigung
-  für modernes Wohnen" sets on two lines at 520px and breaks to three at 500. The design's
-  English headline fits its own 497.5px min-content; German does not, so the floor is
-  stated rather than inherited.
+- **The copy column's 520px floor is a German measurement**, not a guess. It was set
+  against the headline "Luxusreinigung für modernes Wohnen" (two lines at 520px, three at
+  500); the design's English headline fits its own 497.5px min-content and German does not,
+  so the floor is stated rather than inherited. It stays with the current, longer headline.
 - **The photo track is 750px where it fits, and shrinks when it cannot.** The design leaves
   it at 750 always, which puts the stats card — 14px past the photo's right edge — off the
   screen below about 1400px; at 1164 the published design shows 18px of it. Rather than
@@ -228,7 +239,18 @@ Home refinements worth not undoing:
   The 612px subtrahend is 520 copy + 54 gap + 14 card overhang + 24 clearance, and the
   clearance is there because `100vw` counts the scrollbar while layout does not.
 - Hero buttons sit on one row in all three languages at every desktop width.
-- German h1 is **"Luxusreinigung für modernes Wohnen"** — two lines from ~1205px up.
+- German h1 is **"Sauberkeit für Ihr Zuhause und Ihr Unternehmen"** (client, 2026-08-25),
+  replacing "Luxusreinigung für modernes Wohnen": the page sells to businesses as well as
+  households, and the old line named only the household half. It sets on **three** lines in
+  the 520px copy column from 1180px up, two lines between roughly 480 and 1100, three again
+  at 375. Measured: no overflow at 375, 480, 720, 960, 1180, 1280, 1366 or 1440 in any of
+  the three languages. The third line does push the copy column past the photo's bottom
+  edge — by 5px at 1440, 17 at 1366, 38 at 1280 and 68 at 1180 — so the hero's height is
+  now set by the copy rather than the photo. That is the trade the longer headline buys and
+  it reads as intended; if a future pass wants the photo governing again, the headline is
+  what has to get shorter, not the 520px floor. The
+  split is `titleLead` "Sauberkeit für" + `titleAccent` "Ihr Zuhause und Ihr Unternehmen",
+  keeping the accent on the whole object as the design's does.
 - Trust row is **three** items side by side, icon stacked _above_ the label.
   "Insured & Bonded" was removed entirely: the client cannot substantiate it. The stacking
   is not decorative — "Zufriedenheitsgarantie" sets 138px and only fits when the label gets

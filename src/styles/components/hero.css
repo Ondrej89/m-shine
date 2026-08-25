@@ -39,11 +39,13 @@
    height, had `object-fit: cover` throwing away a third of the frame.
 
    The copy column has a 520px floor rather than the design's `min-content`.
-   Measured: the German h1 "Luxusreinigung für modernes Wohnen" sets on two
-   lines at 520px and breaks to three at 500. The design's English headline
-   fits its own min-content of 497.5px, which German does not — so the floor is
-   stated instead of inherited. Without it the copy lands at 436px inside a
-   1240 container and the headline runs to three lines at every width.
+   Measured against the German h1, which is the long one: the floor was set
+   when the headline was "Luxusreinigung für modernes Wohnen" (two lines at
+   520px, three at 500). The headline is now "Sauberkeit für Ihr Zuhause und
+   Ihr Unternehmen" and sets on three lines at 520 — deliberate, and it still
+   clears the photo's bottom edge with the lede, buttons and trust row below
+   it. The floor stays: it is what keeps the words per line from collapsing
+   further. Without it the copy lands at 436px inside a 1240 container.
 
    The grid overflows its 1240 container on purpose, as the design's does: the
    photo runs on toward the right screen edge and the page's `overflow-x:

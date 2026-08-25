@@ -72,8 +72,8 @@
   "home": {
     "hero": {
       "eyebrow": "Sauber wohnen. Besser leben.",
-      "titleLead": "Luxusreinigung für",
-      "titleAccent": "modernes Wohnen",
+      "titleLead": "Sauberkeit für",
+      "titleAccent": "Ihr Zuhause und Ihr Unternehmen",
       "lede": "Wir bringen Hotelqualität in Ihr Zuhause, damit Sie sich auf das konzentrieren können, was wirklich zählt.",
       "ctaPrimary": "Kostenloses Angebot",
       "ctaSecondary": "Leistungen",
@@ -402,7 +402,7 @@
         "title": "Büroreinigung",
         "body": "Vom Einzelbüro bis zur Etage: Arbeitsplätze, Besprechungsräume, Küchen und Sanitäranlagen werden vor oder nach Ihren Geschäftszeiten gereinigt, damit der Betrieb nie stillsteht. Auf Wunsch übernehmen wir auch Glasflächen im Innenbereich und die Betreuung der Verbrauchsmaterialien.",
         "cardShort": "Arbeitsplätze, Besprechungsräume und Sanitäranlagen – gereinigt außerhalb Ihrer Bürozeiten.",
-        "cardPhotoAlt": "Ein helles Großraumbüro mit weißen Schreibtischen und Bildschirmen",
+        "cardPhotoAlt": "Eine Reinigungskraft von Magic Shine wischt den Boden in einem hellen Großraumbüro",
         "points": {
           "one": "Reinigung außerhalb der Bürozeiten",
           "two": "Küchen, Sanitär und Besprechungsräume",
@@ -413,7 +413,7 @@
         "title": "Ordinationsreinigung",
         "body": "Ordinationen und Zahnarztpraxen verlangen eine andere Sorgfalt als ein Büro. Wir arbeiten nach Ihrem Hygieneplan, trennen Behandlungs- und Wartebereiche sauber voneinander und dokumentieren die Reinigung, wenn Sie das für Ihre Unterlagen brauchen.",
         "cardShort": "Ordinationen und Zahnarztpraxen, gereinigt nach Ihrem Hygieneplan.",
-        "cardPhotoAlt": "Ein weißer Behandlungsraum mit Liege und Rollhocker",
+        "cardPhotoAlt": "Eine Reinigungskraft von Magic Shine mit Schutzhandschuhen reinigt eine Tischfläche",
         "points": {
           "one": "Arbeit nach Ihrem Hygieneplan",
           "two": "Getrennte Reinigung von Behandlung und Wartebereich",
@@ -424,7 +424,7 @@
         "title": "Hotelreinigung",
         "body": "Für Hotels, Apartments und Boardinghouses übernehmen wir Zimmerreinigung, Wäschewechsel und die öffentlichen Bereiche – auch kurzfristig, wenn die Auslastung schwankt. Bei hoher Belegung stocken wir das Team auf, statt Termine zu verschieben.",
         "cardShort": "Zimmer, Wäsche und öffentliche Bereiche – auch kurzfristig bei hoher Belegung.",
-        "cardPhotoAlt": "Ein frisch hergerichtetes Hotelzimmer mit gemachtem Doppelbett",
+        "cardPhotoAlt": "Eine Reinigungskraft von Magic Shine putzt den Spiegel in einem Badezimmer",
         "points": {
           "one": "Zimmer, Wäsche und öffentliche Bereiche",
           "two": "Kurzfristige Aufstockung bei Auslastung",
@@ -435,7 +435,7 @@
         "title": "Gastronomiereinigung",
         "body": "Gastraum, Küche und Sanitäranlagen werden vor der Öffnung oder nach dem Sperrstunden-Betrieb gereinigt. Wir kennen die Anforderungen der Lebensmittelhygiene und arbeiten so, dass Ihre Küche zur Öffnung einsatzbereit ist.",
         "cardShort": "Gastraum, Küche und Sanitär – vor der Öffnung oder nach der Sperrstunde.",
-        "cardPhotoAlt": "Ein aufgedeckter Tisch in einem hellen Restaurant",
+        "cardPhotoAlt": "Eine Reinigungskraft von Magic Shine wischt den Boden in einem Restaurant",
         "points": {
           "one": "Reinigung vor Öffnung oder nach Sperrstunde",
           "two": "Gastraum, Küche und Sanitär",

@@ -72,8 +72,8 @@
   "home": {
     "hero": {
       "eyebrow": "A Clean Home. A Better You.",
-      "titleLead": "Luxury Cleaning for",
-      "titleAccent": "Modern Living",
+      "titleLead": "Cleanliness for",
+      "titleAccent": "Your Home and Your Business",
       "lede": "We bring hotel-quality cleanliness to your home so you can focus on what matters most.",
       "ctaPrimary": "Get a Free Quote",
       "ctaSecondary": "Explore Services",
@@ -402,7 +402,7 @@
         "title": "Office Cleaning",
         "body": "From a single office to a whole floor: workstations, meeting rooms, kitchens and washrooms are cleaned before or after your business hours so work never stops. Interior glass and consumables can be included on request.",
         "cardShort": "Workstations, meeting rooms and washrooms, cleaned outside your business hours.",
-        "cardPhotoAlt": "A bright open-plan office with white desks and monitors",
+        "cardPhotoAlt": "A Magic Shine cleaner mopping the floor of a bright open-plan office",
         "points": {
           "one": "Cleaning outside office hours",
           "two": "Kitchens, washrooms and meeting rooms",
@@ -413,7 +413,7 @@
         "title": "Medical Practice Cleaning",
         "body": "Medical and dental practices call for a different kind of care than an office. We work to your hygiene plan, keep treatment and waiting areas properly separated, and document the work when you need it for your records.",
         "cardShort": "Medical and dental practices, cleaned to your own hygiene plan.",
-        "cardPhotoAlt": "A white treatment room with an examination couch and stool",
+        "cardPhotoAlt": "A Magic Shine cleaner in protective gloves wiping down a table surface",
         "points": {
           "one": "Work to your hygiene plan",
           "two": "Treatment and waiting areas kept separate",
@@ -424,7 +424,7 @@
         "title": "Hotel Cleaning",
         "body": "For hotels, serviced apartments and boarding houses we handle room cleaning, linen changes and the public areas — at short notice too, when occupancy shifts. When you are full we add people rather than move appointments.",
         "cardShort": "Rooms, linen and public areas — at short notice when you are full.",
-        "cardPhotoAlt": "A freshly made-up hotel room with a double bed",
+        "cardPhotoAlt": "A Magic Shine cleaner polishing the mirror in a bathroom",
         "points": {
           "one": "Rooms, linen and public areas",
           "two": "Extra staff at short notice",
@@ -435,7 +435,7 @@
         "title": "Restaurant Cleaning",
         "body": "Dining room, kitchen and washrooms are cleaned before opening or after closing time. We know what food hygiene requires and work so that your kitchen is ready to go when you open.",
         "cardShort": "Dining room, kitchen and washrooms — before opening or after closing time.",
-        "cardPhotoAlt": "A laid table in a bright restaurant dining room",
+        "cardPhotoAlt": "A Magic Shine cleaner mopping the floor of a restaurant dining room",
         "points": {
           "one": "Cleaning before opening or after closing",
           "two": "Dining room, kitchen and washrooms",
