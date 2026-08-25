@@ -203,19 +203,19 @@ Home refinements worth not undoing:
 - Card photos are `home-svc-{office,practice,hotel,restaurant}.webp` at 456x304 — the size
   the four residential card photos already used. They are the client's own branded shots
   (2026-08-25), converted from `_design-reference/img/new/{Office,Medical,Hotel,Restaurant}.jpeg`
-  and replacing the first pass off `_design-reference/img/Magic_Shine_*.jpg`. Three of the
-  four sources are ~1.49:1 and crop to 3:2 essentially untouched; **Medical is 1166x978 and
-  must be cropped from the top** (`position: 'top'`, not `'centre'`) — a centre crop takes
-  100px off each end and cuts the subject's head off. Re-crop with sharp if they are ever
-  regenerated. The chips are `.ms-card--{office,practice,hotel,restaurant}` rules in
+  and replacing the first pass off `_design-reference/img/Magic_Shine_*.jpg`. All four
+  sources are ~1.5:1, so a centred `fit: 'cover'` crop to 3:2 leaves them essentially
+  untouched — that is the conversion to repeat if they are regenerated. (The client
+  re-shot Hotel and Medical the same day; the first Medical was 1166x978 and needed
+  `position: 'top'` to keep the subject's head in frame. The replacement does not.) The
+  chips are `.ms-card--{office,practice,hotel,restaurant}` rules in
   cards.css, the same glyphs as `Icon.astro`'s `office`/`clinic`/`bed`/`restaurant` redrawn
   as data URIs because the chip is a background image.
 - **The card `cardPhotoAlt` strings describe these photos**, so they changed with them: all
   four now show a Magic Shine staff member at work, where the old set was empty rooms. They
   are read by `ServicesGrid` only — the Commercial page's sector cards carry no photo — so
-  editing them touches the home page alone. Note the file named `Medical` is shot in an
-  office, not a treatment room; it sits on the Ordinationsreinigung card because that is
-  what the client named it, and the alt describes what is actually in frame.
+  editing them touches the home page alone. They have been rewritten twice for this reason;
+  if a photo is swapped, its alt is part of the swap.
 - The residential `services.<key>.description` / `.photoAlt` strings are now read **only by
   the styleguide**. They go orphaned when it is deleted; drop them then, not before.
 - **Hero grid is `minmax(520px, 1fr)` copy and a 750px photo** — the design's own tracks,
