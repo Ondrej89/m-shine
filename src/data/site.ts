@@ -24,14 +24,20 @@
  * the source rather than in an environment variable, and there is one place to
  * change it.
  *
- * TO GO LIVE: get a key at https://web3forms.com — enter
- * magicshine2601@gmail.com (the value of `formRecipient` below), and the key
- * arrives in that mailbox. Paste it in place of `null`. Nothing else changes:
- * both forms switch from the "not connected yet" path to real submission the
- * moment this stops being `null`.
+ * The key below is live (set 2026-08-28). `null` remains a working state, not
+ * a broken one: with no key both forms take the "not connected yet" path and
+ * post nothing anywhere, which is how they behaved before this and is the
+ * guard that protects a build where the key goes missing.
+ *
+ * STILL OUTSTANDING, and neither is a code change: the account was opened
+ * under ondrejdudas89@gmail.com, so mail currently goes THERE and not to
+ * `formRecipient` below — add that address under Linked Emails in the
+ * Web3Forms dashboard and set it as the form's recipient. And no real
+ * submission has been confirmed end to end; Cloudflare challenges automated
+ * clients, so that last check has to be a person submitting the form once.
  */
 const WEB3FORMS_ENDPOINT = 'https://api.web3forms.com/submit';
-const WEB3FORMS_ACCESS_KEY: string | null = null;
+const WEB3FORMS_ACCESS_KEY: string | null = '7387644b-a9a6-4981-84ab-a6f07aea8c92';
 
 export const SITE_DETAILS = {
 	/** Display form, formatted the way it should be read. Austria, primary. */

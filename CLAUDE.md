@@ -458,9 +458,16 @@ Forms:
   not a secret and because GitHub Pages builds have no env to read one from.
 - **`null` is a working state, not a broken one.** With no key, `contactAction` and
   `quoteAction` are `null`, both forms take the "not connected yet" path, and **nothing is
-  posted anywhere** — verified. That guard is what lets the wiring ship before the key
-  does; do not delete it when the key lands, because it is also what protects a rebuild
-  with the key accidentally removed.
+  posted anywhere** — verified. The key is set now, but do not delete that guard: it is
+  what protects a build where the key is accidentally removed, and it is how the forms
+  behaved for the whole time they had no backend.
+- **The recipient is not in the payload, and cannot be.** Web3Forms mails whichever address
+  the access key's form is configured for; a form that could name its own recipient would
+  be an open relay. `SITE_DETAILS.formRecipient` is therefore a *record of what the
+  dashboard must say*, not something the code enforces — see the pre-launch list.
+- **Cloudflare sits in front of the API.** A visitor whose request is challenged gets our
+  error panel, with the phone number and the mailbox in it. That is the correct outcome and
+  the reason the failure state keeps every value the visitor typed.
 - **Three states, and the failure state is the point.** Sent replaces the form with a
   success panel; failed leaves **every value the visitor typed exactly where it was**, puts
   an error under the button, and repeats the phone and mailbox. Four steps of quote answers
@@ -502,9 +509,9 @@ was the last route it stood in for.
 Every page is built and the client's real content landed on 2026-08-28 (see "Client content,
 2026-08-28" below). What is left is not page work:
 
-1. **Paste the Web3Forms access key.** Contact and Quote are wired and tested; the one
-   thing missing is the key, which is a single `null` in `src/data/site.ts`. The newsletter
-   is deliberately still waiting on a real provider. See "Forms" below.
+1. **Point Web3Forms at the right mailbox, and send one real enquiry through the live
+   site.** The key is in and the code is tested; two things are still open and both are
+   done in a browser, not in this repo. See "Forms" below.
 2. **Get the three legal pages reviewed.** They are competent generic templates and say so
    on the page, in an amber notice, in all three languages. They are not signed off.
 3. **Replace the reviews.** Every testimonial on the site is invented — see the block
@@ -599,12 +606,18 @@ copy. What each one changed, so none of it gets quietly undone:
 - **Newsletter needs a provider.** `SITE_DETAILS.newsletterAction` is `null`; until it is
   set the footer form renders but refuses to submit and says so, rather than reloading and
   dropping the address.
-- **The contact and quote forms need their Web3Forms access key.** Everything else is
-  built and tested. Until `WEB3FORMS_ACCESS_KEY` in `src/data/site.ts` stops being `null`,
-  both forms render, validate, and decline to submit with an honest notice — and post
-  nothing anywhere. Get the key by entering `magicshine2601@gmail.com` at web3forms.com;
-  it arrives in that mailbox. **Nobody has yet confirmed a real mail arriving**, because
-  that needs the key and access to the inbox — do that first thing after pasting it.
+- **Web3Forms delivers to the wrong mailbox right now.** The account was opened under
+  `ondrejdudas89@gmail.com`, and Web3Forms sends to the address the form is configured
+  for — the payload cannot name a recipient, which is what stops the service being an open
+  relay. Add `magicshine2601@gmail.com` under **Linked Emails**, verify it, and set it as
+  the recipient under **Settings** for the "MagicShine" form. Nothing in this repo changes.
+- **No real submission has been confirmed end to end.** Everything is verified against a
+  stubbed endpoint, and the built pages carry the right key and fields, but a genuine send
+  from this machine could not be completed: Cloudflare answers `Cf-Mitigated: challenge` to
+  automated browsers and to plain HTTP clients alike, and solving that is not something to
+  automate around. Submit the form once from an ordinary browser and check the inbox — or
+  use **Send Test Submission** in the Web3Forms dashboard, which tests the key and the
+  recipient without touching the site.
 - **Payment answer on Contact is deliberately vague** ("you receive an invoice after the
   visit; we agree the method when you enquire"). The design promised card payment and SEPA
   direct debit, which the client has not confirmed and which no backend supports. Replace
