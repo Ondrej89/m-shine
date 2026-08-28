@@ -302,6 +302,7 @@ const subject = `${SITE_DETAILS.formSubjects.contact} (${locale.toUpperCase()})`
 		pendingMsg: t('contact.formPending'),
 		sendingLabel: t('contact.formSending'),
 		submitLabel: t('contact.formSubmit'),
+		messageLabel: t('contact.formMessage'),
 	}}
 >
 	/* No key yet: stop the submit and say so. Unchanged from before the form was
@@ -332,10 +333,24 @@ const subject = `${SITE_DETAILS.formSubjects.contact} (${locale.toUpperCase()})`
 			try {
 				/* `FormData` as the body rather than JSON: it is a CORS-simple
 				   request, so there is no preflight to fail, and it carries the
-				   hidden fields the no-script POST uses without restating them. */
+				   hidden fields the no-script POST uses without restating them.
+
+				   `message` goes under its on-screen caption, so the mail reads
+				   "Ihre Nachricht" rather than "Message" on a German enquiry. The
+				   quote form relabels its whole payload the same way, and the two
+				   mails should not look like they came from different sites.
+				   `name` and `email` keep their machine names, because Web3Forms
+				   reads `email` to set Reply-To. */
+				const payload = new FormData(form);
+				if (payload.has('message')) {
+					const message = payload.get('message');
+					payload.delete('message');
+					payload.append(messageLabel, message);
+				}
+
 				const response = await fetch(form.action, {
 					method: 'POST',
-					body: new FormData(form),
+					body: payload,
 					headers: { Accept: 'application/json' },
 				});
 				const result = await response.json().catch(() => ({}));

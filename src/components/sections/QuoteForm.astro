@@ -561,6 +561,7 @@ const subject = `${SITE_DETAILS.formSubjects.quote} (${locale.toUpperCase()})`;
 		pendingTitle: t('quote.pendingTitle'),
 		pendingBody: t('quote.pendingBody'),
 		pendingAgain: t('quote.pendingAgain'),
+		kindLabel: t('quote.step1'),
 	}}
 >
 	document.querySelectorAll('.ms-quote__form').forEach((form) => {
@@ -701,6 +702,123 @@ const subject = `${SITE_DETAILS.formSubjects.quote} (${locale.toUpperCase()})`;
 		const error = form.querySelector('[data-ms-quote-error]');
 		const submitLabelEl = form.querySelector('[data-ms-quote-submit-label]');
 
+		/* ---- What the client actually receives -----------------------------
+		 * Web3Forms builds its mail out of the field names and values it is
+		 * given, so a raw submission of this form arrives as "CustomerKind:
+		 * business / PremisesType: clinic / BusinessSize: 25" - machine names,
+		 * machine values, in DOM order, which puts the person's name and
+		 * address at the BOTTOM, under the property details.
+		 *
+		 * So the payload is rebuilt before it goes. Every field is relabelled
+		 * with the caption the visitor actually read, every coded value with
+		 * the option text they actually picked, empty optional fields are
+		 * dropped, and the order is the order the client needs: who is asking
+		 * and how to reach them, then what the job is, then when.
+		 *
+		 * Nothing is translated to do it — the labels are lifted out of the
+		 * DOM, so they are already in the language the form was filled in, and
+		 * the subject line says which one that is.
+		 *
+		 * `name` and `email` keep their machine names: Web3Forms reads `email`
+		 * to set Reply-To, and both render acceptably in all three languages.
+		 */
+		const RESERVED = ['access_key', 'subject', 'from_name', 'botcheck'];
+		const KEEP_MACHINE_NAME = ['name', 'email'];
+		const FIELD_ORDER = [
+			/* who, and how to answer them */
+			'name',
+			'email',
+			'phone',
+			'company',
+			'preferredContact',
+			/* what kind of job */
+			'customerKind',
+			'privateSize',
+			'privateRooms',
+			'privateBedrooms',
+			'privateBaths',
+			'cleaningType',
+			'pets',
+			'access',
+			'premisesType',
+			'businessSize',
+			'businessFloors',
+			'perWeek',
+			'preferredHours',
+			'specialRequirements',
+			/* when */
+			'frequency',
+			'startDate',
+			'flexibility',
+			/* anything they wanted to add */
+			'message',
+		];
+
+		const tidy = (text) => text.replace(/\s+/g, ' ').trim();
+
+		/* The caption above the control, minus the "(optional)" marker. */
+		function fieldLabel(key) {
+			if (key === 'customerKind') return kindLabel;
+			const label = form
+				.querySelector('[name="' + key + '"]')
+				?.closest('.ms-qfield')
+				?.querySelector('.ms-qfield__label');
+			if (!label) return null;
+			const clone = label.cloneNode(true);
+			clone.querySelector('.ms-qfield__optional')?.remove();
+			return tidy(clone.textContent);
+		}
+
+		/* The words on screen rather than the value attribute — "Ordination /
+		   Praxis" rather than "clinic", "Wöchentlich" rather than "weekly". */
+		function fieldValue(key, raw) {
+			const control = form.querySelector('[name="' + key + '"]');
+			if (!control) return raw;
+
+			if (control.type === 'radio') {
+				const checked = form.querySelector('[name="' + key + '"]:checked');
+				if (!checked) return raw;
+				const label = form.querySelector('label[for="' + checked.id + '"]');
+				/* The customer-kind cards carry an icon and a note as well as the
+				   name, so take the name alone. */
+				const name = label?.querySelector('.ms-qopt__name');
+				return tidy((name || label)?.textContent || raw);
+			}
+
+			if (control.tagName === 'SELECT') {
+				return tidy(control.selectedOptions[0]?.textContent || raw);
+			}
+
+			return raw;
+		}
+
+		function buildPayload() {
+			/* Branch-aware for free: the inactive half's fieldset is disabled, so
+			   its fields are already absent here. */
+			const source = new FormData(form);
+			const out = new FormData();
+
+			for (const key of RESERVED) if (source.has(key)) out.append(key, source.get(key));
+
+			const done = new Set(RESERVED);
+			/* Anything the form grows later and this list has not heard of still
+			   goes, at the end, rather than being silently dropped. */
+			const keys = FIELD_ORDER.concat(
+				[...source.keys()].filter((key) => !FIELD_ORDER.includes(key)),
+			);
+
+			for (const key of keys) {
+				if (done.has(key) || !source.has(key)) continue;
+				done.add(key);
+				const raw = String(source.get(key)).trim();
+				if (!raw) continue;
+				const label = KEEP_MACHINE_NAME.includes(key) ? key : fieldLabel(key) || key;
+				out.append(label, fieldValue(key, raw));
+			}
+
+			return out;
+		}
+
 		function showSuccess() {
 			form.hidden = true;
 			success.hidden = false;
@@ -730,12 +848,9 @@ const subject = `${SITE_DETAILS.formSubjects.quote} (${locale.toUpperCase()})`;
 					submitLabelEl.textContent = sendingLabel;
 
 					try {
-						/* `FormData` reads the form as it stands, which means the
-						   disabled half of the private/business branch is left out for
-						   free — the same mechanism that keeps it out of validation. */
 						const response = await fetch(form.action, {
 							method: 'POST',
-							body: new FormData(form),
+							body: buildPayload(),
 							headers: { Accept: 'application/json' },
 						});
 						const result = await response.json().catch(() => ({}));
