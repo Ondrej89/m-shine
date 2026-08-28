@@ -67,6 +67,18 @@
     "about": {
       "title": "O nás – váš upratovací tím vo Viedni",
       "description": "Magic Shine je upratovacia firma vo Viedni: školený a preverený personál, ekologické prostriedky a jedna kontaktná osoba. Spoznajte nás."
+    },
+    "imprint": {
+      "title": "Tiráž",
+      "description": "Tiráž a povinné údaje spoločnosti Magic Shine – majiteľka, právna forma, registračné a daňové číslo a kontaktné údaje."
+    },
+    "privacy": {
+      "title": "Ochrana osobných údajov",
+      "description": "Ako Magic Shine spracúva osobné údaje: formuláre, serverové logy, doba uchovávania a vaše práva podľa GDPR."
+    },
+    "terms": {
+      "title": "Obchodné podmienky",
+      "description": "Podmienky, za akých Magic Shine poskytuje upratovacie služby: ponuka, ceny, termíny, zrušenie, záruka a zodpovednosť."
     }
   },
   "home": {
@@ -84,18 +96,14 @@
       "eco": "Ekologické prostriedky",
       "checked": "Preverený personál"
     },
-    "stats": {
-      "homes": {
-        "value": "10 000+",
-        "label": "upratených domácností"
+    "facts": {
+      "area": {
+        "value": "Viedeň",
+        "label": "a okolie"
       },
-      "rating": {
-        "value": "4,9",
-        "label": "priemerné hodnotenie"
-      },
-      "repeat": {
-        "value": "98 %",
-        "label": "vracajúcich sa klientov"
+      "hours": {
+        "value": "Po – Pi",
+        "label": "8 – 18 h"
       },
       "satisfaction": {
         "value": "100 %",
@@ -174,7 +182,7 @@
         "six": "Vynesený odpad"
       },
       "frequency": "Týždenne / raz za dva týždne / mesačne",
-      "price": "120 €",
+      "price": "30 €",
       "reviews": {
         "one": {
           "quote": "Náš domov nebol nikdy čistejší. Tím pracuje dôkladne a vždy príde načas.",
@@ -219,7 +227,7 @@
         "six": "Flexibilné termíny"
       },
       "frequency": "Týždenne / raz za dva týždne / mesačne",
-      "price": "110 €",
+      "price": "30 €",
       "reviews": {
         "one": {
           "quote": "Ideálne pre môj byt. Rýchlo, potichu a zakaždým bez chyby.",
@@ -264,7 +272,7 @@
         "six": "Pripravené na odovzdanie"
       },
       "frequency": "Jednorazovo",
-      "price": "150 €",
+      "price": "40 €",
       "reviews": {
         "one": {
           "quote": "Vďaka tomu, ako to nechali čisté, som dostala späť celý depozit.",
@@ -314,7 +322,7 @@
         "six": "Kompletná dezinfekcia"
       },
       "frequency": "Jednorazovo alebo sezónne",
-      "price": "180 €",
+      "price": "40 €",
       "reviews": {
         "one": {
           "quote": "Rozdiel bol ako deň a noc. Dostali sa na miesta, na ktoré som zabudla.",
@@ -357,7 +365,7 @@
     },
     "detailPage": {
       "priceLabel": "od",
-      "priceUnit": "za návštevu",
+      "priceUnit": "za hodinu",
       "overviewEyebrow": "Prehľad",
       "overviewTitle": "Čo táto služba zahŕňa",
       "factsTitle": "Detaily služby",
@@ -374,7 +382,8 @@
       "othersTitle": "Ďalšie služby",
       "othersLink": "Zobraziť detaily",
       "ctaTitle": "Pripravení na {service}?",
-      "ctaText": "Spoľahlivo, dôkladne a so zárukou spokojnosti – pri každej návšteve."
+      "ctaText": "Spoľahlivo, dôkladne a so zárukou spokojnosti – pri každej návšteve.",
+      "priceFlat": "Možná je aj paušálna cena, podľa potreby."
     }
   },
   "commercial": {
@@ -450,6 +459,24 @@
           "two": "Pevný, zdokumentovaný rytmus",
           "three": "Jedna kontaktná osoba pre všetky objekty"
         }
+      },
+      "six": {
+        "title": "Upratovanie schodísk",
+        "body": "Schodiská, chodby, výťahy a vstupné priestory v dohodnutom rytme – týždenne, dvojtýždenne alebo mesačne. Patria sem zábradlia a vypínače rovnako ako zametanie pred domom a kontrola miesta na odpad.",
+        "points": {
+          "one": "Schody, podesty, zábradlia a výťah",
+          "two": "Vstupný priestor a chodník",
+          "three": "Pevný rytmus, na požiadanie zdokumentovaný"
+        }
+      },
+      "seven": {
+        "title": "Umývanie okien",
+        "body": "Okná, sklenené dvere a vnútorné zasklenie umyté bez šmúh, vrátane rámov a parapetov. Pre firmy v dohodnutom cykle, pre domácnosti na požiadanie – aj ako doplnok ku generálnemu upratovaniu alebo upratovaniu po sťahovaní.",
+        "points": {
+          "one": "Sklo, rámy a parapety",
+          "two": "Zvnútra aj zvonku, pokiaľ je to bezpečne dosiahnuteľné",
+          "three": "Jednorazovo alebo v pevnom cykle"
+        }
       }
     },
     "why": {
@@ -492,10 +519,10 @@
   "pricing": {
     "heroEyebrow": "Ceny a priebeh",
     "heroTitle": "Ceny a priebeh",
-    "heroLede": "Nepracujeme s pevnými balíkmi – žiadne dva domovy nie sú rovnaké. Tu vidíte, kde ceny začínajú, čo určuje konečnú sumu a ako v troch krokoch získate záväznú ponuku.",
+    "heroLede": "Účtujeme podľa hodín a koľko ich bude, závisí od objektu. Tu vidíte, kde hodinové sadzby začínajú, čo určuje konečnú sumu a ako v troch krokoch získate záväznú ponuku.",
     "startEyebrow": "Východiskové ceny",
     "startTitle": "Kde ceny začínajú",
-    "startLede": "Orientačné sumy pre domácnosti, za jednu návštevu. Koľko zaplatíte v skutočnosti, závisí od faktorov nižšie – preto cenu povieme až vtedy, keď vieme, o čo ide.",
+    "startLede": "Orientačné sadzby pre domácnosti, za hodinu. Koľko hodín návšteva zaberie, závisí od faktorov nižšie – preto konečnú cenu povieme až vtedy, keď vieme, o čo ide.",
     "startLink": "Zobraziť službu",
     "factorsEyebrow": "Čo určuje cenu",
     "factorsTitle": "Štyri faktory, nič viac",
@@ -720,12 +747,11 @@
     "labelAddress": "Adresa",
     "labelHours": "Otváracie hodiny",
     "hoursWeek": "Po – Pi: 8:00 – 18:00",
-    "hoursWeekend": "So: 9:00 – 15:00",
     "formName": "Vaše meno",
     "formEmail": "Váš e-mail",
     "formMessage": "Vaša správa",
     "formSubmit": "Odoslať správu",
-    "formPending": "Formulár zatiaľ nie je aktívny. Napíšte nám prosím priamo e-mailom alebo zavolajte – čoskoro sa ozveme.",
+    "formPending": "Formulár zatiaľ nie je aktívny. Napíšte nám prosím priamo na magicshine2601@gmail.com alebo zavolajte – čoskoro sa ozveme.",
     "faqs": {
       "one": {
         "q": "Čo zahŕňa štandardné upratovanie?",
@@ -751,7 +777,12 @@
         "q": "Ako platím?",
         "a": "Po návšteve dostanete faktúru. Spôsob platby dohodneme pri vašej žiadosti tak, aby vám vyhovoval."
       }
-    }
+    },
+    "labelPhoneSecondary": "Telefón (SK)",
+    "addressValue": "Viedeň, Rakúsko",
+    "addressNote": "Na adrese neprijímame návštevy – prídeme za vami.",
+    "labelArea": "Oblasť pôsobenia",
+    "areaValue": "Viedeň a okolie, vrátane miest Mödling a Purkersdorf. Ďalšie lokality po dohode."
   },
   "footer": {
     "blurb": "Prvotriedne upratovacie služby pre čistejší, zdravší a šťastnejší domov.",
@@ -767,5 +798,170 @@
     "privacy": "Ochrana údajov",
     "terms": "Obchodné podmienky",
     "imprint": "Tiráž"
+  },
+  "legal": {
+    "reviewTitle": "Šablóna – zatiaľ bez právnej kontroly",
+    "reviewBody": "Táto stránka je štandardná šablóna pre malý rakúsky podnik a nenahrádza právne poradenstvo. Pred spustením ju musí skontrolovať, doplniť a schváliť účtovníčka alebo právnik.",
+    "updatedLabel": "Aktualizované",
+    "detailsTitle": "Údaje podľa § 5 rakúskeho zákona o elektronickom obchode (ECG)",
+    "fields": {
+      "owner": "Majiteľka, zodpovedná za obsah",
+      "brand": "Obchodné označenie",
+      "legalForm": "Právna forma",
+      "purpose": "Predmet podnikania",
+      "registration": "Registračné číslo (IČO)",
+      "vat": "Daňové číslo / IČ DPH (DIČ)",
+      "seat": "Miesto pôsobenia",
+      "phone": "Telefón",
+      "email": "E-mail",
+      "accounting": "Účtovníctvo"
+    },
+    "values": {
+      "legalForm": "Živnosť – SZČO (Einzelunternehmen)",
+      "purpose": "Upratovacie služby pre domácnosti a firmy",
+      "seat": "Viedeň, Rakúsko"
+    },
+    "imprint": {
+      "title": "Tiráž",
+      "lede": "Údaje podľa § 5 rakúskeho zákona o elektronickom obchode (ECG) a zverejnenie podľa § 25 zákona o médiách.",
+      "blocks": {
+        "one": {
+          "h": "Predmet podnikania a živnosť",
+          "body": "Magic Shine poskytuje upratovacie služby pre domácnosti a firmy vo Viedni a okolí. Príslušné živnostenské predpisy a zodpovedný dozorný orgán musí pred zverejnením potvrdiť účtovníčka alebo právnik a doplniť ich sem."
+        },
+        "two": {
+          "h": "Cezhraničná činnosť",
+          "body": "Podnik je registrovaný ako živnosť (SZČO) na Slovensku; uvedené registračné a daňové číslo sa vzťahuje na túto registráciu. Služby sa poskytujú vo Viedni a okolí. Či je k tomu potrebná aj rakúska živnosť, ohlásenie vyslania alebo registrácia na DPH, objasní účtovníčka pred spustením."
+        },
+        "three": {
+          "h": "Riešenie sporov",
+          "body": "Ak niečo nie je v poriadku, obráťte sa najskôr priamo na nás – väčšina vecí sa vyrieši v rozhovore. Nad rámec toho nie sme povinní ani ochotní zúčastniť sa konania pred orgánom alternatívneho riešenia spotrebiteľských sporov."
+        },
+        "four": {
+          "h": "Zodpovednosť za obsah",
+          "body": "Obsah tejto stránky pripravujeme so starostlivosťou. Za jeho správnosť, úplnosť a aktuálnosť však nemôžeme ručiť. Údaje o cenách a službách sú nezáväzné, kým neexistuje písomná ponuka."
+        },
+        "five": {
+          "h": "Zodpovednosť za odkazy",
+          "body": "Táto stránka momentálne neodkazuje na cudzí obsah. Ak neskôr pribudnú odkazy na externé stránky, za ich obsah zodpovedá výlučne príslušný prevádzkovateľ. V čase vloženia odkazu nám nie sú známe žiadne porušenia práva."
+        },
+        "six": {
+          "h": "Autorské práva",
+          "body": "Texty, fotografie a dizajn tejto stránky sú chránené autorským právom. Použitie nad rámec zákonných výnimiek vyžaduje náš písomný súhlas."
+        },
+        "seven": {
+          "h": "Zdroj fotografií",
+          "body": "Fotografie na tejto stránke zachytávajú zamestnancov Magic Shine pri práci a poskytol ich samotný podnik."
+        },
+        "eight": {
+          "h": "Zverejnenie podľa § 25 zákona o médiách",
+          "body": "Vlastníčkou média, vydavateľkou a osobou zodpovednou za obsah je vyššie uvedená majiteľka. Základné zameranie: predstavenie služieb Magic Shine a informácie o upratovacích službách vo Viedni a okolí."
+        }
+      }
+    },
+    "privacy": {
+      "title": "Ochrana osobných údajov",
+      "lede": "Ako narábame s osobnými údajmi, keď navštívite túto stránku alebo nám pošlete dopyt.",
+      "blocks": {
+        "one": {
+          "h": "Prevádzkovateľ",
+          "body": "Prevádzkovateľom spracúvania osobných údajov v zmysle GDPR je majiteľka uvedená v tiráži. Zastihnete nás na kontaktoch uvedených tam."
+        },
+        "two": {
+          "h": "Zásada",
+          "body": "Táto stránka je statická, bez používateľských účtov, bez reklamných sietí a bez analytických či sledovacích služieb. Nepoužívame cookies, ktoré by vyžadovali súhlas, a nevykonávame profilovanie."
+        },
+        "three": {
+          "h": "Serverové logy a hosting",
+          "body": "Pri otvorení stránky prenesie váš prehliadač technicky nevyhnutné údaje poskytovateľovi hostingu: IP adresu, dátum a čas, vyžiadanú stránku, objem prenesených dát a označenie prehliadača a operačného systému. Tieto údaje slúžia na bezpečnú prevádzku, nespájajú sa s inými zdrojmi a po krátkom čase sa mažú. Právnym základom je čl. 6 ods. 1 písm. f GDPR. Poskytovateľa hostingu treba pred spustením uviesť sem, spolu so zmluvou o spracúvaní údajov."
+        },
+        "four": {
+          "h": "Kontaktný formulár a formulár ponuky",
+          "body": "Keď nám napíšete cez kontaktný formulár alebo formulár ponuky, spracúvame údaje, ktoré ste zadali – meno, e-mailovú adresu, telefónne číslo, údaje o objekte a vašu správu –, aby sme odpovedali na váš dopyt a pripravili ponuku. Právnym základom je čl. 6 ods. 1 písm. b GDPR (predzmluvné opatrenia). Formuláre zatiaľ nie sú napojené na žiadnu službu; hneď ako budú, uvedieme tu poskytovateľa."
+        },
+        "five": {
+          "h": "Dopyty e-mailom",
+          "body": "E-maily nám momentálne chodia do schránky u spoločnosti Google (Gmail). Pred spustením prejdeme na schránku na vlastnej doméne. Neposielajte nám prosím e-mailom osobitné kategórie osobných údajov, napríklad údaje o zdraví."
+        },
+        "six": {
+          "h": "Newsletter",
+          "body": "Ak sa prihlásite na odber newslettera, spracúvame vašu e-mailovú adresu, aby sme vám mohli posielať informácie o službách a akciách. Právnym základom je váš súhlas podľa čl. 6 ods. 1 písm. a GDPR, ktorý môžete kedykoľvek odvolať. Odosielacia služba zatiaľ nie je vybraná a treba ju sem doplniť pred spustením."
+        },
+        "seven": {
+          "h": "Doba uchovávania",
+          "body": "Dopyty uchovávame tak dlho, ako je to potrebné na ich vybavenie, a nad rámec toho tak dlho, ako vyžadujú zákonné lehoty na uchovávanie – pri obchodných dokladoch spravidla sedem rokov."
+        },
+        "eight": {
+          "h": "Príjemcovia a sprostredkovatelia",
+          "body": "Osobné údaje odovzdávame len vtedy, keď je to potrebné na poskytnutie služby alebo keď to vyžaduje zákon – napríklad účtovníctvu alebo daňovému poradcovi. Sprostredkovateľov zmluvne zaväzujeme podľa čl. 28 GDPR."
+        },
+        "nine": {
+          "h": "Vaše práva",
+          "body": "Máte právo na prístup, opravu, vymazanie, obmedzenie spracúvania, prenosnosť údajov a namietanie. Stačí neformálna správa na kontakty uvedené v tiráži."
+        },
+        "ten": {
+          "h": "Právo podať sťažnosť",
+          "body": "Ak sa domnievate, že spracúvanie vašich údajov porušuje GDPR, môžete podať sťažnosť dozornému orgánu – v Rakúsku úradu Datenschutzbehörde, Barichgasse 40 – 42, 1030 Viedeň."
+        },
+        "eleven": {
+          "h": "Zmeny tohto dokumentu",
+          "body": "Tento dokument upravujeme, keď sa zmenia služby, dodávatelia alebo právny stav. Platí vždy verzia zverejnená tu."
+        }
+      }
+    },
+    "terms": {
+      "title": "Obchodné podmienky",
+      "lede": "Podmienky, za akých poskytujeme upratovacie služby.",
+      "blocks": {
+        "one": {
+          "h": "Rozsah platnosti",
+          "body": "Tieto obchodné podmienky platia pre všetky upratovacie služby, ktoré Magic Shine poskytuje domácnostiam a firmám. Odlišné podmienky objednávateľa platia len vtedy, ak s nimi písomne súhlasíme."
+        },
+        "two": {
+          "h": "Ponuka a uzavretie zmluvy",
+          "body": "Údaje na tejto stránke sú nezáväzné. Zmluva vzniká, keď na váš dopyt vystavíme písomnú ponuku a vy ju prijmete. Ponuka uvádza rozsah, cenu a termín."
+        },
+        "three": {
+          "h": "Rozsah služieb",
+          "body": "Rozsah vyplýva z ponuky. Ďalšie práce vykonáme po dohode a účtujeme ich samostatne. Práce, ktoré si vyžadujú osobitné vybavenie alebo oprávnenie – napríklad práce vo výškach bez bezpečného prístupu –, nie sú súčasťou služby."
+        },
+        "four": {
+          "h": "Ceny",
+          "body": "Spravidla účtujeme podľa hodín; hodinové sadzby začínajú na sumách uvedených na stránke s cenami. Na želanie dohodneme namiesto toho paušálnu cenu, podľa potreby. Pri pravidelnom upratovaní – týždennom alebo dvojtýždňovom – poskytujeme zľavu, ktorú určíme individuálne a uvedieme v ponuke. Čistiace prostriedky a vybavenie prinesieme; osobitné materiály alebo náklady na likvidáciu odpadu vyčíslime zvlášť."
+        },
+        "five": {
+          "h": "Platba",
+          "body": "Faktúru vystavíme po vykonaní práce; je splatná do 14 dní bez zrážky. Spôsob platby dohodneme pri dopyte. Pri omeškaní platia zákonné ustanovenia."
+        },
+        "six": {
+          "h": "Termíny, prístup a zrušenie",
+          "body": "Dohodnuté termíny sú záväzné. Termín zrušte prosím najneskôr 24 hodín vopred; pri neskoršom zrušení alebo ak sa v dohodnutom čase nedostaneme dnu, môžeme primerane vyúčtovať rezervovaný čas. Rovnako vás bezodkladne informujeme, ak termín nemôžeme dodržať my, a ponúkneme náhradný."
+        },
+        "seven": {
+          "h": "Vaša súčinnosť",
+          "body": "Potrebujeme prístup do objektu, funkčnú elektrinu a vodu a upozornenie na citlivé povrchy, predmety osobitnej hodnoty a priestory, do ktorých sa nemá vstupovať. S kľúčmi a prístupovými kódmi narábame dôverne."
+        },
+        "eight": {
+          "h": "Záruka spokojnosti a reklamácie",
+          "body": "Reklamáciu nahláste prosím do 24 hodín po termíne. Dotknutú časť potom bezplatne doupratujeme. Inak platia zákonné ustanovenia o zodpovednosti za vady."
+        },
+        "nine": {
+          "h": "Zodpovednosť",
+          "body": "Za škodu spôsobenú úmyselne alebo hrubou nedbanlivosťou a za ujmu na zdraví zodpovedáme podľa zákonných ustanovení. Pri ľahkej nedbanlivosti je zodpovednosť obmedzená hodnotou zákazky, pokiaľ to zákon pripúšťa. Škodu nám treba nahlásiť bezodkladne, aby sme ju mohli preveriť."
+        },
+        "ten": {
+          "h": "Právo spotrebiteľa na odstúpenie",
+          "body": "Pri zmluvách uzavretých mimo našich prevádzkových priestorov alebo na diaľku majú spotrebitelia zákonné právo odstúpiť do 14 dní. Ak na vašu výslovnú žiadosť začneme s prácou pred uplynutím tejto lehoty, časť vykonaná do odstúpenia sa uhrádza."
+        },
+        "eleven": {
+          "h": "Ochrana údajov",
+          "body": "Osobné údaje spracúvame výlučne na vybavenie zákazky. Podrobnosti sú uvedené v dokumente o ochrane osobných údajov."
+        },
+        "twelve": {
+          "h": "Záverečné ustanovenia",
+          "body": "Platí rakúske právo s vylúčením kolíznych noriem. Miestom súdnej príslušnosti pre spory s podnikateľmi je Viedeň. Ak by bolo niektoré ustanovenie neplatné, ostatné zostávajú v platnosti."
+        }
+      }
+    }
   }
 }

@@ -1,0 +1,111 @@
+---
+import Eyebrow from '../Eyebrow.astro';
+import Icon from '../Icon.astro';
+import Section from '../Section.astro';
+import { LEGAL_DETAILS, SITE_DETAILS } from '../../data/site';
+import type { Locale } from '../../i18n/config';
+import { useTranslations } from '../../i18n/ui';
+
+/*
+ * One template for all three legal documents — Impressum, Datenschutz, AGB.
+ *
+ * They differ only in the title, the lede and how many numbered blocks they
+ * carry, so a `doc` prop and a block count is the whole difference. Writing
+ * three near-identical page components would have meant three places to fix a
+ * heading level or a spacing rule.
+ *
+ * The Impressum additionally renders the operator's details as a `<dl>` from
+ * `LEGAL_DETAILS` — the labels are translated, the values are not (a name, a
+ * registration number and a phone number read the same in three languages).
+ *
+ * Every one of these is a TEMPLATE. The notice at the top says so on the page
+ * itself, in the visitor's language, because a legal page that looks finished
+ * and is not is worse than one that admits it. It comes out when the
+ * accountant signs the wording off — see the pre-launch list.
+ */
+interface Props {
+	locale: Locale;
+	doc: 'imprint' | 'privacy' | 'terms';
+	/** How many `legal.<doc>.blocks.*` entries this document has, in order. */
+	blocks: readonly string[];
+}
+
+const { locale, doc, blocks } = Astro.props;
+const t = useTranslations(locale);
+
+/* The operator's details, for the Impressum only. Labels translate; values do
+   not — `t()` is not asked for a name or a number that is the same everywhere. */
+const DETAILS = [
+	{ field: 'owner', value: LEGAL_DETAILS.owner },
+	{ field: 'brand', value: t('site.name') },
+	{ field: 'legalForm', value: t('legal.values.legalForm') },
+	{ field: 'purpose', value: t('legal.values.purpose') },
+	{ field: 'registration', value: LEGAL_DETAILS.registrationNumber },
+	{ field: 'vat', value: LEGAL_DETAILS.vatId },
+	{ field: 'seat', value: t('legal.values.seat') },
+	{
+		field: 'phone',
+		value: `${SITE_DETAILS.phone} · ${SITE_DETAILS.phoneSecondary}`,
+	},
+	{ field: 'email', value: SITE_DETAILS.email, href: `mailto:${SITE_DETAILS.email}` },
+	{
+		field: 'accounting',
+		value: `${LEGAL_DETAILS.accountant.name}, ${LEGAL_DETAILS.accountant.firm}`,
+	},
+] as const;
+---
+
+<Section class="ms-legal" width={1180} rhythm="none">
+	<article class="ms-legal__doc">
+		<Eyebrow>{t('site.name')}</Eyebrow>
+		<h1 class="ms-legal__title">{t(`legal.${doc}.title` as 'legal.imprint.title')}</h1>
+		<p class="ms-legal__lede">{t(`legal.${doc}.lede` as 'legal.imprint.lede')}</p>
+
+		{/*
+		 * The template warning. `role="note"` rather than `alert`: it is standing
+		 * context for the page, not something that just happened.
+		 */}
+		<aside class="ms-legal__notice" role="note">
+			<span class="ms-legal__notice-icon"><Icon name="help" size={18} /></span>
+			<span>
+				<b class="ms-legal__notice-title">{t('legal.reviewTitle')}</b>
+				<span class="ms-legal__notice-body">{t('legal.reviewBody')}</span>
+			</span>
+		</aside>
+
+		{
+			doc === 'imprint' && (
+				<>
+					<h2 class="ms-legal__h2">{t('legal.detailsTitle')}</h2>
+					<dl class="ms-legal__details">
+						{DETAILS.map((detail) => (
+							<div class="ms-legal__row">
+								<dt>{t(`legal.fields.${detail.field}` as 'legal.fields.owner')}</dt>
+								<dd>
+									{'href' in detail ? <a href={detail.href}>{detail.value}</a> : detail.value}
+								</dd>
+							</div>
+						))}
+					</dl>
+				</>
+			)
+		}
+
+		{
+			blocks.map((block) => (
+				<>
+					<h2 class="ms-legal__h2">
+						{t(`legal.${doc}.blocks.${block}.h` as 'legal.imprint.blocks.one.h')}
+					</h2>
+					<p class="ms-legal__p">
+						{t(`legal.${doc}.blocks.${block}.body` as 'legal.imprint.blocks.one.body')}
+					</p>
+				</>
+			))
+		}
+
+		<p class="ms-legal__updated">
+			{t('legal.updatedLabel')}: <time datetime={LEGAL_DETAILS.lastUpdated}>{LEGAL_DETAILS.lastUpdated}</time>
+		</p>
+	</article>
+</Section>

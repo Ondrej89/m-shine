@@ -1,0 +1,157 @@
+/* =========================================================================
+   Legal documents — Impressum, Datenschutzerklärung, AGB
+
+   Not in the design or the theme: the WordPress build had no legal pages, so
+   there is nothing to lift. Everything here is the site's own tokens applied
+   to a plain reading column.
+
+   The measure is the point. `<Section width={1180}>` supplies the container,
+   and the article caps itself at 760px inside it — long legal prose set across
+   1180px is unreadable, and these are the only pages on the site that are
+   nothing but prose. The column is left-aligned rather than centred so the
+   heading rag matches every other page.
+   ====================================================================== */
+
+.ms-legal {
+	padding-block: 56px 84px;
+}
+
+.ms-legal__doc {
+	max-width: 760px;
+}
+
+.ms-legal__title {
+	font-size: 40px;
+	line-height: 1.12;
+	margin: 12px 0 14px;
+}
+
+.ms-legal__lede {
+	color: var(--wp--preset--color--ink-light);
+	font-size: 17px;
+	line-height: 1.65;
+	margin: 0;
+}
+
+/* --- The "this is a template" notice ----------------------------------- */
+
+/* Amber rather than the site's blue or green: it has to read as a caveat, and
+   the two brand tones both read as reassurance here. It comes out when the
+   accountant signs the wording off. */
+.ms-legal__notice {
+	align-items: flex-start;
+	background: #fff8e8;
+	border: 1px solid #f0dcae;
+	border-radius: 14px;
+	color: #6b5320;
+	display: flex;
+	gap: 13px;
+	margin: 28px 0 8px;
+	padding: 18px 20px;
+}
+
+.ms-legal__notice-icon {
+	align-items: center;
+	color: #a97f1d;
+	display: flex;
+	flex: none;
+	height: 22px;
+}
+
+.ms-legal__notice-title {
+	display: block;
+	font-size: 15px;
+	font-weight: 700;
+	margin-bottom: 3px;
+}
+
+.ms-legal__notice-body {
+	display: block;
+	font-size: 14.5px;
+	line-height: 1.6;
+}
+
+/* --- Body -------------------------------------------------------------- */
+
+.ms-legal__h2 {
+	font-size: 21px;
+	line-height: 1.25;
+	margin: 34px 0 10px;
+}
+
+.ms-legal__p {
+	color: var(--wp--preset--color--ink-light);
+	font-size: 15.5px;
+	line-height: 1.72;
+	margin: 0;
+}
+
+/* --- The Impressum's operator details ---------------------------------- */
+
+/* A `<dl>` of label/value pairs. The two columns become one at 560px, where a
+   200px label track leaves the German labels ("Register-/Firmennummer (IČO)")
+   breaking mid-word. */
+.ms-legal__details {
+	border-top: 1px solid var(--wp--preset--color--line);
+	margin: 16px 0 0;
+}
+
+.ms-legal__row {
+	border-bottom: 1px solid var(--wp--preset--color--line);
+	display: grid;
+	gap: 4px 20px;
+	grid-template-columns: 200px 1fr;
+	padding: 13px 0;
+}
+
+.ms-legal__row > * {
+	min-width: 0;
+}
+
+.ms-legal__row dt {
+	color: var(--wp--preset--color--ink-light);
+	font-size: 14px;
+	line-height: 1.5;
+}
+
+.ms-legal__row dd {
+	color: var(--wp--preset--color--ink);
+	font-size: 15.5px;
+	font-weight: 600;
+	line-height: 1.5;
+	margin: 0;
+	/* A long mail address must be allowed to break rather than push the grid
+	   track past the column — the same `min-content` trap as every other grid
+	   on this site. */
+	overflow-wrap: anywhere;
+}
+
+.ms-legal__row dd a {
+	color: inherit;
+}
+
+.ms-legal__updated {
+	color: var(--wp--preset--color--ink-light);
+	font-size: 14px;
+	margin: 40px 0 0;
+	padding-top: 18px;
+	border-top: 1px solid var(--wp--preset--color--line);
+}
+
+/* --- Responsive -------------------------------------------------------- */
+
+@media (max-width: 720px) {
+	.ms-legal {
+		padding-block: 40px 64px;
+	}
+
+	.ms-legal__title {
+		font-size: 32px;
+	}
+}
+
+@media (max-width: 560px) {
+	.ms-legal__row {
+		grid-template-columns: 1fr;
+	}
+}

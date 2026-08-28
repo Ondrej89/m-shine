@@ -13,10 +13,13 @@ import { withBase } from '../../lib/paths';
  * The detail hero: name, lede, the "from" price and the guarantee, two
  * actions, and the service photo.
  *
- * The price is deliberately a *starting* price — "ab 120 €" rather than a firm
- * figure — because the real number depends on the property. The amounts
- * themselves are still the design's, converted to euro and unconfirmed; see
- * the pre-launch list.
+ * The price is deliberately a *starting* price — "ab 30 €/Stunde" rather than
+ * a firm figure — because the real number depends on the property. It is an
+ * HOURLY rate as of 2026-08-28 (client): the design's flat per-visit figures
+ * are gone, and the note under it says a flat rate is still available on
+ * request, which is the other half of what the client asked for. Both the
+ * amount and the unit come from the shared `services.*` strings the Pricing
+ * page reads, so the two pages cannot disagree.
  *
  * The design's actions were "Book This Service" and "Get a Quote", which are
  * now the same thing. The primary is the quote request; the secondary goes to
@@ -57,6 +60,8 @@ const key = service.key;
 					{t('home.trust.guarantee')}
 				</p>
 			</div>
+
+			<p class="ms-sd-hero__flat">{t('services.detailPage.priceFlat')}</p>
 
 			<div class="ms-sd-hero__actions">
 				<Button variant="primary" href={localizedPath(locale, 'quote')} icon="arrow-right">

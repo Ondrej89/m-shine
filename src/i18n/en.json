@@ -67,6 +67,18 @@
     "about": {
       "title": "About Us – Your Cleaning Team in Vienna",
       "description": "Magic Shine is a Vienna cleaning company: trained, background-checked staff, eco-friendly products and one personal contact. Get to know us."
+    },
+    "imprint": {
+      "title": "Imprint",
+      "description": "Imprint and legal disclosure for Magic Shine — owner, legal form, registration and tax numbers, and contact details."
+    },
+    "privacy": {
+      "title": "Privacy Policy",
+      "description": "How Magic Shine processes personal data: forms, server logs, retention periods and your rights under the GDPR."
+    },
+    "terms": {
+      "title": "Terms & Conditions",
+      "description": "The terms on which Magic Shine provides cleaning services: quotes, prices, appointments, cancellations, warranty and liability."
     }
   },
   "home": {
@@ -84,18 +96,14 @@
       "eco": "Eco-Friendly Products",
       "checked": "Background Checked"
     },
-    "stats": {
-      "homes": {
-        "value": "10,000+",
-        "label": "Homes Cleaned"
+    "facts": {
+      "area": {
+        "value": "Vienna",
+        "label": "& surroundings"
       },
-      "rating": {
-        "value": "4.9",
-        "label": "Average Rating"
-      },
-      "repeat": {
-        "value": "98%",
-        "label": "Repeat Clients"
+      "hours": {
+        "value": "Mon – Fri",
+        "label": "8am – 6pm"
       },
       "satisfaction": {
         "value": "100%",
@@ -174,7 +182,7 @@
         "six": "Trash removed"
       },
       "frequency": "Weekly / fortnightly / monthly",
-      "price": "€120",
+      "price": "€30",
       "reviews": {
         "one": {
           "quote": "Our home has never been cleaner. The team is thorough and always on time.",
@@ -219,7 +227,7 @@
         "six": "Flexible scheduling"
       },
       "frequency": "Weekly / fortnightly / monthly",
-      "price": "€110",
+      "price": "€30",
       "reviews": {
         "one": {
           "quote": "Perfect for my flat. Quick, quiet and spotless every time.",
@@ -264,7 +272,7 @@
         "six": "Move-ready finish"
       },
       "frequency": "One-time",
-      "price": "€150",
+      "price": "€40",
       "reviews": {
         "one": {
           "quote": "Got my full deposit back thanks to how spotless they left it.",
@@ -314,7 +322,7 @@
         "six": "Full sanitise"
       },
       "frequency": "One-time or seasonal",
-      "price": "€180",
+      "price": "€40",
       "reviews": {
         "one": {
           "quote": "The difference was night and day. They reached spots I forgot existed.",
@@ -357,7 +365,7 @@
     },
     "detailPage": {
       "priceLabel": "from",
-      "priceUnit": "per visit",
+      "priceUnit": "per hour",
       "overviewEyebrow": "Overview",
       "overviewTitle": "What This Service Includes",
       "factsTitle": "Service Details",
@@ -374,7 +382,8 @@
       "othersTitle": "Other Services",
       "othersLink": "View details",
       "ctaTitle": "Ready for your {service}?",
-      "ctaText": "Reliable, thorough and satisfaction guaranteed — every visit."
+      "ctaText": "Reliable, thorough and satisfaction guaranteed — every visit.",
+      "priceFlat": "A flat-rate quote is also possible, depending on what you need."
     }
   },
   "commercial": {
@@ -450,6 +459,24 @@
           "two": "A fixed, documented schedule",
           "three": "One contact for every building"
         }
+      },
+      "six": {
+        "title": "Stairwell Cleaning",
+        "body": "Stairwells, corridors, lifts and entrance areas on an agreed schedule — weekly, fortnightly or monthly. That covers handrails and light switches as much as sweeping the front of the building and checking the bin area.",
+        "points": {
+          "one": "Steps, landings, handrails and lift",
+          "two": "Entrance area and pavement",
+          "three": "A fixed schedule, documented on request"
+        }
+      },
+      "seven": {
+        "title": "Window Cleaning",
+        "body": "Windows, glass doors and internal glazing cleaned streak-free, frames and sills included. For businesses on an agreed cycle, for private clients on request — including as an add-on to a deep clean or a move-out clean.",
+        "points": {
+          "one": "Glass, frames and sills",
+          "two": "Inside and out, where safely reachable",
+          "three": "One-off or on a fixed cycle"
+        }
       }
     },
     "why": {
@@ -492,10 +519,10 @@
   "pricing": {
     "heroEyebrow": "Pricing & Process",
     "heroTitle": "Pricing & Process",
-    "heroLede": "We do not work with fixed packages — no two homes are the same. Here is where prices start, what sets the final figure and how you get a firm quote in three steps.",
+    "heroLede": "We charge by the hour, and how many hours a job takes depends on the property. Here is where the hourly rates start, what sets the final figure and how you get a firm quote in three steps.",
     "startEyebrow": "Starting Prices",
     "startTitle": "Where Prices Start",
-    "startLede": "Guide figures for private homes, per visit. What you actually pay depends on the factors below — which is why we quote once we know what is involved.",
+    "startLede": "Guide rates for private homes, per hour. How many hours a visit takes depends on the factors below — which is why we name the final figure once we know what is involved.",
     "startLink": "View service",
     "factorsEyebrow": "What Sets the Price",
     "factorsTitle": "Four Factors, No More",
@@ -720,12 +747,11 @@
     "labelAddress": "Address",
     "labelHours": "Business Hours",
     "hoursWeek": "Mon – Fri: 8am – 6pm",
-    "hoursWeekend": "Sat: 9am – 3pm",
     "formName": "Your name",
     "formEmail": "Your email address",
     "formMessage": "Your message",
     "formSubmit": "Send message",
-    "formPending": "This form is not live yet. Please email or call us directly — we will come back to you shortly.",
+    "formPending": "This form is not live yet. Please email us directly at magicshine2601@gmail.com or call — we will come back to you shortly.",
     "faqs": {
       "one": {
         "q": "What is included in a standard cleaning?",
@@ -751,7 +777,12 @@
         "q": "How do I pay?",
         "a": "You receive an invoice after the visit. We agree the payment method when you enquire, so it suits you."
       }
-    }
+    },
+    "labelPhoneSecondary": "Phone (SK)",
+    "addressValue": "Vienna, Austria",
+    "addressNote": "No visitors at the address — we come to you.",
+    "labelArea": "Service area",
+    "areaValue": "Vienna and the surrounding area, including Mödling and Purkersdorf. Other locations by arrangement."
   },
   "footer": {
     "blurb": "Premium cleaning services for a cleaner, healthier and happier home.",
@@ -767,5 +798,170 @@
     "privacy": "Privacy Policy",
     "terms": "Terms & Conditions",
     "imprint": "Imprint"
+  },
+  "legal": {
+    "reviewTitle": "Template — not yet reviewed by a professional",
+    "reviewBody": "This page is a standard template for a small Austrian business and is not legal advice. It has to be reviewed, completed and signed off by the accountant or a lawyer before launch.",
+    "updatedLabel": "Last updated",
+    "detailsTitle": "Details under § 5 ECG (Austrian E-Commerce Act)",
+    "fields": {
+      "owner": "Owner, responsible for content",
+      "brand": "Business name",
+      "legalForm": "Legal form",
+      "purpose": "Business activity",
+      "registration": "Registration number (IČO)",
+      "vat": "Tax / VAT number (DIČ)",
+      "seat": "Registered location",
+      "phone": "Phone",
+      "email": "Email",
+      "accounting": "Bookkeeping"
+    },
+    "values": {
+      "legalForm": "Sole trader (Einzelunternehmen / SZČO)",
+      "purpose": "Cleaning services for private homes and businesses",
+      "seat": "Vienna, Austria"
+    },
+    "imprint": {
+      "title": "Imprint",
+      "lede": "Details required under § 5 of the Austrian E-Commerce Act (ECG) and disclosure under § 25 of the Media Act.",
+      "blocks": {
+        "one": {
+          "h": "Business activity and trade licence",
+          "body": "Magic Shine provides cleaning services for private homes and businesses in Vienna and the surrounding area. The applicable trade regulations and the competent supervisory authority are to be confirmed by the accountant or a lawyer and added here before publication."
+        },
+        "two": {
+          "h": "Cross-border operation",
+          "body": "The business is registered as a sole trader (SZČO) in Slovakia; the registration and tax numbers above refer to that registration. The services are performed in Vienna and the surrounding area. Whether an additional Austrian trade registration, a posting notification or a VAT registration is required is for the accountant to clarify before launch."
+        },
+        "three": {
+          "h": "Dispute resolution",
+          "body": "If something is not right, please come to us first — most matters are settled in a conversation. Beyond that we are neither obliged nor willing to take part in dispute resolution proceedings before a consumer arbitration body."
+        },
+        "four": {
+          "h": "Liability for content",
+          "body": "The content of this website is prepared with care. We cannot, however, guarantee that it is accurate, complete or up to date. Statements about prices and services are non-binding until a written quote exists."
+        },
+        "five": {
+          "h": "Liability for links",
+          "body": "This website currently links to no third-party content. Should external links be added later, the respective provider alone is responsible for their content. At the time of linking we are aware of no unlawful content."
+        },
+        "six": {
+          "h": "Copyright",
+          "body": "The text, photographs and design of this website are protected by copyright. Any use beyond the statutory exceptions requires our written consent."
+        },
+        "seven": {
+          "h": "Image credits",
+          "body": "The photographs on this website show Magic Shine staff at work and were supplied by the business itself."
+        },
+        "eight": {
+          "h": "Disclosure under § 25 of the Media Act",
+          "body": "The media owner, publisher and party responsible for the content is the owner named above. Editorial direction: presenting the services of Magic Shine and providing information about cleaning services in Vienna and the surrounding area."
+        }
+      }
+    },
+    "privacy": {
+      "title": "Privacy Policy",
+      "lede": "How we handle personal data when you visit this website or send us an enquiry.",
+      "blocks": {
+        "one": {
+          "h": "Controller",
+          "body": "The controller for the processing of personal data within the meaning of the GDPR is the owner named in the imprint. You can reach us using the contact details given there."
+        },
+        "two": {
+          "h": "Principle",
+          "body": "This website is a static site with no user accounts, no advertising networks and no analytics or tracking services. We set no cookies that would require consent, and no profiling takes place."
+        },
+        "three": {
+          "h": "Server logs and hosting",
+          "body": "When you open the site, your browser transmits technically necessary data to the hosting provider: IP address, date and time, the page requested, the volume of data transferred, and browser and operating system identifiers. This data serves secure operation, is not combined with other sources and is deleted after a short period. The legal basis is Art. 6(1)(f) GDPR. The hosting provider is to be named here before launch, together with a data processing agreement."
+        },
+        "four": {
+          "h": "Contact and quote forms",
+          "body": "If you write to us through the contact or quote form, we process the details you enter — name, email address, phone number, the details of the property and your message — in order to answer your enquiry and prepare a quote. The legal basis is Art. 6(1)(b) GDPR (pre-contractual measures). The forms are not yet connected to a service; as soon as they are, the provider will be named here."
+        },
+        "five": {
+          "h": "Enquiries by email",
+          "body": "Email currently reaches us through a Google (Gmail) mailbox. We are moving to a mailbox on our own domain before launch. Please do not send us special categories of personal data — health data, for example — by email."
+        },
+        "six": {
+          "h": "Newsletter",
+          "body": "If you subscribe to the newsletter, we process your email address in order to send you information about services and offers. The legal basis is your consent under Art. 6(1)(a) GDPR, which you may withdraw at any time. The sending service has not yet been chosen and is to be added here before the form goes live."
+        },
+        "seven": {
+          "h": "Retention",
+          "body": "We keep enquiries for as long as we need them to deal with the matter, and beyond that for as long as statutory retention periods require — generally seven years for business records."
+        },
+        "eight": {
+          "h": "Recipients and processors",
+          "body": "We pass personal data on only where it is necessary to deliver the service or where the law requires it — to our bookkeeping or tax adviser, for example. Processors are bound by contract under Art. 28 GDPR."
+        },
+        "nine": {
+          "h": "Your rights",
+          "body": "You have the right of access, rectification, erasure, restriction of processing, data portability and objection. An informal message to the contact details in the imprint is enough."
+        },
+        "ten": {
+          "h": "Right to complain",
+          "body": "If you believe the processing of your data infringes the GDPR, you may complain to a supervisory authority — in Austria, the Datenschutzbehörde, Barichgasse 40–42, 1030 Vienna."
+        },
+        "eleven": {
+          "h": "Changes to this policy",
+          "body": "We update this policy when our services, our providers or the law change. The version published here is the one that applies."
+        }
+      }
+    },
+    "terms": {
+      "title": "Terms & Conditions",
+      "lede": "The terms on which we provide cleaning services.",
+      "blocks": {
+        "one": {
+          "h": "Scope",
+          "body": "These terms apply to all cleaning services Magic Shine provides for private homes and businesses. Differing terms of the client apply only where we agree to them in writing."
+        },
+        "two": {
+          "h": "Quote and formation of contract",
+          "body": "Statements on this website are non-binding. A contract comes into being when we issue a written quote in response to your enquiry and you accept it. The quote states the scope, the price and the appointment."
+        },
+        "three": {
+          "h": "Scope of work",
+          "body": "What is included follows from the quote. Additional work is carried out by arrangement and invoiced separately. Work that requires special equipment or authorisation — working at height without safe access, for example — is not part of the service."
+        },
+        "four": {
+          "h": "Prices",
+          "body": "We charge by the hour as a rule; hourly rates start at the figures given on the pricing page. On request we agree a flat rate instead, depending on what you need. For recurring cleaning — weekly or fortnightly — we grant a discount, set individually and recorded in your quote. We bring cleaning products and equipment; special materials or disposal costs are itemised separately."
+        },
+        "five": {
+          "h": "Payment",
+          "body": "We invoice after the work has been done; the invoice is payable within 14 days without deduction. The payment method is agreed when you enquire. Statutory provisions apply in the event of late payment."
+        },
+        "six": {
+          "h": "Appointments, access and cancellation",
+          "body": "Appointments are binding once agreed. Please cancel an appointment at least 24 hours in advance; for shorter notice, or if we cannot get in at the agreed time, we may charge a reasonable amount for the time reserved. Equally, we will tell you without delay if we cannot keep an appointment and will offer a replacement."
+        },
+        "seven": {
+          "h": "What we need from you",
+          "body": "We need access to the property, working power and water, and to be told about delicate surfaces, items of particular value and any areas that should not be entered. Keys and access codes are treated confidentially."
+        },
+        "eight": {
+          "h": "Satisfaction guarantee and defects",
+          "body": "Please report a complaint within 24 hours of the visit. We will then re-clean the area concerned free of charge. Otherwise the statutory warranty provisions apply."
+        },
+        "nine": {
+          "h": "Liability",
+          "body": "We are liable under the statutory provisions for damage caused intentionally or through gross negligence, and for personal injury. For slight negligence, liability is limited to the value of the order as far as the law permits. Damage must be reported to us without delay so that we can look into it."
+        },
+        "ten": {
+          "h": "Consumer right of withdrawal",
+          "body": "For contracts concluded off our premises or at a distance, consumers have a statutory right of withdrawal of 14 days. If we begin work before that period expires at your express request, the part performed up to the withdrawal is payable."
+        },
+        "eleven": {
+          "h": "Data protection",
+          "body": "We process personal data solely in order to carry out the work. The details are set out in the privacy policy."
+        },
+        "twelve": {
+          "h": "Final provisions",
+          "body": "Austrian law applies, excluding its conflict-of-law rules. The place of jurisdiction for disputes with businesses is Vienna. Should one provision be invalid, the remainder stay in force."
+        }
+      }
+    }
   }
 }

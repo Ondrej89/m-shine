@@ -197,28 +197,10 @@
 	margin: 0 0 18px;
 }
 
-.ms-about-story__figures {
-	display: flex;
-	flex-wrap: wrap;
-	gap: 40px;
-	list-style: none;
-	margin: 26px 0 0;
-	padding-left: 0;
-}
-
-.ms-about-story__value {
-	color: var(--wp--preset--color--navy);
-	display: block;
-	font-family: var(--wp--preset--font-family--playfair);
-	font-size: 34px;
-	font-weight: 600;
-	line-height: 1.15;
-}
-
-.ms-about-story__label {
-	color: var(--wp--preset--color--ink-light);
-	font-size: var(--wp--preset--font-size--small);
-}
+/* The story used to close on a three-figure strip (`.ms-about-story__figures`,
+   `__value`, `__label`). The figures were the design's invented numbers and
+   came out at the client's instruction — see AboutStory.astro — so the rules
+   went with them rather than sitting here unused. */
 
 /* --- Reviews band ----------------------------------------------------- */
 
@@ -414,10 +396,6 @@
 	   copy 20px from the screen edge, which is what the design renders. */
 	.ms-mvv__item {
 		padding: 36px 4px;
-	}
-
-	.ms-about-story__figures {
-		gap: 26px;
 	}
 
 	.ms-about-cta {

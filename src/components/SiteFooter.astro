@@ -47,15 +47,24 @@ const newsletterAction = SITE_DETAILS.newsletterAction;
 					<span class="ms-brand__name">{t('site.name')}</span>
 				</a>
 				<p class="ms-footer__tagline">{t('footer.blurb')}</p>
-				<div class="ms-footer__socials">
-					{
-						SITE_DETAILS.socials.map((social) => (
-							<a class="ms-social" href={social.href} aria-label={social.name}>
-								<Icon name={social.icon as IconName} size={17} />
-							</a>
-						))
-					}
-				</div>
+				{/*
+				 * HIDDEN FOR NOW — `SITE_DETAILS.socials` is empty because no
+				 * Facebook, Instagram or Google Business account exists yet. Three
+				 * icons pointing at `#` are worse than none, so the whole block is
+				 * skipped rather than rendered dead. Adding the real profile URLs
+				 * to `socials` brings it straight back; nothing here changes.
+				 */}
+				{
+					SITE_DETAILS.socials.length > 0 && (
+						<div class="ms-footer__socials">
+							{SITE_DETAILS.socials.map((social) => (
+								<a class="ms-social" href={social.href} aria-label={social.name}>
+									<Icon name={social.icon as IconName} size={17} />
+								</a>
+							))}
+						</div>
+					)
+				}
 			</div>
 
 			<nav aria-labelledby="ms-foot-links">
@@ -121,10 +130,11 @@ const newsletterAction = SITE_DETAILS.newsletterAction;
 
 		<div class="ms-footer__bottom">
 			<span>&copy; {year} {t('site.name')}. {t('footer.rights')}</span>
+			{/* Real pages now, in all three languages — see src/content-pages/. */}
 			<ul class="ms-footer__legal">
-				<li><a href="#">{t('footer.privacy')}</a></li>
-				<li><a href="#">{t('footer.terms')}</a></li>
-				<li><a href="#">{t('footer.imprint')}</a></li>
+				<li><a href={localizedPath(locale, 'privacy')}>{t('footer.privacy')}</a></li>
+				<li><a href={localizedPath(locale, 'terms')}>{t('footer.terms')}</a></li>
+				<li><a href={localizedPath(locale, 'imprint')}>{t('footer.imprint')}</a></li>
 			</ul>
 		</div>
 	</div>

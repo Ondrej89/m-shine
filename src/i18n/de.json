@@ -67,6 +67,18 @@
     "about": {
       "title": "Über uns – Ihr Reinigungsteam in Wien",
       "description": "Magic Shine ist ein Reinigungsunternehmen in Wien: geschultes, überprüftes Personal, umweltfreundliche Mittel und eine persönliche Ansprechperson. Lernen Sie uns kennen."
+    },
+    "imprint": {
+      "title": "Impressum",
+      "description": "Impressum und Offenlegung von Magic Shine – Inhaberin, Rechtsform, Register- und Steuernummer sowie Kontaktdaten."
+    },
+    "privacy": {
+      "title": "Datenschutzerklärung",
+      "description": "Wie Magic Shine personenbezogene Daten verarbeitet: Formulare, Server-Logfiles, Speicherdauer und Ihre Rechte nach der DSGVO."
+    },
+    "terms": {
+      "title": "Allgemeine Geschäftsbedingungen",
+      "description": "Die Bedingungen für Reinigungsleistungen von Magic Shine: Angebot, Preise, Termine, Absagen, Gewährleistung und Haftung."
     }
   },
   "home": {
@@ -84,18 +96,14 @@
       "eco": "Umweltfreundliche Mittel",
       "checked": "Überprüftes Personal"
     },
-    "stats": {
-      "homes": {
-        "value": "10.000+",
-        "label": "gereinigte Zuhause"
+    "facts": {
+      "area": {
+        "value": "Wien",
+        "label": "& Umgebung"
       },
-      "rating": {
-        "value": "4,9",
-        "label": "Durchschnittsbewertung"
-      },
-      "repeat": {
-        "value": "98 %",
-        "label": "Stammkundschaft"
+      "hours": {
+        "value": "Mo – Fr",
+        "label": "8 – 18 Uhr"
       },
       "satisfaction": {
         "value": "100 %",
@@ -174,7 +182,7 @@
         "six": "Müll entsorgt"
       },
       "frequency": "Wöchentlich / zweiwöchentlich / monatlich",
-      "price": "120 €",
+      "price": "30 €",
       "reviews": {
         "one": {
           "quote": "Unser Zuhause war noch nie so sauber. Das Team arbeitet gründlich und ist immer pünktlich.",
@@ -219,7 +227,7 @@
         "six": "Flexible Termine"
       },
       "frequency": "Wöchentlich / zweiwöchentlich / monatlich",
-      "price": "110 €",
+      "price": "30 €",
       "reviews": {
         "one": {
           "quote": "Perfekt für meine Wohnung. Schnell, leise und jedes Mal makellos.",
@@ -264,7 +272,7 @@
         "six": "Übergabefertig"
       },
       "frequency": "Einmalig",
-      "price": "150 €",
+      "price": "40 €",
       "reviews": {
         "one": {
           "quote": "Dank der makellosen Übergabe habe ich die ganze Kaution zurückbekommen.",
@@ -314,7 +322,7 @@
         "six": "Komplett desinfiziert"
       },
       "frequency": "Einmalig oder saisonal",
-      "price": "180 €",
+      "price": "40 €",
       "reviews": {
         "one": {
           "quote": "Der Unterschied war wie Tag und Nacht. Sie kamen an Stellen, die ich vergessen hatte.",
@@ -357,7 +365,7 @@
     },
     "detailPage": {
       "priceLabel": "ab",
-      "priceUnit": "pro Termin",
+      "priceUnit": "pro Stunde",
       "overviewEyebrow": "Überblick",
       "overviewTitle": "Was diese Leistung umfasst",
       "factsTitle": "Leistungsdetails",
@@ -374,7 +382,8 @@
       "othersTitle": "Weitere Leistungen",
       "othersLink": "Details ansehen",
       "ctaTitle": "Bereit für Ihre {service}?",
-      "ctaText": "Verlässlich, gründlich und mit Zufriedenheitsgarantie – bei jedem Termin."
+      "ctaText": "Verlässlich, gründlich und mit Zufriedenheitsgarantie – bei jedem Termin.",
+      "priceFlat": "Auch als Pauschalpreis möglich, je nach Bedarf."
     }
   },
   "commercial": {
@@ -450,6 +459,24 @@
           "two": "Fixer Rhythmus, dokumentiert",
           "three": "Eine Ansprechperson für alle Objekte"
         }
+      },
+      "six": {
+        "title": "Stiegenhausreinigung",
+        "body": "Stiegenhäuser, Gänge, Lifte und Eingangsbereiche im vereinbarten Rhythmus – wöchentlich, zweiwöchentlich oder monatlich. Dazu gehören Handläufe und Lichtschalter ebenso wie das Kehren vor dem Haus und die Kontrolle der Müllplätze.",
+        "points": {
+          "one": "Stufen, Podeste, Handläufe und Lift",
+          "two": "Eingangsbereich und Gehsteig",
+          "three": "Fixer Rhythmus, auf Wunsch dokumentiert"
+        }
+      },
+      "seven": {
+        "title": "Fensterreinigung",
+        "body": "Fenster, Glastüren und Innenverglasungen streifenfrei gereinigt, samt Rahmen und Fensterbänken. Für Betriebe im vereinbarten Turnus, für Privatkunden auf Anfrage – auch als Ergänzung zu einer Grund- oder Umzugsreinigung.",
+        "points": {
+          "one": "Glas, Rahmen und Fensterbänke",
+          "two": "Innen und außen, soweit sicher erreichbar",
+          "three": "Einmalig oder im festen Turnus"
+        }
       }
     },
     "why": {
@@ -492,10 +519,10 @@
   "pricing": {
     "heroEyebrow": "Preise & Ablauf",
     "heroTitle": "Preise & Ablauf",
-    "heroLede": "Feste Pauschalen gibt es bei uns nicht – kein Zuhause gleicht dem anderen. Hier sehen Sie, wo die Preise beginnen, was den Endpreis bestimmt und wie Sie in drei Schritten zu einem verbindlichen Angebot kommen.",
+    "heroLede": "Wir rechnen nach Stunden, und wie viele es werden, hängt vom Objekt ab. Hier sehen Sie, wo die Stundensätze beginnen, was den Endpreis bestimmt und wie Sie in drei Schritten zu einem verbindlichen Angebot kommen.",
     "startEyebrow": "Startpreise",
     "startTitle": "Wo die Preise beginnen",
-    "startLede": "Richtwerte für Privathaushalte, pro Termin. Der tatsächliche Preis hängt von den Faktoren weiter unten ab – deshalb sagen wir ihn Ihnen erst, wenn wir wissen, worum es geht.",
+    "startLede": "Richtwerte für Privathaushalte, pro Stunde. Wie viele Stunden ein Termin braucht, hängt von den Faktoren weiter unten ab – deshalb nennen wir den Endpreis erst, wenn wir wissen, worum es geht.",
     "startLink": "Leistung ansehen",
     "factorsEyebrow": "Was den Preis bestimmt",
     "factorsTitle": "Vier Faktoren, mehr nicht",
@@ -720,12 +747,11 @@
     "labelAddress": "Adresse",
     "labelHours": "Öffnungszeiten",
     "hoursWeek": "Mo – Fr: 8 – 18 Uhr",
-    "hoursWeekend": "Sa: 9 – 15 Uhr",
     "formName": "Ihr Name",
     "formEmail": "Ihre E-Mail-Adresse",
     "formMessage": "Ihre Nachricht",
     "formSubmit": "Nachricht senden",
-    "formPending": "Das Formular ist noch nicht aktiv. Schreiben Sie uns bitte direkt per E-Mail oder rufen Sie an – wir melden uns zeitnah.",
+    "formPending": "Das Formular ist noch nicht aktiv. Schreiben Sie uns bitte direkt an magicshine2601@gmail.com oder rufen Sie an – wir melden uns zeitnah.",
     "faqs": {
       "one": {
         "q": "Was ist in einer Standardreinigung enthalten?",
@@ -751,7 +777,12 @@
         "q": "Wie bezahle ich?",
         "a": "Sie erhalten nach dem Termin eine Rechnung. Die Zahlungsart besprechen wir bei der Anfrage, damit sie zu Ihnen passt."
       }
-    }
+    },
+    "labelPhoneSecondary": "Telefon (SK)",
+    "addressValue": "Wien, Österreich",
+    "addressNote": "Kein Kundenverkehr am Standort – wir kommen zu Ihnen.",
+    "labelArea": "Einsatzgebiet",
+    "areaValue": "Wien und Umgebung, unter anderem Mödling und Purkersdorf. Weitere Orte nach Vereinbarung."
   },
   "footer": {
     "blurb": "Hochwertige Reinigungsdienste für ein saubereres, gesünderes und glücklicheres Zuhause.",
@@ -767,5 +798,170 @@
     "privacy": "Datenschutz",
     "terms": "AGB",
     "imprint": "Impressum"
+  },
+  "legal": {
+    "reviewTitle": "Vorlage – noch nicht rechtlich geprüft",
+    "reviewBody": "Diese Seite ist eine Standardvorlage für ein österreichisches Kleinunternehmen und ersetzt keine Rechtsberatung. Sie ist vor dem Launch von der Steuer- bzw. Rechtsberatung zu prüfen, zu ergänzen und freizugeben.",
+    "updatedLabel": "Stand",
+    "detailsTitle": "Angaben gemäß § 5 ECG",
+    "fields": {
+      "owner": "Inhaberin, verantwortlich für den Inhalt",
+      "brand": "Unternehmensbezeichnung",
+      "legalForm": "Rechtsform",
+      "purpose": "Unternehmensgegenstand",
+      "registration": "Register-/Firmennummer (IČO)",
+      "vat": "Steuer-/UID-Nummer (DIČ)",
+      "seat": "Sitz",
+      "phone": "Telefon",
+      "email": "E-Mail",
+      "accounting": "Buchhaltung"
+    },
+    "values": {
+      "legalForm": "Einzelunternehmen (SZČO)",
+      "purpose": "Reinigungsdienstleistungen für Privathaushalte und Betriebe",
+      "seat": "Wien, Österreich"
+    },
+    "imprint": {
+      "title": "Impressum",
+      "lede": "Angaben gemäß § 5 E-Commerce-Gesetz (ECG) und Offenlegung nach § 25 Mediengesetz.",
+      "blocks": {
+        "one": {
+          "h": "Unternehmensgegenstand und Gewerbe",
+          "body": "Magic Shine erbringt Reinigungsdienstleistungen für Privathaushalte und Betriebe in Wien und Umgebung. Die anwendbaren gewerberechtlichen Vorschriften und die zuständige Aufsichtsbehörde sind vor der Veröffentlichung von der Steuer- bzw. Rechtsberatung zu bestätigen und hier zu ergänzen."
+        },
+        "two": {
+          "h": "Grenzüberschreitende Tätigkeit",
+          "body": "Das Unternehmen ist als Einzelunternehmen (SZČO) in der Slowakei registriert; die oben genannte Register- und Steuernummer bezieht sich auf diese Registrierung. Die Leistungen werden in Wien und Umgebung erbracht. Ob dafür zusätzlich eine österreichische Gewerbeanmeldung, eine Entsendemeldung oder eine Registrierung für die Umsatzsteuer nötig ist, klärt die Steuerberatung vor dem Launch."
+        },
+        "three": {
+          "h": "Streitbeilegung",
+          "body": "Bei Beanstandungen wenden Sie sich bitte zuerst direkt an uns – die meisten lassen sich in einem Gespräch klären. Darüber hinaus sind wir nicht verpflichtet und nicht bereit, an Streitbeilegungsverfahren vor einer Verbraucherschlichtungsstelle teilzunehmen."
+        },
+        "four": {
+          "h": "Haftung für Inhalte",
+          "body": "Die Inhalte dieser Website werden mit Sorgfalt erstellt. Für Richtigkeit, Vollständigkeit und Aktualität können wir dennoch keine Gewähr übernehmen. Angaben zu Preisen und Leistungen sind unverbindlich, solange kein schriftliches Angebot vorliegt."
+        },
+        "five": {
+          "h": "Haftung für Links",
+          "body": "Diese Website verweist derzeit nicht auf fremde Inhalte. Sollten später Links auf externe Seiten hinzukommen, gilt: Für deren Inhalte ist ausschließlich der jeweilige Anbieter verantwortlich. Zum Zeitpunkt der Verlinkung sind uns keine Rechtsverstöße bekannt."
+        },
+        "six": {
+          "h": "Urheberrecht",
+          "body": "Texte, Fotos und Gestaltung dieser Website sind urheberrechtlich geschützt. Eine Verwendung außerhalb der gesetzlichen Schranken bedarf unserer schriftlichen Zustimmung."
+        },
+        "seven": {
+          "h": "Bildnachweis",
+          "body": "Die Fotos auf dieser Website zeigen Mitarbeiterinnen und Mitarbeiter von Magic Shine bei der Arbeit und wurden vom Unternehmen selbst zur Verfügung gestellt."
+        },
+        "eight": {
+          "h": "Offenlegung nach § 25 Mediengesetz",
+          "body": "Medieninhaberin, Herausgeberin und für den Inhalt verantwortlich ist die oben genannte Inhaberin. Grundlegende Richtung: Darstellung des Leistungsangebots von Magic Shine und Information über Reinigungsdienstleistungen in Wien und Umgebung."
+        }
+      }
+    },
+    "privacy": {
+      "title": "Datenschutzerklärung",
+      "lede": "Wie wir mit personenbezogenen Daten umgehen, wenn Sie diese Website besuchen oder uns eine Anfrage schicken.",
+      "blocks": {
+        "one": {
+          "h": "Verantwortliche Stelle",
+          "body": "Verantwortlich für die Verarbeitung personenbezogener Daten im Sinne der DSGVO ist die im Impressum genannte Inhaberin. Sie erreichen uns unter den dort angegebenen Kontaktdaten."
+        },
+        "two": {
+          "h": "Grundsatz",
+          "body": "Diese Website ist eine statische Seite ohne Nutzerkonten, ohne Werbenetzwerke und ohne Analyse- oder Tracking-Dienste. Wir setzen keine Cookies, die eine Einwilligung erfordern würden, und es findet kein Profiling statt."
+        },
+        "three": {
+          "h": "Server-Logfiles und Hosting",
+          "body": "Beim Aufruf der Seite überträgt Ihr Browser technisch notwendige Daten an den Hosting-Anbieter: IP-Adresse, Datum und Uhrzeit, aufgerufene Seite, übertragene Datenmenge sowie Browser- und Betriebssystemkennung. Diese Daten dienen dem sicheren Betrieb, werden nicht mit anderen Quellen zusammengeführt und nach kurzer Zeit gelöscht. Rechtsgrundlage ist Art. 6 Abs. 1 lit. f DSGVO. Der Hosting-Anbieter ist vor dem Launch hier zu nennen, samt Auftragsverarbeitungsvertrag."
+        },
+        "four": {
+          "h": "Kontakt- und Angebotsformular",
+          "body": "Wenn Sie uns über das Kontakt- oder das Angebotsformular schreiben, verarbeiten wir die von Ihnen eingegebenen Angaben – Name, E-Mail-Adresse, Telefonnummer sowie die Angaben zum Objekt und Ihre Nachricht –, um Ihre Anfrage zu beantworten und ein Angebot zu erstellen. Rechtsgrundlage ist Art. 6 Abs. 1 lit. b DSGVO (vorvertragliche Maßnahmen). Die Formulare sind derzeit noch nicht an einen Dienst angebunden; sobald das der Fall ist, wird der Anbieter hier genannt."
+        },
+        "five": {
+          "h": "Anfragen per E-Mail",
+          "body": "E-Mails erreichen uns derzeit über ein Postfach bei Google (Gmail). Wir stellen vor dem Launch auf ein Postfach unter eigener Domain um. Bitte senden Sie uns keine besonderen Kategorien personenbezogener Daten – etwa Gesundheitsdaten – per E-Mail."
+        },
+        "six": {
+          "h": "Newsletter",
+          "body": "Wenn Sie den Newsletter abonnieren, verarbeiten wir Ihre E-Mail-Adresse, um Ihnen Informationen zu Leistungen und Aktionen zu senden. Rechtsgrundlage ist Ihre Einwilligung nach Art. 6 Abs. 1 lit. a DSGVO; Sie können sie jederzeit widerrufen. Der Versanddienst steht noch nicht fest und ist vor der Aktivierung hier zu ergänzen."
+        },
+        "seven": {
+          "h": "Speicherdauer",
+          "body": "Anfragen bewahren wir so lange auf, wie es für die Bearbeitung nötig ist, und darüber hinaus so lange, wie gesetzliche Aufbewahrungsfristen es verlangen – bei Geschäftsunterlagen in der Regel sieben Jahre."
+        },
+        "eight": {
+          "h": "Empfänger und Auftragsverarbeiter",
+          "body": "Personenbezogene Daten geben wir nur weiter, soweit es für die Leistungserbringung nötig ist oder eine gesetzliche Pflicht besteht – etwa an die Buchhaltung oder die Steuerberatung. Auftragsverarbeiter binden wir vertraglich nach Art. 28 DSGVO."
+        },
+        "nine": {
+          "h": "Ihre Rechte",
+          "body": "Sie haben das Recht auf Auskunft, Berichtigung, Löschung, Einschränkung der Verarbeitung, Datenübertragbarkeit und Widerspruch. Eine formlose Nachricht an die im Impressum genannten Kontaktdaten genügt."
+        },
+        "ten": {
+          "h": "Beschwerderecht",
+          "body": "Sind Sie der Ansicht, dass die Verarbeitung Ihrer Daten gegen die DSGVO verstößt, können Sie sich bei einer Aufsichtsbehörde beschweren – in Österreich bei der Datenschutzbehörde, Barichgasse 40–42, 1030 Wien."
+        },
+        "eleven": {
+          "h": "Änderungen dieser Erklärung",
+          "body": "Wir passen diese Erklärung an, wenn sich Leistungen, Dienstleister oder die Rechtslage ändern. Es gilt die jeweils hier veröffentlichte Fassung."
+        }
+      }
+    },
+    "terms": {
+      "title": "Allgemeine Geschäftsbedingungen",
+      "lede": "Die Bedingungen, zu denen wir Reinigungsleistungen erbringen.",
+      "blocks": {
+        "one": {
+          "h": "Geltungsbereich",
+          "body": "Diese Allgemeinen Geschäftsbedingungen gelten für alle Reinigungsleistungen, die Magic Shine für Privathaushalte und Betriebe erbringt. Abweichende Bedingungen der Auftraggeberin oder des Auftraggebers gelten nur, wenn wir ihnen schriftlich zustimmen."
+        },
+        "two": {
+          "h": "Angebot und Vertragsabschluss",
+          "body": "Angaben auf dieser Website sind unverbindlich. Ein Vertrag kommt zustande, wenn wir nach Ihrer Anfrage ein schriftliches Angebot legen und Sie dieses annehmen. Das Angebot nennt Umfang, Preis und Termin."
+        },
+        "three": {
+          "h": "Leistungsumfang",
+          "body": "Der Umfang ergibt sich aus dem Angebot. Zusätzliche Arbeiten führen wir nach Absprache aus und verrechnen sie gesondert. Arbeiten, die eine besondere Ausrüstung oder Befugnis erfordern – etwa Arbeiten in Höhen ohne sichere Zugänglichkeit – sind nicht Teil der Leistung."
+        },
+        "four": {
+          "h": "Preise",
+          "body": "Wir rechnen grundsätzlich nach Stunden ab; die Stundensätze beginnen bei den auf der Preisseite genannten Beträgen. Auf Wunsch vereinbaren wir stattdessen einen Pauschalpreis, je nach Bedarf. Bei regelmäßiger Reinigung – wöchentlich oder alle zwei Wochen – gewähren wir eine Ermäßigung, die individuell im Angebot festgehalten wird. Reinigungsmittel und Geräte bringen wir mit; besondere Materialien oder Entsorgungskosten weisen wir gesondert aus."
+        },
+        "five": {
+          "h": "Zahlung",
+          "body": "Die Rechnung stellen wir nach der erbrachten Leistung; sie ist innerhalb von 14 Tagen ohne Abzug zahlbar. Die Zahlungsart vereinbaren wir bei der Anfrage. Bei Verzug gelten die gesetzlichen Bestimmungen."
+        },
+        "six": {
+          "h": "Termine, Zutritt und Absagen",
+          "body": "Termine werden verbindlich vereinbart. Sagen Sie einen Termin bitte spätestens 24 Stunden vorher ab; bei kurzfristigeren Absagen oder wenn wir zur vereinbarten Zeit keinen Zutritt erhalten, können wir den Aufwand angemessen verrechnen. Umgekehrt informieren wir Sie unverzüglich, wenn ein Termin von unserer Seite nicht gehalten werden kann, und bieten einen Ersatztermin an."
+        },
+        "seven": {
+          "h": "Ihre Mitwirkung",
+          "body": "Wir benötigen Zutritt zum Objekt, einen funktionierenden Strom- und Wasseranschluss sowie einen Hinweis auf empfindliche Oberflächen, Gegenstände von besonderem Wert und Bereiche, die nicht betreten werden sollen. Schlüssel und Zugangscodes behandeln wir vertraulich."
+        },
+        "eight": {
+          "h": "Zufriedenheitsgarantie und Mängel",
+          "body": "Melden Sie eine Beanstandung bitte innerhalb von 24 Stunden nach dem Termin. Wir reinigen den betroffenen Bereich dann kostenlos nach. Im Übrigen gelten die gesetzlichen Gewährleistungsbestimmungen."
+        },
+        "nine": {
+          "h": "Haftung",
+          "body": "Für Schäden, die wir vorsätzlich oder grob fahrlässig verursachen, sowie für Personenschäden haften wir nach den gesetzlichen Bestimmungen. Bei leichter Fahrlässigkeit ist die Haftung auf den Auftragswert beschränkt, soweit das gesetzlich zulässig ist. Schäden sind uns unverzüglich zu melden, damit wir sie prüfen können."
+        },
+        "ten": {
+          "h": "Rücktrittsrecht für Verbraucher",
+          "body": "Bei Verträgen, die außerhalb unserer Geschäftsräume oder im Fernabsatz geschlossen werden, steht Verbraucherinnen und Verbrauchern ein gesetzliches Rücktrittsrecht von 14 Tagen zu. Beginnen wir auf Ihren ausdrücklichen Wunsch vor Ablauf dieser Frist mit der Leistung, ist der bis zum Rücktritt erbrachte Teil zu vergüten."
+        },
+        "eleven": {
+          "h": "Datenschutz",
+          "body": "Personenbezogene Daten verarbeiten wir ausschließlich zur Abwicklung des Auftrags. Die Einzelheiten stehen in der Datenschutzerklärung."
+        },
+        "twelve": {
+          "h": "Schlussbestimmungen",
+          "body": "Es gilt österreichisches Recht unter Ausschluss der Verweisungsnormen. Gerichtsstand für Streitigkeiten mit Unternehmern ist Wien. Sollte eine Bestimmung unwirksam sein, bleiben die übrigen wirksam."
+        }
+      }
+    }
   }
 }

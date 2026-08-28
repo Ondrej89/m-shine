@@ -93,7 +93,18 @@
 	display: flex;
 	flex-wrap: wrap;
 	gap: 20px;
-	margin-bottom: 30px;
+	margin-bottom: 10px;
+}
+
+/* "Auch als Pauschalpreis möglich, je nach Bedarf." — the second half of the
+   pricing offer, so it sits directly under the rate rather than in the body
+   copy. It carries the 30px the meta row used to hold, which keeps the
+   distance from the price block to the buttons exactly what it was. */
+.ms-sd-hero__flat {
+	color: var(--wp--preset--color--ink-light);
+	font-size: 14px;
+	line-height: 1.55;
+	margin: 0 0 30px;
 }
 
 .ms-sd-price {

@@ -1,0 +1,50 @@
+---
+import LegalDoc from '../components/sections/LegalDoc.astro';
+import PageLayout from '../layouts/PageLayout.astro';
+import type { Locale } from '../i18n/config';
+import type { RouteId } from '../i18n/routes';
+import { useTranslations } from '../i18n/ui';
+
+/*
+ * AGB — the terms of business.
+ *
+ * The pricing clause is the one that has to stay in step with the rest of the
+ * site: hourly rates, a flat rate on request, and a recurring-cleaning
+ * discount set individually. If the pricing model changes, block four changes
+ * with it. It deliberately makes no claim about insurance — the client has not
+ * substantiated one, which is why "Insured & Bonded" came off the site.
+ *
+ * The wording is a template and says so on the page — see LegalDoc.astro.
+ */
+interface Props {
+	locale: Locale;
+	route: RouteId;
+}
+
+const { locale, route } = Astro.props;
+const t = useTranslations(locale);
+
+const BLOCKS = [
+	'one',
+	'two',
+	'three',
+	'four',
+	'five',
+	'six',
+	'seven',
+	'eight',
+	'nine',
+	'ten',
+	'eleven',
+	'twelve',
+] as const;
+---
+
+<PageLayout
+	locale={locale}
+	route={route}
+	title={`${t('meta.terms.title')} | ${t('site.name')}`}
+	description={t('meta.terms.description')}
+>
+	<LegalDoc locale={locale} doc="terms" blocks={BLOCKS} />
+</PageLayout>

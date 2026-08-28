@@ -17,10 +17,13 @@ import About from '../content-pages/About.astro';
 import Commercial from '../content-pages/Commercial.astro';
 import Contact from '../content-pages/Contact.astro';
 import Home from '../content-pages/Home.astro';
+import Imprint from '../content-pages/Imprint.astro';
+import Privacy from '../content-pages/Privacy.astro';
 import Pricing from '../content-pages/Pricing.astro';
 import Quote from '../content-pages/Quote.astro';
 import ServiceDetail from '../content-pages/ServiceDetail.astro';
 import Services from '../content-pages/Services.astro';
+import Terms from '../content-pages/Terms.astro';
 import Styleguide from '../content-pages/Styleguide.astro';
 
 export function getStaticPaths() {
@@ -47,6 +50,9 @@ const PAGES = {
 	pricing: Pricing,
 	contact: Contact,
 	quote: Quote,
+	imprint: Imprint,
+	privacy: Privacy,
+	terms: Terms,
 } satisfies Record<RouteId, unknown>;
 
 interface Props {

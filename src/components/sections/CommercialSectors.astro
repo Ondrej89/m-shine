@@ -8,11 +8,23 @@ import { localizedPath } from '../../i18n/routes';
 import { useTranslations } from '../../i18n/ui';
 
 /*
- * The five sectors, each with a paragraph and three specifics.
+ * The seven sectors, each with a paragraph and three specifics.
  *
  * The cards are the old commercial strip's — same icons, same tinted chips —
  * but carrying real copy instead of a bare label, so they are three across and
  * left-aligned. The bullets reuse the Services rows' tick list.
+ *
+ * Stiegenhausreinigung and Fensterreinigung (six and seven) were added on the
+ * client's instruction, 2026-08-28: she already sells both and neither was on
+ * the site. They go at the end because the first five are ordered by how much
+ * of the business they are, and because the home page's card grid reads
+ * `one`..`four` — the keys are positional there, so appending is the only safe
+ * place to add. Seven cards fill the three-across grid as 3 + 3 + 1; five
+ * already left a ragged 3 + 2, so nothing about the layout is new.
+ *
+ * The last two are also the only two that are a *task* rather than a customer
+ * type. That is deliberate and the client's framing: a property manager books
+ * a stairwell, a restaurant books its windows, and both want to see the words.
  */
 interface Props {
 	locale: Locale;
@@ -21,12 +33,17 @@ interface Props {
 const { locale } = Astro.props;
 const t = useTranslations(locale);
 
+/* Tones alternate blue/green down the list, so a card's tone is its position,
+   not its subject. `stairs` and `window` were drawn for these two — see
+   Icon.astro; the nearest existing glyphs were a graduation cap and an eye. */
 const SECTORS = [
 	{ key: 'one', icon: 'office', tone: 'blue' },
 	{ key: 'two', icon: 'clinic', tone: 'green' },
 	{ key: 'three', icon: 'bed', tone: 'blue' },
 	{ key: 'four', icon: 'restaurant', tone: 'green' },
 	{ key: 'five', icon: 'apartments', tone: 'blue' },
+	{ key: 'six', icon: 'stairs', tone: 'green' },
+	{ key: 'seven', icon: 'window', tone: 'blue' },
 ] as const;
 
 const POINTS = ['one', 'two', 'three'] as const;

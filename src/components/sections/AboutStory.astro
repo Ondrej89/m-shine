@@ -6,16 +6,20 @@ import { useTranslations } from '../../i18n/ui';
 import { withBase } from '../../lib/paths';
 
 /*
- * "Our Story" — photo left, copy right, closing on the three figures.
+ * "Our Story" — photo left, copy right.
  *
  * The design hard-breaks the heading after "Built on Trust,". That break is
  * dropped for the same reason the home hero drops its own: it lands in the
  * wrong place in two of the three languages. The line wraps inside the column
  * instead.
  *
- * The figures are the home hero's stats, reused rather than restated — they
- * are the same three claims, and having one set of numbers means the client's
- * decision about them (see the pre-launch list) is made in one place.
+ * It used to close on three figures — "10.000+ gereinigte Zuhause", "4,9
+ * Durchschnittsbewertung", "98 % Stammkundschaft" — read straight from
+ * `home.stats.*`. Those were the design's invented numbers and the client had
+ * them removed (2026-08-28). Because both pages read one set of strings, they
+ * went from both at once, which is exactly what sharing them was for. They are
+ * NOT replaced: no substitute figure has been substantiated either, and the
+ * story reads perfectly well as two paragraphs.
  */
 interface Props {
 	locale: Locale;
@@ -23,8 +27,6 @@ interface Props {
 
 const { locale } = Astro.props;
 const t = useTranslations(locale);
-
-const FIGURES = ['homes', 'rating', 'repeat'] as const;
 ---
 
 <Section class="ms-about-story" rhythm="none">
@@ -45,22 +47,6 @@ const FIGURES = ['homes', 'rating', 'repeat'] as const;
 			<h2 class="ms-about-story__title">{t('about.story.title')}</h2>
 			<p>{t('about.story.bodyOne')}</p>
 			<p>{t('about.story.bodyTwo')}</p>
-
-			<ul class="ms-about-story__figures">
-				{
-					FIGURES.map((figure) => (
-						<li>
-							<b class="ms-about-story__value">
-								{t(`home.stats.${figure}.value` as 'home.stats.homes.value')}
-								{figure === 'rating' && <span> ★</span>}
-							</b>
-							<span class="ms-about-story__label">
-								{t(`home.stats.${figure}.label` as 'home.stats.homes.label')}
-							</span>
-						</li>
-					))
-				}
-			</ul>
 		</div>
 	</div>
 </Section>

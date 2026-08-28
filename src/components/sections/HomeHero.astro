@@ -37,10 +37,24 @@ const TRUST = [
 	{ key: 'checked', icon: 'user-check', tone: 'blue' },
 ] as const;
 
-const STATS = [
-	{ key: 'homes', icon: 'house' },
-	{ key: 'rating', icon: 'star' },
-	{ key: 'repeat', icon: 'repeat' },
+/*
+ * The floating card the hero photo carries. It used to hold four statistics;
+ * three of them — "10.000+ gereinigte Zuhause", "4,9 Durchschnittsbewertung",
+ * "98 % Stammkundschaft" — were the design's invented numbers and came out at
+ * the client's instruction (2026-08-28), the same call that removed
+ * "Insured & Bonded". They are NOT replaced with different numbers.
+ *
+ * What is left would have been one lonely row on a card sized for four, so the
+ * two facts the client did confirm take the other slots: where we work and
+ * when we answer. Both are real, both are useful above the fold, and the
+ * service area had nowhere else to live on the home page. The card keeps its
+ * `.ms-stat` classes — the value/label pair is the same shape — and every
+ * value is short on purpose, because the 19px bold line sets the card's width
+ * and the card's width comes off the photo.
+ */
+const FACTS = [
+	{ key: 'area', icon: 'pin' },
+	{ key: 'hours', icon: 'clock' },
 	{ key: 'satisfaction', icon: 'shield-check' },
 ] as const;
 ---
@@ -99,18 +113,17 @@ const STATS = [
 
 			<ul class="ms-hero__stats">
 				{
-					STATS.map((stat) => (
+					FACTS.map((fact) => (
 						<li class="ms-stat">
 							<span class="ms-stat__icon">
-								<Icon name={stat.icon as IconName} size={19} />
+								<Icon name={fact.icon as IconName} size={19} />
 							</span>
 							<span>
 								<b class="ms-stat__value">
-									{t(`home.stats.${stat.key}.value` as 'home.stats.homes.value')}
-									{stat.key === 'rating' && <span class="ms-stat__star"> ★</span>}
+									{t(`home.facts.${fact.key}.value` as 'home.facts.area.value')}
 								</b>
 								<span class="ms-stat__label">
-									{t(`home.stats.${stat.key}.label` as 'home.stats.homes.label')}
+									{t(`home.facts.${fact.key}.label` as 'home.facts.area.label')}
 								</span>
 							</span>
 						</li>

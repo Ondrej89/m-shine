@@ -130,8 +130,8 @@ first; English and Slovak then fit comfortably.
 ## Current state
 
 **Done: every page.** Home, About, Services (residential), Service Detail, Contact,
-Commercial, Pricing and Quote, plus the i18n foundation, the component library and a
-GitHub Pages preview deployment. The catalogue is split into a private and a business
+Commercial, Pricing, Quote and the three legal documents, plus the i18n foundation, the
+component library and a GitHub Pages preview deployment. The catalogue is split into a private and a business
 half, pricing is reframed as prices + process, and the booking wizard is a quote request.
 
 - **i18n** — de-AT default at `/`, English at `/en/`, Slovak at `/sk/`, with per-language
@@ -170,6 +170,14 @@ half, pricing is reframed as prices + process, and the booking wizard is a quote
   four-step visual flow, but one form with four numbered cards rather than a stateful
   wizard. `/angebot/`, `/en/quote/`, `/sk/ponuka/`. Section `QuoteForm`, with
   `src/styles/components/quote.css`.
+- **Legal** — Impressum, Datenschutzerklärung and AGB, **one template for all three**:
+  `src/components/sections/LegalDoc.astro` takes a `doc` prop and a list of block keys, and
+  `Imprint.astro` / `Privacy.astro` / `Terms.astro` are three-line pages around it. On the
+  **1180px** grid with the reading column capped at 760px inside it, with
+  `src/styles/components/legal.css`. `/impressum/`, `/datenschutz/`, `/agb/` and their
+  English and Slovak slugs. In `ROUTES` but not `NAV_ROUTES` — the footer's legal bar is
+  the only route to them. Every one of them carries a visible "this is a template" notice
+  until the accountant signs the wording off.
 - **`src/data/services.ts`** — the service catalogue, and the reason none of the above
   repeat themselves. Home's cards, the Services rows, and the detail template (its own
   page *and* its "other services" row) all read this one list. Adding a service is an
@@ -274,9 +282,10 @@ About refinements worth not undoing:
   use a band; `width: 100%` is the whole rule now. See section.css.
 - The design's two booking CTAs became the quote request (hero, closing CTA primary) and
   the contact page (closing CTA secondary) — there is no booking engine to send them to.
-- The reviews band reuses `reviews.one`–`three`, and the story figures reuse
-  `home.stats.*`: the same three claims the client still has to sign off on live in one
-  place, not two.
+- The reviews band reuses `reviews.one`–`three`. It used to share the home hero's three
+  statistics as well, through `home.stats.*`; those were the design's invented numbers and
+  the client removed them, and sharing one set of strings is what made them leave both
+  pages at once. The story now closes on its second paragraph — see AboutStory.astro.
 
 Services refinements worth not undoing:
 
@@ -293,10 +302,13 @@ Services refinements worth not undoing:
   track — the home hero's fix, for the identical reason.
 - The tick lists go one column at 480 — the design's own step, which the theme dropped.
   Nothing breaks without it; it buys one line per tick instead of two.
-- **No prices.** The design prints "Starting at $120/visit" on every row. Those are USD
-  placeholders for a Vienna business and the pricing page is being reframed, so the price
-  line is not rendered. `.ms-svc-price` and the markup slot stay ready — see the pre-launch
-  list.
+- **The rows show a starting price again** (2026-08-28). The line was suppressed while
+  the only figures were the design's USD placeholders relabelled in euro; the client's real
+  hourly rates replaced them, so `.ms-svc-price` renders and the foot is back to the
+  design's arrangement — price at the start, the two buttons at the end. It reads the same
+  `services.<key>.price` as the Pricing page and the detail hero. The price is an
+  `inline-flex` with a `gap`, not three inline children: Astro collapses the whitespace
+  between `{t(...)}` and `<b>` across source lines and it rendered "ab30 €pro Stunde".
 - **No "Read More" and no linked row titles.** Both pointed at Service Detail, which has no
   route yet. When it lands, give each entry in `ServiceRows` a route id and restore them;
   `.ms-svc-row__title a` styling is already there.
@@ -452,37 +464,103 @@ was the last route it stood in for.
 
 ## Next
 
-Every page is built. What is left is not page work:
+Every page is built and the client's real content landed on 2026-08-28 (see "Client content,
+2026-08-28" below). What is left is not page work:
 
 1. **Wire the forms.** Contact and Quote both wait on one form/email service;
    `SITE_DETAILS.contactAction` and `quoteAction` are the two slots, and the newsletter is
-   a third. See the pre-launch list.
-2. **Native review of the German and Slovak copy**, and the client's decisions on the
-   pre-launch list below.
-3. **Delete the styleguide**, set the real origin, and deploy.
+   a third. Whichever service is chosen must deliver to `SITE_DETAILS.formRecipient`.
+2. **Get the three legal pages reviewed.** They are competent generic templates and say so
+   on the page, in an amber notice, in all three languages. They are not signed off.
+3. **Replace the reviews.** Every testimonial on the site is invented — see the block
+   comment at the top of `ReviewsCarousel`, `AboutReviews` and `ServiceReviews`.
+4. **Native review of the German and Slovak copy**, and the client's remaining decisions on
+   the pre-launch list below.
+5. **Delete the styleguide** and deploy. The origin is already right; only DNS changes.
+
+## Client content, 2026-08-28
+
+The client supplied real business details, a pricing model and two decisions that removed
+copy. What each one changed, so none of it gets quietly undone:
+
+- **Prices are HOURLY, not per visit.** 30/30/40/40 € an hour for house, apartment, move
+  and deep cleaning, replacing the design's 120/110/150/180 per visit. This is a model
+  change, not a number change: `services.detailPage.priceUnit` went from "pro Termin" to
+  "pro Stunde" and every sentence that promised a per-visit figure was rewritten with it
+  (`pricing.heroLede`, `pricing.startLede`). The figure now appears in **three** places —
+  the Services rows, the service detail heroes and the Pricing cards — all reading one
+  `services.<key>.price` string each.
+- **The Services rows show a price again.** They were suppressed while the only figures
+  were USD placeholders relabelled in euro; with real rates the design's own foot layout
+  (price at the start, actions at the end) is back and `.ms-svc-price` is live.
+- **A flat rate is available on request.** `services.detailPage.priceFlat` — "Auch als
+  Pauschalpreis möglich, je nach Bedarf." It renders under the Pricing cards and under the
+  detail hero's rate, so the offer appears wherever a price does.
+- **The recurring discount keeps its no-percentage copy.** Confirmed as real for weekly and
+  fortnightly, but priced per client, so `pricing.saveText` is still accurate as written.
+- **The home hero's three statistics are gone.** "10.000+ gereinigte Zuhause", "4,9
+  Durchschnittsbewertung" and "98 % Stammkundschaft" were invented by the design and are
+  removed, not replaced. Because the About story read the same three strings, they went
+  from both pages at once — which is what sharing them was for — and the story's figure
+  strip and its CSS went with them. What is left in the hero card is "100 %
+  Zufriedenheit" plus the two facts the client did confirm: **Wien & Umgebung** and
+  **Mo – Fr, 8 – 18 Uhr**. That was a judgment call: one row on a card sized for four looks
+  broken, the two additions are real rather than invented, and the service area had nowhere
+  else to live on the home page. The strip is `repeat(3, 1fr)` below 1100px now.
+- **Two more B2B sectors**, Stiegenhausreinigung and Fensterreinigung, appended as
+  `commercial.sectors.six` and `.seven`. Appended rather than inserted because the home
+  page's card grid reads `one`..`four` positionally. Two glyphs (`stairs`, `window`) were
+  drawn for them in `Icon.astro`. Seven cards sit 3 + 3 + 1; five already sat 3 + 2.
+- **Social icons are hidden, not deleted.** `SITE_DETAILS.socials` is an empty array
+  because no account exists yet. The footer and the contact page both skip the whole block
+  while it is empty, so adding the real profile URLs is the one edit that brings them back.
+- **Two phone numbers.** `+43 681 8160 9657` (Austria, primary) and `+421 918 845 731`
+  (Slovakia). The contact page lists both; the header shows the Austrian one alone, because
+  the chrome has no room for two — see the long note in header.css about that 1160px box.
+- **No street address.** `SITE_DETAILS.address` is city-only and the contact page says
+  plainly that there is no customer traffic at the location. The Impressum carries the
+  details the law asks for.
+- **The domain is decided.** `magicshine.at` is the live site, and `SITE` in
+  `astro.config.mjs` is already that value, so nothing in this repo changes at launch.
+  `magicshine.sk` is bought separately and must be a **301 redirect** configured at the
+  host — never a second copy of the site. Slovak already lives at `magicshine.at/sk/`
+  inside the hreflang cluster; mirroring it on .sk would be duplicate content competing
+  with the .at pages. Nothing here should ever emit a magicshine.sk URL.
+- **Three legal pages exist.** `/impressum/`, `/datenschutz/`, `/agb/` and their English
+  and Slovak slugs, one `LegalDoc.astro` template for all three, driven by a `doc` prop and
+  a list of block keys. They are in `ROUTES` but not `NAV_ROUTES` — the footer's legal bar
+  links them, and those three links were `href="#"` until now. `LEGAL_DETAILS` in
+  `src/data/site.ts` holds the operator's details and is deliberately separate from
+  `SITE_DETAILS`: the Impressum has to name **Sanela Krinic**, a natural person, where the
+  rest of the site says "Magic Shine".
+- **The B2B page needed no other changes.** The client confirmed the sector descriptions,
+  the 24–48h quote turnaround and the site-visit-for-business-premises flow all match what
+  she actually does, which is what was already built.
 
 ## Pre-launch list
 
-- **Service prices are the design's USD figures relabelled in euro** — 120/110/150/180 —
-  and shown as "ab 120 €" rather than a firm number, per the client. They are still
-  unconfirmed amounts and now appear in **two** places — the service detail heroes and the
-  Pricing page — both reading the same `services.<key>.price`, one string each. The
-  Services *rows* still show no price at all; decide whether they should match.
 - **"Haustiersicher" / "pet-safe"** is on every detail page's facts card, from the design.
   It is a product-safety claim the client has not substantiated — the same class as the
   insured/bonded line that was removed. Confirm or drop it.
 - **No service galleries.** The design reserves four photos per service and the reference
   has none. The section is not rendered; it needs 16 photos (four services) to come back.
-- **Hero stats claims** — "10.000+ gereinigte Zuhause", "4,9 Durchschnittsbewertung",
-  "98 % Stammkundschaft" are unsubstantiated, carried over from the design. Awaiting the
-  client's decision; **leave as-is for now**. Same class of claim as the insured/bonded line
-  that was already removed, and the same UWG exposure if they cannot be backed up.
-- **Domain undecided** — .sk vs .at. Vienna is the main market, which argues for .at.
-- **`SITE` in `astro.config.mjs` is a placeholder** (`https://www.magicshine.at`). hreflang
-  and canonicals are absolute and built from it, so it must be the real production origin
-  before launch. One place to change.
-- **Business details in `src/data/site.ts` are placeholders** — phone, email, address,
-  socials.
+- **THE REVIEWS ARE FAKE.** Every quote, name and role on the home page, the About page
+  and the four service detail pages came from the design reference and is invented. No real
+  review exists yet; the Google Business Profile is still being set up. They are left in
+  place only because there is nothing to swap in, and each of the three components carries
+  a loud block comment saying so. **The site must not go live with them.**
+- **The email address is temporary.** `SITE_DETAILS.email` is a personal Gmail mailbox
+  because there is no domain mailbox yet. It is the only place the address is written, and
+  every `mailto:` and the Impressum read it. Swap it when the domain is live.
+- **The three legal pages are templates, not advice.** Impressum, Datenschutz and AGB are
+  standard Austrian small-business wording and carry an amber notice on the page saying so
+  in the visitor's language. The accountant has to review and sign them off, and three
+  specific gaps are named in the text itself: the hosting provider, the form service and
+  the newsletter provider. The Impressum also flags the cross-border question — the
+  business is a Slovak sole trader (SZČO, IČO 53 512 391) operating in Vienna, so whether
+  an Austrian trade registration or VAT registration is additionally required is the
+  accountant's call, not a template's. Remove the notice when it is signed off, and set
+  `LEGAL_DETAILS.lastUpdated` to the date of the reviewed version.
 - **Newsletter needs a provider.** `SITE_DETAILS.newsletterAction` is `null`; until it is
   set the footer form renders but refuses to submit and says so, rather than reloading and
   dropping the address.

@@ -2,10 +2,22 @@
 import { defineConfig } from 'astro/config';
 import sitemap from '@astrojs/sitemap';
 
-// The canonical origin. hreflang annotations MUST be fully-qualified absolute
-// URLs for Google to honour them, so this has to be the real production origin
-// before launch — a wrong value here silently breaks the whole de-AT / en / sk
-// alternate cluster. Change it in ONE place: here.
+/*
+ * The canonical origin. hreflang annotations MUST be fully-qualified absolute
+ * URLs for Google to honour them, so this has to be the real production origin
+ * before launch — a wrong value here silently breaks the whole de-AT / en / sk
+ * alternate cluster. Change it in ONE place: here.
+ *
+ * DOMAIN, decided 2026-08-28: `magicshine.at` is the live site and the value
+ * below is already it, so nothing here changes at launch — only DNS does.
+ * `magicshine.sk` is bought separately and must be configured at the HOST as a
+ * 301 redirect to the .at domain, not served as a second copy of the site.
+ * That is deliberate: a mirrored .sk would be duplicate content competing with
+ * .at for the same three language URLs, and the Slovak page already lives at
+ * `magicshine.at/sk/` inside the hreflang cluster this file generates. The
+ * redirect is a hosting task; there is nothing to build for it here, and
+ * nothing in this repo should ever emit a magicshine.sk URL.
+ */
 const SITE = 'https://www.magicshine.at';
 
 /*

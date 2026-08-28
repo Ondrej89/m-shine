@@ -25,7 +25,10 @@ import { useTranslations } from '../../i18n/ui';
  * enquiry can never arrive carrying a half-filled private one. The `:has()`
  * rule in quote.css does the same hiding for the no-JavaScript case.
  *
- * There is still no endpoint (`SITE_DETAILS.quoteAction` is `null`). The final
+ * There is still no endpoint (`SITE_DETAILS.quoteAction` is `null`). Whatever
+ * form service is chosen must deliver to `SITE_DETAILS.formRecipient` — the
+ * client's mailbox, which is a temporary Gmail address until the domain is
+ * live. The contact form has the same requirement. The final
  * step's submit shows the success panel, and that panel says plainly that
  * nothing has been transmitted. When the form service lands, set `quoteAction`
  * and swap `quote.successBody` for a real confirmation.

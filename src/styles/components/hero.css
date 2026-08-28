@@ -249,10 +249,6 @@
 	line-height: 1.2;
 }
 
-.ms-stat__star {
-	color: var(--wp--preset--color--gold);
-}
-
 .ms-stat__label {
 	color: var(--wp--preset--color--ink-light);
 	display: block;
@@ -277,12 +273,14 @@
 		height: 400px;
 	}
 
-	/* Off the photo and back into the flow, as a four-across strip. The 210px
-	   floor above is there to keep the *floating* card from collapsing onto the
-	   photo; in the flow it would just stop the strip from fitting. */
+	/* Off the photo and back into the flow, as a three-across strip — the card
+	   held four statistics until the client's three invented ones came out.
+	   The 210px floor above is there to keep the *floating* card from
+	   collapsing onto the photo; in the flow it would just stop the strip from
+	   fitting. */
 	.ms-hero__stats {
 		display: grid;
-		grid-template-columns: repeat(4, 1fr);
+		grid-template-columns: repeat(3, 1fr);
 		margin-top: 20px;
 		min-width: 0;
 		position: static;
@@ -292,6 +290,8 @@
 }
 
 @media (max-width: 720px) {
+	/* Two up, the odd one out on the second row. Three 210px-ish tracks need
+	   more room than a 720px viewport has once the gutter is off it. */
 	.ms-hero__stats {
 		grid-template-columns: 1fr 1fr;
 	}
@@ -320,7 +320,9 @@
 	}
 
 	/* One column, not the design's two. Two 166px columns cannot hold a 40px
-	   icon plus "Durchschnittsbewertung" without breaking the word in half. */
+	   icon plus a label without breaking a German compound in half — it was
+	   "Durchschnittsbewertung" that set this step, and "Zufriedenheit" beside
+	   the icon still does not clear it. */
 	.ms-hero__stats {
 		grid-template-columns: 1fr;
 	}

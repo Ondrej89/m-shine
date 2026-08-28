@@ -57,6 +57,16 @@ export const ROUTES = {
 	contact: { de: 'kontakt', en: 'contact', sk: 'kontakt' },
 	quote: { de: 'angebot', en: 'quote', sk: 'ponuka' },
 
+	/*
+	 * The three legal documents. They are not in `NAV_ROUTES` — they belong in
+	 * the footer's legal bar, which links them directly — but they are real
+	 * pages in every language, so they go through the registry like the rest
+	 * and pick up canonicals, hreflang and a sitemap entry for free.
+	 */
+	imprint: { de: 'impressum', en: 'imprint', sk: 'tiraz' },
+	privacy: { de: 'datenschutz', en: 'privacy-policy', sk: 'ochrana-osobnych-udajov' },
+	terms: { de: 'agb', en: 'terms', sk: 'obchodne-podmienky' },
+
 	/** Not navigation — the component library, for review. Removed before launch. */
 	styleguide: { de: 'styleguide', en: 'styleguide', sk: 'styleguide' },
 } as const satisfies Record<string, Record<Locale, string>>;

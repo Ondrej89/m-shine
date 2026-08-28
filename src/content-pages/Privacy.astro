@@ -1,0 +1,49 @@
+---
+import LegalDoc from '../components/sections/LegalDoc.astro';
+import PageLayout from '../layouts/PageLayout.astro';
+import type { Locale } from '../i18n/config';
+import type { RouteId } from '../i18n/routes';
+import { useTranslations } from '../i18n/ui';
+
+/*
+ * Datenschutzerklärung — the GDPR privacy notice.
+ *
+ * It describes the site as it actually is: static, no analytics, no consent
+ * cookies, two forms that are not wired to anything yet and a Gmail mailbox
+ * standing in for a domain one. Three of its blocks name a gap that has to be
+ * filled before launch — the host, the form service and the newsletter
+ * provider — so the page and the pre-launch list cannot drift apart.
+ *
+ * The wording is a template and says so on the page — see LegalDoc.astro.
+ */
+interface Props {
+	locale: Locale;
+	route: RouteId;
+}
+
+const { locale, route } = Astro.props;
+const t = useTranslations(locale);
+
+const BLOCKS = [
+	'one',
+	'two',
+	'three',
+	'four',
+	'five',
+	'six',
+	'seven',
+	'eight',
+	'nine',
+	'ten',
+	'eleven',
+] as const;
+---
+
+<PageLayout
+	locale={locale}
+	route={route}
+	title={`${t('meta.privacy.title')} | ${t('site.name')}`}
+	description={t('meta.privacy.description')}
+>
+	<LegalDoc locale={locale} doc="privacy" blocks={BLOCKS} />
+</PageLayout>

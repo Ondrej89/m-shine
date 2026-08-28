@@ -178,13 +178,25 @@
 	justify-content: space-between;
 }
 
-/* Kept ready rather than used: the design prints "Starting at $120/visit" on
-   every row, and the client has not set euro prices — see the pre-launch list.
-   With no price the foot holds one child, and `space-between` puts it at the
-   start, which is where the design's buttons sit anyway. */
+/* In use again since the client set real hourly rates (2026-08-28) — it sat
+   unrendered while the only figures were the design's USD placeholders. The
+   foot is `space-between`, so the price sits at the start and the two buttons
+   at the end, which is the design's own arrangement.
+
+   `align-self: center` because the actions are two 46px buttons and the price
+   is one line: without it the text hangs off the top of the row. */
 .ms-svc-price {
+	/* `inline-flex` with a gap, not three inline children: Astro collapses the
+	   whitespace between `{t(...)}` and `<b>` when they sit on separate source
+	   lines, and the label ran straight into the figure ("ab30 €pro Stunde").
+	   The detail hero's `.ms-sd-price` solves it the same way. */
+	align-items: baseline;
+	align-self: center;
 	color: var(--wp--preset--color--ink-muted);
+	display: inline-flex;
+	flex-wrap: wrap;
 	font-size: 14px;
+	gap: 7px;
 	margin: 0;
 }
 

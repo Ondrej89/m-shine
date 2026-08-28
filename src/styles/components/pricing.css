@@ -66,6 +66,16 @@
 	text-align: center;
 }
 
+/* "Auch als Pauschalpreis möglich" — a second note under the first, and the
+   one people actually need to see, so it gets the body ink and the weight
+   rather than the muted small print. `10px` because it belongs to the note
+   above it, not to the section. */
+.ms-price-note--flat {
+	color: var(--wp--preset--color--ink);
+	font-weight: 600;
+	margin-top: 10px;
+}
+
 /* --- What sets the price ----------------------------------------------- */
 
 .ms-price-factors {

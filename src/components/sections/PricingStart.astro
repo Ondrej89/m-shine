@@ -17,6 +17,15 @@ import { useTranslations } from '../../i18n/ui';
  * `services.<key>.price` with the shared label and unit — so the two pages
  * cannot drift, and the client changes a figure in one place.
  *
+ * They are HOURLY as of 2026-08-28 (client), not the flat per-visit figures
+ * the design printed. That is a model change, not a number change: the unit
+ * string `services.detailPage.priceUnit` went from "pro Termin" to "pro
+ * Stunde", the amounts came down accordingly (30/30/40/40 rather than
+ * 120/110/150/180), and every sentence on this page that said "pro Termin"
+ * was rewritten. A flat rate is still available on request, which is what
+ * `priceFlat` says under the cards — it is rendered here and on the detail
+ * hero, so the offer appears wherever a price does.
+ *
  * The cards are the detail page's "other services" cards with a price line
  * added: same `auto-fit` grid, same hover, and the whole card is the link to
  * the service.
@@ -80,4 +89,5 @@ const t = useTranslations(locale);
 	</ul>
 
 	<p class="ms-price-note">{t('pricing.startLede')}</p>
+	<p class="ms-price-note ms-price-note--flat">{t('services.detailPage.priceFlat')}</p>
 </Section>

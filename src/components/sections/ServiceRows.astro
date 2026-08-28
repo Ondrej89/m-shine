@@ -19,9 +19,12 @@ import { withBase } from '../../lib/paths';
  * because there is no booking engine to send it to. "Read More" and the linked
  * title point at the service's own detail page, as the design has them.
  *
- * The design also prints "Starting at $120/visit" on every row. There are no
- * euro prices yet — see the pre-launch list — so `.ms-svc-price` is unused for
- * now and the actions sit alone in the row's foot.
+ * The price line is on, as of 2026-08-28. It was suppressed while the only
+ * figures were the design's USD placeholders relabelled in euro; the client
+ * has now set real hourly rates, so `.ms-svc-price` renders and the design's
+ * own foot layout — price at the start, actions at the end — is back. It reads
+ * the same `services.<key>.price` string as the Pricing page and the detail
+ * hero, so all three change together.
  */
 interface Props {
 	locale: Locale;
@@ -84,6 +87,12 @@ const FEATURES = ['one', 'two', 'three', 'four'] as const;
 								</ul>
 
 								<div class="ms-svc-row__foot">
+									<p class="ms-svc-price">
+										{t('services.detailPage.priceLabel')}
+										<b>{t(`services.${service.key}.price` as 'services.house.price')}</b>
+										<span>{t('services.detailPage.priceUnit')}</span>
+									</p>
+
 									<div class="ms-svc-row__actions">
 										<Button
 											variant="ghost"

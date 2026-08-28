@@ -202,6 +202,23 @@ a.ms-cfact__value:focus {
 	color: var(--wp--preset--color--blue);
 }
 
+/* Two values in one fact: the second phone number sits under the first, and the
+   address and service-area facts carry a line of explanation. `2px` rather than
+   a gap on the parent because `.ms-cfact` is the icon/text flex row, not the
+   stack of lines inside it. */
+.ms-cfact__value + .ms-cfact__value {
+	margin-top: 2px;
+}
+
+.ms-cfact__note {
+	color: var(--wp--preset--color--ink-light);
+	display: block;
+	font-size: 12.5px;
+	font-weight: 400;
+	line-height: 1.45;
+	margin-top: 2px;
+}
+
 .ms-contact__socials {
 	display: flex;
 	gap: 11px;

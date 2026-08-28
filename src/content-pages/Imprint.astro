@@ -1,0 +1,37 @@
+---
+import LegalDoc from '../components/sections/LegalDoc.astro';
+import PageLayout from '../layouts/PageLayout.astro';
+import type { Locale } from '../i18n/config';
+import type { RouteId } from '../i18n/routes';
+import { useTranslations } from '../i18n/ui';
+
+/*
+ * Impressum — the disclosure required of every Austrian commercial website
+ * (§ 5 ECG, § 25 MedienG).
+ *
+ * It is the one page that must name a natural person rather than the brand:
+ * "Magic Shine" is a trading name, and the party legally responsible is
+ * Sanela Krinic. Those details come from `LEGAL_DETAILS` in `src/data/site.ts`,
+ * kept apart from `SITE_DETAILS` for exactly that reason.
+ *
+ * The wording is a template and says so on the page — see LegalDoc.astro.
+ */
+interface Props {
+	locale: Locale;
+	route: RouteId;
+}
+
+const { locale, route } = Astro.props;
+const t = useTranslations(locale);
+
+const BLOCKS = ['one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight'] as const;
+---
+
+<PageLayout
+	locale={locale}
+	route={route}
+	title={`${t('meta.imprint.title')} | ${t('site.name')}`}
+	description={t('meta.imprint.description')}
+>
+	<LegalDoc locale={locale} doc="imprint" blocks={BLOCKS} />
+</PageLayout>
