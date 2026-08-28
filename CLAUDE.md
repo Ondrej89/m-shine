@@ -476,6 +476,24 @@ Forms:
 - **A 200 is not a success.** Web3Forms answers 200 with `{ success: false }` for a
   submission it rejects — a bad key, a tripped spam rule — so both scripts check the JSON
   body, not the status code.
+- **Field NAMES must be ASCII; values can be anything.** Web3Forms decodes the names out
+  of the multipart body as Latin-1, so a label sent as "Fläche in m²" reaches the inbox as
+  "FlÃ¤che in mÂ²". Values decode correctly — the subject line has carried an umlaut since
+  the first submission. Every key the forms send is therefore plain ASCII, and every word
+  that needs an umlaut lives in a value. The stubbed suite asserts this on every payload,
+  because it is the kind of bug that only shows up in someone else's inbox.
+- **The mail is four groups, not eighteen fields.** Web3Forms renders one labelled block
+  per field and its template cannot be changed on the free tier, so a field-per-row mail
+  ran three screens long with the sender's name at the bottom. `buildPayload()` in
+  QuoteForm.astro folds the fields into `Kontakt`, `Auftrag`, `Termin` and `Nachricht`,
+  each one line of `Label: value  ·  Label: value`, with `name` and `email` left as their
+  own blocks at the top because that is where a reader looks first. **Two columns are not
+  possible** without controlling the email template — that means Web3Forms Pro, a webhook,
+  or a different service.
+- **The group keys are fixed German; what is inside them is not.** The client reads the
+  keys and they should sort alike whatever language the enquiry arrived in. The labels and
+  values inside come out of the DOM, so a Slovak enquiry reads in Slovak — and the mail
+  cannot drift from the form, because changing a caption changes the email with it.
 - **`FormData` as the fetch body, not JSON.** It is a CORS-simple request, so there is no
   preflight to fail, and it picks up the hidden fields the no-JavaScript POST already
   carries rather than restating them in script.

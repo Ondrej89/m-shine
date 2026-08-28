@@ -302,7 +302,6 @@ const subject = `${SITE_DETAILS.formSubjects.contact} (${locale.toUpperCase()})`
 		pendingMsg: t('contact.formPending'),
 		sendingLabel: t('contact.formSending'),
 		submitLabel: t('contact.formSubmit'),
-		messageLabel: t('contact.formMessage'),
 	}}
 >
 	/* No key yet: stop the submit and say so. Unchanged from before the form was
@@ -335,17 +334,20 @@ const subject = `${SITE_DETAILS.formSubjects.contact} (${locale.toUpperCase()})`
 				   request, so there is no preflight to fail, and it carries the
 				   hidden fields the no-script POST uses without restating them.
 
-				   `message` goes under its on-screen caption, so the mail reads
-				   "Ihre Nachricht" rather than "Message" on a German enquiry. The
-				   quote form relabels its whole payload the same way, and the two
-				   mails should not look like they came from different sites.
+				   `message` is renamed to "Nachricht" so the mail does not say
+				   "Message" on a German enquiry, and the two forms' mails do not
+				   look like they came from different sites. The key is ASCII on
+				   purpose: Web3Forms decodes multipart field NAMES as Latin-1, so
+				   an umlaut in a key arrives as mojibake — see the long note in
+				   QuoteForm.astro. Values decode correctly, which is why all the
+				   German on the quote side lives in values.
 				   `name` and `email` keep their machine names, because Web3Forms
 				   reads `email` to set Reply-To. */
 				const payload = new FormData(form);
 				if (payload.has('message')) {
 					const message = payload.get('message');
 					payload.delete('message');
-					payload.append(messageLabel, message);
+					payload.append('Nachricht', message);
 				}
 
 				const response = await fetch(form.action, {
