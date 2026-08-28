@@ -29,12 +29,12 @@
  * post nothing anywhere, which is how they behaved before this and is the
  * guard that protects a build where the key goes missing.
  *
- * STILL OUTSTANDING, and neither is a code change: the account was opened
- * under ondrejdudas89@gmail.com, so mail currently goes THERE and not to
- * `formRecipient` below — add that address under Linked Emails in the
- * Web3Forms dashboard and set it as the form's recipient. And no real
- * submission has been confirmed end to end; Cloudflare challenges automated
- * clients, so that last check has to be a person submitting the form once.
+ * WHERE THE MAIL GOES is a dashboard setting, not a payload field — a form
+ * that could name its own recipient would be an open relay for anyone who
+ * read the page source. Today it is the account address,
+ * ondrejdudas89@gmail.com, which is deliberate while the forms are being
+ * tested: submissions land somewhere the developer can actually open. See
+ * `formRecipient` below for the switch that has to happen before launch.
  */
 const WEB3FORMS_ENDPOINT = 'https://api.web3forms.com/submit';
 const WEB3FORMS_ACCESS_KEY: string | null = '7387644b-a9a6-4981-84ab-a6f07aea8c92';
@@ -113,13 +113,23 @@ export const SITE_DETAILS = {
 		quote: 'Angebotsanfrage über die Website',
 	},
 	/**
-	 * Who the two forms deliver to. Web3Forms sends to whichever address the
-	 * access key was issued for, so this is a record of what that address must
-	 * be rather than something the code can enforce — if the key is ever
-	 * reissued, it has to be reissued for this mailbox. It follows `email`
-	 * above to the real domain mailbox when that exists.
+	 * Where Web3Forms actually delivers today. Nothing reads this — the routing
+	 * lives in the Web3Forms dashboard and the code cannot set it — so this is
+	 * a written record of the current state, kept here because a value in the
+	 * source is harder to forget than a line in a chat.
+	 *
+	 * It is the developer's own mailbox on purpose, so that test submissions
+	 * land somewhere openable while the forms are being proven.
+	 *
+	 * BEFORE LAUNCH it must become `formRecipientAtLaunch` below: add that
+	 * address under Linked Emails in the dashboard, verify it, set it as the
+	 * recipient for the "MagicShine" form, and change this line to match. A
+	 * live site mailing enquiries to the developer is a lost customer every
+	 * time the client does not see one.
 	 */
-	formRecipient: 'magicshine2601@gmail.com',
+	formRecipient: 'ondrejdudas89@gmail.com',
+	/** What `formRecipient` has to be before the site goes live. */
+	formRecipientAtLaunch: 'magicshine2601@gmail.com',
 } as const;
 
 /**

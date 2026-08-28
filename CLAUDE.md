@@ -606,11 +606,14 @@ copy. What each one changed, so none of it gets quietly undone:
 - **Newsletter needs a provider.** `SITE_DETAILS.newsletterAction` is `null`; until it is
   set the footer form renders but refuses to submit and says so, rather than reloading and
   dropping the address.
-- **Web3Forms delivers to the wrong mailbox right now.** The account was opened under
-  `ondrejdudas89@gmail.com`, and Web3Forms sends to the address the form is configured
-  for — the payload cannot name a recipient, which is what stops the service being an open
-  relay. Add `magicshine2601@gmail.com` under **Linked Emails**, verify it, and set it as
-  the recipient under **Settings** for the "MagicShine" form. Nothing in this repo changes.
+- **Web3Forms delivers to the developer's mailbox, on purpose, for now.** It goes to
+  `ondrejdudas89@gmail.com` — the account address — so that test submissions land
+  somewhere openable while the forms are being proven. **Before launch** add
+  `magicshine2601@gmail.com` under **Linked Emails**, verify it, set it as the recipient
+  under **Settings** for the "MagicShine" form, and update `formRecipient` in
+  `src/data/site.ts` to match. The payload cannot name a recipient — that is what stops
+  the service being an open relay — so this is a dashboard change plus a one-line record.
+  A live site mailing enquiries to the developer loses a customer every time.
 - **No real submission has been confirmed end to end.** Everything is verified against a
   stubbed endpoint, and the built pages carry the right key and fields, but a genuine send
   from this machine could not be completed: Cloudflare answers `Cf-Mitigated: challenge` to
