@@ -25,13 +25,23 @@ import { useTranslations } from '../../i18n/ui';
  * enquiry can never arrive carrying a half-filled private one. The `:has()`
  * rule in quote.css does the same hiding for the no-JavaScript case.
  *
- * There is still no endpoint (`SITE_DETAILS.quoteAction` is `null`). Whatever
- * form service is chosen must deliver to `SITE_DETAILS.formRecipient` — the
- * client's mailbox, which is a temporary Gmail address until the domain is
- * live. The contact form has the same requirement. The final
- * step's submit shows the success panel, and that panel says plainly that
- * nothing has been transmitted. When the form service lands, set `quoteAction`
- * and swap `quote.successBody` for a real confirmation.
+ * The form posts to Web3Forms — see the long note in `src/data/site.ts`, and
+ * ContactSection.astro, which does the same three-state dance for the shorter
+ * form. Here the states are:
+ *
+ *   live + ok      the form is replaced by the success panel.
+ *   live + failed  an error appears inside step four, under the action row,
+ *                  and the wizard stays exactly as it was. Four steps of
+ *                  answers must survive a bad minute at a third-party API.
+ *   no key yet     the same panel appears carrying `quote.pendingTitle` /
+ *                  `pendingBody`, which say plainly that nothing was sent.
+ *
+ * The success panel is shared between the sent and the not-connected case, and
+ * its text is swapped by the script, because the two differ in wording and in
+ * nothing else.
+ *
+ * Without JavaScript the whole thing is one long form that posts to the same
+ * endpoint and lands on Web3Forms' own confirmation page.
  */
 interface Props {
 	locale: Locale;
@@ -64,6 +74,9 @@ const FREQUENCIES = [
 ] as const;
 
 const quoteAction = SITE_DETAILS.quoteAction;
+/* As on the contact page: the language marker is for the client's inbox, so
+   the subject itself is not a translated string. */
+const subject = `${SITE_DETAILS.formSubjects.quote} (${locale.toUpperCase()})`;
 ---
 
 <Section class="ms-quote" width={1200} rhythm="none">
@@ -95,8 +108,25 @@ const quoteAction = SITE_DETAILS.quoteAction;
 				class="ms-quote__form"
 				action={quoteAction ?? undefined}
 				method="post"
-				data-ms-quote={quoteAction ? undefined : 'pending'}
+				data-ms-quote={quoteAction ? 'live' : 'pending'}
 			>
+				{/*
+				 * Web3Forms' own fields — see ContactSection.astro for what each one
+				 * does. They sit outside every `<fieldset data-step>`, which matters:
+				 * the branch switch disables whole fieldsets, and these must never be
+				 * disabled or the submission would arrive with no access key.
+				 */}
+				<input type="hidden" name="access_key" value={SITE_DETAILS.formAccessKey ?? ''} />
+				<input type="hidden" name="subject" value={subject} />
+				<input type="hidden" name="from_name" value={t('site.name')} />
+				<input
+					type="checkbox"
+					name="botcheck"
+					style="display:none"
+					tabindex="-1"
+					autocomplete="off"
+					aria-hidden="true"
+				/>
 				{/* ---- Step 1: who is asking ---- */}
 				<fieldset class="ms-qstep" data-step="1">
 					<legend class="ms-qstep__head" tabindex="-1">{t('quote.s1Title')}</legend>
@@ -460,11 +490,26 @@ const quoteAction = SITE_DETAILS.quoteAction;
 							<Icon name="chevron-right" size={16} />
 						</button>
 						<button class="ms-quote__submit" type="submit" data-ms-quote-submit>
-							{t('quote.submit')}
+							<span data-ms-quote-submit-label>{t('quote.submit')}</span>
 							<Icon name="send" size={16} />
 						</button>
 					</div>
 					<p class="ms-quote__submit-note">{t('quote.submitNote')}</p>
+
+					{/*
+					 * The failure state. It lives in the action row so it travels with
+					 * it into whichever step is on screen — which is always step four,
+					 * because that is the only step with a submit. `role="alert"`:
+					 * four steps of answers are sitting there unsent.
+					 */}
+					<div class="ms-quote__error" role="alert" hidden data-ms-quote-error>
+						<b class="ms-quote__error-title">{t('quote.errorTitle')}</b>
+						<span>{t('quote.errorBody')}</span>
+						<span class="ms-quote__error-links">
+							<a href={`tel:${SITE_DETAILS.phoneHref}`}>{SITE_DETAILS.phone}</a>
+							<a href={`mailto:${SITE_DETAILS.email}`}>{SITE_DETAILS.email}</a>
+						</span>
+					</div>
 				</div>
 			</form>
 
@@ -472,8 +517,10 @@ const quoteAction = SITE_DETAILS.quoteAction;
 				<span class="ms-quote__success-icon">
 					<Icon name="check" size={26} stroke={2.4} />
 				</span>
-				<h2 class="ms-quote__success-title">{t('quote.successTitle')}</h2>
-				<p class="ms-quote__success-body">{t('quote.successBody')}</p>
+				<h2 class="ms-quote__success-title" data-ms-quote-success-title>
+					{t('quote.successTitle')}
+				</h2>
+				<p class="ms-quote__success-body" data-ms-quote-success-body>{t('quote.successBody')}</p>
 
 				<p class="ms-qside__contact">
 					<a class="ms-qside__link" href={`mailto:${SITE_DETAILS.email}`}>{SITE_DETAILS.email}</a>
@@ -505,7 +552,17 @@ const quoteAction = SITE_DETAILS.quoteAction;
 	</div>
 </Section>
 
-<script is:inline define:vars={{ countTemplate: t('quote.stepOf') }}>
+<script
+	is:inline
+	define:vars={{
+		countTemplate: t('quote.stepOf'),
+		sendingLabel: t('quote.sending'),
+		submitLabel: t('quote.submit'),
+		pendingTitle: t('quote.pendingTitle'),
+		pendingBody: t('quote.pendingBody'),
+		pendingAgain: t('quote.pendingAgain'),
+	}}
+>
 	document.querySelectorAll('.ms-quote__form').forEach((form) => {
 		const LAST = 4;
 
@@ -641,17 +698,68 @@ const quoteAction = SITE_DETAILS.quoteAction;
 			next.click();
 		});
 
-		if (form.dataset.msQuote === 'pending' && success) {
-			form.addEventListener('submit', (event) => {
-				event.preventDefault();
-				form.hidden = true;
-				success.hidden = false;
-				success.setAttribute('tabindex', '-1');
-				success.focus();
-				success.scrollIntoView({ block: 'center' });
-			});
+		const error = form.querySelector('[data-ms-quote-error]');
+		const submitLabelEl = form.querySelector('[data-ms-quote-submit-label]');
+
+		function showSuccess() {
+			form.hidden = true;
+			success.hidden = false;
+			success.setAttribute('tabindex', '-1');
+			success.focus();
+			success.scrollIntoView({ block: 'center' });
+		}
+
+		if (success) {
+			/* No key yet: nothing is transmitted, and the panel says so instead of
+			   claiming a delivery that did not happen. Same panel, different words
+			   — see quote.pendingTitle / pendingBody in the dictionaries. */
+			if (form.dataset.msQuote === 'pending') {
+				success.querySelector('[data-ms-quote-success-title]').textContent = pendingTitle;
+				success.querySelector('[data-ms-quote-success-body]').textContent = pendingBody;
+				success.querySelector('[data-ms-quote-again]').textContent = pendingAgain;
+
+				form.addEventListener('submit', (event) => {
+					event.preventDefault();
+					showSuccess();
+				});
+			} else {
+				form.addEventListener('submit', async (event) => {
+					event.preventDefault();
+					error.hidden = true;
+					submit.disabled = true;
+					submitLabelEl.textContent = sendingLabel;
+
+					try {
+						/* `FormData` reads the form as it stands, which means the
+						   disabled half of the private/business branch is left out for
+						   free — the same mechanism that keeps it out of validation. */
+						const response = await fetch(form.action, {
+							method: 'POST',
+							body: new FormData(form),
+							headers: { Accept: 'application/json' },
+						});
+						const result = await response.json().catch(() => ({}));
+						if (!response.ok || result.success !== true) throw new Error('rejected');
+
+						showSuccess();
+					} catch {
+						/* All four steps keep their values. */
+						error.hidden = false;
+						error.scrollIntoView({ block: 'center' });
+					} finally {
+						submit.disabled = false;
+						submitLabelEl.textContent = submitLabel;
+					}
+				});
+			}
 
 			success.querySelector('[data-ms-quote-again]')?.addEventListener('click', () => {
+				/* A real send resets the form; the pending path does not, because
+				   "Angaben ändern" promises the answers are still there. */
+				if (form.dataset.msQuote === 'live') {
+					form.reset();
+					syncBranch();
+				}
 				success.hidden = true;
 				form.hidden = false;
 				current = 1;

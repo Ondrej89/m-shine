@@ -650,9 +650,15 @@
     "sideTwo": "Pri firmách dohodneme krátku obhliadku.",
     "sideThree": "Dostanete písomnú ponuku s cenou a návrhom termínu.",
     "sideContact": "Radšej sa porozprávate priamo?",
-    "successTitle": "Ďakujeme – vaše údaje sú kompletné.",
-    "successBody": "Upozornenie: formulár zatiaľ nie je prepojený s našou schránkou, vaša žiadosť teda ešte nebola odoslaná. Pošlite nám prosím údaje nateraz priamo e-mailom alebo zavolajte – ozveme sa čo najskôr.",
-    "successAgain": "Upraviť údaje"
+    "successTitle": "Ďakujeme – vaša žiadosť dorazila.",
+    "successBody": "Pozrieme sa na vaše údaje a spravidla sa do 24 hodín ozveme s nezáväznou ponukou. Potvrdzujúci e-mail neposielame – ak sa vám neozveme, zavolajte nám prosím.",
+    "successAgain": "Poslať ďalšiu žiadosť",
+    "pendingTitle": "Ďakujeme – vaše údaje sú kompletné.",
+    "pendingBody": "Upozornenie: formulár zatiaľ nie je prepojený s našou schránkou, vaša žiadosť teda ešte nebola odoslaná. Pošlite nám prosím údaje nateraz priamo e-mailom alebo zavolajte – ozveme sa čo najskôr.",
+    "sending": "Odosiela sa …",
+    "pendingAgain": "Upraviť údaje",
+    "errorTitle": "Toto sa, žiaľ, nepodarilo.",
+    "errorBody": "Vašu žiadosť sa nepodarilo odoslať. Skúste to prosím znova – nič z toho, čo ste vyplnili, sa nestratilo. Ak to zlyhá znova, zastihnete nás priamo:"
   },
   "why": {
     "eyebrow": "PREČO MY",
@@ -782,7 +788,13 @@
     "addressValue": "Viedeň, Rakúsko",
     "addressNote": "Na adrese neprijímame návštevy – prídeme za vami.",
     "labelArea": "Oblasť pôsobenia",
-    "areaValue": "Viedeň a okolie, vrátane miest Mödling a Purkersdorf. Ďalšie lokality po dohode."
+    "areaValue": "Viedeň a okolie, vrátane miest Mödling a Purkersdorf. Ďalšie lokality po dohode.",
+    "formSending": "Odosiela sa …",
+    "formSuccessTitle": "Ďakujeme – vaša správa dorazila.",
+    "formSuccessBody": "Vašu správu máme a spravidla sa ozveme do 24 hodín. Potvrdzujúci e-mail neposielame – ak sa vám neozveme, zavolajte nám prosím.",
+    "formErrorTitle": "Toto sa, žiaľ, nepodarilo.",
+    "formError": "Vašu správu sa nepodarilo odoslať. Skúste to prosím znova – nič z toho, čo ste napísali, sa nestratilo. Ak to zlyhá znova, zastihnete nás priamo:",
+    "formAgain": "Poslať ďalšiu správu"
   },
   "footer": {
     "blurb": "Prvotriedne upratovacie služby pre čistejší, zdravší a šťastnejší domov.",

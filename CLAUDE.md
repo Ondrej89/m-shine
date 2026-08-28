@@ -344,12 +344,9 @@ Service Detail refinements worth not undoing:
 
 Contact refinements worth not undoing:
 
-- **The form has no endpoint and says so.** `SITE_DETAILS.contactAction` is `null`, exactly
-  like `newsletterAction`; the form renders, the browser's own constraint validation blocks
-  an empty field or a malformed address, and then the inline script stops the submit and
-  explains rather than reloading the page and throwing the message away. Filling in
-  `contactAction` removes the `data-` hook and the form posts — no other change.
-  It deliberately does **not** say "message sent", which would be a lie.
+- **The form posts to Web3Forms** and has three states — sent, failed, and not-yet-keyed.
+  See "Forms" below; the failure state is the one worth not undoing, because it keeps every
+  value the visitor typed.
 - **The FAQ accordion is `<details>`/`<summary>`**, not the design's scripted state. The
   browser supplies the toggle, the keyboard behaviour and the expanded state, and the
   answers stay findable by in-page search. Nothing ships.
@@ -449,6 +446,44 @@ Quote page notes worth not undoing:
   alone, all through `localizedPath(locale, 'quote')`, so the slug change from
   `/angebot-anfordern/` to `/angebot/` was one line in the registry.
 
+Forms:
+
+- **Web3Forms, not Formspree.** 250 submissions a month on the free tier rather than 50,
+  and the access key is issued straight to a mailbox with no dashboard account to create
+  and no password for anyone to keep. There is no server of ours in the path, which is the
+  whole requirement — this is a static site.
+- **The access key is public by design** and ships in the HTML of every page with a form.
+  That is how the service works: the key authorises delivery to one fixed mailbox and
+  nothing else. It lives in the source rather than in an environment variable because it is
+  not a secret and because GitHub Pages builds have no env to read one from.
+- **`null` is a working state, not a broken one.** With no key, `contactAction` and
+  `quoteAction` are `null`, both forms take the "not connected yet" path, and **nothing is
+  posted anywhere** — verified. That guard is what lets the wiring ship before the key
+  does; do not delete it when the key lands, because it is also what protects a rebuild
+  with the key accidentally removed.
+- **Three states, and the failure state is the point.** Sent replaces the form with a
+  success panel; failed leaves **every value the visitor typed exactly where it was**, puts
+  an error under the button, and repeats the phone and mailbox. Four steps of quote answers
+  or a paragraph of message must survive a bad minute at a third-party API. The one thing
+  never to do here is clear the form on error.
+- **A 200 is not a success.** Web3Forms answers 200 with `{ success: false }` for a
+  submission it rejects — a bad key, a tripped spam rule — so both scripts check the JSON
+  body, not the status code.
+- **`FormData` as the fetch body, not JSON.** It is a CORS-simple request, so there is no
+  preflight to fail, and it picks up the hidden fields the no-JavaScript POST already
+  carries rather than restating them in script.
+- **The hidden fields sit outside every `<fieldset data-step>` on the quote form.** The
+  branch switch disables whole fieldsets, and a disabled `access_key` would arrive empty.
+- **The success panel promises no confirmation email**, in all three languages, because
+  Web3Forms mails the client and not the visitor. It gives the phone number instead.
+- **Honeypot, not a CAPTCHA.** A `display:none` `botcheck` checkbox, out of the tab order
+  and out of the accessibility tree; Web3Forms discards anything that arrives with it set.
+- **Without JavaScript both forms still send** — a plain POST to the same endpoint, landing
+  on Web3Forms' own confirmation page. Not pretty, but not lost.
+- **The newsletter is deliberately NOT wired to it.** A newsletter is a subscriber list,
+  not a message; routing sign-ups into an inbox would give the client a pile of addresses
+  to manage by hand and no way to send to them. It waits for a real provider.
+
 Deployment:
 
 - **GitHub Pages preview** via `.github/workflows/pages.yml` — see README.md for the
@@ -467,9 +502,9 @@ was the last route it stood in for.
 Every page is built and the client's real content landed on 2026-08-28 (see "Client content,
 2026-08-28" below). What is left is not page work:
 
-1. **Wire the forms.** Contact and Quote both wait on one form/email service;
-   `SITE_DETAILS.contactAction` and `quoteAction` are the two slots, and the newsletter is
-   a third. Whichever service is chosen must deliver to `SITE_DETAILS.formRecipient`.
+1. **Paste the Web3Forms access key.** Contact and Quote are wired and tested; the one
+   thing missing is the key, which is a single `null` in `src/data/site.ts`. The newsletter
+   is deliberately still waiting on a real provider. See "Forms" below.
 2. **Get the three legal pages reviewed.** They are competent generic templates and say so
    on the page, in an amber notice, in all three languages. They are not signed off.
 3. **Replace the reviews.** Every testimonial on the site is invented — see the block
@@ -564,9 +599,12 @@ copy. What each one changed, so none of it gets quietly undone:
 - **Newsletter needs a provider.** `SITE_DETAILS.newsletterAction` is `null`; until it is
   set the footer form renders but refuses to submit and says so, rather than reloading and
   dropping the address.
-- **The contact and quote forms need a form/email service** — there is no backend.
-  `SITE_DETAILS.contactAction` and the quote form's equivalent both stay `null` until one
-  is chosen; the contact form already renders, validates and declines to submit.
+- **The contact and quote forms need their Web3Forms access key.** Everything else is
+  built and tested. Until `WEB3FORMS_ACCESS_KEY` in `src/data/site.ts` stops being `null`,
+  both forms render, validate, and decline to submit with an honest notice — and post
+  nothing anywhere. Get the key by entering `magicshine2601@gmail.com` at web3forms.com;
+  it arrives in that mailbox. **Nobody has yet confirmed a real mail arriving**, because
+  that needs the key and access to the inbox — do that first thing after pasting it.
 - **Payment answer on Contact is deliberately vague** ("you receive an invoice after the
   visit; we agree the method when you enquire"). The design promised card payment and SEPA
   direct debit, which the client has not confirmed and which no backend supports. Replace

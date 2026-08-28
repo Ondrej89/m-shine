@@ -650,9 +650,15 @@
     "sideTwo": "For businesses we arrange a short site visit.",
     "sideThree": "You get a written quote with a price and a proposed date.",
     "sideContact": "Rather talk to us directly?",
-    "successTitle": "Thank you — your details are complete.",
-    "successBody": "Please note: the form is not connected to our inbox yet, so your request has not been sent. For now, please email or call us with these details and we will come back to you shortly.",
-    "successAgain": "Change my details"
+    "successTitle": "Thank you — your request has arrived.",
+    "successBody": "We will look at your details and normally come back within 24 hours with a no-obligation quote. We do not send a confirmation email — if you hear nothing from us, please call.",
+    "successAgain": "Send another request",
+    "pendingTitle": "Thank you — your details are complete.",
+    "pendingBody": "Please note: the form is not connected to our inbox yet, so your request has not been sent. For now, please email or call us with these details and we will come back to you shortly.",
+    "sending": "Sending …",
+    "pendingAgain": "Change my answers",
+    "errorTitle": "That did not work.",
+    "errorBody": "Your request could not be sent. Please try again — nothing you filled in has been lost. If it fails again, you can reach us directly:"
   },
   "why": {
     "eyebrow": "WHY CHOOSE US",
@@ -782,7 +788,13 @@
     "addressValue": "Vienna, Austria",
     "addressNote": "No visitors at the address — we come to you.",
     "labelArea": "Service area",
-    "areaValue": "Vienna and the surrounding area, including Mödling and Purkersdorf. Other locations by arrangement."
+    "areaValue": "Vienna and the surrounding area, including Mödling and Purkersdorf. Other locations by arrangement.",
+    "formSending": "Sending …",
+    "formSuccessTitle": "Thank you — your message has arrived.",
+    "formSuccessBody": "We have your message and will normally come back to you within 24 hours. We do not send a confirmation email — if you hear nothing from us, please call.",
+    "formErrorTitle": "That did not work.",
+    "formError": "Your message could not be sent. Please try again — nothing you typed has been lost. If it fails again, you can reach us directly:",
+    "formAgain": "Send another message"
   },
   "footer": {
     "blurb": "Premium cleaning services for a cleaner, healthier and happier home.",

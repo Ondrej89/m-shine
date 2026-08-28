@@ -650,9 +650,15 @@
     "sideTwo": "Bei Betrieben vereinbaren wir eine kurze Besichtigung.",
     "sideThree": "Sie erhalten ein schriftliches Angebot mit Preis und Terminvorschlag.",
     "sideContact": "Lieber direkt sprechen?",
-    "successTitle": "Danke – Ihre Angaben sind vollständig.",
-    "successBody": "Hinweis: Das Formular ist noch nicht mit unserem Postfach verbunden, Ihre Anfrage wurde also noch nicht übermittelt. Bitte schicken Sie uns die Angaben vorerst direkt per E-Mail oder rufen Sie an – wir melden uns dann zeitnah.",
-    "successAgain": "Angaben ändern"
+    "successTitle": "Danke – Ihre Anfrage ist angekommen.",
+    "successBody": "Wir sehen uns Ihre Angaben an und melden uns in der Regel innerhalb von 24 Stunden mit einem unverbindlichen Angebot. Eine Bestätigungsmail schicken wir nicht – wenn Sie nichts von uns hören, rufen Sie bitte an.",
+    "successAgain": "Weitere Anfrage senden",
+    "pendingTitle": "Danke – Ihre Angaben sind vollständig.",
+    "pendingBody": "Hinweis: Das Formular ist noch nicht mit unserem Postfach verbunden, Ihre Anfrage wurde also noch nicht übermittelt. Bitte schicken Sie uns die Angaben vorerst direkt per E-Mail oder rufen Sie an – wir melden uns dann zeitnah.",
+    "sending": "Wird gesendet …",
+    "pendingAgain": "Angaben ändern",
+    "errorTitle": "Das hat leider nicht geklappt.",
+    "errorBody": "Ihre Anfrage konnte nicht gesendet werden. Bitte versuchen Sie es noch einmal – Ihre Angaben stehen weiterhin im Formular. Wenn es wieder nicht klappt, erreichen Sie uns direkt:"
   },
   "why": {
     "eyebrow": "WARUM WIR",
@@ -782,7 +788,13 @@
     "addressValue": "Wien, Österreich",
     "addressNote": "Kein Kundenverkehr am Standort – wir kommen zu Ihnen.",
     "labelArea": "Einsatzgebiet",
-    "areaValue": "Wien und Umgebung, unter anderem Mödling und Purkersdorf. Weitere Orte nach Vereinbarung."
+    "areaValue": "Wien und Umgebung, unter anderem Mödling und Purkersdorf. Weitere Orte nach Vereinbarung.",
+    "formSending": "Wird gesendet …",
+    "formSuccessTitle": "Danke – Ihre Nachricht ist angekommen.",
+    "formSuccessBody": "Wir haben Ihre Nachricht erhalten und melden uns in der Regel innerhalb von 24 Stunden. Eine Bestätigung schicken wir nicht – wenn Sie nichts von uns hören, rufen Sie bitte an.",
+    "formErrorTitle": "Das hat leider nicht geklappt.",
+    "formError": "Ihre Nachricht konnte nicht gesendet werden. Bitte versuchen Sie es noch einmal – Ihre Angaben stehen weiterhin im Formular. Wenn es wieder nicht klappt, erreichen Sie uns direkt:",
+    "formAgain": "Weitere Nachricht senden"
   },
   "footer": {
     "blurb": "Hochwertige Reinigungsdienste für ein saubereres, gesünderes und glücklicheres Zuhause.",

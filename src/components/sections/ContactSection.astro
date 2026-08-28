@@ -16,14 +16,23 @@ import { useTranslations } from '../../i18n/ui';
  * component state; the browser does all of it natively, including keyboard
  * operation and the expanded state, so there is nothing to ship.
  *
- * The form has no endpoint yet. It still renders and still validates — the
- * browser's own constraint validation blocks an empty name, an empty message
- * or a malformed address before submit ever fires — and then the script at the
- * foot stops the submit and explains, rather than reloading the page and
- * throwing the message away. Exactly the arrangement the footer's newsletter
- * uses, and it comes out the same way when `contactAction` is filled in: the
- * `data-` hook disappears and the form posts. Whatever service is chosen has
- * to deliver to `SITE_DETAILS.formRecipient`.
+ * The form posts to Web3Forms — see the long note in `src/data/site.ts`.
+ * Three states, and the script at the foot owns all three:
+ *
+ *   live + ok      the form is replaced by a success panel.
+ *   live + failed  an error sits under the button, the form KEEPS its values,
+ *                  and the phone and mailbox sit beside the retry. Losing a
+ *                  message someone just typed because a third-party API had a
+ *                  bad minute is the one outcome worth designing against.
+ *   no key yet     the submit is stopped and the visitor is told the form is
+ *                  not connected — what shipped before this, and still the
+ *                  honest thing to say until the access key is pasted in.
+ *
+ * The browser's own constraint validation runs first in every case, so an
+ * empty name or a malformed address never reaches the network.
+ *
+ * Without JavaScript the form is a plain POST to the same endpoint and the
+ * visitor lands on Web3Forms' own confirmation page. Less pretty, still sent.
  */
 interface Props {
 	locale: Locale;
@@ -35,6 +44,10 @@ const t = useTranslations(locale);
 const FAQS = ['one', 'two', 'three', 'four', 'five', 'six'] as const;
 
 const contactAction = SITE_DETAILS.contactAction;
+/* The visitor's language goes in the mail subject so the client knows which
+   language to answer in. The subject itself is not translated — she reads it,
+   the visitor never does. */
+const subject = `${SITE_DETAILS.formSubjects.contact} (${locale.toUpperCase()})`;
 ---
 
 <Section class="ms-contact" width={1180} rhythm="none" flourishes>
@@ -171,8 +184,32 @@ const contactAction = SITE_DETAILS.contactAction;
 					class="ms-contact__form"
 					action={contactAction ?? undefined}
 					method="post"
-					data-ms-contact={contactAction ? undefined : 'pending'}
+					data-ms-contact={contactAction ? 'live' : 'pending'}
 				>
+					{/*
+					 * Web3Forms' own fields. `access_key` is public by design — it
+					 * authorises delivery to one mailbox and nothing else. They sit in
+					 * the markup rather than being added by the script so that the
+					 * no-JavaScript POST carries them too.
+					 */}
+					<input type="hidden" name="access_key" value={SITE_DETAILS.formAccessKey ?? ''} />
+					<input type="hidden" name="subject" value={subject} />
+					<input type="hidden" name="from_name" value={t('site.name')} />
+
+					{/*
+					 * Honeypot. Web3Forms discards anything that arrives with
+					 * `botcheck` set, and a person never sets it: it is display:none,
+					 * out of the tab order and out of the accessibility tree.
+					 */}
+					<input
+						type="checkbox"
+						name="botcheck"
+						style="display:none"
+						tabindex="-1"
+						autocomplete="off"
+						aria-hidden="true"
+					/>
+
 					<label class="screen-reader-text" for="ms-contact-name">{t('contact.formName')}</label>
 					<input
 						class="ms-input"
@@ -206,25 +243,125 @@ const contactAction = SITE_DETAILS.contactAction;
 						placeholder={t('contact.formMessage')}
 						required></textarea>
 
-					<button class="ms-contact__submit" type="submit">
-						{t('contact.formSubmit')}
+					<button class="ms-contact__submit" type="submit" data-ms-contact-submit>
+						<span data-ms-contact-submit-label>{t('contact.formSubmit')}</span>
 						<Icon name="send" size={16} />
 					</button>
 
-					{/* `role="status"` so the notice is announced when it appears. */}
+					{/*
+					 * The "not connected yet" notice. `role="status"` — polite, it is
+					 * an outcome rather than an interruption.
+					 */}
 					<p class="ms-contact__note" role="status" data-ms-contact-msg></p>
+
+					{/*
+					 * The failure state. `role="alert"` rather than `status`: the
+					 * message the visitor typed is still on screen and still unsent,
+					 * and they need to know that now rather than the next time they
+					 * tab past it.
+					 */}
+					<div class="ms-contact__error" role="alert" hidden data-ms-contact-error>
+						<b class="ms-contact__error-title">{t('contact.formErrorTitle')}</b>
+						<span>{t('contact.formError')}</span>
+						<span class="ms-contact__error-links">
+							<a href={`tel:${SITE_DETAILS.phoneHref}`}>{SITE_DETAILS.phone}</a>
+							<a href={`mailto:${SITE_DETAILS.email}`}>{SITE_DETAILS.email}</a>
+						</span>
+					</div>
 				</form>
+
+				{/*
+				 * The success state. It replaces the form rather than sitting under
+				 * it, so the page cannot be read as "sent — and here is the form
+				 * again". It repeats the phone and mailbox because the one thing it
+				 * deliberately does not promise is a confirmation email: Web3Forms
+				 * sends to the client, not to the visitor.
+				 */}
+				<div class="ms-contact__done" hidden data-ms-contact-done>
+					<span class="ms-contact__done-icon">
+						<Icon name="check" size={24} stroke={2.4} />
+					</span>
+					<h2 class="ms-contact__done-title">{t('contact.formSuccessTitle')}</h2>
+					<p class="ms-contact__done-body">{t('contact.formSuccessBody')}</p>
+					<p class="ms-contact__error-links">
+						<a href={`tel:${SITE_DETAILS.phoneHref}`}>{SITE_DETAILS.phone}</a>
+						<a href={`mailto:${SITE_DETAILS.email}`}>{SITE_DETAILS.email}</a>
+					</p>
+					<button class="ms-contact__again" type="button" data-ms-contact-again>
+						{t('contact.formAgain')}
+					</button>
+				</div>
 			</div>
 		</div>
 	</div>
 </Section>
 
-<script is:inline define:vars={{ pendingMsg: t('contact.formPending') }}>
+<script
+	is:inline
+	define:vars={{
+		pendingMsg: t('contact.formPending'),
+		sendingLabel: t('contact.formSending'),
+		submitLabel: t('contact.formSubmit'),
+	}}
+>
+	/* No key yet: stop the submit and say so. Unchanged from before the form was
+	   wired — it is the guard that keeps the page honest until the access key is
+	   pasted into src/data/site.ts. */
 	document.querySelectorAll('[data-ms-contact="pending"]').forEach((form) => {
 		form.addEventListener('submit', (event) => {
 			event.preventDefault();
 			const msg = form.querySelector('[data-ms-contact-msg]');
 			if (msg) msg.textContent = pendingMsg;
+		});
+	});
+
+	document.querySelectorAll('[data-ms-contact="live"]').forEach((form) => {
+		const submit = form.querySelector('[data-ms-contact-submit]');
+		const label = form.querySelector('[data-ms-contact-submit-label]');
+		const error = form.querySelector('[data-ms-contact-error]');
+		const done = form.parentElement.querySelector('[data-ms-contact-done]');
+
+		form.addEventListener('submit', async (event) => {
+			/* The browser has already run its own validation by the time `submit`
+			   fires, so anything reaching here is well-formed. */
+			event.preventDefault();
+			error.hidden = true;
+			submit.disabled = true;
+			label.textContent = sendingLabel;
+
+			try {
+				/* `FormData` as the body rather than JSON: it is a CORS-simple
+				   request, so there is no preflight to fail, and it carries the
+				   hidden fields the no-script POST uses without restating them. */
+				const response = await fetch(form.action, {
+					method: 'POST',
+					body: new FormData(form),
+					headers: { Accept: 'application/json' },
+				});
+				const result = await response.json().catch(() => ({}));
+
+				/* Web3Forms answers 200 with `success: false` for a submission it
+				   rejects, so the status code alone is not the answer. */
+				if (!response.ok || result.success !== true) throw new Error('rejected');
+
+				form.hidden = true;
+				done.hidden = false;
+				done.setAttribute('tabindex', '-1');
+				done.focus();
+			} catch {
+				/* Everything the visitor typed is still in the form. */
+				error.hidden = false;
+			} finally {
+				submit.disabled = false;
+				label.textContent = submitLabel;
+			}
+		});
+
+		done?.querySelector('[data-ms-contact-again]')?.addEventListener('click', () => {
+			form.reset();
+			done.hidden = true;
+			form.hidden = false;
+			form.querySelector('input:not([type="hidden"])')?.focus();
 		});
 	});
 </script>

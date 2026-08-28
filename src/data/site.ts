@@ -6,6 +6,33 @@
  * These are the client's real details (2026-08-28), with two exceptions marked
  * TEMPORARY below: the mailbox and the (absent) social accounts.
  */
+/**
+ * The form backend: Web3Forms (https://web3forms.com).
+ *
+ * Chosen over Formspree because the free tier is 250 submissions a month
+ * rather than 50, and because the access key is issued straight to a mailbox
+ * with no dashboard account to create and no password to keep.
+ *
+ * How it works: the browser POSTs the form to `WEB3FORMS_ENDPOINT` with a
+ * hidden `access_key`, and Web3Forms emails the contents to whichever address
+ * that key was issued for. There is no server of ours in the path, which is
+ * the point — this is a static site.
+ *
+ * THE ACCESS KEY IS PUBLIC BY DESIGN. It ships in the HTML of every page that
+ * carries a form, exactly as the service intends; it authorises delivery to
+ * one fixed mailbox and nothing else. It is not a secret, so it lives here in
+ * the source rather than in an environment variable, and there is one place to
+ * change it.
+ *
+ * TO GO LIVE: get a key at https://web3forms.com — enter
+ * magicshine2601@gmail.com (the value of `formRecipient` below), and the key
+ * arrives in that mailbox. Paste it in place of `null`. Nothing else changes:
+ * both forms switch from the "not connected yet" path to real submission the
+ * moment this stops being `null`.
+ */
+const WEB3FORMS_ENDPOINT = 'https://api.web3forms.com/submit';
+const WEB3FORMS_ACCESS_KEY: string | null = null;
+
 export const SITE_DETAILS = {
 	/** Display form, formatted the way it should be read. Austria, primary. */
 	phone: '+43 681 8160 9657',
@@ -46,27 +73,45 @@ export const SITE_DETAILS = {
 	 * Where the newsletter form posts. `null` until a provider is chosen — the
 	 * footer renders the field either way, but with no endpoint it refuses to
 	 * submit and says so rather than reloading the page and losing the address.
+	 *
+	 * Deliberately NOT wired to Web3Forms with the other two: a newsletter is a
+	 * subscriber list, not a message, and routing sign-ups into an inbox gives
+	 * the client a pile of addresses to manage by hand and no way to send to
+	 * them. It waits for a real provider.
 	 */
 	newsletterAction: null as string | null,
 	/**
-	 * Where the contact form posts. `null` until a form/email service is chosen
-	 * — same arrangement as the newsletter above, and for the same reason: the
-	 * field renders and validates either way, but with no endpoint the form
-	 * refuses to submit and says so rather than reloading the page and throwing
-	 * the message away.
+	 * Where the contact and quote forms post. Both are the Web3Forms endpoint
+	 * once a key exists, and `null` until then — see WEB3FORMS_ACCESS_KEY above.
+	 * `null` is what keeps the honest "not connected yet" path alive: the forms
+	 * render and validate either way, and with no key they decline to submit
+	 * and say so rather than posting into the void.
+	 *
+	 * They are separate constants rather than one because the two could
+	 * plausibly diverge later (a different service, a different mailbox), and
+	 * every component reads its own.
 	 */
-	contactAction: null as string | null,
+	contactAction: (WEB3FORMS_ACCESS_KEY ? WEB3FORMS_ENDPOINT : null) as string | null,
+	quoteAction: (WEB3FORMS_ACCESS_KEY ? WEB3FORMS_ENDPOINT : null) as string | null,
+	/** The key itself, for the hidden `access_key` field both forms carry. */
+	formAccessKey: WEB3FORMS_ACCESS_KEY as string | null,
 	/**
-	 * Where the quote request form posts. `null` until the same form/email
-	 * service is chosen — the form renders and validates either way, and shows a
-	 * success panel that says plainly that nothing has been transmitted yet.
+	 * The `subject:` line of the mail Web3Forms sends. Not a translatable UI
+	 * string — nobody visiting the site ever sees it; it is what the client
+	 * reads in her inbox, and it stays in one language so the two kinds of
+	 * enquiry sort together. The visitor's language is appended by the form so
+	 * she knows which language to answer in.
 	 */
-	quoteAction: null as string | null,
+	formSubjects: {
+		contact: 'Kontaktanfrage über die Website',
+		quote: 'Angebotsanfrage über die Website',
+	},
 	/**
-	 * Who the two forms above must deliver to once a service is wired up.
-	 * Recorded here rather than in the service's dashboard alone so the
-	 * requirement is visible in the codebase — it is `email` today, and it
-	 * should follow `email` to the real domain mailbox when that exists.
+	 * Who the two forms deliver to. Web3Forms sends to whichever address the
+	 * access key was issued for, so this is a record of what that address must
+	 * be rather than something the code can enforce — if the key is ever
+	 * reissued, it has to be reissued for this mailbox. It follows `email`
+	 * above to the real domain mailbox when that exists.
 	 */
 	formRecipient: 'magicshine2601@gmail.com',
 } as const;

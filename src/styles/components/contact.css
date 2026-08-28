@@ -313,6 +313,15 @@ a.ms-cfact__value:focus {
 	min-height: 16px;
 }
 
+/* The note is empty on every page load and stays empty unless the form is the
+   un-keyed "not connected" variant. `min-height` above reserved 16px for it,
+   which left a hole between the button and the error panel below. Hiding it
+   while empty costs nothing: the only thing that fills it is a click, and a
+   shift within half a second of an interaction is not counted against CLS. */
+.ms-contact__note:empty {
+	display: none;
+}
+
 /* --- Responsive ------------------------------------------------------- */
 
 /* Contact's own step: the FAQ column and the contact column stop sitting side
@@ -341,4 +350,115 @@ a.ms-cfact__value:focus {
 	.ms-contact__title {
 		font-size: 24px;
 	}
+}
+
+
+/* --- Form outcome states ----------------------------------------------- */
+
+/* Both states are new with the Web3Forms wiring. `.ms-contact__note` above
+   stays as it is: it carries only the "not connected yet" line, which is a
+   different thing from a send that failed and wants a retry.
+
+   Red and green rather than the site's blue and green pair, because "sent" and
+   "not sent" have to be told apart at a glance and the brand green already
+   means "a good thing" everywhere else on the page. */
+
+.ms-contact__error {
+	background: #fdf1f0;
+	border: 1px solid #f1c9c5;
+	border-radius: 12px;
+	color: #7a3a33;
+	display: flex;
+	flex-direction: column;
+	font-size: 14px;
+	gap: 6px;
+	line-height: 1.6;
+	margin-top: 14px;
+	padding: 15px 17px;
+}
+
+.ms-contact__error-title {
+	color: #8f3a2f;
+	font-size: 15px;
+	font-weight: 700;
+}
+
+/* The phone and the mailbox, side by side and allowed to wrap: at 375 the
+   address alone is wider than half the column. */
+.ms-contact__error-links {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 6px 18px;
+	margin-top: 2px;
+}
+
+.ms-contact__error-links a {
+	color: inherit;
+	font-weight: 600;
+	overflow-wrap: anywhere;
+}
+
+/* Replaces the form rather than sitting under it, so it takes the form's own
+   box: same card, same radius, same padding. */
+.ms-contact__done {
+	background: var(--wp--preset--color--base);
+	border: 1px solid var(--wp--preset--color--line);
+	border-radius: var(--wp--custom--radius--lg);
+	padding: 26px 24px;
+}
+
+.ms-contact__done:focus {
+	outline: none;
+}
+
+.ms-contact__done-icon {
+	align-items: center;
+	background: var(--wp--preset--color--tint-green);
+	border-radius: 50%;
+	color: var(--wp--preset--color--green);
+	display: flex;
+	height: 48px;
+	justify-content: center;
+	margin-bottom: 14px;
+	width: 48px;
+}
+
+.ms-contact__done-title {
+	font-size: 22px;
+	line-height: 1.25;
+	margin: 0 0 8px;
+}
+
+.ms-contact__done-body {
+	color: var(--wp--preset--color--ink-light);
+	font-size: 14.5px;
+	line-height: 1.65;
+	margin: 0 0 14px;
+}
+
+.ms-contact__done .ms-contact__error-links {
+	color: var(--wp--preset--color--ink);
+	margin-bottom: 18px;
+}
+
+.ms-contact__done .ms-contact__error-links a {
+	color: var(--wp--preset--color--blue);
+}
+
+.ms-contact__again {
+	background: none;
+	border: 1px solid var(--wp--preset--color--line);
+	border-radius: 999px;
+	color: var(--wp--preset--color--ink);
+	cursor: pointer;
+	font: inherit;
+	font-size: 14px;
+	font-weight: 600;
+	padding: 9px 18px;
+}
+
+.ms-contact__again:hover,
+.ms-contact__again:focus-visible {
+	border-color: var(--wp--preset--color--blue);
+	color: var(--wp--preset--color--blue);
 }
