@@ -20,6 +20,10 @@
     "contact": "Kontakt",
     "quote": "Vyžiadať ponuku"
   },
+  "cta": {
+    "request": "Vyžiadať ponuku",
+    "quote": "Vyžiadať ponuku"
+  },
   "header": {
     "phoneNote": "Sme tu kedykoľvek"
   },

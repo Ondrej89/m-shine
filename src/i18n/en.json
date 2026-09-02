@@ -20,6 +20,10 @@
     "contact": "Contact",
     "quote": "Request a Quote"
   },
+  "cta": {
+    "request": "Request a Quote",
+    "quote": "Request a Quote"
+  },
   "header": {
     "phoneNote": "Call us anytime"
   },

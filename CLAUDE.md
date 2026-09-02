@@ -61,6 +61,13 @@ by reading the CSS. Do that. Three environment quirks are worth knowing:
 Where 1 and 2 disagree, 1 wins — the style.css comments usually explain why it deviates.
 Neither folder is part of the build; both are excluded from `tsconfig.json`.
 
+Those three are authoritative for **design**. For **German copy** the authority is
+`_content-reference/` — the client's manager's native-speaker review (the same document in
+English and German). It was written against the old single Services page, so its section 3
+("Gewerbliche & spezialisierte Reinigung") describes a section that no longer exists; the
+Geschäftskunden page supersedes it and is deliberately richer. Everything else in it was
+applied on 2026-09-02 — see "German copy review" below.
+
 The theme is authoritative but not infallible. It has been overruled twice, both times with
 a measurement and a comment saying why: the hero's fixed `750px` media column (it overflowed
 every width below 1320px) and the mobile header panel's gutter/inset mismatch. If you
@@ -126,6 +133,41 @@ shorter hero eyebrow and secondary CTA, the header gaps (the row needed 1164px i
 box, pushing the language switcher off screen at _every_ width), the hero stats card going
 one-column on phones, and the trust row stacking its icon above its label. Check German
 first; English and Slovak then fit comfortably.
+
+**German CTAs are a two-tier vocabulary, and the tier is the destination's weight.** Set by
+the client's manager on 2026-09-02 and applied to every German page:
+
+- `cta.request` — **"Reinigung anfragen"**. The low-friction ask: service cards, the service
+  rows, the detail hero and its overview, the Geschäftskunden sector list.
+- `cta.quote` — **"Unverbindliches Angebot anfordern"**. The considered ask: every closing
+  band, the home and About hero primaries, the Commercial hero, the Pricing CTAs.
+- `services.learnMore` — **"Mehr erfahren"** for every read-more link. `othersLink` and
+  `pricing.startLink` were "Details ansehen" / "Leistung ansehen"; they say this now too.
+- `nav.quote` — **"Angebot anfordern"** stays, and is now _only_ the header button and the
+  footer quick link. It names the destination page rather than making an offer, and the
+  header has no room for the long form — see the 1160px note in header.css.
+- **"Termin buchen" is banned** until a real booking engine exists. So is any CTA that
+  implies one; `plans.action` said "Pläne ansehen" for plan tiers the Pricing page
+  deliberately does not have, and says "Preise ansehen" now.
+
+Both tiers point at the quote page. Where a second button goes somewhere else it keeps its
+own label — the closing bands' secondary is "Kontakt aufnehmen" because it goes to Contact,
+not to a quote. Do not "align" that one to the tiers.
+
+**Trust claims must be substantiable, and the German wording is fixed.** "Umweltbewusste
+Reinigungsmittel", "Sorgfältige & zuverlässige Reinigung", "Erfahrenes Reinigungsteam" —
+in `home.trust.*` and `about.points.*`, which the Home hero and the Services trust row
+share. They replaced "Umweltfreundliche Mittel" / "Zufriedenheitsgarantie" / "Überprüftes
+Personal": the reviewer's point is that "umweltfreundlich", "garantiert" and "geprüft" are
+claims the business has not substantiated, the same class as the "Insured & Bonded" line
+already removed. "umweltfreundlich" went out of the metas and the Contact FAQ with them,
+and `commercial.why.three` no longer says the staff is "überprüft". The one guarantee kept
+is the AGB's own re-clean promise, because that one is written down.
+
+**Windows, appliances and cupboards are named only where they are actually included.**
+Otherwise the line carries "nach Vereinbarung", "sofern leer" or "nach Leistungsumfang" —
+`services.move.includes.*` and `services.deep.includes.*` all do. A bullet that promises
+an extra the quote does not cover is the one copy bug that costs money on site.
 
 ## Current state
 
@@ -261,8 +303,12 @@ Home refinements worth not undoing:
   keeping the accent on the whole object as the design's does.
 - Trust row is **three** items side by side, icon stacked _above_ the label.
   "Insured & Bonded" was removed entirely: the client cannot substantiate it. The stacking
-  is not decorative — "Zufriedenheitsgarantie" sets 138px and only fits when the label gets
-  the whole track.
+  is not decorative — it was "Zufriedenheitsgarantie", a single unbreakable 138px word that
+  only fitted when the label got the whole track. The 2026-09-02 copy review replaced that
+  label with "Sorgfältige & zuverlässige Reinigung", which breaks freely, so the original
+  reason is gone; keep the stacking anyway. The new labels are longer and run two lines in
+  the hero's 161px tracks (item height 60 -> 77px, all three equal), which is what the whole
+  track buys them. Beside an icon they would need a track the hero does not have.
 - The old "More Than Just a Cleaning Service" section is replaced by the client's
   **"Warum Magic Shine?"** five reasons in a 3 + 2 grid (five across gives 134px tracks in
   the `2fr` column — too narrow).
@@ -272,9 +318,11 @@ About refinements worth not undoing:
 - **CLS is 0** here too, and no horizontal overflow in any of the three languages at 375,
   480, 720, 820, 960, 1180 or 1400.
 - The hero tick list goes **one column at 480px**, not the design's 2x2 all the way down.
-  At 375 each label box is 120px and "Zufriedenheitsgarantie" sets 154px, so the German
+  At 375 each label box is 120px and "Zufriedenheitsgarantie" set 154px, so the German
   labels broke mid-word — `overflow-wrap` breaks without even a hyphen. Two tracks need
-  428px of client width. Same measurement and same step as the home hero's trust row.
+  428px of client width. Same measurement and same step as the home hero's trust row. That
+  label is "Sorgfältige & zuverlässige Reinigung" since 2026-09-02 and breaks at its spaces,
+  but the list is longer now, so the step stays.
 - **`.ms-band` no longer escapes to `100vw`.** A band is a page-level section and `<main>`
   is already the client width, so the classic `width: 100vw; margin-inline: calc(50% - 50vw)`
   pair only added the scrollbar back: band content sat **7.5px left** of every constrained
@@ -295,11 +343,14 @@ Services refinements worth not undoing:
   too. Its strings are the home hero's `home.trust.*` rather than a second copy of the same
   three claims.
 - That row **stacks its icon above its label at 820px**, which is not in the design or the
-  theme. "Zufriedenheitsgarantie" is a single unbreakable 153px word; beside a 46px icon an
-  item needs 212px, and three across only clear that above ~765px. The theme's answer (two
-  columns at 600, capped at 420px) gives 141px of label box and the word hung 13px past the
-  viewport at 375, swallowed by `overflow-x: hidden`. Stacking hands the label the whole
-  track — the home hero's fix, for the identical reason.
+  theme. It was "Zufriedenheitsgarantie", a single unbreakable 153px word; beside a 46px
+  icon an item needs 212px, and three across only clear that above ~765px. The theme's
+  answer (two columns at 600, capped at 420px) gives 141px of label box and the word hung
+  13px past the viewport at 375, swallowed by `overflow-x: hidden`. Stacking hands the
+  label the whole track — the home hero's fix, for the identical reason. The 2026-09-02
+  labels break freely and now set on one line at 375; the step stays because the labels are
+  longer overall (item height 74 -> 92px between 720 and 820) and the client can change the
+  wording again.
 - The tick lists go one column at 480 — the design's own step, which the theme dropped.
   Nothing breaks without it; it buys one line per tick instead of two.
 - **The rows show a starting price again** (2026-08-28). The line was suppressed while
@@ -534,8 +585,13 @@ Every page is built and the client's real content landed on 2026-08-28 (see "Cli
    on the page, in an amber notice, in all three languages. They are not signed off.
 3. **Replace the reviews.** Every testimonial on the site is invented — see the block
    comment at the top of `ReviewsCarousel`, `AboutReviews` and `ServiceReviews`.
-4. **Native review of the German and Slovak copy**, and the client's remaining decisions on
-   the pre-launch list below.
+4. **Native review of the English and Slovak copy.** German is done — see "German copy
+   review, 2026-09-02" below. English and Slovak were not touched by that pass and still
+   read as the design's US-market copy translated; the CTA tiers in particular exist only
+   in German, because `cta.request` and `cta.quote` were given both locales' existing
+   `nav.quote` wording so the change could not alter a page nobody had reviewed. Their
+   reviewers should split them the way German is split. Also the client's remaining
+   decisions on the pre-launch list below.
 5. **Delete the styleguide** and deploy. The origin is already right; only DNS changes.
 
 ## Client content, 2026-08-28
@@ -597,6 +653,55 @@ copy. What each one changed, so none of it gets quietly undone:
   the 24–48h quote turnaround and the site-visit-for-business-premises flow all match what
   she actually does, which is what was already built.
 
+## German copy review, 2026-09-02
+
+The client's manager reviewed the German copy natively and sent a structured rewrite; it is
+in `_content-reference/`. It was written against the **old** structure — one Services page
+with a commercial section at the bottom, and prices still an open question — so it was
+mapped onto the current pages rather than pasted in. German only: `en.json` and `sk.json`
+were not touched, and the built English and Slovak pages are byte-identical to the commit
+before this one. What moved, and what deliberately did not:
+
+- **Services (Privatkunden)** took his H1, intro and all four titles, descriptions and
+  bullet lists verbatim. His copy is the row `detail` and `features.*`; the H1 is
+  `services.hero.title`.
+- **Umzugsreinigung is displayed as "Einzugs- & Auszugsreinigung"** — his name for it.
+  The **route stays `/leistungen/umzugsreinigung/`** and the metas keep "Umzugsreinigung",
+  because that is the search term and he keeps it in his own SEO list. `nameInline` also
+  stays "Umzugsreinigung": it is the running-text name ("Bereit für Ihre …?"), where an
+  ampersand mid-sentence reads badly. `ServiceReviews` heads its section with `title`, not
+  `nameInline`, so that one sentence does carry the ampersand — change the component if the
+  client objects, but it changes English and Slovak with it.
+- **Service detail pages** took his subheadline (`lede`) and two body paragraphs
+  (`overviewOne` / `overviewTwo`) for all four.
+- **His section 3, the generic commercial block, was NOT applied.** The Geschäftskunden
+  page already says more, per sector, and the client confirmed that content on 2026-08-28.
+  Only his tone rules were applied to it: "nach dem Sperrstunden-Betrieb" -> "nach der
+  Sperrstunde", and the staff is "erfahren" rather than "überprüft". The rest of that page
+  was written in German rather than translated and needed nothing.
+- **The closing band** on Services is his section 4 — eyebrow, headline and body. It
+  replaced "Erleben Sie den Unterschied von Magic Shine", which is the exact US phrasing
+  his rules name. Its secondary button keeps "Kontakt aufnehmen"; his pair assumed both
+  buttons lead to an enquiry, and ours goes to the Contact page.
+- **The German meta title and description** are his, on the **home** page: they cover
+  "Privat & Gewerbe", which is what the home page does now that the reviewed page has split
+  in two. `| Magic Shine` is appended by the page template, so `meta.home.title` holds only
+  the first half. It also retired "Versicherte, überprüfte Teams" from that description.
+- **Pricing was checked, not changed.** The document predates the hourly model and asks
+  whether to show prices at all; the client settled that on 2026-08-28. Nothing in German
+  contradicts it — the three "pro Termin" lines are about a visit costing less because it
+  takes fewer hours, which is what hourly billing implies, and there is no `$` on the site.
+- **Measured after, headlessly, at 375/414/480/530/560/600/720/768/820/960/1180/1280/1440.**
+  No horizontal overflow anywhere, and the overflow profile is identical to the previous
+  commit. Two things moved: the detail pages' CTA band button was `flex: none` and hung 6px
+  past the viewport at 375 under the longer label (fixed in service-detail.css, see the
+  comment there), and the **home hero's two buttons now stack between 480 and ~590px**,
+  where they used to sit on one row. Below 480 they already stacked; from 600 up they still
+  sit on one row, so the "one row at every desktop width" rule holds. That is the cost of
+  the mandated 341px CTA label and it is accepted.
+- **Still open from his document:** he flags that "haustiersicher" and the reviews need to
+  be substantiated. Both were already on the pre-launch list and still are.
+
 ## Pre-launch list
 
 - **"Haustiersicher" / "pet-safe"** is on every detail page's facts card, from the design.
@@ -640,6 +745,5 @@ copy. What each one changed, so none of it gets quietly undone:
   visit; we agree the method when you enquire"). The design promised card payment and SEPA
   direct debit, which the client has not confirmed and which no backend supports. Replace
   with the real terms.
-- **German and Slovak copy needs a native review**, German especially given the B2B audience
-  in Vienna. Current copy is the existing site's, authored in English and translated here,
-  plus the client's own five reasons — all placeholder until she refines it.
+- **English and Slovak copy needs a native review.** German got one on 2026-09-02; those two
+  did not, and they are still the existing site's copy authored in English and translated.

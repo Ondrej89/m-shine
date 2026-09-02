@@ -1,7 +1,7 @@
 {
   "extends": "astro/tsconfigs/strict",
   "include": [".astro/types.d.ts", "**/*"],
-  "exclude": ["dist", "_design-reference", "_wp-theme-reference"],
+  "exclude": ["dist", "_design-reference", "_wp-theme-reference", "_content-reference"],
   "compilerOptions": {
     "resolveJsonModule": true,
     "strictNullChecks": true

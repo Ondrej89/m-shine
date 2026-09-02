@@ -532,4 +532,17 @@
 	.ms-sd-cta {
 		padding: 32px 24px;
 	}
+
+	/* The band's button is `flex: none`, so it keeps its max-content width and
+	   cannot give way. "Unverbindliches Angebot anfordern" sets 341px; inside
+	   the band's 24px padding there are 293 at 375px, and it hung 6px past the
+	   viewport — swallowed by `overflow-x: hidden`, so the page still measured
+	   zero scroll overflow. It takes the whole row here instead and wraps to
+	   two lines, which needs a line-height the 1 of `.ms-btn` does not give. */
+	.ms-sd-cta__action {
+		flex: 1 1 100%;
+		justify-content: center;
+		line-height: 1.25;
+		text-align: center;
+	}
 }
