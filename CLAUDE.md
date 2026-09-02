@@ -374,10 +374,17 @@ Service Detail refinements worth not undoing:
   `/en/services/house-cleaning/`), and `serviceForRoute()` turns the route back into a
   catalogue entry. `localizedPath`, the hreflang set and the sitemap needed no changes —
   a multi-segment slug already worked.
-- **`nameInline`** is a second name per service, for the running-text CTA. Without it
-  English read "Ready for your Move In / Move Out?" and Slovak capitalised a common noun
-  mid-sentence. German is unchanged (it capitalises nouns anyway). The design carries the
-  same pair, as `nameLower`.
+- **`nameInline`** is a second name per service, for the two headings that run the name
+  inside a sentence: the closing CTA and — since 2026-09-02 — the reviews heading. Without
+  it English read "Ready for your Move In / Move Out?", Slovak capitalised a common noun
+  mid-sentence ("o službe Upratovanie domov"), and German put an ampersand in a clause
+  ("über Einzugs- & Auszugsreinigung sagen"). The design carries the same pair, as
+  `nameLower`. **Both of those headings are sentence case in English** — the site's other
+  headings are Title Case, and a Title Case frame around a lower-case inline noun
+  ("What Clients Say About house cleaning") reads as a mistake. English `nameInline` also
+  takes the `-ing` form for all four, because "your deep clean" works but "about deep
+  clean" does not; one field has to serve both frames. If a third heading ever
+  interpolates a name, it is sentence case too.
 - The reviews heading and the CTA interpolate `{service}` with a one-token `.replace()`.
   `t()` has no interpolation and does not need any — this is the only sentence on the site
   that varies, and a placeholder keeps the whole clause, word order included, in the
@@ -586,9 +593,10 @@ Every page is built and the client's real content landed on 2026-08-28 (see "Cli
 3. **Replace the reviews.** Every testimonial on the site is invented — see the block
    comment at the top of `ReviewsCarousel`, `AboutReviews` and `ServiceReviews`.
 4. **Native review of the English and Slovak copy.** German is done — see "German copy
-   review, 2026-09-02" below. English and Slovak were not touched by that pass and still
-   read as the design's US-market copy translated; the CTA tiers in particular exist only
-   in German, because `cta.request` and `cta.quote` were given both locales' existing
+   review, 2026-09-02" below. English and Slovak still read as the design's US-market copy
+   translated — that pass changed three English strings and no Slovak ones, all of them
+   forced by the reviews heading moving to `nameInline`. The CTA tiers in particular exist
+   only in German, because `cta.request` and `cta.quote` were given both locales' existing
    `nav.quote` wording so the change could not alter a page nobody had reviewed. Their
    reviewers should split them the way German is split. Also the client's remaining
    decisions on the pre-launch list below.
@@ -658,9 +666,11 @@ copy. What each one changed, so none of it gets quietly undone:
 The client's manager reviewed the German copy natively and sent a structured rewrite; it is
 in `_content-reference/`. It was written against the **old** structure — one Services page
 with a commercial section at the bottom, and prices still an open question — so it was
-mapped onto the current pages rather than pasted in. German only: `en.json` and `sk.json`
-were not touched, and the built English and Slovak pages are byte-identical to the commit
-before this one. What moved, and what deliberately did not:
+mapped onto the current pages rather than pasted in. It landed in two commits: the copy
+pass itself was German only — `en.json` and `sk.json` were untouched and the built English
+and Slovak pages came out byte-identical — and a follow-up pointed the reviews heading at
+`nameInline`, which is the one place the pass reached all three languages, for the reasons
+under "Service Detail" above. What moved, and what deliberately did not:
 
 - **Services (Privatkunden)** took his H1, intro and all four titles, descriptions and
   bullet lists verbatim. His copy is the row `detail` and `features.*`; the H1 is
@@ -669,9 +679,7 @@ before this one. What moved, and what deliberately did not:
   The **route stays `/leistungen/umzugsreinigung/`** and the metas keep "Umzugsreinigung",
   because that is the search term and he keeps it in his own SEO list. `nameInline` also
   stays "Umzugsreinigung": it is the running-text name ("Bereit für Ihre …?"), where an
-  ampersand mid-sentence reads badly. `ServiceReviews` heads its section with `title`, not
-  `nameInline`, so that one sentence does carry the ampersand — change the component if the
-  client objects, but it changes English and Slovak with it.
+  ampersand mid-sentence reads badly.
 - **Service detail pages** took his subheadline (`lede`) and two body paragraphs
   (`overviewOne` / `overviewTwo`) for all four.
 - **His section 3, the generic commercial block, was NOT applied.** The Geschäftskunden

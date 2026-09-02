@@ -252,7 +252,7 @@
     },
     "move": {
       "title": "Move In / Move Out",
-      "nameInline": "move-in / move-out clean",
+      "nameInline": "move-in / move-out cleaning",
       "description": "We make moving easy with a spotless clean space.",
       "photoAlt": "Stacked moving boxes in an empty room",
       "detail": "We make moving easy with a spotless, top-to-bottom clean — perfect for handing back keys or settling into a new home.",
@@ -302,7 +302,7 @@
     },
     "deep": {
       "title": "Deep Cleaning",
-      "nameInline": "deep clean",
+      "nameInline": "deep cleaning",
       "description": "A detailed clean for those extra special occasions.",
       "photoAlt": "A spotless, gleaming bathroom",
       "detail": "A detailed, floor-to-ceiling clean for those extra special occasions or when your home needs a full reset.",
@@ -381,7 +381,7 @@
       "teamValue": "1+ cleaner",
       "productsValue": "Eco-friendly, pet-safe",
       "reviewsEyebrow": "Verified Reviews",
-      "reviewsTitle": "What Clients Say About {service}",
+      "reviewsTitle": "What clients say about {service}",
       "othersEyebrow": "Explore More",
       "othersTitle": "Other Services",
       "othersLink": "View details",

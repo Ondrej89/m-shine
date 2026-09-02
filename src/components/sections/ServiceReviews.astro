@@ -43,7 +43,14 @@ const { locale, service } = Astro.props;
 const t = useTranslations(locale);
 const key = service.key;
 
-const name = t(`services.${key}.title` as 'services.house.title');
+/* `nameInline`, not `title` — the same pair, and for the same reason, as the
+   closing CTA below the reviews. This heading runs the name inside a sentence:
+   German's display title gained an ampersand in the 2026-09-02 copy review
+   ("Einzugs- & Auszugsreinigung"), which reads badly mid-sentence, and Slovak
+   was capitalising a common noun after "o službe". Because the string is
+   sentence-shaped, its English form is sentence case like `ctaTitle` and
+   unlike the site's other headings. */
+const name = t(`services.${key}.nameInline` as 'services.house.nameInline');
 const title = t('services.detailPage.reviewsTitle').replace('{service}', name);
 
 const REVIEWS = ['one', 'two', 'three'] as const;
